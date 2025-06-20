@@ -8,25 +8,27 @@ class FPrenotazione
         $dataInizio = $prenotazione->getPeriodo()->getDataI();
         $dataFine = $prenotazione->getPeriodo()->getDataF();
 
-        // Verifica disponibilità in intervalli
+        // Verifica copertura da intervalli
         if (!self::copreIntervalli($struttura->getIntervalli(), $dataInizio, $dataFine)) {
             return false;
         }
 
-        // Verifica che non ci siano altre prenotazioni in quelle date
+        // Verifica sovrapposizioni con altre prenotazioni
         if (self::conflittoConPrenotazioni($struttura, $dataInizio, $dataFine)) {
             return false;
         }
 
-        // Verifica che il numero di ospiti non superi la capacità
+        // Verifica numero massimo ospiti
         $numOspiti = count($prenotazione->getOspitiDettagli());
-        $capacitaStruttura = $struttura->getNumOspiti();
-
-        if ($numOspiti > $capacitaStruttura) {
+        if ($numOspiti > $struttura->getNumOspiti()) {
             return false;
         }
 
-        // Salva tutto (Doctrine salva anche gli ospiti)
+        // Calcolo del prezzo totale in base ai giorni/intervalli
+        $prezzoTotale = self::calcolaPrezzoTotale($struttura->getIntervalli(), $dataInizio, $dataFine);
+        $prenotazione->setPrezzo($prezzoTotale);
+
+        // Salva la prenotazione
         FPersistentManager::store($prenotazione);
         return true;
     }
@@ -73,6 +75,32 @@ class FPrenotazione
         }
 
         return false;
+    }
+
+    private static function calcolaPrezzoTotale(iterable $intervalli, \DateTime $dataInizio, \DateTime $dataFine): float
+    {
+        $prezzoTotale = 0.0;
+
+        $giorniPrenotati = new \DatePeriod(
+            $dataInizio,
+            new \DateInterval('P1D'),
+            (clone $dataFine)->modify('+1 day')
+        );
+
+        foreach ($giorniPrenotati as $giorno) {
+            $prezzoGiornaliero = 0;
+
+            foreach ($intervalli as $intervallo) {
+                if ($giorno >= $intervallo->getDataI() && $giorno <= $intervallo->getDataF()) {
+                    $prezzoGiornaliero = $intervallo->getPrezzo();
+                    break;
+                }
+            }
+
+            $prezzoTotale += $prezzoGiornaliero;
+        }
+
+        return $prezzoTotale;
     }
 
     public static function getPrenotazioniPerUtente(int $idUtente): array
