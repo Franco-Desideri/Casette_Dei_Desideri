@@ -1,0 +1,23 @@
+{
+  "name": "franco/casette_dei_desideri",
+  "description": "Progetto PHP con Doctrine",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Franco\\CasetteDeiDesideri\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Franco"
+    }
+  ],
+  "require": {
+    "doctrine/orm": "2.16",
+    "doctrine/dbal": "3.6",
+    "symfony/console": "6.4",
+    "symfony/cache": "^7.3",
+    "doctrine/annotations": "^2.0",
+    "smarty/smarty": "^5.5"
+  }
+}

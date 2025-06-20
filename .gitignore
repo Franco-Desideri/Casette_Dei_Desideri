@@ -1,0 +1,7 @@
+/vendor/
+/templates_c/
+/cache/
+/.idea/
+/*.lock
+.DS_Store
+.env
