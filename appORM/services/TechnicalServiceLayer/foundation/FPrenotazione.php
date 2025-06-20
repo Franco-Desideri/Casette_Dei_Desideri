@@ -2,39 +2,41 @@
 
 class FPrenotazione
 {
-    /**
-     * Crea una prenotazione dopo aver verificato disponibilità
-     */
     public static function creaPrenotazione(EPrenotazione $prenotazione): bool
     {
         $struttura = $prenotazione->getStruttura();
         $dataInizio = $prenotazione->getPeriodo()->getDataI();
         $dataFine = $prenotazione->getPeriodo()->getDataF();
 
-        // Verifica disponibilità intervalli
+        // Verifica disponibilità in intervalli
         if (!self::copreIntervalli($struttura->getIntervalli(), $dataInizio, $dataFine)) {
             return false;
         }
 
-        // Verifica assenza di sovrapposizioni con altre prenotazioni
+        // Verifica che non ci siano altre prenotazioni in quelle date
         if (self::conflittoConPrenotazioni($struttura, $dataInizio, $dataFine)) {
             return false;
         }
 
-        // Se tutto valido, salva
+        // Verifica che il numero di ospiti non superi la capacità
+        $numOspiti = count($prenotazione->getOspitiDettagli());
+        $capacitaStruttura = $struttura->getNumOspiti();
+
+        if ($numOspiti > $capacitaStruttura) {
+            return false;
+        }
+
+        // Salva tutto (Doctrine salva anche gli ospiti)
         FPersistentManager::store($prenotazione);
         return true;
     }
 
-    /**
-     * Controlla che l'intervallo richiesto sia coperto da uno o più intervalli
-     */
     private static function copreIntervalli(iterable $intervalli, \DateTime $dataInizio, \DateTime $dataFine): bool
     {
         $periodoRichiesto = new \DatePeriod(
             $dataInizio,
             new \DateInterval('P1D'),
-            (clone $dataFine)->modify('+1 day') // inclusivo
+            (clone $dataFine)->modify('+1 day')
         );
 
         $giorniCoperti = [];
@@ -59,18 +61,13 @@ class FPrenotazione
         return true;
     }
 
-    /**
-     * Controlla se ci sono prenotazioni esistenti che si sovrappongono
-     */
     private static function conflittoConPrenotazioni(EStruttura $struttura, \DateTime $dataI, \DateTime $dataF): bool
     {
         foreach ($struttura->getPrenotazioni() as $p) {
             $pI = $p->getPeriodo()->getDataI();
             $pF = $p->getPeriodo()->getDataF();
 
-            if (
-                ($dataI <= $pF) && ($dataF >= $pI) // intervallo sovrapposto
-            ) {
+            if (($dataI <= $pF) && ($dataF >= $pI)) {
                 return true;
             }
         }
@@ -78,9 +75,6 @@ class FPrenotazione
         return false;
     }
 
-    /**
-     * Recupera tutte le prenotazioni di un dato utente
-     */
     public static function getPrenotazioniPerUtente(int $idUtente): array
     {
         return FPersistentManager::findBy(EPrenotazione::class, ['utente' => $idUtente]);
