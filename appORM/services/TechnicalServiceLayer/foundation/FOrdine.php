@@ -27,6 +27,12 @@ class FOrdine
         $righe[] = "Riepilogo Ordine";
         $righe[] = "Data ordine: " . $ordine->getData()->format('d/m/Y H:i');
         $righe[] = "Utente: " . $ordine->getUtente()->getNome() . " " . $ordine->getUtente()->getCognome();
+
+        // Aggiunta fascia oraria
+        if ($ordine->getFasciaOraria()) {
+            $righe[] = "Fascia oraria richiesta: " . $ordine->getFasciaOraria();
+        }
+
         $righe[] = "";
         $righe[] = "Prodotti richiesti:";
 

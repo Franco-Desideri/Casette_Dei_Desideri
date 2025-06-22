@@ -26,6 +26,10 @@ class EOrdine
     /** @ORM\Column(type="boolean") */
     private bool $conferma;
 
+    /** @ORM\Column(type="string", nullable=true) */
+    private ?string $fasciaOraria = null;
+
+
     /**
      * @ORM\ManyToOne(targetEntity="EUtente", inversedBy="ordini")
      * @ORM\JoinColumn(nullable=false)
@@ -57,6 +61,17 @@ class EOrdine
 
     public function getUtente(): EUtente { return $this->utente; }
     public function setUtente(EUtente $utente): void { $this->utente = $utente; }
+
+    public function getFasciaOraria(): ?string
+    {
+        return $this->fasciaOraria;
+    }
+
+    public function setFasciaOraria(?string $fasciaOraria): void
+    {
+        $this->fasciaOraria = $fasciaOraria;
+    }
+
 
     public function getItems(): Collection { return $this->items; }
 
