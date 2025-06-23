@@ -55,4 +55,17 @@ class VUser
         $this->smarty->assign('prenotazione', $prenotazione);
         $this->smarty->display('utente_prenotazione.tpl');
     }
+
+    /**
+     * Mostra la home page dell'utente con eventi e attrazioni
+     *
+     * @param array $eventi     Lista di oggetti EEvento
+     * @param array $attrazioni Lista di oggetti EAttrazione
+     */
+    public function mostraHome(array $eventi, array $attrazioni): void
+    {
+        $this->smarty->assign('eventi', $eventi);
+        $this->smarty->assign('attrazioni', $attrazioni);
+        $this->smarty->display('utente_home.tpl');
+    }
 }

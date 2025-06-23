@@ -7,7 +7,7 @@ class CUser
         USession::start();
 
         if (USession::exists('utente_id')) {
-            header('Location: /Casette_Dei_Desideri/User/profilo');
+            header('Location: /Casette_Dei_Desideri/User/home');
             exit;
         }
 
@@ -29,7 +29,7 @@ class CUser
                 USession::set('ruolo', $utente->getRuolo());
 
                 $ruolo = $utente->getRuolo();
-                $dest = $ruolo === 'admin' ? 'Admin/profilo' : 'User/profilo';
+                $dest = $ruolo === 'admin' ? 'Admin/profilo' : 'User/home';
                 header("Location: /Casette_Dei_Desideri/$dest");
                 exit;
             } else {
@@ -83,5 +83,17 @@ class CUser
 
         $view = new VUser();
         $view->mostraPrenotazione($prenotazione);
+    }
+
+    // HOMEPAGE UTENTE CON ATTRAZIONI + EVENTI
+    public function home(): void
+    {
+        USession::start();
+
+        $eventi = FPersistentManager::get()->findAll('EEvento');
+        $attrazioni = FPersistentManager::get()->findAll('EAttrazione');
+
+        $view = new VUser();
+        $view->mostraHome($eventi, $attrazioni);
     }
 }
