@@ -49,6 +49,11 @@ class FOrdine
         $righe[] = "";
         $righe[] = "Totale ordine: €" . number_format($ordine->getPrezzo(), 2, ',', '.');
 
+        // Aggiunta contanti previsti alla consegna (se disponibili)
+        if ($ordine->getContanti() !== null) {
+            $righe[] = "Importo contanti fornito: €" . number_format($ordine->getContanti(), 2, ',', '.');
+        }
+
         return implode("\n", $righe);
     }
 }

@@ -126,4 +126,10 @@ class EUtente
     public function removeOrdine(EOrdine $ordine): void {
         $this->ordini->removeElement($ordine);
     }
+
+    public static function getAdmin(): ?EUtente
+    {
+        return FPersistentManager::findOneBy(EUtente::class, ['ruolo' => 'admin']);
+    }
+
 }
