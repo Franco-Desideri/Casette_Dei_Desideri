@@ -22,7 +22,7 @@ class VAdminStruttura
     public function mostraLista(array $strutture): void
     {
         $this->smarty->assign('strutture', $strutture);
-        $this->smarty->display('admin_strutture_lista.tpl');
+        $this->smarty->display('admin/strutture_lista.tpl');
     }
 
     /**
@@ -34,6 +34,6 @@ class VAdminStruttura
     public function mostraForm(?EStruttura $struttura = null): void
     {
         $this->smarty->assign('struttura', $struttura);
-        $this->smarty->display('admin_struttura_form.tpl');
+        $this->smarty->display('admin/struttura_form.tpl');
     }
 }

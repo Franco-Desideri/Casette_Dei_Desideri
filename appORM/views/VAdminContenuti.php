@@ -22,7 +22,7 @@ class VAdminContenuti
     public function mostraListaAttrazioni(array $attrazioni): void
     {
         $this->smarty->assign('attrazioni', $attrazioni);
-        $this->smarty->display('admin_attrazioni_lista.tpl');
+        $this->smarty->display('admin/attrazioni_lista.tpl');
     }
 
     /**
@@ -33,7 +33,7 @@ class VAdminContenuti
     public function mostraFormAttrazione(?EAttrazione $attrazione = null): void
     {
         $this->smarty->assign('attrazione', $attrazione);
-        $this->smarty->display('admin_attrazione_form.tpl');
+        $this->smarty->display('admin/attrazione_form.tpl');
     }
 
     /**
@@ -44,7 +44,7 @@ class VAdminContenuti
     public function mostraListaEventi(array $eventi): void
     {
         $this->smarty->assign('eventi', $eventi);
-        $this->smarty->display('admin_eventi_lista.tpl');
+        $this->smarty->display('admin/eventi_lista.tpl');
     }
 
     /**
@@ -55,6 +55,6 @@ class VAdminContenuti
     public function mostraFormEvento(?EEvento $evento = null): void
     {
         $this->smarty->assign('evento', $evento);
-        $this->smarty->display('admin_evento_form.tpl');
+        $this->smarty->display('admin/evento_form.tpl');
     }
 }

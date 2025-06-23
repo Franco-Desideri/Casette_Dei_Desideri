@@ -24,7 +24,7 @@ class VAdmin
     {
         $this->smarty->assign('admin', $admin);
         $this->smarty->assign('prenotazioni', $prenotazioni);
-        $this->smarty->display('admin_profilo.tpl');
+        $this->smarty->display('admin/profilo.tpl');
     }
 
     /**
@@ -35,6 +35,6 @@ class VAdmin
     public function mostraDettagliPrenotazione(EPrenotazione $prenotazione): void
     {
         $this->smarty->assign('prenotazione', $prenotazione);
-        $this->smarty->display('admin_prenotazione_dettagli.tpl');
+        $this->smarty->display('admin/prenotazione_dettagli.tpl');
     }
 }

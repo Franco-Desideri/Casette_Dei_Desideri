@@ -22,7 +22,7 @@ class VStruttura
     public function mostraLista(array $strutture): void
     {
         $this->smarty->assign('strutture', $strutture);
-        $this->smarty->display('struttura_lista.tpl');
+        $this->smarty->display('utente/struttura_lista.tpl');
     }
 
     /**
@@ -41,6 +41,6 @@ class VStruttura
         $this->smarty->assign('struttura', $struttura);
         $this->smarty->assign('prenotazioni', $prenotazioni);
         $this->smarty->assign('intervalli', $intervalli);
-        $this->smarty->display('struttura_dettaglio.tpl');
+        $this->smarty->display('utente/struttura_dettaglio.tpl');
     }
 }

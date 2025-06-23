@@ -25,7 +25,7 @@ class VAdminProdotto
     {
         $this->smarty->assign('prodottiQuantita', $prodottiQ);
         $this->smarty->assign('prodottiPeso', $prodottiP);
-        $this->smarty->display('admin_prodotti_lista.tpl');
+        $this->smarty->display('admin/prodotti_lista.tpl');
     }
 
     /**
@@ -38,6 +38,6 @@ class VAdminProdotto
     public function mostraForm($prodotto = null): void
     {
         $this->smarty->assign('prodotto', $prodotto);
-        $this->smarty->display('admin_prodotto_form.tpl');
+        $this->smarty->display('admin/prodotto_form.tpl');
     }
 }

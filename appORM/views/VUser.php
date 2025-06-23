@@ -19,7 +19,7 @@ class VUser
      */
     public function mostraLogin(): void
     {
-        $this->smarty->display('login.tpl');
+        $this->smarty->display('utente/login.tpl');
     }
 
     /**
@@ -30,7 +30,7 @@ class VUser
     public function mostraLoginConErrore(string $errore): void
     {
         $this->smarty->assign('errore', $errore);
-        $this->smarty->display('login.tpl');
+        $this->smarty->display('utente/login.tpl');
     }
 
     /**
@@ -42,7 +42,7 @@ class VUser
     {
         $this->smarty->assign('utente', $utente);
         $this->smarty->assign('prenotazioni', $utente->getPrenotazioni());
-        $this->smarty->display('utente_profilo.tpl');
+        $this->smarty->display('utente/profilo.tpl');
     }
 
     /**
@@ -53,7 +53,7 @@ class VUser
     public function mostraPrenotazione(EPrenotazione $prenotazione): void
     {
         $this->smarty->assign('prenotazione', $prenotazione);
-        $this->smarty->display('utente_prenotazione.tpl');
+        $this->smarty->display('utente/prenotazione.tpl');
     }
 
     /**
@@ -66,6 +66,23 @@ class VUser
     {
         $this->smarty->assign('eventi', $eventi);
         $this->smarty->assign('attrazioni', $attrazioni);
-        $this->smarty->display('utente_home.tpl');
+        $this->smarty->display('utente/home.tpl');
+    }
+
+    /**
+     * Mostra il form di registrazione
+     */
+    public function mostraRegistrazione(): void
+    {
+        $this->smarty->display('utente/registrazione.tpl');
+    }
+
+    /**
+     * Mostra il form di registrazione con errore
+     */
+    public function mostraRegistrazioneConErrore(string $errore): void
+    {
+        $this->smarty->assign('errore', $errore);
+        $this->smarty->display('utente/registrazione.tpl');
     }
 }
