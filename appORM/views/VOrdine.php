@@ -41,11 +41,9 @@ class VOrdine
 
     /**
      * Mostra un messaggio di conferma ordine inviato
-     * (popup o redirect gestito anche via JS)
      */
     public function confermaOrdine(): void
     {
-        // In alternativa a un template: popup diretto JS
         echo "<script>alert('Ordine inviato! Riceverai conferma via email.'); window.location.href='/Casette_Dei_Desideri/Struttura/lista';</script>";
     }
 }
