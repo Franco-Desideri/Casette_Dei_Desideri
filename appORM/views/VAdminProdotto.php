@@ -1,5 +1,12 @@
 <?php
 
+namespace App\views;
+
+use Smarty\Smarty;
+use App\install\StartSmarty;
+use App\models\EProdottoQuantita;
+use App\models\EProdottoPeso;
+
 /**
  * Classe View per la gestione dei prodotti nel listino (admin).
  * Visualizza: lista prodotti, form per aggiunta o modifica.

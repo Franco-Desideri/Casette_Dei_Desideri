@@ -2,6 +2,12 @@
 
 namespace App\services\TechnicalServiceLayer\foundation;
 
+use App\models\EStruttura;
+use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
+
+/**
+ * Foundation per gestione Strutture
+ */
 class FStruttura
 {
     /**

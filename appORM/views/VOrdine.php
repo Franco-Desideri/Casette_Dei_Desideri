@@ -1,5 +1,10 @@
 <?php
 
+namespace App\views;
+
+use Smarty\Smarty;
+use App\install\StartSmarty;
+
 /**
  * Classe View per la gestione dell'ordine della spesa a domicilio.
  * Visualizza: listino prodotti, riepilogo ordine e conferma invio.

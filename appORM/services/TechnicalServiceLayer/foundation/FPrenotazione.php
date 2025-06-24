@@ -2,39 +2,47 @@
 
 namespace App\services\TechnicalServiceLayer\foundation;
 
+use App\models\EPrenotazione;
+use App\models\EStruttura;
+use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
+
+/**
+ * Foundation per la gestione delle prenotazioni
+ */
 class FPrenotazione
 {
+    /**
+     * Crea e salva una prenotazione se valida
+     */
     public static function creaPrenotazione(EPrenotazione $prenotazione): bool
     {
         $struttura = $prenotazione->getStruttura();
         $dataInizio = $prenotazione->getPeriodo()->getDataI();
         $dataFine = $prenotazione->getPeriodo()->getDataF();
 
-        // Verifica copertura da intervalli
         if (!self::copreIntervalli($struttura->getIntervalli(), $dataInizio, $dataFine)) {
             return false;
         }
 
-        // Verifica sovrapposizioni con altre prenotazioni
         if (self::conflittoConPrenotazioni($struttura, $dataInizio, $dataFine)) {
             return false;
         }
 
-        // Verifica numero massimo ospiti
         $numOspiti = count($prenotazione->getOspitiDettagli());
         if ($numOspiti > $struttura->getNumOspiti()) {
             return false;
         }
 
-        // Calcolo del prezzo totale in base ai giorni/intervalli
         $prezzoTotale = self::calcolaPrezzoTotale($struttura->getIntervalli(), $dataInizio, $dataFine);
         $prenotazione->setPrezzo($prezzoTotale);
 
-        // Salva la prenotazione
         FPersistentManager::store($prenotazione);
         return true;
     }
 
+    /**
+     * Verifica se gli intervalli coprono il periodo richiesto
+     */
     private static function copreIntervalli(iterable $intervalli, \DateTime $dataInizio, \DateTime $dataFine): bool
     {
         $periodoRichiesto = new \DatePeriod(
@@ -65,6 +73,9 @@ class FPrenotazione
         return true;
     }
 
+    /**
+     * Verifica se c'è conflitto con prenotazioni esistenti
+     */
     private static function conflittoConPrenotazioni(EStruttura $struttura, \DateTime $dataI, \DateTime $dataF): bool
     {
         foreach ($struttura->getPrenotazioni() as $p) {
@@ -79,6 +90,9 @@ class FPrenotazione
         return false;
     }
 
+    /**
+     * Calcola il prezzo totale per il soggiorno richiesto
+     */
     private static function calcolaPrezzoTotale(iterable $intervalli, \DateTime $dataInizio, \DateTime $dataFine): float
     {
         $prezzoTotale = 0.0;
@@ -105,6 +119,9 @@ class FPrenotazione
         return $prezzoTotale;
     }
 
+    /**
+     * Restituisce le prenotazioni associate a un utente
+     */
     public static function getPrenotazioniPerUtente(int $idUtente): array
     {
         return FPersistentManager::findBy(EPrenotazione::class, ['utente' => $idUtente]);

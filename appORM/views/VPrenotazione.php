@@ -1,5 +1,11 @@
 <?php
 
+namespace App\views;
+
+use Smarty\Smarty;
+use App\install\StartSmarty;
+use App\models\EStruttura;
+
 /**
  * Classe View per la gestione del processo di prenotazione
  * Visualizza: inserimento ospiti, riepilogo e pagamento

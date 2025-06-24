@@ -1,5 +1,12 @@
 <?php
 
+namespace App\controllers;
+
+use App\services\TechnicalServiceLayer\utility\USession;
+use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
+use App\views\VStruttura;
+use App\models\EStruttura;
+
 /**
  * Controller per la visualizzazione delle strutture lato utente
  */
@@ -12,7 +19,7 @@ class CStruttura
     {
         USession::start();
 
-        $strutture = FPersistentManager::get()->findAll('EStruttura');
+        $strutture = FPersistentManager::get()->findAll(EStruttura::class);
 
         $view = new VStruttura();
         $view->mostraLista($strutture);
@@ -27,7 +34,7 @@ class CStruttura
     {
         USession::start();
 
-        $struttura = FPersistentManager::get()->find('EStruttura', $id);
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
 
         if (!$struttura) {
             echo "Struttura non trovata.";
@@ -55,7 +62,7 @@ class CStruttura
             exit;
         }
 
-        $struttura = FPersistentManager::get()->find('EStruttura', $id);
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
 
         if (!$struttura) {
             echo "Struttura non trovata.";

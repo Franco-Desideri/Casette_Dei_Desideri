@@ -1,5 +1,13 @@
 <?php
 
+namespace App\controllers;
+
+use App\services\TechnicalServiceLayer\utility\USession;
+use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
+use App\views\VAdmin;
+use App\models\EUtente;
+use App\models\EPrenotazione;
+
 class CAdmin
 {
     public function profilo(): void
@@ -11,8 +19,8 @@ class CAdmin
             return;
         }
 
-        $admin = FPersistentManager::get()->find('EUtente', USession::get('utente_id'));
-        $prenotazioni = FPersistentManager::get()->findAll('EPrenotazione');
+        $admin = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
+        $prenotazioni = FPersistentManager::get()->findAll(EPrenotazione::class);
 
         $view = new VAdmin();
         $view->mostraProfilo($admin, $prenotazioni);
@@ -27,7 +35,7 @@ class CAdmin
             return;
         }
 
-        $prenotazione = FPersistentManager::get()->find('EPrenotazione', $id);
+        $prenotazione = FPersistentManager::get()->find(EPrenotazione::class, $id);
 
         if (!$prenotazione) {
             echo "Prenotazione non trovata.";

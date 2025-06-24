@@ -1,5 +1,13 @@
 <?php
 
+namespace App\controllers;
+
+use App\services\TechnicalServiceLayer\utility\USession;
+use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
+use App\views\VAdminProdotto;
+use App\models\EProdottoQuantita;
+use App\models\EProdottoPeso;
+
 class CAdminProdotto
 {
     public function lista(): void
@@ -10,8 +18,8 @@ class CAdminProdotto
             return;
         }
 
-        $prodottiQ = FPersistentManager::get()->findAll('EProdottoQuantita');
-        $prodottiP = FPersistentManager::get()->findAll('EProdottoPeso');
+        $prodottiQ = FPersistentManager::get()->findAll(EProdottoQuantita::class);
+        $prodottiP = FPersistentManager::get()->findAll(EProdottoPeso::class);
 
         $view = new VAdminProdotto();
         $view->mostraLista($prodottiQ, $prodottiP);
@@ -70,8 +78,8 @@ class CAdminProdotto
             return;
         }
 
-        $prodotto = FPersistentManager::get()->find('EProdottoQuantita', $id)
-                  ?? FPersistentManager::get()->find('EProdottoPeso', $id);
+        $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, $id)
+                  ?? FPersistentManager::get()->find(EProdottoPeso::class, $id);
 
         if (!$prodotto) {
             echo "Prodotto non trovato.";
@@ -79,7 +87,7 @@ class CAdminProdotto
         }
 
         $view = new VAdminProdotto();
-        $view->mostraForm($prodotto); // Form con dati precompilati
+        $view->mostraForm($prodotto);
     }
 
     public function salvaModifica(): void
@@ -94,13 +102,13 @@ class CAdminProdotto
         $tipo = $_POST['tipo'];
 
         if ($tipo === 'quantita') {
-            $p = FPersistentManager::get()->find('EProdottoQuantita', $id);
+            $p = FPersistentManager::get()->find(EProdottoQuantita::class, $id);
             $p->setNome($_POST['nome']);
             $p->setPrezzo((float)$_POST['prezzo']);
             $p->setPeso((int)$_POST['peso']);
             $p->setFoto($_POST['foto']);
         } elseif ($tipo === 'peso') {
-            $p = FPersistentManager::get()->find('EProdottoPeso', $id);
+            $p = FPersistentManager::get()->find(EProdottoPeso::class, $id);
             $p->setNome($_POST['nome']);
             $p->setPrezzoKg((float)$_POST['prezzoKg']);
             $p->setRangePeso($_POST['rangePeso']);
@@ -120,11 +128,11 @@ class CAdminProdotto
             return;
         }
 
-        $p = FPersistentManager::get()->find('EProdottoQuantita', $id)
-           ?? FPersistentManager::get()->find('EProdottoPeso', $id);
+        $p = FPersistentManager::get()->find(EProdottoQuantita::class, $id)
+           ?? FPersistentManager::get()->find(EProdottoPeso::class, $id);
 
         if ($p) {
-            FPersistentManager::remove($p);
+            FPersistentManager::delete($p);
         }
 
         header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');

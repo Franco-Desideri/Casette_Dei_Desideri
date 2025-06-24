@@ -1,5 +1,12 @@
 <?php
 
+namespace App\views;
+
+use Smarty\Smarty;
+use App\install\StartSmarty;
+use App\models\EUtente;
+use App\models\EPrenotazione;
+
 /**
  * Classe View per la gestione del pannello personale dell’amministratore.
  * Visualizza: profilo admin con tutte le prenotazioni, e dettaglio di una singola prenotazione.

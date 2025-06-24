@@ -1,5 +1,12 @@
 <?php
 
+namespace App\views;
+
+use Smarty\Smarty;
+use App\install\StartSmarty;
+use App\models\EStruttura;
+use Doctrine\Common\Collections\Collection;
+
 /**
  * Classe View per la visualizzazione delle strutture lato utente.
  * Si occupa di mostrare la lista delle strutture e i dettagli di una singola struttura.

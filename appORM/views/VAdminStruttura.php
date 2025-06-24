@@ -1,5 +1,11 @@
 <?php
 
+namespace App\views;
+
+use Smarty\Smarty;
+use App\install\StartSmarty;
+use App\models\EStruttura;
+
 /**
  * Classe View per la gestione delle strutture da parte dell’amministratore.
  * Visualizza: lista strutture, form per creazione/modifica struttura.

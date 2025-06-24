@@ -2,6 +2,12 @@
 
 namespace App\services\TechnicalServiceLayer\foundation;
 
+use App\models\EIntervallo;
+use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
+
+/**
+ * Foundation per la gestione degli intervalli di disponibilità e prezzo
+ */
 class FIntervallo
 {
     /**

@@ -1,9 +1,13 @@
 <?php
 
 namespace App\views;
+
 use Smarty\Smarty;
 use App\install\StartSmarty;
-
+use App\models\EUtente;
+use App\models\EPrenotazione;
+use App\models\EEvento;
+use App\models\EAttrazione;
 
 /**
  * Classe View per la gestione della visualizzazione dell'utente

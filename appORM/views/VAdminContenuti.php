@@ -1,5 +1,12 @@
 <?php
 
+namespace App\views;
+
+use Smarty\Smarty;
+use App\install\StartSmarty;
+use App\models\EAttrazione;
+use App\models\EEvento;
+
 /**
  * Classe View per la gestione della visualizzazione dei contenuti da parte dell'amministratore
  * Responsabile di: attrazioni ed eventi (lista, form di creazione/modifica)
