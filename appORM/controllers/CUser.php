@@ -1,5 +1,17 @@
 <?php
 
+use App\views\VUser;
+use App\services\TechnicalServiceLayer\utility\USession;
+use App\services\TechnicalServiceLayer\utility\UHTTPMethods;
+use App\services\TechnicalServiceLayer\utility\UValidazione;
+use App\services\TechnicalServiceLayer\foundation\FUtente;
+use App\models\EUtente;
+use App\models\EAttrazione;
+use App\models\EEvento;
+use App\models\EPrenotazione;
+use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
+
+
 class CUser
 {
     public function login(): void
@@ -17,24 +29,27 @@ class CUser
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
 
+            // Validazione base email e password
             if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($password) < 6) {
                 $view->mostraLoginConErrore("Credenziali non valide");
                 return;
             }
 
-            $utente = FUtente::getByEmail($email);
+            try {
+                // Verifica credenziali tramite FUtente
+                $utente = FUtente::verificaCredenziali($email, $password);
 
-            if ($utente && FUtente::verificaPassword($password, $utente->getPassword())) {
                 USession::set('utente_id', $utente->getId());
                 USession::set('ruolo', $utente->getRuolo());
 
-                $ruolo = $utente->getRuolo();
-                $dest = $ruolo === 'admin' ? 'Admin/profilo' : 'User/home';
+                $dest = $utente->getRuolo() === 'admin' ? 'Admin/profilo' : 'User/home';
                 header("Location: /Casette_Dei_Desideri/$dest");
                 exit;
-            } else {
-                $view->mostraLoginConErrore("Email o password errata");
+
+            } catch (Exception $e) {
+                $view->mostraLoginConErrore($e->getMessage());
             }
+
         } else {
             $view->mostraLogin();
         }
@@ -90,8 +105,10 @@ class CUser
     {
         USession::start();
 
-        $eventi = FPersistentManager::get()->findAll('EEvento');
-        $attrazioni = FPersistentManager::get()->findAll('EAttrazione');
+        $em = FPersistentManager::get(); // ottieni EntityManager
+
+        $eventi = $em->getRepository(EEvento::class)->findAll();
+        $attrazioni = $em->getRepository(EAttrazione::class)->findAll();
 
         $view = new VUser();
         $view->mostraHome($eventi, $attrazioni);
@@ -156,7 +173,7 @@ class CUser
             $utente->setNome($nome);
             $utente->setCognome($cognome);
             $utente->setEmail($email);
-            $utente->setPassword(FUtente::criptaPassword($password));
+            $utente->setPassword($password);
             $utente->setCodicefisc($cf);
             $utente->setSesso($sesso);
             $utente->setDataN(new DateTime($dataN));

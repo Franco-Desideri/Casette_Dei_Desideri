@@ -1,10 +1,12 @@
 <?php
 
+namespace App\controllers;
+
 class CFrontController
 {
     public function run($requestUri)
     {
-        // Rimuove la parte iniziale della URI e divide i segmenti
+        // Rimuove la parte iniziale della URL e divide i segmenti
         $requestUri = trim($requestUri, '/');
         $uriParts = explode('/', $requestUri);
 
@@ -19,9 +21,15 @@ class CFrontController
         if (file_exists($controllerFile)) {
             require_once $controllerFile;
 
-            if (method_exists($controllerClass, $methodName)) {
-                $params = array_slice($uriParts, 2);
-                call_user_func_array([$controllerClass, $methodName], $params);
+            if (class_exists($controllerClass)) {
+                $controllerInstance = new $controllerClass();
+
+                if (method_exists($controllerInstance, $methodName)) {
+                    $params = array_slice($uriParts, 2);
+                    call_user_func_array([$controllerInstance, $methodName], $params);
+                } else {
+                    header('Location: /Casette_Dei_Desideri/User/home');
+                }
             } else {
                 header('Location: /Casette_Dei_Desideri/User/home');
             }

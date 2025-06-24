@@ -1,5 +1,7 @@
 <?php
 
+namespace App\services\TechnicalServiceLayer\foundation;
+
 class FIntervallo
 {
     /**

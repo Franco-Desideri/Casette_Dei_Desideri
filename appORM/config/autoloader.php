@@ -6,8 +6,10 @@ spl_autoload_register(function ($className) {
     $folders = [
         'controllers',
         'models',
+        'views',
         'services/TechnicalServiceLayer/foundation',
         'services/TechnicalServiceLayer/utility',
+        'utility',
     ];
 
     foreach ($folders as $folder) {
@@ -18,6 +20,13 @@ spl_autoload_register(function ($className) {
         }
     }
 
-    // Optional: fallback or error
+    // Estensione: supporta classi in appORM/
+    $appOrmFile = $baseDir . 'appORM/' . str_replace('\\', '/', $className) . '.php';
+    if (file_exists($appOrmFile)) {
+        require_once $appOrmFile;
+        return;
+    }
+
+    // Fallback
     // throw new Exception("Classe non trovata: $className");
 });

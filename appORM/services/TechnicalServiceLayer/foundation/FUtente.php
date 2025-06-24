@@ -1,5 +1,9 @@
 <?php
 
+namespace App\services\TechnicalServiceLayer\foundation;
+use App\models\EUtente;
+
+
 class FUtente
 {
     public static function getById(int $id): ?EUtente

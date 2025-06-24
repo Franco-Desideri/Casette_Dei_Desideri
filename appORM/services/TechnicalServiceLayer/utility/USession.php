@@ -1,5 +1,7 @@
 <?php
 
+namespace App\services\TechnicalServiceLayer\utility;
+
 /**
  * Gestione centralizzata della sessione utente
  */

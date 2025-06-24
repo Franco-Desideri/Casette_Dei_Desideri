@@ -1,5 +1,7 @@
 <?php
 
+namespace App\services\TechnicalServiceLayer\utility;
+
 /**
  * Utility per verificare il tipo di richiesta HTTP
  */

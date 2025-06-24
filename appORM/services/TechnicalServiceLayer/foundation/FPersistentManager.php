@@ -1,6 +1,9 @@
 <?php
 
+namespace App\services\TechnicalServiceLayer\foundation;
 use Doctrine\ORM\EntityManagerInterface;
+
+
 
 class FPersistentManager
 {
@@ -50,4 +53,10 @@ class FPersistentManager
     {
         return self::getEntityManager()->getRepository($className)->findOneBy($criteria);
     }
+
+    public static function get(): EntityManagerInterface
+    {
+        return self::getEntityManager();
+    }
+
 }

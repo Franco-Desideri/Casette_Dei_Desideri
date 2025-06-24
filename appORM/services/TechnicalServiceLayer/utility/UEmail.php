@@ -1,5 +1,7 @@
 <?php
 
+namespace App\services\TechnicalServiceLayer\utility;
+
 /**
  * Utility per inviare email in modo centralizzato
  */

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\services\TechnicalServiceLayer\utility;
+
 /**
  * Utility per accedere a informazioni del server
  */

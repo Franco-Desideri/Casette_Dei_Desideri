@@ -1,28 +1,19 @@
 <?php
-require_once __DIR__ . '/../../vendor/autoload.php';
+namespace App\install;
+
+use Smarty\Smarty;
 
 class StartSmarty
 {
-    private Smarty $smarty;
-
-    public function __construct()
+    public static function start(): Smarty
     {
-        $this->smarty = new \Smarty();
-
-        // Cartelle strutturate come in Agora
-        $this->smarty->setTemplateDir(__DIR__ . '/../../libs/Smarty/templates/');
-        $this->smarty->setCompileDir(__DIR__ . '/../../libs/Smarty/templates_c/');
-        $this->smarty->setCacheDir(__DIR__ . '/../../libs/Smarty/cache/');
-        $this->smarty->setConfigDir(__DIR__ . '/../../config/');
-
-        // Opzionale: configurazioni extra
-        $this->smarty->caching = Smarty::CACHING_OFF;
-        $this->smarty->compile_check = true;
-        $this->smarty->debugging = false;
-    }
-
-    public function getSmarty(): Smarty
-    {
-        return $this->smarty;
+        $smarty = new Smarty();
+        $smarty->setTemplateDir(__DIR__ . '/../../libs/Smarty/templates/');
+        $smarty->setCompileDir(__DIR__ . '/../../libs/Smarty/templates_c/');
+        $smarty->setCacheDir(__DIR__ . '/../../libs/Smarty/cache/');
+        $smarty->setConfigDir(__DIR__ . '/../../config/');
+        $smarty->compile_check = true;
+        $smarty->debugging = false;
+        return $smarty;
     }
 }

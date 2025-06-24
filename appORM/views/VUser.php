@@ -1,5 +1,10 @@
 <?php
 
+namespace App\views;
+use Smarty\Smarty;
+use App\install\StartSmarty;
+
+
 /**
  * Classe View per la gestione della visualizzazione dell'utente
  * Responsabile di: login, profilo utente e visualizzazione prenotazioni personali
