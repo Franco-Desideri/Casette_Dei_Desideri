@@ -36,6 +36,7 @@ class FOrdine
         $righe[] = "Data ordine: " . $ordine->getData()->format('d/m/Y H:i');
         $righe[] = "Utente: " . $ordine->getUtente()->getNome() . " " . $ordine->getUtente()->getCognome();
 
+        // Aggiunta fascia oraria
         if ($ordine->getFasciaOraria()) {
             $righe[] = "Fascia oraria richiesta: " . $ordine->getFasciaOraria();
         }
@@ -56,6 +57,7 @@ class FOrdine
         $righe[] = "";
         $righe[] = "Totale ordine: €" . number_format($ordine->getPrezzo(), 2, ',', '.');
 
+        // Aggiunta contanti previsti alla consegna (se disponibili)
         if ($ordine->getContanti() !== null) {
             $righe[] = "Importo contanti fornito: €" . number_format($ordine->getContanti(), 2, ',', '.');
         }

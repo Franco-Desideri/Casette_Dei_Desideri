@@ -1,7 +1,5 @@
 <?php
 
-namespace App\controllers;
-
 use App\services\TechnicalServiceLayer\utility\USession;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\views\VAdminContenuti;
@@ -19,7 +17,7 @@ class CAdminContenuti
             return;
         }
 
-        $attrazioni = FPersistentManager::get()->findAll(EAttrazione::class);
+        $attrazioni = FPersistentManager::get()->findAll('EAttrazione');
         $view = new VAdminContenuti();
         $view->mostraListaAttrazioni($attrazioni);
     }
@@ -57,14 +55,14 @@ class CAdminContenuti
             return;
         }
 
-        $a = FPersistentManager::get()->find(EAttrazione::class, $id);
+        $a = FPersistentManager::get()->find('EAttrazione', $id);
         $view = new VAdminContenuti();
         $view->mostraFormAttrazione($a);
     }
 
     public function salvaModificaAttrazione(): void {
         USession::start();
-        $a = FPersistentManager::get()->find(EAttrazione::class, $_POST['id']);
+        $a = FPersistentManager::get()->find('EAttrazione', $_POST['id']);
         $a->setImmagine($_POST['immagine']);
         $a->setDescrizione($_POST['descrizione']);
         FPersistentManager::store($a);
@@ -73,8 +71,8 @@ class CAdminContenuti
 
     public function eliminaAttrazione($id): void {
         USession::start();
-        $a = FPersistentManager::get()->find(EAttrazione::class, $id);
-        if ($a) FPersistentManager::delete($a);
+        $a = FPersistentManager::get()->find('EAttrazione', $id);
+        if ($a) FPersistentManager::remove($a);
         header('Location: /Casette_Dei_Desideri/AdminContenuti/listaAttrazioni');
     }
 
@@ -86,7 +84,7 @@ class CAdminContenuti
             return;
         }
 
-        $eventi = FPersistentManager::get()->findAll(EEvento::class);
+        $eventi = FPersistentManager::get()->findAll('EEvento');
         $view = new VAdminContenuti();
         $view->mostraListaEventi($eventi);
     }
@@ -111,14 +109,14 @@ class CAdminContenuti
 
     public function modificaEvento($id): void {
         USession::start();
-        $e = FPersistentManager::get()->find(EEvento::class, $id);
+        $e = FPersistentManager::get()->find('EEvento', $id);
         $view = new VAdminContenuti();
         $view->mostraFormEvento($e);
     }
 
     public function salvaModificaEvento(): void {
         USession::start();
-        $e = FPersistentManager::get()->find(EEvento::class, $_POST['id']);
+        $e = FPersistentManager::get()->find('EEvento', $_POST['id']);
         $e->setImmagine($_POST['immagine']);
         $e->setTitolo($_POST['titolo']);
         $e->setDataInizio(new DateTime($_POST['dataInizio']));
@@ -130,8 +128,8 @@ class CAdminContenuti
 
     public function eliminaEvento($id): void {
         USession::start();
-        $e = FPersistentManager::get()->find(EEvento::class, $id);
-        if ($e) FPersistentManager::delete($e);
+        $e = FPersistentManager::get()->find('EEvento', $id);
+        if ($e) FPersistentManager::remove($e);
         header('Location: /Casette_Dei_Desideri/AdminContenuti/listaEventi');
     }
 }

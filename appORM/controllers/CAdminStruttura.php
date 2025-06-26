@@ -1,6 +1,5 @@
 <?php
 
-namespace App\controllers;
 
 use App\services\TechnicalServiceLayer\utility\USession;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
@@ -17,7 +16,7 @@ class CAdminStruttura
             return;
         }
 
-        $strutture = FPersistentManager::get()->findAll(EStruttura::class);
+        $strutture = FPersistentManager::get()->findAll('EStruttura');
 
         $view = new VAdminStruttura();
         $view->mostraLista($strutture);
@@ -71,7 +70,7 @@ class CAdminStruttura
             return;
         }
 
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
+        $struttura = FPersistentManager::get()->find('EStruttura', $id);
 
         if (!$struttura) {
             echo "Struttura non trovata.";
@@ -91,7 +90,7 @@ class CAdminStruttura
         }
 
         $dati = $_POST;
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $dati['id']);
+        $struttura = FPersistentManager::get()->find('EStruttura', $dati['id']);
 
         if (!$struttura) {
             echo "Struttura non trovata.";
@@ -123,9 +122,9 @@ class CAdminStruttura
             return;
         }
 
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
+        $struttura = FPersistentManager::get()->find('EStruttura', $id);
         if ($struttura) {
-            FPersistentManager::delete($struttura);
+            FPersistentManager::remove($struttura);
         }
 
         header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');

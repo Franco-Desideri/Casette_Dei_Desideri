@@ -1,7 +1,5 @@
 <?php
 
-namespace App\controllers;
-
 use App\services\TechnicalServiceLayer\utility\USession;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\services\TechnicalServiceLayer\foundation\FIntervallo;
@@ -26,7 +24,7 @@ class CPrenotazione
             exit;
         }
 
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $idStruttura);
+        $struttura = FPersistentManager::get()->find('EStruttura', $idStruttura);
 
         if (!$struttura) {
             echo "Struttura non trovata.";
@@ -47,12 +45,12 @@ class CPrenotazione
         }
 
         $data = USession::get('prenotazione_temp');
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $data['id_struttura']);
+        $struttura = FPersistentManager::get()->find('EStruttura', $data['id_struttura']);
 
         $totale = FIntervallo::calcolaPrezzoTotale(
             $struttura,
-            new \DateTime($data['data_inizio']),
-            new \DateTime($data['data_fine'])
+            new DateTime($data['data_inizio']),
+            new DateTime($data['data_fine'])
         );
 
         $view = new VPrenotazione();
@@ -77,8 +75,8 @@ class CPrenotazione
         USession::start();
 
         $dati = USession::get('prenotazione_temp');
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $dati['id_struttura']);
-        $utente = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
+        $struttura = FPersistentManager::get()->find('EStruttura', $dati['id_struttura']);
+        $utente = FPersistentManager::get()->find('EUtente', USession::get('utente_id'));
 
         $prenotazione = new EPrenotazione();
         $prenotazione->setStruttura($struttura);
@@ -87,8 +85,8 @@ class CPrenotazione
         $prenotazione->setPrezzo($dati['totale']);
         $prenotazione->setPagata(true);
         $prenotazione->setPeriodo(new EDataPrenotazione(
-            new \DateTime($dati['data_inizio']),
-            new \DateTime($dati['data_fine'])
+            new DateTime($dati['data_inizio']),
+            new DateTime($dati['data_fine'])
         ));
 
         foreach ($dati['ospiti'] as $ospiteData) {
@@ -99,7 +97,7 @@ class CPrenotazione
                 $ospiteData['tell'],
                 $ospiteData['codiceFiscale'],
                 $ospiteData['sesso'],
-                new \DateTime($ospiteData['dataNascita']),
+                new DateTime($ospiteData['dataNascita']),
                 $ospiteData['luogoNascita']
             );
             $prenotazione->addOspite($ospite);

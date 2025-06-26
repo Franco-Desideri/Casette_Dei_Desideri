@@ -1,17 +1,15 @@
 <?php
 
-namespace App\controllers;
-
 use App\views\VUser;
 use App\services\TechnicalServiceLayer\utility\USession;
 use App\services\TechnicalServiceLayer\utility\UHTTPMethods;
 use App\services\TechnicalServiceLayer\utility\UValidazione;
 use App\services\TechnicalServiceLayer\foundation\FUtente;
-use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\models\EUtente;
 use App\models\EAttrazione;
 use App\models\EEvento;
 use App\models\EPrenotazione;
+use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 
 class CUser
 {
@@ -30,12 +28,14 @@ class CUser
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
 
+            // Validazione base email e password
             if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($password) < 6) {
                 $view->mostraLoginConErrore("Credenziali non valide");
                 return;
             }
 
             try {
+                // Verifica credenziali tramite FUtente
                 $utente = FUtente::verificaCredenziali($email, $password);
 
                 USession::set('utente_id', $utente->getId());
@@ -44,9 +44,11 @@ class CUser
                 $dest = $utente->getRuolo() === 'admin' ? 'Admin/profilo' : 'User/home';
                 header("Location: /Casette_Dei_Desideri/$dest");
                 exit;
-            } catch (\Exception $e) {
+
+            } catch (Exception $e) {
                 $view->mostraLoginConErrore($e->getMessage());
             }
+
         } else {
             $view->mostraLogin();
         }
@@ -70,7 +72,7 @@ class CUser
         }
 
         $utenteId = USession::get('utente_id');
-        $utente = FPersistentManager::get()->find(EUtente::class, $utenteId);
+        $utente = FPersistentManager::get()->find('EUtente', $utenteId);
 
         $view = new VUser();
         $view->mostraProfilo($utente);
@@ -85,7 +87,7 @@ class CUser
             exit;
         }
 
-        $prenotazione = FPersistentManager::get()->find(EPrenotazione::class, $id);
+        $prenotazione = FPersistentManager::get()->find('EPrenotazione', $id);
         $utenteId = USession::get('utente_id');
 
         if (!$prenotazione || $prenotazione->getUtente()->getId() !== $utenteId) {
@@ -97,11 +99,13 @@ class CUser
         $view->mostraPrenotazione($prenotazione);
     }
 
+    // HOMEPAGE UTENTE CON ATTRAZIONI + EVENTI
     public function home(): void
     {
         USession::start();
 
-        $em = FPersistentManager::get();
+        $em = FPersistentManager::get(); // ottieni EntityManager
+
         $eventi = $em->getRepository(EEvento::class)->findAll();
         $attrazioni = $em->getRepository(EAttrazione::class)->findAll();
 
@@ -132,6 +136,7 @@ class CUser
             $luogoN = $_POST['luogoN'] ?? '';
             $telefono = $_POST['tell'] ?? '';
 
+            // Validazioni minime
             if (!UValidazione::emailValida($email)) {
                 $view->mostraRegistrazioneConErrore("Email non valida.");
                 return;
@@ -162,6 +167,7 @@ class CUser
                 return;
             }
 
+            // Creazione utente
             $utente = new EUtente();
             $utente->setNome($nome);
             $utente->setCognome($cognome);
@@ -169,7 +175,7 @@ class CUser
             $utente->setPassword($password);
             $utente->setCodicefisc($cf);
             $utente->setSesso($sesso);
-            $utente->setDataN(new \DateTime($dataN));
+            $utente->setDataN(new DateTime($dataN));
             $utente->setLuogoN($luogoN);
             $utente->setTell($telefono);
             $utente->setRuolo("utente");
