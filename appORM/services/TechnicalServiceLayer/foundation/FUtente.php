@@ -4,6 +4,8 @@ namespace App\services\TechnicalServiceLayer\foundation;
 
 use App\models\EUtente;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
+use Exception;
+
 
 /**
  * Classe Foundation per operazioni su EUtente

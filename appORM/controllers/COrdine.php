@@ -9,7 +9,9 @@ use App\services\TechnicalServiceLayer\foundation\FUtente;
 use App\views\VOrdine;
 use App\models\EOrdine;
 use App\models\EUtente;
-use DateTime;
+use App\models\EProdottoQuantita;
+use App\models\EProdottoPeso;
+
 
 class COrdine
 {
@@ -22,30 +24,13 @@ class COrdine
             exit;
         }
 
-        $utente = FPersistentManager::get()->find('EUtente', USession::get('utente_id'));
-        $oggi = new DateTime();
-
-        // Verifica se l’utente ha almeno un soggiorno attivo oggi
-        $soggiornoAttivo = false;
-        foreach ($utente->getPrenotazioni() as $p) {
-            $periodo = $p->getPeriodo();
-            if ($oggi >= $periodo->getDataI() && $oggi <= $periodo->getDataF()) {
-                $soggiornoAttivo = true;
-                break;
-            }
-        }
-
-        if (!$soggiornoAttivo) {
-            echo "Puoi ordinare solo durante un soggiorno attivo.";
-            return;
-        }
-
-        $prodottiQ = FPersistentManager::get()->findAll('EProdottoQuantita');
-        $prodottiP = FPersistentManager::get()->findAll('EProdottoPeso');
+        $prodottiQ = FPersistentManager::get()->getRepository(EProdottoQuantita::class)->findAll();
+        $prodottiP = FPersistentManager::get()->getRepository(EProdottoPeso::class)->findAll();
 
         $view = new VOrdine();
         $view->mostraListino($prodottiQ, $prodottiP);
     }
+
 
     public function riepilogo(): void
     {
@@ -56,12 +41,30 @@ class COrdine
             exit;
         }
 
+        $utente = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
+        $oggi = new \DateTime();
+
+        $soggiornoAttivo = false;
+        foreach ($utente->getPrenotazioni() as $p) {
+            $periodo = $p->getPeriodo();
+            if ($oggi >= $periodo->getDataI() && $oggi <= $periodo->getDataF()) {
+                $soggiornoAttivo = true;
+                break;
+            }
+        }
+
+        if (!$soggiornoAttivo) {
+            echo "<script>alert('Non puoi ordinare la spesa se non stai pernottando in struttura.'); window.location.href='/Casette_Dei_Desideri/Ordine/listaProdotti';</script>";
+            return;
+        }
+
         $ordineData = $_POST;
         USession::set('ordine_temp', $ordineData);
 
         $view = new VOrdine();
         $view->mostraRiepilogo($ordineData);
     }
+
 
     public function conferma(): void
     {
@@ -75,7 +78,7 @@ class COrdine
         $ordineData = USession::get('ordine_temp');
         USession::delete('ordine_temp');
 
-        $utente = FPersistentManager::get()->find('EUtente', USession::get('utente_id'));
+        $utente = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
 
         // Crea l’oggetto ordine
         $ordine = new EOrdine();

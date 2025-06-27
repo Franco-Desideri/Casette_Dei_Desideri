@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-24 02:46:19
+/* Smarty version 5.5.1, created on 2025-06-26 20:56:49
   from 'file:layouts/base.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6859f55bcc8614_96387269',
+  'unifunc' => 'content_685d97f13a2171_17012593',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_6859f55bcc8614_96387269 (\Smarty\Template $_smarty_tpl) {
+function content_685d97f13a2171_17012593 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -41,7 +41,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 
     <main>
         <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1607142756859f55bcc7769_85173720', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_247841414685d97f13a14b1_34348501', "contenuto");
 ?>
 
     </main>
@@ -53,7 +53,7 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1607142756859
 </html>
 <?php }
 /* {block "contenuto"} */
-class Block_1607142756859f55bcc7769_85173720 extends \Smarty\Runtime\Block
+class Block_247841414685d97f13a14b1_34348501 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\layouts';

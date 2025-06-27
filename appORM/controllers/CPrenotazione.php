@@ -24,7 +24,7 @@ class CPrenotazione
             exit;
         }
 
-        $struttura = FPersistentManager::get()->find('EStruttura', $idStruttura);
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $idStruttura);
 
         if (!$struttura) {
             echo "Struttura non trovata.";
@@ -45,7 +45,7 @@ class CPrenotazione
         }
 
         $data = USession::get('prenotazione_temp');
-        $struttura = FPersistentManager::get()->find('EStruttura', $data['id_struttura']);
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $data['id_struttura']);
 
         $totale = FIntervallo::calcolaPrezzoTotale(
             $struttura,

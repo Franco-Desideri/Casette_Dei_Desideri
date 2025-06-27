@@ -16,14 +16,15 @@ class CAdminProdotto
             return;
         }
 
-        $prodottiQ = FPersistentManager::get()->findAll('EProdottoQuantita');
-        $prodottiP = FPersistentManager::get()->findAll('EProdottoPeso');
+        $prodottiQ = FPersistentManager::get()->getRepository(EProdottoQuantita::class)->findAll();
+        $prodottiP = FPersistentManager::get()->getRepository(EProdottoPeso::class)->findAll();
+
 
         $view = new VAdminProdotto();
         $view->mostraLista($prodottiQ, $prodottiP);
     }
 
-    public function aggiungi(): void
+    public function aggiungiQuantita(): void
     {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
@@ -32,8 +33,21 @@ class CAdminProdotto
         }
 
         $view = new VAdminProdotto();
-        $view->mostraForm(); // Form vuoto per nuovo prodotto
+        $view->mostraFormQuantita();
     }
+
+    public function aggiungiPeso(): void
+    {
+        USession::start();
+        if (USession::get('ruolo') !== 'admin') {
+            echo "Accesso riservato.";
+            return;
+        }
+
+        $view = new VAdminProdotto();
+        $view->mostraFormPeso();
+    }
+
 
     public function salva(): void
     {
@@ -76,8 +90,8 @@ class CAdminProdotto
             return;
         }
 
-        $prodotto = FPersistentManager::get()->find('EProdottoQuantita', $id)
-                  ?? FPersistentManager::get()->find('EProdottoPeso', $id);
+        $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, $id)
+                  ?? FPersistentManager::get()->find(EProdottoPeso::class, $id);
 
         if (!$prodotto) {
             echo "Prodotto non trovato.";
@@ -100,7 +114,7 @@ class CAdminProdotto
         $tipo = $_POST['tipo'];
 
         if ($tipo === 'quantita') {
-            $p = FPersistentManager::get()->find('EProdottoQuantita', $id);
+            $p = FPersistentManager::get()->find(EProdottoQuantita::class, $id);
             $p->setNome($_POST['nome']);
             $p->setPrezzo((float)$_POST['prezzo']);
             $p->setPeso((int)$_POST['peso']);
@@ -126,11 +140,11 @@ class CAdminProdotto
             return;
         }
 
-        $p = FPersistentManager::get()->find('EProdottoQuantita', $id)
-           ?? FPersistentManager::get()->find('EProdottoPeso', $id);
+        $p = FPersistentManager::get()->find(EProdottoQuantita::class, $id)
+           ?? FPersistentManager::get()->find(EProdottoPeso::class, $id);
 
         if ($p) {
-            FPersistentManager::remove($p);
+            FPersistentManager::delete($p);
         }
 
         header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');

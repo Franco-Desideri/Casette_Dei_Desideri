@@ -1,7 +1,7 @@
 RewriteEngine On
 RewriteBase /Casette_Dei_Desideri/
 
-# Reindirizza tutte le richieste a index.php
+# Reindirizza tutte le richieste a index.php con i parametri URL
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ index.php [QSA,L]
+RewriteRule ^(.*)$ index.php/$1 [QSA,L]

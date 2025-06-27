@@ -17,7 +17,8 @@ class CStruttura
     {
         USession::start();
 
-        $strutture = FPersistentManager::get()->findAll('EStruttura');
+        $strutture = FPersistentManager::get()->getRepository(EStruttura::class)->findAll();
+
 
         $view = new VStruttura();
         $view->mostraLista($strutture);
@@ -32,7 +33,7 @@ class CStruttura
     {
         USession::start();
 
-        $struttura = FPersistentManager::get()->find('EStruttura', $id);
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
 
         if (!$struttura) {
             echo "Struttura non trovata.";
@@ -59,8 +60,8 @@ class CStruttura
             header('Location: /Casette_Dei_Desideri/User/login');
             exit;
         }
-
-        $struttura = FPersistentManager::get()->find('EStruttura', $id);
+        
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
 
         if (!$struttura) {
             echo "Struttura non trovata.";

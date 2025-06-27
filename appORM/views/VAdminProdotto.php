@@ -42,9 +42,28 @@ class VAdminProdotto
      *
      * @param EProdottoQuantita|EProdottoPeso|null $prodotto
      */
-    public function mostraForm($prodotto = null): void
+    public function mostraForm($prodotto): void
     {
         $this->smarty->assign('prodotto', $prodotto);
-        $this->smarty->display('admin/prodotto_form.tpl');
+
+        if ($prodotto instanceof \App\models\EProdottoQuantita) {
+            $this->smarty->display('admin/prodotto_form_quantita.tpl');
+        } elseif ($prodotto instanceof \App\models\EProdottoPeso) {
+            $this->smarty->display('admin/prodotto_form_peso.tpl');
+        } else {
+            echo "Tipo prodotto non supportato.";
+        }
     }
+
+    public function mostraFormQuantita(): void
+    {
+        $this->smarty->assign('prodotto', null);
+        $this->smarty->display('admin/prodotto_form_quantita.tpl');
+    }
+
+    public function mostraFormPeso(): void
+    {
+        $this->smarty->assign('prodotto', null);
+        $this->smarty->display('admin/prodotto_form_peso.tpl');
+    } 
 }

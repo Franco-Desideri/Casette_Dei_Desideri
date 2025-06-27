@@ -72,7 +72,7 @@ class CUser
         }
 
         $utenteId = USession::get('utente_id');
-        $utente = FPersistentManager::get()->find('EUtente', $utenteId);
+        $utente = FPersistentManager::get()->find(EUtente::class, $utenteId);
 
         $view = new VUser();
         $view->mostraProfilo($utente);
@@ -87,7 +87,7 @@ class CUser
             exit;
         }
 
-        $prenotazione = FPersistentManager::get()->find('EPrenotazione', $id);
+        $prenotazione = FPersistentManager::get()->find(EPrenotazione::class, $id);
         $utenteId = USession::get('utente_id');
 
         if (!$prenotazione || $prenotazione->getUtente()->getId() !== $utenteId) {

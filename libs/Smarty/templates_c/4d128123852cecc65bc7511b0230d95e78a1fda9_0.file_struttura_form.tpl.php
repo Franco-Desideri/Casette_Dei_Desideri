@@ -1,0 +1,104 @@
+<?php
+/* Smarty version 5.5.1, created on 2025-06-26 22:07:10
+  from 'file:admin/struttura_form.tpl' */
+
+/* @var \Smarty\Template $_smarty_tpl */
+if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
+  'version' => '5.5.1',
+  'unifunc' => 'content_685da86e6d7b12_35820404',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    '4d128123852cecc65bc7511b0230d95e78a1fda9' => 
+    array (
+      0 => 'admin/struttura_form.tpl',
+      1 => 1750968423,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:partials/appbar_admin.tpl' => 1,
+  ),
+))) {
+function content_685da86e6d7b12_35820404 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
+$_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
+?>
+
+
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1416409144685da86e6c4e89_88490722', "contenuto");
+?>
+
+<?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
+}
+/* {block "contenuto"} */
+class Block_1416409144685da86e6c4e89_88490722 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
+?>
+
+
+<?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_admin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
+
+<h2><?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {?>Modifica struttura<?php } else { ?>Aggiungi nuova struttura<?php }?></h2>
+
+<form method="post" action="/Casette_Dei_Desideri/AdminStruttura/<?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {?>salvaModificata<?php } else { ?>salvaNuova<?php }?>">
+    <?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {?>
+        <input type="hidden" name="id" value="<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
+">
+    <?php }?>
+
+    <label>Titolo:</label>
+    <input type="text" name="titolo" required value="<?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {
+echo $_smarty_tpl->getValue('struttura')->getTitolo();
+}?>">
+
+    <label>Descrizione:</label>
+    <textarea name="descrizione" required><?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {
+echo $_smarty_tpl->getValue('struttura')->getDescrizione();
+}?></textarea>
+
+    <label>Metri quadri:</label>
+    <input type="number" name="m2" required value="<?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {
+echo $_smarty_tpl->getValue('struttura')->getM2();
+}?>">
+
+    <label>Numero ospiti:</label>
+    <input type="number" name="numOspiti" required value="<?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {
+echo $_smarty_tpl->getValue('struttura')->getNumOspiti();
+}?>">
+
+    <label>Luogo:</label>
+    <input type="text" name="luogo" required value="<?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {
+echo $_smarty_tpl->getValue('struttura')->getLuogo();
+}?>">
+
+    <label>Numero letti:</label>
+    <input type="number" name="nLetti" required value="<?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {
+echo $_smarty_tpl->getValue('struttura')->getNLetti();
+}?>">
+
+    <label>Numero bagni:</label>
+    <input type="number" name="nBagni" required value="<?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {
+echo $_smarty_tpl->getValue('struttura')->getNBagni();
+}?>">
+
+    <label><input type="checkbox" name="colazione" <?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null))) && $_smarty_tpl->getValue('struttura')->getColazione()) {?>checked<?php }?>> Colazione inclusa</label>
+    <label><input type="checkbox" name="animali" <?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null))) && $_smarty_tpl->getValue('struttura')->getAnimali()) {?>checked<?php }?>> Animali ammessi</label>
+    <label><input type="checkbox" name="parcheggio" <?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null))) && $_smarty_tpl->getValue('struttura')->getParcheggio()) {?>checked<?php }?>> Parcheggio disponibile</label>
+    <label><input type="checkbox" name="wifi" <?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null))) && $_smarty_tpl->getValue('struttura')->getWifi()) {?>checked<?php }?>> Wi-Fi</label>
+    <label><input type="checkbox" name="balcone" <?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null))) && $_smarty_tpl->getValue('struttura')->getBalcone()) {?>checked<?php }?>> Balcone</label>
+
+    <br><br>
+    <button type="submit"><?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {?>Salva modifiche<?php } else { ?>Aggiungi struttura<?php }?></button>
+</form>
+
+<?php
+}
+}
+/* {/block "contenuto"} */
+}

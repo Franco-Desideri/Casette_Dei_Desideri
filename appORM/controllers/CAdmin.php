@@ -17,12 +17,14 @@ class CAdmin
             return;
         }
 
-        $admin = FPersistentManager::get()->find('EUtente', USession::get('utente_id'));
-        $prenotazioni = FPersistentManager::get()->findAll('EPrenotazione');
+        // Usa class::class con namespace corretti
+        $admin = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
+        $prenotazioni = FPersistentManager::get()->getRepository(EPrenotazione::class)->findAll();
 
         $view = new VAdmin();
         $view->mostraProfilo($admin, $prenotazioni);
     }
+
 
     public function prenotazione($id): void
     {

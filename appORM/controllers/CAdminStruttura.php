@@ -16,7 +16,7 @@ class CAdminStruttura
             return;
         }
 
-        $strutture = FPersistentManager::get()->findAll('EStruttura');
+        $strutture = FPersistentManager::get()->getRepository(EStruttura::class)->findAll();
 
         $view = new VAdminStruttura();
         $view->mostraLista($strutture);
@@ -69,8 +69,8 @@ class CAdminStruttura
             echo "Accesso riservato.";
             return;
         }
-
-        $struttura = FPersistentManager::get()->find('EStruttura', $id);
+        
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
 
         if (!$struttura) {
             echo "Struttura non trovata.";
@@ -90,7 +90,7 @@ class CAdminStruttura
         }
 
         $dati = $_POST;
-        $struttura = FPersistentManager::get()->find('EStruttura', $dati['id']);
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $dati['id']);
 
         if (!$struttura) {
             echo "Struttura non trovata.";
@@ -122,9 +122,10 @@ class CAdminStruttura
             return;
         }
 
-        $struttura = FPersistentManager::get()->find('EStruttura', $id);
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
         if ($struttura) {
-            FPersistentManager::remove($struttura);
+            FPersistentManager::delete($struttura);
+
         }
 
         header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');

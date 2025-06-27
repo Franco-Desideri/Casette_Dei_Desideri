@@ -103,19 +103,19 @@ class EStruttura
     public function getNLetti(): int { return $this->nLetti; }
     public function setNLetti(int $nLetti): void { $this->nLetti = $nLetti; }
 
-    public function hasColazione(): bool { return $this->colazione; }
+    public function getColazione(): bool { return $this->colazione; }
     public function setColazione(bool $colazione): void { $this->colazione = $colazione; }
 
-    public function isAnimali(): bool { return $this->animali; }
+    public function getAnimali(): bool { return $this->animali; }
     public function setAnimali(bool $animali): void { $this->animali = $animali; }
 
-    public function isParcheggio(): bool { return $this->parcheggio; }
+    public function getParcheggio(): bool { return $this->parcheggio; }
     public function setParcheggio(bool $parcheggio): void { $this->parcheggio = $parcheggio; }
 
-    public function isWifi(): bool { return $this->wifi; }
+    public function getWifi(): bool { return $this->wifi; }
     public function setWifi(bool $wifi): void { $this->wifi = $wifi; }
 
-    public function isBalcone(): bool { return $this->balcone; }
+    public function getBalcone(): bool { return $this->balcone; }
     public function setBalcone(bool $balcone): void { $this->balcone = $balcone; }
 
     // Relazioni

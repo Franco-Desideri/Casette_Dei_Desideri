@@ -64,4 +64,12 @@ class VAdminContenuti
         $this->smarty->assign('evento', $evento);
         $this->smarty->display('admin/evento_form.tpl');
     }
+
+    public function mostraHome(array $attrazioni, array $eventi): void
+    {
+        $this->smarty->assign('attrazioni', $attrazioni);
+        $this->smarty->assign('eventi', $eventi);
+        $this->smarty->display('admin/admin_home.tpl');
+    }
+
 }
