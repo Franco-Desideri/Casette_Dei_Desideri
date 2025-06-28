@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-27 15:23:18
+/* Smarty version 5.5.1, created on 2025-06-28 13:18:14
   from 'file:admin/prodotti_lista.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685e9b468ad567_08528606',
+  'unifunc' => 'content_685fcf76dd5b02_83538506',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,20 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_admin.tpl' => 1,
   ),
 ))) {
-function content_685e9b468ad567_08528606 (\Smarty\Template $_smarty_tpl) {
+function content_685fcf76dd5b02_83538506 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1581858344685e9b468932c3_73589046', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_765746965685fcf76dbfba6_85229518', "contenuto");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_1581858344685e9b468932c3_73589046 extends \Smarty\Runtime\Block
+class Block_765746965685fcf76dbfba6_85229518 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';

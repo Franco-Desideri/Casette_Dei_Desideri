@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-26 20:57:22
+/* Smarty version 5.5.1, created on 2025-06-28 13:18:09
   from 'file:admin/profilo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685d981248d4c1_45278179',
+  'unifunc' => 'content_685fcf71351b75_35649898',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '201fdcfbb3927db3b5a2fdc7c83673bfd3446c25' => 
     array (
       0 => 'admin/profilo.tpl',
-      1 => 1750961244,
+      1 => 1751109485,
       2 => 'file',
     ),
   ),
@@ -21,20 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_admin.tpl' => 1,
   ),
 ))) {
-function content_685d981248d4c1_45278179 (\Smarty\Template $_smarty_tpl) {
+function content_685fcf71351b75_35649898 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1417027410685d9812479f49_25203012', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_690956240685fcf7133c7c9_72865875', "contenuto");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_1417027410685d9812479f49_25203012 extends \Smarty\Runtime\Block
+class Block_690956240685fcf7133c7c9_72865875 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
@@ -76,12 +76,12 @@ $foreach0DoElse = false;
                     <p><strong>Utente:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getUtente()->getNome();?>
  <?php echo $_smarty_tpl->getValue('prenotazione')->getUtente()->getCognome();?>
 </p>
-                    <p><strong>Struttura:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getStruttura()->getNome();?>
+                    <p><strong>Struttura:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getStruttura()->getTitolo();?>
 </p>
-                    <p><strong>Dal:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getDataInizio();?>
- <strong>al:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getDataFine();?>
+                    <p><strong>Dal:</strong> <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('prenotazione')->getPeriodo()->getDataI(),"%d/%m/%Y");?>
+ <strong>al:</strong> <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('prenotazione')->getPeriodo()->getDataF(),"%d/%m/%Y");?>
 </p>
-                    <p><strong>Ospiti:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getNumeroOspiti();?>
+                    <p><strong>Ospiti:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getOspiti();?>
 </p>
                 </li>
             <?php

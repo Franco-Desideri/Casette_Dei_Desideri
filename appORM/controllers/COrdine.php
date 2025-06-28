@@ -8,10 +8,10 @@ use App\services\TechnicalServiceLayer\foundation\FOrdine;
 use App\services\TechnicalServiceLayer\foundation\FUtente;
 use App\views\VOrdine;
 use App\models\EOrdine;
+use App\models\EOrdineItem;
 use App\models\EUtente;
 use App\models\EProdottoQuantita;
 use App\models\EProdottoPeso;
-
 
 class COrdine
 {
@@ -30,7 +30,6 @@ class COrdine
         $view = new VOrdine();
         $view->mostraListino($prodottiQ, $prodottiP);
     }
-
 
     public function riepilogo(): void
     {
@@ -59,12 +58,56 @@ class COrdine
         }
 
         $ordineData = $_POST;
-        USession::set('ordine_temp', $ordineData);
+        $fascia = $ordineData['fascia_oraria'] ?? null;
+        $prodottiQ = $ordineData['quantitaQ'] ?? [];
+        $prodottiP = $ordineData['quantitaP'] ?? [];
+
+        $riepilogo = [];
+        $prezzoTotale = 0.0;
+
+        foreach ($prodottiQ as $id => $qta) {
+            $qta = (int)$qta;
+            if ($qta > 0) {
+                $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, (int)$id);
+                $parziale = $prodotto->getPrezzo() * $qta;
+                $riepilogo[] = [
+                    'prodotto_id' => $prodotto->getId(),
+                    'tipo' => 'quantita',
+                    'quantita' => $qta,
+                    'prezzo' => $parziale,
+                    'nome' => $prodotto->getNome()
+                ];
+                $prezzoTotale += $parziale;
+            }
+        }
+
+        foreach ($prodottiP as $id => $grammi) {
+            $grammi = (int)$grammi;
+            if ($grammi > 0) {
+                $prodotto = FPersistentManager::get()->find(EProdottoPeso::class, (int)$id);
+                $parziale = ($grammi / 1000) * $prodotto->getPrezzoKg();
+                $riepilogo[] = [
+                    'prodotto_id' => $prodotto->getId(),
+                    'tipo' => 'peso',
+                    'quantita' => $grammi,
+                    'prezzo' => $parziale,
+                    'nome' => $prodotto->getNome()
+                ];
+                $prezzoTotale += $parziale;
+            }
+        }
+
+        $ordineTemp = [
+            'fascia_oraria' => $fascia,
+            'prodotti' => $riepilogo,
+            'prezzo' => round($prezzoTotale, 2),
+        ];
+
+        USession::set('ordine_temp', $ordineTemp);
 
         $view = new VOrdine();
-        $view->mostraRiepilogo($ordineData);
+        $view->mostraRiepilogo($ordineTemp);
     }
-
 
     public function conferma(): void
     {
@@ -78,25 +121,45 @@ class COrdine
         $ordineData = USession::get('ordine_temp');
         USession::delete('ordine_temp');
 
-        $utente = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
+        $contanti = isset($_POST['contanti']) ? (float) $_POST['contanti'] : 0.0;
+        $prezzoTotale = $ordineData['prezzo'];
 
-        // Crea l’oggetto ordine
-        $ordine = new EOrdine();
-        $ordine->setUtente($utente);
-        $ordine->setPrezzo((float) $ordineData['prezzo']);
-        $ordine->setData(new DateTime());
-        $ordine->setConferma(false);
-        $ordine->setFasciaOraria($ordineData['fascia_oraria'] ?? null);
-        $ordine->setContanti((float) $ordineData['contanti']);
-
-        // Verifica se l’importo in contanti è sufficiente
-        if ($ordine->getContanti() < $ordine->getPrezzo()) {
-            echo "<script>alert('L\'importo in contanti inserito è inferiore al totale dell\'ordine.'); window.location.href='/Casette_Dei_Desideri/Ordine/riepilogo';</script>";
+        if ($contanti < $prezzoTotale) {
+            echo "<script>alert('L\'importo inserito è inferiore al totale dell\'ordine.'); window.location.href='/Casette_Dei_Desideri/Ordine/riepilogo';</script>";
             return;
         }
 
-        // Salvataggio ordine
-        FOrdine::creaOrdine($ordine);
+        $utente = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
+
+        // Crea ordine
+        $ordine = new EOrdine();
+        $ordine->setUtente($utente);
+        $ordine->setPrezzo($prezzoTotale);
+        $ordine->setContanti($contanti);
+        $ordine->setData(new DateTime());
+        $ordine->setConferma(false);
+        $ordine->setFasciaOraria($ordineData['fascia_oraria']);
+
+        FPersistentManager::get()->persist($ordine);
+
+        // Aggiunge item
+        foreach ($ordineData['prodotti'] as $itemData) {
+            $item = new EOrdineItem();
+            $item->setQuantita((int)$itemData['quantita']);
+            $item->setOrdine($ordine);
+
+            if ($itemData['tipo'] === 'quantita') {
+                $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, $itemData['prodotto_id']);
+                $item->setProdottoQuantita($prodotto);
+            } else {
+                $prodotto = FPersistentManager::get()->find(EProdottoPeso::class, $itemData['prodotto_id']);
+                $item->setProdottoPeso($prodotto);
+            }
+
+            FPersistentManager::get()->persist($item);
+        }
+
+        FPersistentManager::get()->flush();
 
         // Invia mail riepilogo
         $admin = FUtente::getAdmin();
@@ -105,7 +168,7 @@ class COrdine
         $testo = FOrdine::generaTestoOrdine($ordine);
         UEmail::invia($emailAdmin, $oggetto, $testo);
 
-        // Mostra conferma
+        // Messaggio conferma
         $view = new VOrdine();
         $view->confermaOrdine();
     }

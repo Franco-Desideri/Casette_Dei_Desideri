@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-27 14:44:52
+/* Smarty version 5.5.1, created on 2025-06-27 17:55:30
   from 'file:utente/struttura_lista.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685e92443eb108_97755171',
+  'unifunc' => 'content_685ebef216cbc3_35340757',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e6ea33aa3e9beb3a07471bcdaef4eb037e972755' => 
     array (
       0 => 'utente/struttura_lista.tpl',
-      1 => 1750957422,
+      1 => 1751037871,
       2 => 'file',
     ),
   ),
@@ -21,20 +21,21 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar.tpl' => 1,
   ),
 ))) {
-function content_685e92443eb108_97755171 (\Smarty\Template $_smarty_tpl) {
+function content_685ebef216cbc3_35340757 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_565250447685e92443cde06_83234124', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_215158017685ebef2159f87_83043550', "contenuto");
 ?>
+
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_565250447685e92443cde06_83234124 extends \Smarty\Runtime\Block
+class Block_215158017685ebef2159f87_83043550 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
@@ -55,12 +56,13 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('struttura')->value) {
 $foreach0DoElse = false;
 ?>
             <li style="margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 20px;">
-                <img src="<?php echo $_smarty_tpl->getValue('struttura')->getImmagine();?>
-" alt="Struttura" width="250" style="display: block; margin-bottom: 10px;">
-                <h3><?php echo $_smarty_tpl->getValue('struttura')->getNome();?>
+                <a href="/Casette_Dei_Desideri/Struttura/dettaglio/<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
+" style="text-decoration: none; color: inherit; display: block;">
+                    <h3><?php echo $_smarty_tpl->getValue('struttura')->getTitolo();?>
 </h3>
-                <p><?php echo $_smarty_tpl->getValue('struttura')->getDescrizione();?>
+                    <p><?php echo $_smarty_tpl->getValue('struttura')->getDescrizione();?>
 </p>
+                </a>
             </li>
         <?php
 }

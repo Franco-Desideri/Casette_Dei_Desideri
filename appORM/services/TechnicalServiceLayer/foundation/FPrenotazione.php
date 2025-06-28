@@ -37,10 +37,14 @@ class FPrenotazione
         $prezzoTotale = self::calcolaPrezzoTotale($struttura->getIntervalli(), $dataInizio, $dataFine);
         $prenotazione->setPrezzo($prezzoTotale);
 
+        // Imposta anche il numero di ospiti nella proprietà obbligatoria
+        $prenotazione->setOspiti($numOspiti);
+
         // Salva la prenotazione
         FPersistentManager::store($prenotazione);
         return true;
     }
+
 
     private static function copreIntervalli(iterable $intervalli, \DateTime $dataInizio, \DateTime $dataFine): bool
     {
@@ -86,7 +90,7 @@ class FPrenotazione
         return false;
     }
 
-    private static function calcolaPrezzoTotale(iterable $intervalli, \DateTime $dataInizio, \DateTime $dataFine): float
+    public static function calcolaPrezzoTotale(iterable $intervalli, \DateTime $dataInizio, \DateTime $dataFine): float
     {
         $prezzoTotale = 0.0;
 

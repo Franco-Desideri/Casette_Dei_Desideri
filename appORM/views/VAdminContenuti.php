@@ -9,7 +9,6 @@ use App\models\EEvento;
 
 /**
  * Classe View per la gestione della visualizzazione dei contenuti da parte dell'amministratore
- * Responsabile di: attrazioni ed eventi (lista, form di creazione/modifica)
  */
 class VAdminContenuti
 {
@@ -22,20 +21,9 @@ class VAdminContenuti
     }
 
     /**
-     * Mostra la lista delle attrazioni presenti
-     *
-     * @param array $attrazioni Array di oggetti EAttrazione
-     */
-    public function mostraListaAttrazioni(array $attrazioni): void
-    {
-        $this->smarty->assign('attrazioni', $attrazioni);
-        $this->smarty->display('admin/attrazioni_lista.tpl');
-    }
-
-    /**
      * Mostra il form per aggiungere o modificare un'attrazione
      *
-     * @param EAttrazione|null $attrazione Oggetto esistente da modificare, oppure null per nuova
+     * @param EAttrazione|null $attrazione
      */
     public function mostraFormAttrazione(?EAttrazione $attrazione = null): void
     {
@@ -44,20 +32,9 @@ class VAdminContenuti
     }
 
     /**
-     * Mostra la lista degli eventi presenti
-     *
-     * @param array $eventi Array di oggetti EEvento
-     */
-    public function mostraListaEventi(array $eventi): void
-    {
-        $this->smarty->assign('eventi', $eventi);
-        $this->smarty->display('admin/eventi_lista.tpl');
-    }
-
-    /**
      * Mostra il form per aggiungere o modificare un evento
      *
-     * @param EEvento|null $evento Oggetto esistente da modificare, oppure null per nuovo
+     * @param EEvento|null $evento
      */
     public function mostraFormEvento(?EEvento $evento = null): void
     {
@@ -65,11 +42,16 @@ class VAdminContenuti
         $this->smarty->display('admin/evento_form.tpl');
     }
 
+    /**
+     * Mostra la dashboard amministratore con attrazioni ed eventi
+     *
+     * @param array $attrazioni
+     * @param array $eventi
+     */
     public function mostraHome(array $attrazioni, array $eventi): void
     {
         $this->smarty->assign('attrazioni', $attrazioni);
         $this->smarty->assign('eventi', $eventi);
         $this->smarty->display('admin/admin_home.tpl');
     }
-
 }

@@ -4,25 +4,19 @@
 
 {include file="partials/appbar_admin.tpl"}
 
-<h2>{if $evento !== null}Modifica Evento{else}Aggiungi Evento{/if}</h2>
+<h2>{if $attrazione !== null}Modifica Attrazione{else}Aggiungi Attrazione{/if}</h2>
 
-<form action="{if $evento !== null}/Casette_Dei_Desideri/AdminContenuti/salvaModificaEvento{else}/Casette_Dei_Desideri/AdminContenuti/salvaEvento{/if}" method="post">
+<form action="{if $attrazione !== null}/Casette_Dei_Desideri/AdminContenuti/salvaModificaAttrazione{else}/Casette_Dei_Desideri/AdminContenuti/salvaAttrazione{/if}" method="post">
     
-    {if $evento !== null}
-        <input type="hidden" name="id" value="{$evento->getId()}">
+    {if $attrazione !== null}
+        <input type="hidden" name="id" value="{$attrazione->getId()}">
     {/if}
 
     <label>Immagine (URL):</label><br>
-    <input type="text" name="immagine" value="{if $evento !== null}{$evento->getImmagine()}{/if}" required><br><br>
+    <input type="text" name="immagine" value="{if $attrazione !== null}{$attrazione->getImmagine()}{/if}" required><br><br>
 
-    <label>Titolo:</label><br>
-    <input type="text" name="titolo" value="{if $evento !== null}{$evento->getTitolo()}{/if}" required><br><br>
-
-    <label>Data inizio:</label><br>
-    <input type="date" name="dataInizio" value="{if $evento !== null}{$evento->getDataInizio()|date_format:'%Y-%m-%d'}{/if}" required><br><br>
-
-    <label>Data fine:</label><br>
-    <input type="date" name="dataFine" value="{if $evento !== null}{$evento->getDataFine()|date_format:'%Y-%m-%d'}{/if}" required><br><br>
+    <label>Descrizione:</label><br>
+    <textarea name="descrizione" rows="4" cols="50" required>{if $attrazione !== null}{$attrazione->getDescrizione()}{/if}</textarea><br><br>
 
     <button type="submit">Salva</button>
 </form>

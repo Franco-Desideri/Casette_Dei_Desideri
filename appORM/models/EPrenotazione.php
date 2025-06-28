@@ -52,7 +52,7 @@ class EPrenotazione
     private Collection $ospitiDettagli;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ECartaCredito")
+     * @ORM\ManyToOne(targetEntity="ECartaCredito", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private ECartaCredito $cartaCredito;
@@ -60,6 +60,7 @@ class EPrenotazione
     public function __construct()
     {
         $this->ospitiDettagli = new ArrayCollection();
+        $this->ospiti = 0;
     }
 
     // Getter e Setter

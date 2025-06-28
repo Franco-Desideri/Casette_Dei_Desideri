@@ -5,11 +5,9 @@ namespace App\views;
 use Smarty\Smarty;
 use App\install\StartSmarty;
 use App\models\EStruttura;
-use Doctrine\Common\Collections\Collection;
 
 /**
  * Classe View per la visualizzazione delle strutture lato utente.
- * Si occupa di mostrare la lista delle strutture e i dettagli di una singola struttura.
  */
 class VStruttura
 {
@@ -17,15 +15,9 @@ class VStruttura
 
     public function __construct()
     {
-        // Avvia il motore Smarty tramite configurazione centralizzata
         $this->smarty = StartSmarty::start();
     }
 
-    /**
-     * Mostra l'elenco di tutte le strutture disponibili
-     *
-     * @param array $strutture Array di oggetti EStruttura
-     */
     public function mostraLista(array $strutture): void
     {
         $this->smarty->assign('strutture', $strutture);
@@ -33,21 +25,19 @@ class VStruttura
     }
 
     /**
-     * Mostra i dettagli di una singola struttura, inclusi:
-     * - informazioni testuali
-     * - foto
-     * - intervalli di disponibilità
-     * - date già prenotate
+     * Mostra i dettagli di una struttura con foto, intervalli, prenotazioni.
      *
-     * @param EStruttura $struttura L'oggetto struttura selezionato
-     * @param Collection $prenotazioni Elenco delle prenotazioni effettuate sulla struttura
-     * @param Collection $intervalli Elenco degli intervalli di disponibilità della struttura
+     * @param EStruttura $struttura
+     * @param array $foto
+     * @param array $intervalli
+     * @param array $prenotazioni
      */
-    public function mostraDettaglio(EStruttura $struttura, Collection $prenotazioni, Collection $intervalli): void
+    public function mostraDettaglio(EStruttura $struttura, array $foto, array $intervalli, array $prenotazioni): void
     {
         $this->smarty->assign('struttura', $struttura);
-        $this->smarty->assign('prenotazioni', $prenotazioni);
+        $this->smarty->assign('foto', $foto);
         $this->smarty->assign('intervalli', $intervalli);
+        $this->smarty->assign('prenotazioni', $prenotazioni);
         $this->smarty->display('utente/struttura_dettaglio.tpl');
     }
 }

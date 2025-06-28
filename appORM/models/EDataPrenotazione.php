@@ -23,7 +23,11 @@ class EDataPrenotazione
     /** @ORM\Column(type="date") */
     private \DateTime $dataF;
 
-    // Getter e Setter
+    public function __construct(\DateTime $dataI, \DateTime $dataF)
+    {
+        $this->dataI = $dataI;
+        $this->dataF = $dataF;
+    }
 
     public function getId(): int { return $this->id; }
 

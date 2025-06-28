@@ -55,4 +55,9 @@ class FUtente
     {
         return $utente->getOrdini()->toArray();
     }
+
+    public static function getAdmin(): ?EUtente
+    {
+        return FPersistentManager::findOneBy(EUtente::class, ['ruolo' => 'admin']);
+    }
 }

@@ -6,15 +6,22 @@
 
 <h2>Servizio Spesa in Struttura</h2>
 
+<form action="/Casette_Dei_Desideri/Ordine/riepilogo" method="post">
+
 <section>
     <h3>Prodotti a Quantità</h3>
-    {if $prodottiQ|@count > 0}
+    {if $prodottiQuantita|@count > 0}
         <ul style="list-style: none; padding: 0;">
-            {foreach from=$prodottiQ item=prodotto}
+            {foreach from=$prodottiQuantita item=prodotto}
                 <li style="margin-bottom: 20px;">
                     <strong>{$prodotto->getNome()}</strong><br>
-                    Prezzo: €{$prodotto->getPrezzo()} <br>
-                    {$prodotto->getDescrizione()}
+                    Prezzo: €{$prodotto->getPrezzo()}<br>
+                    Quantità:
+                    <select name="quantitaQ[{$prodotto->getId()}]">
+                        {section name=q start=0 loop=11}
+                            <option value="{$smarty.section.q.index}">{$smarty.section.q.index}</option>
+                        {/section}
+                    </select>
                 </li>
             {/foreach}
         </ul>
@@ -25,13 +32,20 @@
 
 <section>
     <h3>Prodotti a Peso</h3>
-    {if $prodottiP|@count > 0}
+    {if $prodottiPeso|@count > 0}
         <ul style="list-style: none; padding: 0;">
-            {foreach from=$prodottiP item=prodotto}
+            {foreach from=$prodottiPeso item=prodotto}
                 <li style="margin-bottom: 20px;">
                     <strong>{$prodotto->getNome()}</strong><br>
-                    Prezzo al kg: €{$prodotto->getPrezzo()} <br>
-                    {$prodotto->getDescrizione()}
+                    Prezzo al kg: €{$prodotto->getPrezzoKg()}<br>
+                    Quantità (grammi):
+                    {assign var=range value=$prodotto->getRangeValore()}
+                    <select name="quantitaP[{$prodotto->getId()}]">
+                        {section name=g start=$range loop=1100 step=$range}
+                            <option value="{$smarty.section.g.index}">{$smarty.section.g.index} g</option>
+                        {/section}
+                        <option value="0" selected>0 g</option>
+                    </select>
                 </li>
             {/foreach}
         </ul>
@@ -44,17 +58,18 @@
 
 <section>
     <h3>Seleziona una fascia oraria per la consegna</h3>
-    <form action="/Casette_Dei_Desideri/Ordine/riepilogo" method="post">
-        <select name="fascia_oraria" required>
-            <option value="">-- Seleziona una fascia --</option>
-            <option value="9-11">9:00 - 11:00</option>
-            <option value="11-13">11:00 - 13:00</option>
-            <option value="14-16">14:00 - 16:00</option>
-            <option value="16-18">16:00 - 18:00</option>
-        </select>
-        <br><br>
-        <button type="submit">Vai al carrello</button>
-    </form>
+    <select name="fascia_oraria" required>
+        <option value="">-- Seleziona una fascia --</option>
+        <option value="9-11">9:00 - 11:00</option>
+        <option value="11-13">11:00 - 13:00</option>
+        <option value="14-16">14:00 - 16:00</option>
+        <option value="16-18">16:00 - 18:00</option>
+    </select>
 </section>
+
+<br><br>
+<button type="submit">Vai al carrello</button>
+
+</form>
 
 {/block}

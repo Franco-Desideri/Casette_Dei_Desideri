@@ -5,30 +5,18 @@ use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\views\VStruttura;
 use App\models\EStruttura;
 
-/**
- * Controller per la visualizzazione delle strutture lato utente
- */
 class CStruttura
 {
-    /**
-     * Mostra la lista di tutte le strutture disponibili
-     */
     public function lista(): void
     {
         USession::start();
 
         $strutture = FPersistentManager::get()->getRepository(EStruttura::class)->findAll();
 
-
         $view = new VStruttura();
         $view->mostraLista($strutture);
     }
 
-    /**
-     * Mostra i dettagli di una struttura specifica (con calendario disponibilità)
-     *
-     * @param int $id ID della struttura
-     */
     public function dettaglio($id): void
     {
         USession::start();
@@ -40,18 +28,15 @@ class CStruttura
             return;
         }
 
-        $prenotazioni = $struttura->getPrenotazioni();
-        $intervalli = $struttura->getIntervalli();
+        // Precarichiamo le collezioni per evitare LazyLoading dopo EntityManager closure
+        $foto = $struttura->getFoto()->toArray();
+        $intervalli = $struttura->getIntervalli()->toArray();
+        $prenotazioni = $struttura->getPrenotazioni()->toArray();
 
         $view = new VStruttura();
-        $view->mostraDettaglio($struttura, $prenotazioni, $intervalli);
+        $view->mostraDettaglio($struttura, $foto, $intervalli, $prenotazioni);
     }
 
-    /**
-     * Avvia la prenotazione di una struttura (step successivo: ospiti)
-     *
-     * @param int $id ID della struttura
-     */
     public function prenota($id): void
     {
         USession::start();
@@ -60,7 +45,7 @@ class CStruttura
             header('Location: /Casette_Dei_Desideri/User/login');
             exit;
         }
-        
+
         $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
 
         if (!$struttura) {

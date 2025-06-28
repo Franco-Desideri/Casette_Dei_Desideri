@@ -6,24 +6,30 @@ use Smarty\Smarty;
 use App\install\StartSmarty;
 use App\models\EStruttura;
 
-/**
- * Classe View per la gestione del processo di prenotazione
- * Visualizza: inserimento ospiti, riepilogo e pagamento
- */
 class VPrenotazione
 {
     private Smarty $smarty;
 
     public function __construct()
     {
-        // Inizializzazione di Smarty
         $this->smarty = StartSmarty::start();
     }
 
     /**
-     * Mostra il form per l'inserimento dei dati degli ospiti
-     *
-     * @param EStruttura $struttura La struttura selezionata per la prenotazione
+     * Mostra il riepilogo iniziale con dati base
+     */
+    public function mostraRiepilogoParziale(EStruttura $struttura, string $dataInizio, string $dataFine, int $numOspiti, float $totale): void
+    {
+        $this->smarty->assign('struttura', $struttura);
+        $this->smarty->assign('dataInizio', $dataInizio);
+        $this->smarty->assign('dataFine', $dataFine);
+        $this->smarty->assign('numOspiti', $numOspiti);
+        $this->smarty->assign('totale', $totale);
+        $this->smarty->display('utente/prenotazione_riepilogo_parziale.tpl');
+    }
+
+    /**
+     * Mostra il form per l’inserimento degli ospiti (dopo riepilogo parziale)
      */
     public function mostraFormOspiti(EStruttura $struttura): void
     {
@@ -32,15 +38,9 @@ class VPrenotazione
     }
 
     /**
-     * Mostra il riepilogo della prenotazione, inclusi ospiti, date e prezzo
-     *
-     * @param EStruttura $struttura La struttura prenotata
-     * @param string $dataInizio Data di inizio soggiorno
-     * @param string $dataFine Data di fine soggiorno
-     * @param array $ospiti Dati degli ospiti inseriti
-     * @param float $totale Prezzo totale del soggiorno
+     * Mostra il riepilogo completo con ospiti e prezzo totale
      */
-    public function mostraRiepilogo(EStruttura $struttura, string $dataInizio, string $dataFine, array $ospiti, float $totale): void
+    public function mostraRiepilogoCompleto(EStruttura $struttura, string $dataInizio, string $dataFine, array $ospiti, float $totale): void
     {
         $this->smarty->assign('struttura', $struttura);
         $this->smarty->assign('dataInizio', $dataInizio);
@@ -51,7 +51,7 @@ class VPrenotazione
     }
 
     /**
-     * Mostra il form per il pagamento con carta di credito
+     * Mostra la schermata di pagamento
      */
     public function mostraPagamento(): void
     {

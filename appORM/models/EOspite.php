@@ -23,8 +23,8 @@ class EOspite
     /** @ORM\Column(type="string", length=100) */
     private string $cognome;
 
-    /** @ORM\Column(type="string", length=50) */
-    private string $documento;
+    /** @ORM\Column(type="blob", nullable=true) */
+    private $documento;
 
     /** @ORM\Column(type="string", length=20) */
     private string $tell;
@@ -57,8 +57,19 @@ class EOspite
     public function getCognome(): string { return $this->cognome; }
     public function setCognome(string $cognome): void { $this->cognome = $cognome; }
 
-    public function getDocumento(): string { return $this->documento; }
-    public function setDocumento(string $documento): void { $this->documento = $documento; }
+    /**
+     * @return resource|string|null
+     */
+    public function getDocumento() {
+        return $this->documento;
+    }
+
+    /**
+     * @param resource|string|null $documento
+     */
+    public function setDocumento($documento): void {
+        $this->documento = $documento;
+    }
 
     public function getTell(): string { return $this->tell; }
     public function setTell(string $tell): void { $this->tell = $tell; }

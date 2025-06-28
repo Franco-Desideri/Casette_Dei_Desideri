@@ -49,6 +49,9 @@ class VOrdine
      */
     public function confermaOrdine(): void
     {
-        echo "<script>alert('Ordine inviato! Riceverai conferma via email.'); window.location.href='/Casette_Dei_Desideri/Struttura/lista';</script>";
+        echo "<script>
+            alert('Ordine inviato! Riceverai conferma via email in base alla disponibilità della struttura.');
+            window.location.href='/Casette_Dei_Desideri/Struttura/lista';
+        </script>";
     }
 }

@@ -10,18 +10,6 @@ class CAdminContenuti
 {
     // -------- ATTRAZIONI --------
 
-    public function listaAttrazioni(): void {
-        USession::start();
-        if (USession::get('ruolo') !== 'admin') {
-            echo "Accesso riservato.";
-            return;
-        }
-
-        $attrazioni = FPersistentManager::get()->getRepository(EAttrazione::class)->findAll();
-        $view = new VAdminContenuti();
-        $view->mostraListaAttrazioni($attrazioni);
-    }
-
     public function aggiungiAttrazione(): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
@@ -30,7 +18,7 @@ class CAdminContenuti
         }
 
         $view = new VAdminContenuti();
-        $view->mostraFormAttrazione(null); // passa null esplicitamente
+        $view->mostraFormAttrazione(null);
     }
 
     public function modificaAttrazione($id): void {
@@ -57,7 +45,8 @@ class CAdminContenuti
         $a->setDescrizione($_POST['descrizione']);
 
         FPersistentManager::store($a);
-        header('Location: /Casette_Dei_Desideri/AdminContenuti/listaAttrazioni');
+        header('Location: /Casette_Dei_Desideri/AdminContenuti/home');
+        exit;
     }
 
     public function salvaModificaAttrazione(): void {
@@ -72,29 +61,25 @@ class CAdminContenuti
         $a->setDescrizione($_POST['descrizione']);
 
         FPersistentManager::store($a);
-        header('Location: /Casette_Dei_Desideri/AdminContenuti/listaAttrazioni');
+        header('Location: /Casette_Dei_Desideri/AdminContenuti/home');
+        exit;
     }
 
     public function eliminaAttrazione($id): void {
-        USession::start();
-        $a = FPersistentManager::get()->find(EAttrazione::class, $id);
-        if ($a) FPersistentManager::delete($a);
-        header('Location: /Casette_Dei_Desideri/AdminContenuti/listaAttrazioni');
-    }
-
-    // -------- EVENTI --------
-
-    public function listaEventi(): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
             return;
         }
 
-        $eventi = FPersistentManager::get()->getRepository(EEvento::class)->findAll();
-        $view = new VAdminContenuti();
-        $view->mostraListaEventi($eventi);
+        $a = FPersistentManager::get()->find(EAttrazione::class, $id);
+        if ($a) FPersistentManager::delete($a);
+
+        header('Location: /Casette_Dei_Desideri/AdminContenuti/home');
+        exit;
     }
+
+    // -------- EVENTI --------
 
     public function aggiungiEvento(): void {
         USession::start();
@@ -104,7 +89,7 @@ class CAdminContenuti
         }
 
         $view = new VAdminContenuti();
-        $view->mostraFormEvento(null); // anche qui passa null
+        $view->mostraFormEvento(null);
     }
 
     public function modificaEvento($id): void {
@@ -133,7 +118,8 @@ class CAdminContenuti
         $e->setDataFine(new DateTime($_POST['dataFine']));
 
         FPersistentManager::store($e);
-        header('Location: /Casette_Dei_Desideri/AdminContenuti/listaEventi');
+        header('Location: /Casette_Dei_Desideri/AdminContenuti/home');
+        exit;
     }
 
     public function salvaModificaEvento(): void {
@@ -150,21 +136,28 @@ class CAdminContenuti
         $e->setDataFine(new DateTime($_POST['dataFine']));
 
         FPersistentManager::store($e);
-        header('Location: /Casette_Dei_Desideri/AdminContenuti/listaEventi');
+        header('Location: /Casette_Dei_Desideri/AdminContenuti/home');
+        exit;
     }
 
     public function eliminaEvento($id): void {
         USession::start();
+        if (USession::get('ruolo') !== 'admin') {
+            echo "Accesso riservato.";
+            return;
+        }
+
         $e = FPersistentManager::get()->find(EEvento::class, $id);
         if ($e) FPersistentManager::delete($e);
-        header('Location: /Casette_Dei_Desideri/AdminContenuti/listaEventi');
+
+        header('Location: /Casette_Dei_Desideri/AdminContenuti/home');
+        exit;
     }
 
     // -------- HOME ADMIN --------
 
     public function home(): void {
         USession::start();
-
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
             return;

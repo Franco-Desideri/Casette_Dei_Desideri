@@ -13,10 +13,10 @@
     {/if}
 
     <label>Immagine (URL):</label><br>
-    <input type="text" name="immagine" value="{$evento->getImmagine()|default:''}" required><br><br>
+    <input type="text" name="immagine" value="{if $evento !== null}{$evento->getImmagine()}{/if}" required><br><br>
 
     <label>Titolo:</label><br>
-    <input type="text" name="titolo" value="{$evento->getTitolo()|default:''}" required><br><br>
+    <input type="text" name="titolo" value="{if $evento !== null}{$evento->getTitolo()}{/if}" required><br><br>
 
     <label>Data inizio:</label><br>
     <input type="date" name="dataInizio" value="{if $evento !== null}{$evento->getDataInizioString('Y-m-d')}{/if}" required><br><br>

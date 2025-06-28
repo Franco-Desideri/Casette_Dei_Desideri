@@ -2,20 +2,18 @@
 
 use App\services\TechnicalServiceLayer\utility\USession;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
-use App\services\TechnicalServiceLayer\foundation\FIntervallo;
+use App\services\TechnicalServiceLayer\foundation\FPrenotazione;
 use App\views\VPrenotazione;
 use App\models\EStruttura;
 use App\models\EUtente;
 use App\models\EPrenotazione;
 use App\models\EDataPrenotazione;
 use App\models\EOspite;
+use App\models\ECartaCredito;
 
-/**
- * Controller per la gestione delle prenotazioni
- */
 class CPrenotazione
 {
-    public function dettagliOspiti($idStruttura): void
+    public function calcola(): void
     {
         USession::start();
 
@@ -24,18 +22,53 @@ class CPrenotazione
             exit;
         }
 
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $idStruttura);
+        if (!isset($_POST['idStruttura'], $_POST['dataInizio'], $_POST['dataFine'], $_POST['numOspiti'])) {
+            echo "Dati mancanti per la prenotazione.";
+            return;
+        }
 
+        $idStruttura = $_POST['idStruttura'];
+        $dataInizio = new DateTime($_POST['dataInizio']);
+        $dataFine = new DateTime($_POST['dataFine']);
+        $numOspiti = (int)$_POST['numOspiti'];
+
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $idStruttura);
         if (!$struttura) {
             echo "Struttura non trovata.";
             return;
         }
 
-        $view = new VPrenotazione();
-        $view->mostraFormOspiti($struttura);
+        $prezzo = FPrenotazione::calcolaPrezzoTotale($struttura->getIntervalli(), $dataInizio, $dataFine);
+
+        USession::set('prenotazione_temp', [
+            'id_struttura' => $idStruttura,
+            'data_inizio' => $dataInizio->format('Y-m-d'),
+            'data_fine' => $dataFine->format('Y-m-d'),
+            'num_ospiti' => $numOspiti,
+            'totale' => $prezzo,
+        ]);
+
+        header('Location: /Casette_Dei_Desideri/Prenotazione/riepilogoParziale');
+        exit;
     }
 
-    public function riepilogo(): void
+    public function riepilogoParziale(): void
+    {
+        USession::start();
+        $data = USession::get('prenotazione_temp');
+
+        if (!$data) {
+            echo "Dati di prenotazione non disponibili.";
+            return;
+        }
+
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $data['id_struttura']);
+
+        $view = new VPrenotazione();
+        $view->mostraFormOspiti($struttura); // qui si raccolgono gli ospiti dopo aver mostrato il riepilogo parziale
+    }
+
+    public function riepilogoCompleto(): void
     {
         USession::start();
 
@@ -45,16 +78,40 @@ class CPrenotazione
         }
 
         $data = USession::get('prenotazione_temp');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ospiti'])) {
+            $ospiti = $_POST['ospiti'];
+
+            foreach ($ospiti as $i => $ospite) {
+                $ospiti[$i]['documento'] = null;
+                if (
+                    isset($_FILES['ospiti']['tmp_name'][$i]['documento']) &&
+                    is_uploaded_file($_FILES['ospiti']['tmp_name'][$i]['documento'])
+                ) {
+                    $ospiti[$i]['documento'] = file_get_contents($_FILES['ospiti']['tmp_name'][$i]['documento']);
+                }
+            }
+
+
+            $data['ospiti'] = $ospiti;
+            USession::set('prenotazione_temp', $data);
+        }
+
+        if (!isset($data['ospiti'])) {
+            echo "Dati ospiti mancanti.";
+            return;
+        }
+
         $struttura = FPersistentManager::get()->find(EStruttura::class, $data['id_struttura']);
 
-        $totale = FIntervallo::calcolaPrezzoTotale(
-            $struttura,
-            new DateTime($data['data_inizio']),
-            new DateTime($data['data_fine'])
-        );
-
         $view = new VPrenotazione();
-        $view->mostraRiepilogo($struttura, $data['data_inizio'], $data['data_fine'], $data['ospiti'], $totale);
+        $view->mostraRiepilogoCompleto(
+            $struttura,
+            $data['data_inizio'],
+            $data['data_fine'],
+            $data['ospiti'],
+            $data['totale']
+        );
     }
 
     public function pagamento(): void
@@ -67,46 +124,120 @@ class CPrenotazione
         }
 
         $view = new VPrenotazione();
-        $view->mostraPagamento();
+        $view->mostraPagamento(); 
     }
+
+    public function salvaDatiPagamento(): void
+    {
+        USession::start();
+
+        // Solo POST consentito
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            header('Location: /Casette_Dei_Desideri/Struttura/lista');
+            exit;
+        }
+
+        // Verifica campi obbligatori
+        if (
+            empty($_POST['nomeCarta']) ||
+            empty($_POST['numeroCarta']) ||
+            empty($_POST['scadenza']) ||
+            empty($_POST['cvv'])
+        ) {
+            echo "Dati carta mancanti o incompleti.";
+            return;
+        }
+
+        // Recupera sessione prenotazione temporanea
+        $temp = USession::get('prenotazione_temp') ?? [];
+
+        // Estrae nome e cognome dal campo nomeCarta (es: "Mario Rossi")
+        $parts = preg_split('/\s+/', trim($_POST['nomeCarta']), 2);
+        $temp['carta_nome'] = $parts[0] ?? '';
+        $temp['carta_cognome'] = $parts[1] ?? ''; // vuoto se non specificato
+
+        // Altri campi della carta
+        $temp['carta_numero'] = trim($_POST['numeroCarta']);
+        $temp['carta_scadenza'] = $_POST['scadenza'] . "-01"; // Y-m → Y-m-d (usiamo il 1° giorno del mese)
+        $temp['carta_ccv'] = trim($_POST['cvv']);
+
+        // Salva in sessione
+        USession::set('prenotazione_temp', $temp);
+
+        // Reindirizza alla conferma
+        header('Location: /Casette_Dei_Desideri/Prenotazione/conferma');
+        exit;
+    }
+
+
+
 
     public function conferma(): void
     {
         USession::start();
-
         $dati = USession::get('prenotazione_temp');
-        $struttura = FPersistentManager::get()->find('EStruttura', $dati['id_struttura']);
-        $utente = FPersistentManager::get()->find('EUtente', USession::get('utente_id'));
 
+        if (
+            !$dati ||
+            !isset($dati['id_struttura'], $dati['data_inizio'], $dati['data_fine'], $dati['ospiti'], $dati['totale'],
+                $dati['carta_nome'], $dati['carta_cognome'], $dati['carta_numero'], $dati['carta_ccv'], $dati['carta_scadenza'])
+        ) {
+            echo "Errore: dati di prenotazione o pagamento mancanti o incompleti.";
+            return;
+        }
+
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $dati['id_struttura']);
+        $utente = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
+
+        if (!$struttura || !$utente) {
+            echo "Errore: struttura o utente non trovato.";
+            return;
+        }
+
+        // Crea carta di credito
+        $carta = new ECartaCredito();
+        $carta->setNomeTitolare($dati['carta_nome']);
+        $carta->setCognomeTitolare($dati['carta_cognome']);
+        $carta->setNumero($dati['carta_numero']);
+        $carta->setCcv($dati['carta_ccv']);
+        $carta->setDataScadenza(new DateTime($dati['carta_scadenza']));
+
+        // Crea prenotazione
         $prenotazione = new EPrenotazione();
         $prenotazione->setStruttura($struttura);
         $prenotazione->setUtente($utente);
-        $prenotazione->setOspiti(count($dati['ospiti']));
-        $prenotazione->setPrezzo($dati['totale']);
+        $prenotazione->setCartaCredito($carta);
         $prenotazione->setPagata(true);
         $prenotazione->setPeriodo(new EDataPrenotazione(
             new DateTime($dati['data_inizio']),
             new DateTime($dati['data_fine'])
         ));
 
+
         foreach ($dati['ospiti'] as $ospiteData) {
-            $ospite = new EOspite(
-                $ospiteData['nome'],
-                $ospiteData['cognome'],
-                $ospiteData['documento'],
-                $ospiteData['tell'],
-                $ospiteData['codiceFiscale'],
-                $ospiteData['sesso'],
-                new DateTime($ospiteData['dataNascita']),
-                $ospiteData['luogoNascita']
-            );
+            $ospite = new EOspite();
+            $ospite->setNome($ospiteData['nome']);
+            $ospite->setCognome($ospiteData['cognome']);
+            $ospite->setDocumento($ospiteData['documento']); // è un BLOB binario o null
+            $ospite->setTell($ospiteData['tell']);
+            $ospite->setCodiceF($ospiteData['codiceFiscale']);
+            $ospite->setSesso($ospiteData['sesso']);
+            $ospite->setDataN(new DateTime($ospiteData['dataNascita']));
+            $ospite->setLuogoN($ospiteData['luogoNascita']);
+            $prenotazione->addOspite($ospite);
+
             $prenotazione->addOspite($ospite);
         }
 
-        FPersistentManager::store($prenotazione);
-        USession::delete('prenotazione_temp');
+        // Verifica e salva la prenotazione
+        if (!FPrenotazione::creaPrenotazione($prenotazione)) {
+            echo "Errore: impossibile salvare la prenotazione (date non disponibili, ospiti in eccesso o conflitti).";
+            return;
+        }
 
+        USession::delete('prenotazione_temp');
         header('Location: /Casette_Dei_Desideri/Struttura/lista');
         exit;
     }
+
 }

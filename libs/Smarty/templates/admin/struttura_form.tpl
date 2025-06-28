@@ -6,7 +6,10 @@
 
 <h2>{if isset($struttura)}Modifica struttura{else}Aggiungi nuova struttura{/if}</h2>
 
-<form method="post" action="/Casette_Dei_Desideri/AdminStruttura/{if isset($struttura)}salvaModificata{else}salvaNuova{/if}">
+<form method="post"
+      action="/Casette_Dei_Desideri/AdminStruttura/{if isset($struttura)}salvaModificata{else}salvaNuova{/if}"
+      enctype="multipart/form-data">
+
     {if isset($struttura)}
         <input type="hidden" name="id" value="{$struttura->getId()}">
     {/if}
@@ -38,8 +41,58 @@
     <label><input type="checkbox" name="wifi" {if isset($struttura) && $struttura->getWifi()}checked{/if}> Wi-Fi</label>
     <label><input type="checkbox" name="balcone" {if isset($struttura) && $struttura->getBalcone()}checked{/if}> Balcone</label>
 
+    <hr>
+
+    <h3>Foto struttura</h3>
+    <label>Carica immagini:</label>
+    <input type="file" name="foto[]" multiple accept="image/*"><br><br>
+
+    {if isset($struttura) && $struttura->getFoto()->count() > 0}
+        <p>Immagini esistenti:</p>
+        <ul style="list-style: none; padding: 0;">
+            {foreach from=$struttura->getFoto() item=foto}
+                <li style="margin-bottom: 10px;">
+                    <img src="{$foto->getPercorso()}" alt="foto" style="max-width: 200px;">
+                </li>
+            {/foreach}
+        </ul>
+    {/if}
+
+    <hr>
+
+    <h3>Intervalli disponibilità</h3>
+    <div id="intervalli-wrapper">
+        <div class="intervallo">
+            <label>Inizio:</label>
+            <input type="date" name="intervallo_inizio[]">
+            <label>Fine:</label>
+            <input type="date" name="intervallo_fine[]">
+            <label>Prezzo (€):</label>
+            <input type="number" step="0.01" name="intervallo_prezzo[]">
+        </div>
+    </div>
+    <button type="button" onclick="aggiungiIntervallo()">➕ Aggiungi intervallo</button>
+
     <br><br>
     <button type="submit">{if isset($struttura)}Salva modifiche{else}Aggiungi struttura{/if}</button>
 </form>
+
+<script>
+function aggiungiIntervallo() {
+    const wrapper = document.getElementById('intervalli-wrapper');
+    const div = document.createElement('div');
+    div.className = 'intervallo';
+    div.style.marginTop = "10px";
+    div.innerHTML = `
+        <label>Inizio:</label>
+        <input type="date" name="intervallo_inizio[]">
+        <label>Fine:</label>
+        <input type="date" name="intervallo_fine[]">
+        <label>Prezzo (€):</label>
+        <input type="number" step="0.01" name="intervallo_prezzo[]">
+    `;
+    wrapper.appendChild(div);
+}
+</script>
 
 {/block}

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-26 22:07:10
+/* Smarty version 5.5.1, created on 2025-06-27 18:23:41
   from 'file:admin/struttura_form.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685da86e6d7b12_35820404',
+  'unifunc' => 'content_685ec58d707e34_39211384',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4d128123852cecc65bc7511b0230d95e78a1fda9' => 
     array (
       0 => 'admin/struttura_form.tpl',
-      1 => 1750968423,
+      1 => 1751041416,
       2 => 'file',
     ),
   ),
@@ -21,20 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_admin.tpl' => 1,
   ),
 ))) {
-function content_685da86e6d7b12_35820404 (\Smarty\Template $_smarty_tpl) {
+function content_685ec58d707e34_39211384 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1416409144685da86e6c4e89_88490722', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1114827192685ec58d6edee1_01545564', "contenuto");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_1416409144685da86e6c4e89_88490722 extends \Smarty\Runtime\Block
+class Block_1114827192685ec58d6edee1_01545564 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
@@ -46,7 +46,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 
 <h2><?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {?>Modifica struttura<?php } else { ?>Aggiungi nuova struttura<?php }?></h2>
 
-<form method="post" action="/Casette_Dei_Desideri/AdminStruttura/<?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {?>salvaModificata<?php } else { ?>salvaNuova<?php }?>">
+<form method="post"
+      action="/Casette_Dei_Desideri/AdminStruttura/<?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {?>salvaModificata<?php } else { ?>salvaNuova<?php }?>"
+      enctype="multipart/form-data">
+
     <?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {?>
         <input type="hidden" name="id" value="<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
 ">
@@ -93,9 +96,69 @@ echo $_smarty_tpl->getValue('struttura')->getNBagni();
     <label><input type="checkbox" name="wifi" <?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null))) && $_smarty_tpl->getValue('struttura')->getWifi()) {?>checked<?php }?>> Wi-Fi</label>
     <label><input type="checkbox" name="balcone" <?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null))) && $_smarty_tpl->getValue('struttura')->getBalcone()) {?>checked<?php }?>> Balcone</label>
 
+    <hr>
+
+    <h3>Foto struttura</h3>
+    <label>Carica immagini:</label>
+    <input type="file" name="foto[]" multiple accept="image/*"><br><br>
+
+    <?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null))) && $_smarty_tpl->getValue('struttura')->getFoto()->count() > 0) {?>
+        <p>Immagini esistenti:</p>
+        <ul style="list-style: none; padding: 0;">
+            <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('struttura')->getFoto(), 'foto');
+$foreach0DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('foto')->value) {
+$foreach0DoElse = false;
+?>
+                <li style="margin-bottom: 10px;">
+                    <img src="<?php echo $_smarty_tpl->getValue('foto')->getPercorso();?>
+" alt="foto" style="max-width: 200px;">
+                </li>
+            <?php
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+        </ul>
+    <?php }?>
+
+    <hr>
+
+    <h3>Intervalli disponibilità</h3>
+    <div id="intervalli-wrapper">
+        <div class="intervallo">
+            <label>Inizio:</label>
+            <input type="date" name="intervallo_inizio[]">
+            <label>Fine:</label>
+            <input type="date" name="intervallo_fine[]">
+            <label>Prezzo (€):</label>
+            <input type="number" step="0.01" name="intervallo_prezzo[]">
+        </div>
+    </div>
+    <button type="button" onclick="aggiungiIntervallo()">➕ Aggiungi intervallo</button>
+
     <br><br>
     <button type="submit"><?php if ((true && ($_smarty_tpl->hasVariable('struttura') && null !== ($_smarty_tpl->getValue('struttura') ?? null)))) {?>Salva modifiche<?php } else { ?>Aggiungi struttura<?php }?></button>
 </form>
+
+<?php echo '<script'; ?>
+>
+function aggiungiIntervallo() {
+    const wrapper = document.getElementById('intervalli-wrapper');
+    const div = document.createElement('div');
+    div.className = 'intervallo';
+    div.style.marginTop = "10px";
+    div.innerHTML = `
+        <label>Inizio:</label>
+        <input type="date" name="intervallo_inizio[]">
+        <label>Fine:</label>
+        <input type="date" name="intervallo_fine[]">
+        <label>Prezzo (€):</label>
+        <input type="number" step="0.01" name="intervallo_prezzo[]">
+    `;
+    wrapper.appendChild(div);
+}
+<?php echo '</script'; ?>
+>
 
 <?php
 }

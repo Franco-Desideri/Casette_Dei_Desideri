@@ -1,15 +1,15 @@
 <?php
 
-
 use App\services\TechnicalServiceLayer\utility\USession;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\views\VAdminStruttura;
 use App\models\EStruttura;
+use App\models\EIntervallo;
+use App\models\EFoto;
 
 class CAdminStruttura
 {
-    public function lista(): void
-    {
+    public function lista(): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
@@ -17,13 +17,11 @@ class CAdminStruttura
         }
 
         $strutture = FPersistentManager::get()->getRepository(EStruttura::class)->findAll();
-
         $view = new VAdminStruttura();
         $view->mostraLista($strutture);
     }
 
-    public function aggiungi(): void
-    {
+    public function aggiungi(): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
@@ -34,8 +32,7 @@ class CAdminStruttura
         $view->mostraForm();
     }
 
-    public function salvaNuova(): void
-    {
+    public function salvaNuova(): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
@@ -43,35 +40,38 @@ class CAdminStruttura
         }
 
         $dati = $_POST;
-
         $struttura = new EStruttura();
-        $struttura->setTitolo($dati['titolo']);
-        $struttura->setDescrizione($dati['descrizione']);
-        $struttura->setM2((float)$dati['m2']);
-        $struttura->setNumOspiti((int)$dati['numOspiti']);
-        $struttura->setLuogo($dati['luogo']);
-        $struttura->setNBagni((int)$dati['nBagni']);
-        $struttura->setNLetti((int)$dati['nLetti']);
-        $struttura->setColazione(isset($dati['colazione']));
-        $struttura->setAnimali(isset($dati['animali']));
-        $struttura->setParcheggio(isset($dati['parcheggio']));
-        $struttura->setWifi(isset($dati['wifi']));
-        $struttura->setBalcone(isset($dati['balcone']));
+        $this->popolaStrutturaDaDati($struttura, $dati);
+
+        // Intervalli
+        if (isset($dati['intervallo_inizio'], $dati['intervallo_fine'], $dati['intervallo_prezzo'])) {
+            foreach ($dati['intervallo_inizio'] as $i => $inizioStr) {
+                $fineStr = $dati['intervallo_fine'][$i];
+                $prezzoStr = $dati['intervallo_prezzo'][$i];
+                if ($inizioStr && $fineStr && is_numeric($prezzoStr)) {
+                    $intervallo = new EIntervallo();
+                    $intervallo->setDataI(new DateTime($inizioStr));
+                    $intervallo->setDataF(new DateTime($fineStr));
+                    $intervallo->setPrezzo((float)$prezzoStr);
+                    $struttura->addIntervallo($intervallo);
+                }
+            }
+        }
+
+        $this->gestisciUploadFoto($struttura);
 
         FPersistentManager::store($struttura);
         header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
     }
 
-    public function modifica($id): void
-    {
+    public function modifica($id): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
             return;
         }
-        
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
 
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
         if (!$struttura) {
             echo "Struttura non trovata.";
             return;
@@ -81,8 +81,7 @@ class CAdminStruttura
         $view->mostraForm($struttura);
     }
 
-    public function salvaModificata(): void
-    {
+    public function salvaModificata(): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
@@ -91,12 +90,67 @@ class CAdminStruttura
 
         $dati = $_POST;
         $struttura = FPersistentManager::get()->find(EStruttura::class, $dati['id']);
-
         if (!$struttura) {
             echo "Struttura non trovata.";
             return;
         }
 
+        $this->popolaStrutturaDaDati($struttura, $dati);
+
+        // Intervalli non sovrapposti
+        if (isset($dati['intervallo_inizio'], $dati['intervallo_fine'], $dati['intervallo_prezzo'])) {
+            foreach ($dati['intervallo_inizio'] as $i => $inizioStr) {
+                $fineStr = $dati['intervallo_fine'][$i];
+                $prezzoStr = $dati['intervallo_prezzo'][$i];
+
+                if ($inizioStr && $fineStr && is_numeric($prezzoStr)) {
+                    $inizio = new DateTime($inizioStr);
+                    $fine = new DateTime($fineStr);
+                    $sovrapposto = false;
+
+                    foreach ($struttura->getIntervalli() as $esistente) {
+                        if (
+                            ($inizio <= $esistente->getDataF()) &&
+                            ($fine >= $esistente->getDataI())
+                        ) {
+                            $sovrapposto = true;
+                            break;
+                        }
+                    }
+
+                    if (!$sovrapposto) {
+                        $intervallo = new EIntervallo();
+                        $intervallo->setDataI($inizio);
+                        $intervallo->setDataF($fine);
+                        $intervallo->setPrezzo((float)$prezzoStr);
+                        $struttura->addIntervallo($intervallo);
+                    }
+                }
+            }
+        }
+
+        $this->gestisciUploadFoto($struttura);
+
+        FPersistentManager::store($struttura);
+        header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
+    }
+
+    public function elimina($id): void {
+        USession::start();
+        if (USession::get('ruolo') !== 'admin') {
+            echo "Accesso riservato.";
+            return;
+        }
+
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
+        if ($struttura) {
+            FPersistentManager::delete($struttura);
+        }
+
+        header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
+    }
+
+    private function popolaStrutturaDaDati(EStruttura $struttura, array $dati): void {
         $struttura->setTitolo($dati['titolo']);
         $struttura->setDescrizione($dati['descrizione']);
         $struttura->setM2((float)$dati['m2']);
@@ -109,25 +163,28 @@ class CAdminStruttura
         $struttura->setParcheggio(isset($dati['parcheggio']));
         $struttura->setWifi(isset($dati['wifi']));
         $struttura->setBalcone(isset($dati['balcone']));
-
-        FPersistentManager::store($struttura);
-        header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
     }
 
-    public function elimina($id): void
-    {
-        USession::start();
-        if (USession::get('ruolo') !== 'admin') {
-            echo "Accesso riservato.";
-            return;
+    private function gestisciUploadFoto(EStruttura $struttura): void {
+        $uploadDir = __DIR__ . '/../../public/uploads/foto_strutture/';
+        $webPath = '/uploads/foto_strutture/';
+
+        if (!file_exists($uploadDir)) {
+            mkdir($uploadDir, 0775, true);
         }
 
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
-        if ($struttura) {
-            FPersistentManager::delete($struttura);
-
+        if (isset($_FILES['foto']) && is_array($_FILES['foto']['tmp_name'])) {
+            foreach ($_FILES['foto']['tmp_name'] as $i => $tmpName) {
+                $name = $_FILES['foto']['name'][$i];
+                if (!empty($tmpName) && is_uploaded_file($tmpName)) {
+                    $targetPath = $uploadDir . basename($name);
+                    if (move_uploaded_file($tmpName, $targetPath)) {
+                        $foto = new EFoto();
+                        $foto->setPercorso($webPath . basename($name));
+                        $struttura->addFoto($foto);
+                    }
+                }
+            }
         }
-
-        header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
     }
 }

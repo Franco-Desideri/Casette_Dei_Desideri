@@ -10,9 +10,10 @@
     <ul class="strutture" style="list-style: none; padding: 0;">
         {foreach from=$strutture item=struttura}
             <li style="margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 20px;">
-                <img src="{$struttura->getImmagine()}" alt="Struttura" width="250" style="display: block; margin-bottom: 10px;">
-                <h3>{$struttura->getNome()}</h3>
-                <p>{$struttura->getDescrizione()}</p>
+                <a href="/Casette_Dei_Desideri/Struttura/dettaglio/{$struttura->getId()}" style="text-decoration: none; color: inherit; display: block;">
+                    <h3>{$struttura->getTitolo()}</h3>
+                    <p>{$struttura->getDescrizione()}</p>
+                </a>
             </li>
         {/foreach}
     </ul>
@@ -21,3 +22,4 @@
 {/if}
 
 {/block}
+

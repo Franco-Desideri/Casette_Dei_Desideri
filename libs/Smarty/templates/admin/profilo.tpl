@@ -25,9 +25,9 @@
             {foreach from=$prenotazioni item=prenotazione}
                 <li style="margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
                     <p><strong>Utente:</strong> {$prenotazione->getUtente()->getNome()} {$prenotazione->getUtente()->getCognome()}</p>
-                    <p><strong>Struttura:</strong> {$prenotazione->getStruttura()->getNome()}</p>
-                    <p><strong>Dal:</strong> {$prenotazione->getDataInizio()} <strong>al:</strong> {$prenotazione->getDataFine()}</p>
-                    <p><strong>Ospiti:</strong> {$prenotazione->getNumeroOspiti()}</p>
+                    <p><strong>Struttura:</strong> {$prenotazione->getStruttura()->getTitolo()}</p>
+                    <p><strong>Dal:</strong> {$prenotazione->getPeriodo()->getDataI()|date_format:"%d/%m/%Y"} <strong>al:</strong> {$prenotazione->getPeriodo()->getDataF()|date_format:"%d/%m/%Y"}</p>
+                    <p><strong>Ospiti:</strong> {$prenotazione->getOspiti()}</p>
                 </li>
             {/foreach}
         </ul>
