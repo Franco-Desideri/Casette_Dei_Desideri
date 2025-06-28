@@ -9,17 +9,21 @@ use App\models\EFoto;
 
 class CAdminStruttura
 {
-    public function lista(): void {
-        USession::start();
-        if (USession::get('ruolo') !== 'admin') {
-            echo "Accesso riservato.";
-            return;
+    public function lista(): void
+    {
+        $strutture = FPersistentManager::get()
+            ->getRepository(EStruttura::class)
+            ->findAll();
+
+        // → Inserisci qui il codice per popolare immaginePrincipale
+        foreach ($strutture as $s) {
+            $s->immaginePrincipale = $s->getImmaginePrincipaleBase64();
         }
 
-        $strutture = FPersistentManager::get()->getRepository(EStruttura::class)->findAll();
         $view = new VAdminStruttura();
         $view->mostraLista($strutture);
     }
+
 
     public function aggiungi(): void {
         USession::start();
@@ -166,25 +170,16 @@ class CAdminStruttura
     }
 
     private function gestisciUploadFoto(EStruttura $struttura): void {
-        $uploadDir = __DIR__ . '/../../public/uploads/foto_strutture/';
-        $webPath = '/uploads/foto_strutture/';
-
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0775, true);
-        }
-
-        if (isset($_FILES['foto']) && is_array($_FILES['foto']['tmp_name'])) {
-            foreach ($_FILES['foto']['tmp_name'] as $i => $tmpName) {
-                $name = $_FILES['foto']['name'][$i];
-                if (!empty($tmpName) && is_uploaded_file($tmpName)) {
-                    $targetPath = $uploadDir . basename($name);
-                    if (move_uploaded_file($tmpName, $targetPath)) {
-                        $foto = new EFoto();
-                        $foto->setPercorso($webPath . basename($name));
-                        $struttura->addFoto($foto);
-                    }
+        if (isset($_FILES['foto']['tmp_name']) && is_array($_FILES['foto']['tmp_name'])) {
+            foreach ($_FILES['foto']['tmp_name'] as $tmpPath) {
+                if (is_uploaded_file($tmpPath)) {
+                    $blob = file_get_contents($tmpPath);
+                    $foto = new EFoto();
+                    $foto->setImmagine($blob);
+                    $struttura->addFoto($foto);
                 }
             }
         }
     }
+
 }

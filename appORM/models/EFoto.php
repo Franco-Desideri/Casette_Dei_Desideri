@@ -17,8 +17,9 @@ class EFoto
      */
     private int $id;
 
-    /** @ORM\Column(type="string", length=255) */
-    private string $percorso;
+    /** @ORM\Column(type="blob", nullable=true) */
+    private $immagine;
+
 
     /**
      * @ORM\ManyToOne(targetEntity="EStruttura", inversedBy="foto")
@@ -30,8 +31,10 @@ class EFoto
 
     public function getId(): int { return $this->id; }
 
-    public function getPercorso(): string { return $this->percorso; }
-    public function setPercorso(string $percorso): void { $this->percorso = $percorso; }
+    public function getImmagine() { return $this->immagine; }
+
+    public function setImmagine($img): void { $this->immagine = $img;   }
+
 
     public function getStruttura(): EStruttura { return $this->struttura; }
     public function setStruttura(EStruttura $struttura): void { $this->struttura = $struttura; }

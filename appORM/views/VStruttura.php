@@ -20,9 +20,14 @@ class VStruttura
 
     public function mostraLista(array $strutture): void
     {
+        foreach ($strutture as $s) {
+            $s->immaginePrincipale = $s->getImmaginePrincipaleBase64();
+        }
+
         $this->smarty->assign('strutture', $strutture);
         $this->smarty->display('utente/struttura_lista.tpl');
     }
+
 
     /**
      * Mostra i dettagli di una struttura con foto, intervalli, prenotazioni.

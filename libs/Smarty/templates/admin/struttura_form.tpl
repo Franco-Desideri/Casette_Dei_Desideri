@@ -51,9 +51,11 @@
         <p>Immagini esistenti:</p>
         <ul style="list-style: none; padding: 0;">
             {foreach from=$struttura->getFoto() item=foto}
-                <li style="margin-bottom: 10px;">
-                    <img src="{$foto->getPercorso()}" alt="foto" style="max-width: 200px;">
-                </li>
+                {if isset($foto->base64img)}
+                    <li style="margin-bottom: 10px;">
+                        <img src="{$foto->base64img}" alt="foto" style="max-width: 200px;">
+                    </li>
+                {/if}
             {/foreach}
         </ul>
     {/if}

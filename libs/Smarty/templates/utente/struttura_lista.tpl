@@ -11,6 +11,11 @@
         {foreach from=$strutture item=struttura}
             <li style="margin-bottom: 30px; border-bottom: 1px solid #ccc; padding-bottom: 20px;">
                 <a href="/Casette_Dei_Desideri/Struttura/dettaglio/{$struttura->getId()}" style="text-decoration: none; color: inherit; display: block;">
+                    
+                    {if $struttura->immaginePrincipale}
+                        <img src="{$struttura->immaginePrincipale}" alt="Struttura" style="max-width: 100%; height: auto; margin-bottom: 10px;">
+                    {/if}
+                    
                     <h3>{$struttura->getTitolo()}</h3>
                     <p>{$struttura->getDescrizione()}</p>
                 </a>

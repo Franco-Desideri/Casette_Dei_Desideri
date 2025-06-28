@@ -65,14 +65,20 @@ class CAdminProdotto
             $prodotto->setNome($_POST['nome']);
             $prodotto->setPrezzo((float)$_POST['prezzo']);
             $prodotto->setPeso((int)$_POST['peso']);
-            $prodotto->setFoto($_POST['foto']);
+            if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
+            $blob = file_get_contents($_FILES['foto']['tmp_name']);
+            $prodotto->setFoto($blob);
+        }
         } elseif ($tipo === 'peso') {
             $prodotto = new EProdottoPeso();
             $prodotto->setNome($_POST['nome']);
             $prodotto->setPrezzoKg((float)$_POST['prezzoKg']);
             $prodotto->setRangePeso($_POST['rangePeso']);
             $prodotto->setPrezzoRange((float)$_POST['prezzoRange']);
-            $prodotto->setFoto($_POST['foto']);
+            if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
+            $blob = file_get_contents($_FILES['foto']['tmp_name']);
+            $prodotto->setFoto($blob);
+        }
         }
 
         if ($prodotto) {
@@ -118,14 +124,20 @@ class CAdminProdotto
             $p->setNome($_POST['nome']);
             $p->setPrezzo((float)$_POST['prezzo']);
             $p->setPeso((int)$_POST['peso']);
-            $p->setFoto($_POST['foto']);
+            if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
+                $blob = file_get_contents($_FILES['foto']['tmp_name']);
+                $prodotto->setFoto($blob);
+            }
         } elseif ($tipo === 'peso') {
             $p = FPersistentManager::get()->find('EProdottoPeso', $id);
             $p->setNome($_POST['nome']);
             $p->setPrezzoKg((float)$_POST['prezzoKg']);
             $p->setRangePeso($_POST['rangePeso']);
             $p->setPrezzoRange((float)$_POST['prezzoRange']);
-            $p->setFoto($_POST['foto']);
+            if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
+                $blob = file_get_contents($_FILES['foto']['tmp_name']);
+                $prodotto->setFoto($blob);
+            }
         }
 
         FPersistentManager::store($p);

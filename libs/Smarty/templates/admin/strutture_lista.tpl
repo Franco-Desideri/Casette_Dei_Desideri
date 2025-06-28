@@ -14,6 +14,11 @@
     <ul class="strutture" style="list-style: none; padding: 0;">
         {foreach from=$strutture item=struttura}
             <li style="margin-bottom: 20px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
+                
+                {if $struttura->immaginePrincipale}
+                    <img src="{$struttura->immaginePrincipale}" alt="Struttura" style="max-width: 200px; display: block; margin-bottom: 10px;">
+                {/if}
+
                 <h3>{$struttura->getTitolo()}</h3>
                 <p><strong>Descrizione:</strong> {$struttura->getDescrizione()}</p>
 

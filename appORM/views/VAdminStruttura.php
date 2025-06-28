@@ -27,6 +27,10 @@ class VAdminStruttura
      */
     public function mostraLista(array $strutture): void
     {
+        foreach ($strutture as $s) {
+            $s->immaginePrincipale = $s->getImmaginePrincipaleBase64();
+        }
+
         $this->smarty->assign('strutture', $strutture);
         $this->smarty->display('admin/strutture_lista.tpl');
     }
@@ -39,6 +43,13 @@ class VAdminStruttura
      */
     public function mostraForm(?EStruttura $struttura = null): void
     {
+        if ($struttura) {
+            foreach ($struttura->getFoto() as $f) {
+                if ($f->getImmagine()) {
+                    $f->base64img = 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($f->getImmagine()));
+                }
+            }
+        }
         $this->smarty->assign('struttura', $struttura);
         $this->smarty->display('admin/struttura_form.tpl');
     }

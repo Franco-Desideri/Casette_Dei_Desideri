@@ -156,4 +156,14 @@ class EStruttura
     {
         $this->foto->removeElement($foto);
     }
+
+    public function getImmaginePrincipaleBase64(): ?string
+    {
+        $foto = $this->getFoto()->first();
+        if ($foto && $foto->getImmagine()) {
+            return 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($foto->getImmagine()));
+        }
+        return null;
+    }
+
 }

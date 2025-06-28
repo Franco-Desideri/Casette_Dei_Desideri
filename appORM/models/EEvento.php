@@ -17,10 +17,8 @@ class EEvento
      */
     private int $id;
 
-    /**
-     * @ORM\Column(type="string")
-     */
-    private string $immagine;
+    /** @ORM\Column(type="blob", nullable=true) */
+    private $immagine;
 
     /**
      * @ORM\Column(type="string")
@@ -42,13 +40,9 @@ class EEvento
         return $this->id;
     }
 
-    public function getImmagine(): string {
-        return $this->immagine;
-    }
+    public function getImmagine() { return $this->immagine; }
 
-    public function setImmagine(string $immagine): void {
-        $this->immagine = $immagine;
-    }
+    public function setImmagine($immagine): void { $this->immagine = $immagine; }
 
     public function getTitolo(): string {
         return $this->titolo;

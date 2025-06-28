@@ -12,7 +12,9 @@
         <ul class="attrazioni">
             {foreach from=$attrazioni item=attr}
                 <li>
-                    <img src="{$attr->getImmagine()}" alt="Attrazione" width="200">
+                    {if isset($attr->base64img)}
+                        <img src="{$attr->base64img}" alt="Attrazione" width="200">
+                    {/if}
                     <p>{$attr->getDescrizione()}</p>
                 </li>
             {/foreach}
@@ -28,7 +30,9 @@
         <ul class="eventi">
             {foreach from=$eventi item=evento}
                 <li>
-                    <img src="{$evento->getImmagine()}" alt="Evento" width="200">
+                    {if isset($evento->base64img)}
+                        <img src="{$evento->base64img}" alt="Evento" width="200">
+                    {/if}
                     <h4>{$evento->getTitolo()}</h4>
                     <p>Dal {$evento->getDataInizioString('Y-m-d')} al {$evento->getDataFineString('Y-m-d')}</p>
                 </li>

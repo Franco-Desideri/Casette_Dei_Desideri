@@ -41,7 +41,9 @@ class CAdminContenuti
         }
 
         $a = new EAttrazione();
-        $a->setImmagine($_POST['immagine']);
+        if (isset($_FILES['immagine']) && is_uploaded_file($_FILES['immagine']['tmp_name'])) {
+            $a->setImmagine(file_get_contents($_FILES['immagine']['tmp_name']));
+        }
         $a->setDescrizione($_POST['descrizione']);
 
         FPersistentManager::store($a);
@@ -57,7 +59,9 @@ class CAdminContenuti
         }
 
         $a = FPersistentManager::get()->find(EAttrazione::class, $_POST['id']);
-        $a->setImmagine($_POST['immagine']);
+        if (isset($_FILES['immagine']) && is_uploaded_file($_FILES['immagine']['tmp_name'])) {
+            $a->setImmagine(file_get_contents($_FILES['immagine']['tmp_name']));
+        }
         $a->setDescrizione($_POST['descrizione']);
 
         FPersistentManager::store($a);
@@ -112,7 +116,9 @@ class CAdminContenuti
         }
 
         $e = new EEvento();
-        $e->setImmagine($_POST['immagine']);
+        if (isset($_FILES['immagine']) && is_uploaded_file($_FILES['immagine']['tmp_name'])) {
+            $e->setImmagine(file_get_contents($_FILES['immagine']['tmp_name']));
+        }
         $e->setTitolo($_POST['titolo']);
         $e->setDataInizio(new DateTime($_POST['dataInizio']));
         $e->setDataFine(new DateTime($_POST['dataFine']));
@@ -130,7 +136,9 @@ class CAdminContenuti
         }
 
         $e = FPersistentManager::get()->find(EEvento::class, $_POST['id']);
-        $e->setImmagine($_POST['immagine']);
+        if (isset($_FILES['immagine']) && is_uploaded_file($_FILES['immagine']['tmp_name'])) {
+            $e->setImmagine(file_get_contents($_FILES['immagine']['tmp_name']));
+        }
         $e->setTitolo($_POST['titolo']);
         $e->setDataInizio(new DateTime($_POST['dataInizio']));
         $e->setDataFine(new DateTime($_POST['dataFine']));

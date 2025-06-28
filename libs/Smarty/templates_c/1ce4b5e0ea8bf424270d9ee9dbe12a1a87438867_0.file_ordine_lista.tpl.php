@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-28 13:46:25
+/* Smarty version 5.5.1, created on 2025-06-28 19:02:48
   from 'file:utente/ordine_lista.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685fd6111e9a04_13000145',
+  'unifunc' => 'content_686020383483c2_41470912',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '1ce4b5e0ea8bf424270d9ee9dbe12a1a87438867' => 
     array (
       0 => 'utente/ordine_lista.tpl',
-      1 => 1751111174,
+      1 => 1751124881,
       2 => 'file',
     ),
   ),
@@ -21,20 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar.tpl' => 1,
   ),
 ))) {
-function content_685fd6111e9a04_13000145 (\Smarty\Template $_smarty_tpl) {
+function content_686020383483c2_41470912 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1644881732685fd6110e7019_46815557', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_125564348668602038329287_75198605', "contenuto");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_1644881732685fd6110e7019_46815557 extends \Smarty\Runtime\Block
+class Block_125564348668602038329287_75198605 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
@@ -59,6 +59,11 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach0DoElse = false;
 ?>
                 <li style="margin-bottom: 20px;">
+                    <?php if ((true && (true && null !== ($_smarty_tpl->getValue('prodotto')->base64img ?? null)))) {?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->base64img;?>
+" alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
+" style="max-height: 120px;"><br>
+                    <?php }?>
                     <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 </strong><br>
                     Prezzo: €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzo();?>
@@ -100,6 +105,11 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach1DoElse = false;
 ?>
                 <li style="margin-bottom: 20px;">
+                    <?php if ((true && (true && null !== ($_smarty_tpl->getValue('prodotto')->base64img ?? null)))) {?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->base64img;?>
+" alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
+" style="max-height: 120px;"><br>
+                    <?php }?>
                     <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 </strong><br>
                     Prezzo al kg: €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzoKg();?>

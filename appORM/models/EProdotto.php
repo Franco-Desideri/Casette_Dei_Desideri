@@ -19,8 +19,9 @@ abstract class EProdotto
     /** @ORM\Column(type="string", length=100) */
     protected string $nome;
 
-    /** @ORM\Column(type="string", nullable=true) */
-    protected ?string $foto;
+    /** @ORM\Column(type="blob", nullable=true) */
+    protected $foto;
+
 
     // Getter e Setter
 
@@ -29,6 +30,8 @@ abstract class EProdotto
     public function getNome(): string { return $this->nome; }
     public function setNome(string $nome): void { $this->nome = $nome; }
 
-    public function getFoto(): ?string { return $this->foto; }
-    public function setFoto(?string $foto): void { $this->foto = $foto; }
+    public function getFoto(){ return $this->foto; }
+
+    public function setFoto($foto): void { $this->foto = $foto; }
+
 }

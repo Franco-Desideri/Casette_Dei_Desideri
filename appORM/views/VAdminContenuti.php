@@ -52,6 +52,16 @@ class VAdminContenuti
     {
         $this->smarty->assign('attrazioni', $attrazioni);
         $this->smarty->assign('eventi', $eventi);
+        foreach ($attrazioni as $a) {
+            if ($a->getImmagine()) {
+                $a->base64img = 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($a->getImmagine()));
+            }
+        }
+        foreach ($eventi as $e) {
+            if ($e->getImmagine()) {
+                $e->base64img = 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($e->getImmagine()));
+            }
+        }
         $this->smarty->display('admin/admin_home.tpl');
     }
 }

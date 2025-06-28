@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-28 12:15:33
+/* Smarty version 5.5.1, created on 2025-06-28 19:00:52
   from 'file:utente/prenotazione_riepilogo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685fc0c577c399_48089237',
+  'unifunc' => 'content_68601fc4be19e3_39581887',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2dbbc88a71f94b85f88ef926a81c4309488bf237' => 
     array (
       0 => 'utente/prenotazione_riepilogo.tpl',
-      1 => 1751104854,
+      1 => 1751130047,
       2 => 'file',
     ),
   ),
@@ -21,20 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar.tpl' => 1,
   ),
 ))) {
-function content_685fc0c577c399_48089237 (\Smarty\Template $_smarty_tpl) {
+function content_68601fc4be19e3_39581887 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_965389959685fc0c54a8727_73969808', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_56110000868601fc4bcc957_36935050', "contenuto");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_965389959685fc0c54a8727_73969808 extends \Smarty\Runtime\Block
+class Block_56110000868601fc4bcc957_36935050 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
@@ -46,27 +46,20 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 
 <h2>Riepilogo Prenotazione</h2>
 
-<h3>Struttura</h3>
-<p><strong><?php echo $_smarty_tpl->getValue('struttura')->getTitolo();?>
-</strong></p>
-<p><em>Luogo:</em> <?php echo $_smarty_tpl->getValue('struttura')->getLuogo();?>
+<p><strong>Struttura:</strong> <?php echo $_smarty_tpl->getValue('struttura')->getTitolo();?>
 </p>
-<p><?php echo $_smarty_tpl->getValue('struttura')->getDescrizione();?>
+<p><strong>Periodo:</strong> <?php echo $_smarty_tpl->getValue('dataInizio');?>
+ → <?php echo $_smarty_tpl->getValue('dataFine');?>
 </p>
-
-<hr>
-
-<h3>Periodo del soggiorno</h3>
-<p>Dal <strong><?php echo $_smarty_tpl->getValue('dataInizio');?>
-</strong> al <strong><?php echo $_smarty_tpl->getValue('dataFine');?>
-</strong></p>
+<p><strong>Numero Ospiti:</strong> <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('ospiti'));?>
+</p>
+<p><strong>Totale:</strong> € <?php echo $_smarty_tpl->getValue('totale');?>
+</p>
 
 <hr>
 
 <h3>Ospiti</h3>
-<?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('ospiti')) > 0) {?>
-    <ul style="list-style: none; padding: 0;">
-        <?php
+<?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('ospiti'), 'ospite', false, NULL, 'ospitiLoop', array (
   'iteration' => true,
 ));
@@ -75,42 +68,44 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('ospite')->value) {
 $foreach0DoElse = false;
 $_smarty_tpl->tpl_vars['__smarty_foreach_ospitiLoop']->value['iteration']++;
 ?>
-            <li style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
-                <strong>Ospite <?php echo ($_smarty_tpl->getValue('__smarty_foreach_ospitiLoop')['iteration'] ?? null);?>
-:</strong><br>
-                Nome: <?php echo $_smarty_tpl->getValue('ospite')['nome'];?>
- <?php echo $_smarty_tpl->getValue('ospite')['cognome'];?>
-<br>
-                Documento: <em><?php if ((true && (true && null !== ($_smarty_tpl->getValue('ospite')['documento'] ?? null)))) {?>📎 Documento caricato<?php } else { ?>❌ Non caricato<?php }?></em><br>
-                Telefono: <?php echo $_smarty_tpl->getValue('ospite')['tell'];?>
-<br>
-                Codice Fiscale: <?php echo $_smarty_tpl->getValue('ospite')['codiceFiscale'];?>
-<br>
-                Sesso: <?php echo $_smarty_tpl->getValue('ospite')['sesso'];?>
-<br>
-                Data di nascita: <?php echo $_smarty_tpl->getValue('ospite')['dataNascita'];?>
-<br>
-                Luogo di nascita: <?php echo $_smarty_tpl->getValue('ospite')['luogoNascita'];?>
+    <fieldset style="margin-bottom: 25px; border: 1px solid #ccc; padding: 15px;">
+        <legend>Ospite <?php echo ($_smarty_tpl->getValue('__smarty_foreach_ospitiLoop')['iteration'] ?? null);?>
+</legend>
 
-            </li>
-        <?php
+        <p><strong>Nome:</strong> <?php echo $_smarty_tpl->getValue('ospite')['nome'];?>
+</p>
+        <p><strong>Cognome:</strong> <?php echo $_smarty_tpl->getValue('ospite')['cognome'];?>
+</p>
+        <p><strong>Telefono:</strong> <?php echo $_smarty_tpl->getValue('ospite')['tell'];?>
+</p>
+        <p><strong>Codice Fiscale:</strong> <?php echo $_smarty_tpl->getValue('ospite')['codiceFiscale'];?>
+</p>
+        <p><strong>Sesso:</strong> <?php echo $_smarty_tpl->getValue('ospite')['sesso'];?>
+</p>
+        <p><strong>Data di nascita:</strong> <?php echo $_smarty_tpl->getValue('ospite')['dataNascita'];?>
+</p>
+        <p><strong>Luogo di nascita:</strong> <?php echo $_smarty_tpl->getValue('ospite')['luogoNascita'];?>
+</p>
+
+        <?php if ((true && (true && null !== ($_smarty_tpl->getValue('ospite')['documento_base64'] ?? null))) && $_smarty_tpl->getValue('ospite')['documento_base64'] != '') {?>
+            <p>
+                <strong>Documento:</strong>
+                <a href="data:application/octet-stream;base64,<?php echo $_smarty_tpl->getValue('ospite')['documento_base64'];?>
+" target="_blank">
+                    📄 Visualizza documento
+                </a>
+            </p>
+        <?php }?>
+    </fieldset>
+<?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-    </ul>
-<?php } else { ?>
-    <p>Nessun ospite specificato.</p>
-<?php }?>
 
 <hr>
 
-<h3>Prezzo Totale</h3>
-<p style="font-size: 18px;"><strong>€ <?php echo $_smarty_tpl->getValue('totale');?>
-</strong></p>
-
-<br>
-
 <form method="post" action="/Casette_Dei_Desideri/Prenotazione/pagamento">
-    <button type="submit">Procedi al pagamento</button>
+    <input type="hidden" name="conferma" value="1">
+    <button type="submit">Conferma Prenotazione</button>
 </form>
 
 <?php

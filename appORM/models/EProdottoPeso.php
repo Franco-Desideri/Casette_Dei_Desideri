@@ -36,7 +36,7 @@ class EProdottoPeso extends EProdotto
     public function getPrezzoKg(): float { return $this->prezzoKg; }
     public function setPrezzoKg(float $prezzoKg): void { $this->prezzoKg = $prezzoKg; }
 
-    public function getRangeValore(): int {
+    public function getRangePeso(): int {
         return (int) filter_var($this->rangePeso, FILTER_SANITIZE_NUMBER_INT);
     }
 

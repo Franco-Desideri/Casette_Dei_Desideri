@@ -45,6 +45,15 @@ class VPrenotazione
         $this->smarty->assign('struttura', $struttura);
         $this->smarty->assign('dataInizio', $dataInizio);
         $this->smarty->assign('dataFine', $dataFine);
+        foreach ($ospiti as &$ospite) {
+            if (isset($ospite['documento']) && is_string($ospite['documento']) || is_resource($ospite['documento'])) {
+                $ospite['documento_base64'] = base64_encode(
+                    is_resource($ospite['documento'])
+                        ? stream_get_contents($ospite['documento'])
+                        : $ospite['documento']
+                );
+            }
+        }
         $this->smarty->assign('ospiti', $ospiti);
         $this->smarty->assign('totale', $totale);
         $this->smarty->display('utente/prenotazione_riepilogo.tpl');

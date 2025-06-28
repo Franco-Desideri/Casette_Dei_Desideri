@@ -6,47 +6,42 @@
 
 <h2>Riepilogo Prenotazione</h2>
 
-<h3>Struttura</h3>
-<p><strong>{$struttura->getTitolo()}</strong></p>
-<p><em>Luogo:</em> {$struttura->getLuogo()}</p>
-<p>{$struttura->getDescrizione()}</p>
-
-<hr>
-
-<h3>Periodo del soggiorno</h3>
-<p>Dal <strong>{$dataInizio}</strong> al <strong>{$dataFine}</strong></p>
+<p><strong>Struttura:</strong> {$struttura->getTitolo()}</p>
+<p><strong>Periodo:</strong> {$dataInizio} → {$dataFine}</p>
+<p><strong>Numero Ospiti:</strong> {$ospiti|@count}</p>
+<p><strong>Totale:</strong> € {$totale}</p>
 
 <hr>
 
 <h3>Ospiti</h3>
-{if $ospiti|@count > 0}
-    <ul style="list-style: none; padding: 0;">
-        {foreach from=$ospiti item=ospite name=ospitiLoop}
-            <li style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #ccc;">
-                <strong>Ospite {$smarty.foreach.ospitiLoop.iteration}:</strong><br>
-                Nome: {$ospite.nome} {$ospite.cognome}<br>
-                Documento: <em>{if isset($ospite.documento)}📎 Documento caricato{else}❌ Non caricato{/if}</em><br>
-                Telefono: {$ospite.tell}<br>
-                Codice Fiscale: {$ospite.codiceFiscale}<br>
-                Sesso: {$ospite.sesso}<br>
-                Data di nascita: {$ospite.dataNascita}<br>
-                Luogo di nascita: {$ospite.luogoNascita}
-            </li>
-        {/foreach}
-    </ul>
-{else}
-    <p>Nessun ospite specificato.</p>
-{/if}
+{foreach from=$ospiti item=ospite name=ospitiLoop}
+    <fieldset style="margin-bottom: 25px; border: 1px solid #ccc; padding: 15px;">
+        <legend>Ospite {$smarty.foreach.ospitiLoop.iteration}</legend>
+
+        <p><strong>Nome:</strong> {$ospite.nome}</p>
+        <p><strong>Cognome:</strong> {$ospite.cognome}</p>
+        <p><strong>Telefono:</strong> {$ospite.tell}</p>
+        <p><strong>Codice Fiscale:</strong> {$ospite.codiceFiscale}</p>
+        <p><strong>Sesso:</strong> {$ospite.sesso}</p>
+        <p><strong>Data di nascita:</strong> {$ospite.dataNascita}</p>
+        <p><strong>Luogo di nascita:</strong> {$ospite.luogoNascita}</p>
+
+        {if isset($ospite.documento_base64) && $ospite.documento_base64 != ''}
+            <p>
+                <strong>Documento:</strong>
+                <a href="data:application/octet-stream;base64,{$ospite.documento_base64}" target="_blank">
+                    📄 Visualizza documento
+                </a>
+            </p>
+        {/if}
+    </fieldset>
+{/foreach}
 
 <hr>
 
-<h3>Prezzo Totale</h3>
-<p style="font-size: 18px;"><strong>€ {$totale}</strong></p>
-
-<br>
-
 <form method="post" action="/Casette_Dei_Desideri/Prenotazione/pagamento">
-    <button type="submit">Procedi al pagamento</button>
+    <input type="hidden" name="conferma" value="1">
+    <button type="submit">Conferma Prenotazione</button>
 </form>
 
 {/block}

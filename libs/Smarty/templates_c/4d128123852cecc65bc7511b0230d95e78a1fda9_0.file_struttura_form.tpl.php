@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-27 18:23:41
+/* Smarty version 5.5.1, created on 2025-06-28 18:38:26
   from 'file:admin/struttura_form.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685ec58d707e34_39211384',
+  'unifunc' => 'content_68601a82cb9239_02876244',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4d128123852cecc65bc7511b0230d95e78a1fda9' => 
     array (
       0 => 'admin/struttura_form.tpl',
-      1 => 1751041416,
+      1 => 1751127478,
       2 => 'file',
     ),
   ),
@@ -21,20 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_admin.tpl' => 1,
   ),
 ))) {
-function content_685ec58d707e34_39211384 (\Smarty\Template $_smarty_tpl) {
+function content_68601a82cb9239_02876244 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1114827192685ec58d6edee1_01545564', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_84668807668601a82c9c892_83166546', "contenuto");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_1114827192685ec58d6edee1_01545564 extends \Smarty\Runtime\Block
+class Block_84668807668601a82c9c892_83166546 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
@@ -111,10 +111,12 @@ $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('foto')->value) {
 $foreach0DoElse = false;
 ?>
-                <li style="margin-bottom: 10px;">
-                    <img src="<?php echo $_smarty_tpl->getValue('foto')->getPercorso();?>
+                <?php if ((true && (true && null !== ($_smarty_tpl->getValue('foto')->base64img ?? null)))) {?>
+                    <li style="margin-bottom: 10px;">
+                        <img src="<?php echo $_smarty_tpl->getValue('foto')->base64img;?>
 " alt="foto" style="max-width: 200px;">
-                </li>
+                    </li>
+                <?php }?>
             <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>

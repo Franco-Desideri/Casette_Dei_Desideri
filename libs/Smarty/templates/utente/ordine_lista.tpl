@@ -14,6 +14,9 @@
         <ul style="list-style: none; padding: 0;">
             {foreach from=$prodottiQuantita item=prodotto}
                 <li style="margin-bottom: 20px;">
+                    {if isset($prodotto->base64img)}
+                        <img src="{$prodotto->base64img}" alt="{$prodotto->getNome()}" style="max-height: 120px;"><br>
+                    {/if}
                     <strong>{$prodotto->getNome()}</strong><br>
                     Prezzo: €{$prodotto->getPrezzo()}<br>
                     Quantità:
@@ -36,6 +39,9 @@
         <ul style="list-style: none; padding: 0;">
             {foreach from=$prodottiPeso item=prodotto}
                 <li style="margin-bottom: 20px;">
+                    {if isset($prodotto->base64img)}
+                        <img src="{$prodotto->base64img}" alt="{$prodotto->getNome()}" style="max-height: 120px;"><br>
+                    {/if}
                     <strong>{$prodotto->getNome()}</strong><br>
                     Prezzo al kg: €{$prodotto->getPrezzoKg()}<br>
                     Quantità (grammi):

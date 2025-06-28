@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-27 17:16:45
+/* Smarty version 5.5.1, created on 2025-06-28 18:41:41
   from 'file:utente/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685eb5ddda3b66_96231144',
+  'unifunc' => 'content_68601b45569233_15087054',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '574c33d7c29324b299af6b9ad213bf5d0238be39' => 
     array (
       0 => 'utente/home.tpl',
-      1 => 1751033249,
+      1 => 1751125862,
       2 => 'file',
     ),
   ),
@@ -21,20 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar.tpl' => 1,
   ),
 ))) {
-function content_685eb5ddda3b66_96231144 (\Smarty\Template $_smarty_tpl) {
+function content_68601b45569233_15087054 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1974781486685eb5ddd91c37_81653116', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_137094477668601b45552f57_89129855', "contenuto");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_1974781486685eb5ddd91c37_81653116 extends \Smarty\Runtime\Block
+class Block_137094477668601b45552f57_89129855 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
@@ -57,8 +57,10 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('attr')->value) {
 $foreach0DoElse = false;
 ?>
                 <li>
-                    <img src="<?php echo $_smarty_tpl->getValue('attr')->getImmagine();?>
+                    <?php if ((true && (true && null !== ($_smarty_tpl->getValue('attr')->base64img ?? null)))) {?>
+                        <img src="<?php echo $_smarty_tpl->getValue('attr')->base64img;?>
 " alt="Attrazione" width="200">
+                    <?php }?>
                     <p><?php echo $_smarty_tpl->getValue('attr')->getDescrizione();?>
 </p>
                 </li>
@@ -82,8 +84,10 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('evento')->value) {
 $foreach1DoElse = false;
 ?>
                 <li>
-                    <img src="<?php echo $_smarty_tpl->getValue('evento')->getImmagine();?>
+                    <?php if ((true && (true && null !== ($_smarty_tpl->getValue('evento')->base64img ?? null)))) {?>
+                        <img src="<?php echo $_smarty_tpl->getValue('evento')->base64img;?>
 " alt="Evento" width="200">
+                    <?php }?>
                     <h4><?php echo $_smarty_tpl->getValue('evento')->getTitolo();?>
 </h4>
                     <p>Dal <?php echo $_smarty_tpl->getValue('evento')->getDataInizioString('Y-m-d');?>

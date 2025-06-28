@@ -11,7 +11,9 @@
 {if $foto|@count > 0}
     <div style="display: flex; gap: 10px; flex-wrap: wrap;">
         {foreach from=$foto item=f}
-            <img src="{$f->getPercorso()}" alt="foto" style="max-width: 200px;">
+            {if isset($f->base64img)}
+                <img src="{$f->base64img}" alt="foto" style="max-width: 200px;">
+            {/if}
         {/foreach}
     </div>
 {else}
@@ -49,8 +51,8 @@
     const dateOccupate = [
         {foreach from=$prenotazioni item=p}
             {
-                inizio: '{$p->getDataInizio()->format("Y-m-d")}',
-                fine: '{$p->getDataFine()->format("Y-m-d")}'
+                inizio: '{$p->getPeriodo()->getDataI()|date_format:"%d/%m/%Y"}',
+                fine: '{$p->getPeriodo()->getDataF()|date_format:"%d/%m/%Y"}'
             }{if !$p@last},{/if}
         {/foreach}
     ];
