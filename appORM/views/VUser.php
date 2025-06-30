@@ -85,7 +85,7 @@ class VUser
             }
         }
         $this->smarty->assign('attrazioni', $attrazioni);
-        $this->smarty->display('utente/home.tpl');
+        $this->smarty->display('utente/template_esempio/index.tpl');
     }
 
     /**
