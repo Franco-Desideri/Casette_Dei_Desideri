@@ -1,0 +1,635 @@
+/* === style.css === */
+
+/* --- Import Google Fonts --- */
+/* Aggiungi questi link nel tuo <head> HTML per caricare i font */
+/*
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+*/
+
+/* --- Variabili Colori (Facoltativo ma consigliato per facilitare la gestione) --- */
+:root {
+    --primary-color: #17e439; /* Il viola che abbiamo deciso */
+    --primary-dark: #006107; /* Viola più scuro per hover */
+    --accent-color: #4CAF50; /* Il tuo verde attuale, da usare con parsimonia o come secondario */
+    --accent-dark: #45a049;
+    --text-color: #333;
+    --light-text-color: #0c0000;
+    --border-color: #ddd;
+    --background-light: #f9f9f9;
+    --background-white: #ffffff;
+    --shadow-light: rgba(0,0,0,0.05);
+    --shadow-medium: rgba(0,0,0,0.1);
+}
+
+
+/* Reset base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Utilizziamo i font di Google Fonts per un aspetto più moderno */
+    font-family: 'Roboto', sans-serif; /* Pulito e leggibile per il corpo del testo */
+    background-color: var(--background-light); /* Sfondo leggermente grigio */
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex; /* Utilizziamo flexbox per la struttura generale della pagina */
+    flex-direction: column;
+    min-height: 100vh; /* La pagina occupa almeno l'altezza della viewport */
+}
+
+/* Contenitore generale per centrare il contenuto */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* Padding orizzontale per evitare che il contenuto si attacchi ai bordi */
+}
+
+
+/* === Header === */
+header.site-header { /* Modificato il selettore per maggiore specificità */
+    background-color: var(--background-white); /* Sfondo bianco per un look pulito */
+    padding: 20px 0; /* Aumentato il padding verticale */
+    box-shadow: 0 2px 8px var(--shadow-light); /* Ombra sottile per profondità */
+    border-bottom: 1px solid var(--border-color); /* Linea sottile inferiore */
+}
+
+header.site-header .container {
+    /*display: flex; /* Flexbox per allineare titolo e navigazione */
+    justify-content: space-between; /* Spazia gli elementi */
+    align-items: center; /* Allinea verticalmente */
+}
+
+.site-title { /* Nuovo stile per il titolo del sito */
+    margin: 0;
+    font-family: 'Playfair Display', serif; /* Font più elegante */
+    font-size: 36px; /* Dimensione maggiore */
+    font-weight: bold;
+}
+
+.site-title a {
+    color: var(--primary-color); /* Colore del titolo principale viola */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.site-title a:hover {
+    color: var(--primary-dark);
+}
+
+nav.main-nav ul { /* Modificato il selettore per la navigazione */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 30px; /* Spazio tra gli elementi di navigazione */
+}
+
+nav.main-nav a.nav-item { /* Modificato il selettore per i link di navigazione */
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-weight: 500; /* Leggermente meno bold */
+    font-size: 17px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+nav.main-nav a.nav-item:hover {
+    background-color: var(--primary-color);
+    color: var(--background-white);
+    text-decoration: none; /* Rimuovi underline all'hover per i link di nav */
+}
+
+nav.main-nav a.nav-item.active { /* Stile per la pagina attiva */
+    background-color: var(--primary-color);
+    color: var(--background-white);
+    font-weight: bold;
+}
+
+
+/* === Hero Section (mantengo la tua, se la usi) === */
+/* Se questa sezione non viene usata per la spesa a domicilio, puoi rimuoverla.
+   Altrimenti, cambiamo i colori per essere coerenti. */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 350px; /* altezza fissa */
+    overflow: hidden; /* nasconde eventuali overflow */
+    margin-bottom: 2rem;
+}
+
+.hero-section img.hero-image {
+    width: 100%;
+    height: 100%; /* prendiamo tutta l'altezza */
+    object-fit: cover;
+    filter: brightness(60%);
+    display: block; /* evita spazi bianchi sotto l'immagine */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(4, 149, 9);
+    padding: 1.5rem 2rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    max-width: 90%;
+    text-align: center;
+}
+
+.hero-overlay h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.hero-overlay p {
+    font-size: 1.4rem;
+}
+
+/* === Intro Text (se usi un testo introduttivo nella pagina) === */
+.intro-text {
+    text-align: center;
+    margin: 3rem auto 2rem auto; /* Maggior margine superiore e centrato */
+    max-width: 800px; /* Limita la larghezza per la leggibilità */
+    font-size: 1.1rem;
+    color: var(--light-text-color);
+    line-height: 5;
+}
+
+/* === Main Content Area === */
+main.main-content { /* Aggiungo un selettore per il contenuto principale */
+    flex-grow: 1; /* Permette al contenuto di espandersi e spingere il footer in basso */
+    padding: 40px 0; /* Padding sopra e sotto il contenuto principale */
+}
+
+/* === Sezioni Prodotti e Fascia Oraria === */
+.section-title {
+    text-align: left; /* Allineato a sinistra con il resto del contenuto */
+    margin: 40px 0 30px 0; /* Spazio maggiore */
+    font-size: 32px; /* Dimensione maggiore */
+    font-family: 'Playfair Display', serif; /* Font per i titoli di sezione */
+    color: var(--text-color);
+    border-bottom: 2px solid var(--primary-color); /* Linea sotto il titolo */
+    padding-bottom: 10px;
+}
+
+/* Sottotitoli delle categorie di prodotto */
+.section-subtitle { /* Nuovo stile per "Prodotti a Quantità" e "Prodotti a Peso" */
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    color: var(--light-text-color);
+    margin-top: 40px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.product-category { /* Contenitore per ogni sezione di prodotto */
+    margin-bottom: 50px;
+}
+
+.no-products-message { /* Messaggio quando non ci sono prodotti */
+    color: #777;
+    font-style: italic;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-left: 5px solid var(--primary-color);
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+
+.product-list { /* Modificato per un look più moderno delle card */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Aumentato leggermente min-width */
+    gap: 30px; /* Aumentato lo spazio tra le card */
+    padding: 0; /* Rimosso padding qui, lo gestisce il .container */
+}
+
+.product-card {
+    background-color: var(--background-white);
+    border: 1px solid var(--border-color);
+    border-radius: 12px; /* Angoli più arrotondati */
+    box-shadow: 0 5px 15px var(--shadow-light); /* Ombra più pronunciata ma soft */
+    display: flex;
+    flex-direction: column; /* Per impilare immagine e dettagli */
+    overflow: hidden; /* Nasconde ciò che esce dai bordi arrotondati */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Effetti al passaggio del mouse */
+}
+
+.product-card:hover {
+    transform: translateY(-5px); /* Solleva leggermente la card */
+    box-shadow: 0 8px 20px var(--shadow-medium); /* Ombra più intensa */
+}
+
+.product-image {
+    width: 100%;
+    height: 200px; /* Aumentato leggermente l'altezza dell'immagine */
+    object-fit: cover;
+    border-radius: 12px 12px 0 0; /* Angoli arrotondati solo in alto */
+    margin-bottom: 15px; /* Spazio sotto l'immagine */
+}
+
+.product-details {
+    padding: 0 20px 20px; /* Padding interno, più in basso */
+    flex-grow: 1; /* Permette al blocco dettagli di occupare lo spazio rimanente */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Spinge il pulsante in basso */
+}
+
+.product-name {
+    font-size: 1.3rem; /* Dimensione maggiore */
+    font-weight: bold;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    min-height: 48px; /* Assicura altezza minima per nomi su più righe */
+}
+
+.product-description {
+    font-size: 0.95rem;
+    margin: 0.5rem 0 15px 0; /* Spazio sotto */
+    color: var(--light-text-color);
+    flex-grow: 1; /* Permette alla descrizione di occupare spazio */
+}
+
+.product-price, .product-unit {
+    font-size: 1.3rem; /* Dimensione maggiore */
+    font-weight: bold;
+    color: var(--primary-color); /* Colore del prezzo viola */
+    margin-bottom: 15px;
+}
+
+/* === Quantity/Weight Control === */
+.quantity-control, .weight-input-group { /* Ho unito le classi per stile comune */
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra gli elementi di controllo */
+    gap: 10px; /* Spazio tra i pulsanti e l'input */
+    margin-top: 15px;
+    margin-bottom: 20px; /* Spazio sotto il controllo */
+}
+
+.qty-btn { /* Nuovo nome per i pulsanti quantità (+/-) */
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0; /* Rimuovi padding */
+    width: 38px; /* Aumentata dimensione */
+    height: 38px; /* Aumentata dimensione */
+    border-radius: 50%;
+    font-size: 1.4rem; /* Dimensione del testo per +/- */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.qty-btn:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05); /* Piccolo ingrandimento al hover */
+}
+.qty-btn:active {
+    transform: scale(0.95); /* Piccolo rimpicciolimento al click */
+}
+
+.product-quantity-input, .product-weight-input { /* Unito stili per input */
+    width: 70px; /* Larghezza maggiore */
+    text-align: center;
+    padding: 8px 5px; /* Aumentato padding */
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1.1rem; /* Dimensione testo input */
+    color: var(--text-color);
+}
+
+.product-weight-input + span { /* Stile per "Kg" o "g" dopo l'input del peso */
+    font-size: 1rem;
+    color: var(--light-text-color);
+    margin-left: -5px; /* Avvicina al campo input */
+}
+
+
+/* === Order Summary Table (La tua tabella è già ben fatta, piccoli ritocchi) === */
+.order-summary-table {
+    width: 90%;
+    max-width: 900px; /* Aumentata leggermente la larghezza massima */
+    margin: 3rem auto 3rem auto; /* Spazio maggiore sopra e sotto */
+    border-collapse: collapse;
+    box-shadow: 0 4px 15px var(--shadow-light); /* Ombra più soft */
+    background-color: var(--background-white);
+    border-radius: 10px; /* Angoli più arrotondati */
+    overflow: hidden;
+}
+
+.order-summary-table thead {
+    background-color: var(--primary-color); /* Intestazione tabella viola */
+    color: white;
+}
+
+.order-summary-table th,
+.order-summary-table td {
+    padding: 1rem 1.2rem; /* Aumentato il padding */
+    text-align: left;
+    border-bottom: 1px solid #eee; /* Bordo più chiaro */
+}
+
+.order-summary-table tbody tr:hover {
+    background-color: #f8f8f8; /* Sfondo più chiaro al hover */
+}
+
+.order-summary-table .order-total-row td {
+    font-weight: bold;
+    text-align: right;
+    padding-top: 1.5rem; /* Aumentato il padding */
+    border-top: 2px solid var(--primary-color); /* Bordo superiore viola */
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+
+
+/* === Delivery Time Selection / Order Form (Modificato per coerenza) === */
+.delivery-time-section { /* Nuovo selettore per la sezione fascia oraria */
+    margin: 50px 0; /* Spazio per la sezione */
+}
+
+.form-group { /* Contenitore per label e input/select */
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra gli elementi del form */
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.delivery-time-select, .order-form select { /* Stile combinato per i select */
+    width: 100%;
+    max-width: 350px; /* Larghezza massima per la select */
+    padding: 12px 15px; /* Aumentato padding */
+    border: 1px solid var(--border-color);
+    border-radius: 8px; /* Angoli più arrotondati */
+    background-color: var(--background-white);
+    font-size: 1rem;
+    color: var(--text-color);
+    appearance: none; /* Rimuove lo stile di default del sistema operativo */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-5.4H18.8c-7.7%200-13.5%204.6-13.8%205.4a17.6%2017.6%200%200%200%200%2022.3l128%20128c4.8%204.8%2011.6%207.6%2018.6%207.6s13.8-2.8%2018.6-7.6l128-128c5-5.1%205.2-13.2.1-18.2z%22%2F%3E%3C%2Fsvg%3E'); /* Freccia personalizzata */
+    background-repeat: no-repeat;
+    background-position: right 15px top 50%, 0 0;
+    background-size: 14px auto, 100%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px var(--shadow-light);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.delivery-time-select:focus, .order-form select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(43, 226, 58, 0.2); /* Sottile alone viola al focus */
+}
+
+.order-form { /* Il form vero e proprio, se usato per invio ordine */
+    width: 90%;
+    max-width: 450px; /* Larghezza leggermente maggiore */
+    margin: 0 auto 3rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Spazio maggiore tra gli elementi */
+    padding: 25px;
+    background-color: var(--background-white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px var(--shadow-light);
+}
+
+.order-form input[type="text"],
+.order-form input[type="email"],
+.order-form textarea { /* Stili per input di testo */
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.order-form input[type="text"]:focus,
+.order-form input[type="email"]:focus,
+.order-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+}
+
+/* === Pulsante principale (Vai al carrello / Invia Ordine) === */
+.main-button {
+    background-color: var(--primary-color); /* Pulsante viola */
+    color: white;
+    padding: 14px 28px; /* Aumentato padding */
+    font-size: 1.1rem; /* Dimensione maggiore del testo */
+    border: none;
+    border-radius: 8px; /* Angoli più arrotondati */
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2); /* Ombra per profondità */
+}
+
+.main-button:hover {
+    background-color: var(--primary-dark); /* Tonalità più scura al hover */
+    transform: translateY(-2px); /* Effetto leggero di sollevamento */
+    box-shadow: 0 6px 15px rgba(138, 43, 226, 0.3);
+}
+
+.main-button:active {
+    transform: translateY(0); /* Al click torna alla posizione originale */
+    box-shadow: 0 2px 5px rgba(138, 43, 226, 0.2);
+}
+
+.cart-button-section { /* Contenitore per il pulsante del carrello */
+    text-align: center;
+    margin: 40px 0; /* Margine sopra e sotto */
+}
+
+
+/* === Footer === */
+footer.site-footer { /* Modificato il selettore */
+    background-color: #333; /* Sfondo scuro */
+    color: #eee; /* Testo chiaro */
+    text-align: center;
+    padding: 25px 0; /* Aumentato il padding */
+    font-size: 0.9rem;
+    margin-top: auto; /* Spinge il footer in fondo alla pagina */
+}
+
+footer.site-footer p {
+    margin: 0;
+}
+
+/* === Media Queries per la responsività === */
+@media (max-width: 768px) {
+    .site-title {
+        font-size: 28px;
+    }
+
+    nav.main-nav ul {
+        flex-direction: column; /* Impila la navigazione su schermi piccoli */
+        gap: 10px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    nav.main-nav a.nav-item {
+        padding: 8px 10px;
+        font-size: 15px;
+    }
+
+    .site-header .container {
+        flex-direction: column; /* Header su due righe */
+    }
+
+    .hero-overlay h2 {
+        font-size: 2rem;
+    }
+
+    .hero-overlay p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 26px;
+        text-align: center; /* Centra il titolo principale su mobile */
+    }
+
+    .section-subtitle {
+        font-size: 20px;
+        text-align: center; /* Centra i sottotitoli su mobile */
+    }
+
+    .product-list {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Riduci la larghezza minima della card */
+        gap: 20px;
+    }
+
+    .product-card {
+        padding-bottom: 15px;
+    }
+
+    .product-name {
+        font-size: 1.1rem;
+    }
+
+    .product-price, .product-unit {
+        font-size: 1.2rem;
+    }
+
+    .qty-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+
+    .product-quantity-input, .product-weight-input {
+        width: 60px;
+        font-size: 1rem;
+    }
+
+    .order-summary-table {
+        width: 95%; /* Leggermente più largo su mobile */
+    }
+
+    .order-summary-table th,
+    .order-summary-table td {
+        padding: 0.8rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .main-button {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    .delivery-time-select, .order-form select {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-title {
+        font-size: 24px;
+    }
+
+    .main-nav a.nav-item {
+        font-size: 14px;
+        padding: 6px 8px;
+    }
+
+    .hero-overlay h2 {
+        font-size: 1.8rem;
+    }
+    .hero-overlay p {
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 22px;
+        margin: 30px 0 20px 0;
+    }
+
+    .section-subtitle {
+        font-size: 18px;
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .product-list {
+        grid-template-columns: 1fr; /* Una colonna su schermi molto piccoli */
+        padding: 0 15px;
+    }
+
+    .product-card {
+        margin: 0 auto; /* Centra le card */
+        max-width: 300px; /* Limita la larghezza massima per non essere troppo larghe */
+    }
+    .product-image {
+        height: 160px;
+    }
+
+    .product-details {
+        padding: 0 15px 15px;
+    }
+
+    .order-summary-table {
+        font-size: 0.85rem;
+    }
+
+    .order-summary-table th,
+    .order-summary-table td {
+        padding: 0.6rem 0.6rem;
+    }
+
+    .main-button {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .delivery-time-select, .order-form select {
+        font-size: 0.9rem;
+    }
+}

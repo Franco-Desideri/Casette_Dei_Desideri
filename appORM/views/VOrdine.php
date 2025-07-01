@@ -30,7 +30,7 @@ class VOrdine
     {
         $this->smarty->assign('prodottiQuantita', $prodottiQ);
         $this->smarty->assign('prodottiPeso', $prodottiP);
-        $this->smarty->display('utente/ordine_lista.tpl');
+        $this->smarty->display('utente/listino_prodotti.tpl');
     }
 
     /**
@@ -41,7 +41,7 @@ class VOrdine
     public function mostraRiepilogo(array $ordineData): void
     {
         $this->smarty->assign('ordine', $ordineData);
-        $this->smarty->display('utente/ordine_riepilogo.tpl');
+        $this->smarty->display('utente/riepilogo.tpl');
     }
 
     /**
