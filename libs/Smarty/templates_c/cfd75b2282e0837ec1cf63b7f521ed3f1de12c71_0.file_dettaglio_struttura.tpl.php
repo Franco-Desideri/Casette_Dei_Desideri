@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-02 10:32:32
+/* Smarty version 5.5.1, created on 2025-07-02 12:26:55
   from 'file:utente/dettaglio_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6864eea0a50fd3_68514976',
+  'unifunc' => 'content_6865096f67b012_69770224',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cfd75b2282e0837ec1cf63b7f521ed3f1de12c71' => 
     array (
       0 => 'utente/dettaglio_struttura.tpl',
-      1 => 1751445149,
+      1 => 1751451973,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6864eea0a50fd3_68514976 (\Smarty\Template $_smarty_tpl) {
+function content_6865096f67b012_69770224 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -43,6 +43,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
     <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/owl.css">
     <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
     
 <!--
@@ -300,21 +304,20 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
       <input type="hidden" name="idStruttura" value="<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
 ">
 
-      <div class="mb-3">
+      <div class="mb-3 input-with-icon">
         <label for="dataInizio" class="form-label">Data inizio</label>
-        <input type="date" class="form-control" id="dataInizio" name="dataInizio" required>
+          <input type="text" class="form-control" id="dataInizio" name="dataInizio" required readonly placeholder="gg/mm/aaaa">
       </div>
+
 
       <div class="mb-3">
         <label for="dataFine" class="form-label">Data fine</label>
-        <input type="date" class="form-control" id="dataFine" name="dataFine" required>
+          <input type="text" class="form-control" id="dataFine" name="dataFine" required readonly placeholder="gg/mm/aaaa">
       </div>
 
       <div class="mb-3">
-        <label for="numOspiti" class="form-label">
-          Numero ospiti (max <?php echo $_smarty_tpl->getValue('struttura')->getNumOspiti();?>
-)
-        </label>
+        <label for="numOspiti" class="form-label">Numero ospiti (max <?php echo $_smarty_tpl->getValue('struttura')->getNumOspiti();?>
+)</label>
         <select class="form-select" id="numOspiti" name="numOspiti" required>
           <?php $_smarty_tpl->assign('maxOspiti', $_smarty_tpl->getValue('struttura')->getNumOspiti(), false, NULL);?>
           <?php
@@ -345,80 +348,6 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 </div>
 
 
-<?php echo '<script'; ?>
->
-    const intervalliDisponibili = [
-        <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('intervalli'), 'i', true);
-$_smarty_tpl->getVariable('i')->iteration = 0;
-$foreach2DoElse = true;
-foreach ($_from ?? [] as $_smarty_tpl->getVariable('i')->value) {
-$foreach2DoElse = false;
-$_smarty_tpl->getVariable('i')->iteration++;
-$_smarty_tpl->getVariable('i')->last = $_smarty_tpl->getVariable('i')->iteration === $_smarty_tpl->getVariable('i')->total;
-$foreach2Backup = clone $_smarty_tpl->getVariable('i');
-?>
-            {
-                inizio: '<?php echo $_smarty_tpl->getValue('i')->getDataI()->format("Y-m-d");?>
-',
-                fine: '<?php echo $_smarty_tpl->getValue('i')->getDataF()->format("Y-m-d");?>
-'
-            }<?php if (!$_smarty_tpl->getVariable('i')->last) {?>,<?php }?>
-        <?php
-$_smarty_tpl->setVariable('i', $foreach2Backup);
-}
-$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-    ];
-
-    const dateOccupate = [
-        <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('prenotazioni'), 'p', true);
-$_smarty_tpl->getVariable('p')->iteration = 0;
-$foreach3DoElse = true;
-foreach ($_from ?? [] as $_smarty_tpl->getVariable('p')->value) {
-$foreach3DoElse = false;
-$_smarty_tpl->getVariable('p')->iteration++;
-$_smarty_tpl->getVariable('p')->last = $_smarty_tpl->getVariable('p')->iteration === $_smarty_tpl->getVariable('p')->total;
-$foreach3Backup = clone $_smarty_tpl->getVariable('p');
-?>
-            {
-                inizio: '<?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('p')->getPeriodo()->getDataI(),"%d/%m/%Y");?>
-',
-                fine: '<?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('p')->getPeriodo()->getDataF(),"%d/%m/%Y");?>
-'
-            }<?php if (!$_smarty_tpl->getVariable('p')->last) {?>,<?php }?>
-        <?php
-$_smarty_tpl->setVariable('p', $foreach3Backup);
-}
-$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-    ];
-
-    function isInIntervallo(dateStr) {
-        const date = new Date(dateStr);
-        return intervalliDisponibili.some(i => {
-            return date >= new Date(i.inizio) && date <= new Date(i.fine);
-        });
-    }
-
-    function isOccupata(dateStr) {
-        const date = new Date(dateStr);
-        return dateOccupate.some(p => {
-            return date >= new Date(p.inizio) && date <= new Date(p.fine);
-        });
-    }
-
-    function validateDate(input) {
-        const val = input.value;
-        if (val && (!isInIntervallo(val) || isOccupata(val))) {
-            alert('La data ' + val + ' non è disponibile.');
-            input.value = '';
-        }
-    }
-
-    document.getElementById('dataInizio').addEventListener('change', e => validateDate(e.target));
-    document.getElementById('dataFine').addEventListener('change', e => validateDate(e.target));
-<?php echo '</script'; ?>
->
 
 
 
@@ -555,6 +484,123 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
   <?php echo '<script'; ?>
  src="/Casette_Dei_Desideri/public/assets/js/custom.js"><?php echo '</script'; ?>
 >
+  <!-- Flatpickr JS -->
+  <?php echo '<script'; ?>
+ src="https://cdn.jsdelivr.net/npm/flatpickr"><?php echo '</script'; ?>
+>
+
+
+
+
+  <?php echo '<script'; ?>
+>
+    // 1) Prepara i tuoi dati PHP/Smarty in JS
+    const intervalliDisponibili = [
+      <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('intervalli'), 'i', true);
+$_smarty_tpl->getVariable('i')->iteration = 0;
+$foreach2DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('i')->value) {
+$foreach2DoElse = false;
+$_smarty_tpl->getVariable('i')->iteration++;
+$_smarty_tpl->getVariable('i')->last = $_smarty_tpl->getVariable('i')->iteration === $_smarty_tpl->getVariable('i')->total;
+$foreach2Backup = clone $_smarty_tpl->getVariable('i');
+?>
+        { // Smarty copierà queste righe
+          inizio: '<?php echo $_smarty_tpl->getValue('i')->getDataI()->format("Y-m-d");?>
+',
+          fine:   '<?php echo $_smarty_tpl->getValue('i')->getDataF()->format("Y-m-d");?>
+'
+        }<?php if (!$_smarty_tpl->getVariable('i')->last) {?>,<?php }?>
+      <?php
+$_smarty_tpl->setVariable('i', $foreach2Backup);
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+    ];
+
+    const dateOccupate = [
+      <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('prenotazioni'), 'p', true);
+$_smarty_tpl->getVariable('p')->iteration = 0;
+$foreach3DoElse = true;
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('p')->value) {
+$foreach3DoElse = false;
+$_smarty_tpl->getVariable('p')->iteration++;
+$_smarty_tpl->getVariable('p')->last = $_smarty_tpl->getVariable('p')->iteration === $_smarty_tpl->getVariable('p')->total;
+$foreach3Backup = clone $_smarty_tpl->getVariable('p');
+?>
+        {
+          inizio: '<?php echo $_smarty_tpl->getValue('p')->getPeriodo()->getDataI()->format("Y-m-d");?>
+',
+          fine:   '<?php echo $_smarty_tpl->getValue('p')->getPeriodo()->getDataF()->format("Y-m-d");?>
+'
+        }<?php if (!$_smarty_tpl->getVariable('p')->last) {?>,<?php }?>
+      <?php
+$_smarty_tpl->setVariable('p', $foreach3Backup);
+}
+$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
+    ];
+
+    // 2) Le tue funzioni di disponibilità
+    function isInIntervallo(dateStr) {
+      const d = new Date(dateStr);
+      return intervalliDisponibili.some(i =>
+        d >= new Date(i.inizio) && d <= new Date(i.fine)
+      );
+    }
+    function isOccupata(dateStr) {
+      const d = new Date(dateStr);
+      return dateOccupate.some(p =>
+        d >= new Date(p.inizio) && d <= new Date(p.fine)
+      );
+    }
+
+    // 3) Funzione che Flatpickr userà per disabilitare le date
+    function disableDates(date) {
+      const ds = date.toISOString().slice(0,10); // "YYYY-MM-DD"
+      return !isInIntervallo(ds) || isOccupata(ds);
+    }
+
+    // 4) Inizializzazione dei due datepickers
+    const dataFinePicker = flatpickr("#dataFine", {
+      dateFormat: "d-m-Y",
+      minDate: "today",
+      disable: [ disableDates ], //rende alcune date non selezionabili
+      onDayCreate: function(dObj, dStr, fp, dayElem) {  //è chiamata per la creazione di ogni singolo giorno del calendario
+        const dataInizioDate = flatpickr.parseDate(document.getElementById('dataInizio').value, "d-m-Y");
+        if (dataInizioDate) {
+          if (dayElem.dateObj.toDateString() === dataInizioDate.toDateString()) {
+            dayElem.classList.add('highlight-day'); //se la data attuale di creazione del Cal. == dataInizio allora colora
+          }
+        }
+      }
+    });
+
+    flatpickr("#dataInizio", {
+      dateFormat: "d-m-Y",
+      minDate: "today",
+      disable: [ disableDates ],
+      onChange: function(selectedDates, dateStr) {
+        if (dateStr) {
+          // non permettere a dataFine di essere precedente
+          dataFinePicker.set('minDate', dateStr);
+        }
+      }
+    });
+  <?php echo '</script'; ?>
+>
+
+
+
+
+
+
+
+
+
+
+
+
 
   </body>
 </html><?php }
