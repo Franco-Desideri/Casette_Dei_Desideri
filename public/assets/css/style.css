@@ -1,0 +1,235 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f0f0f0;
+}
+
+/* === CARD ORIZZONTALI === */
+.card-container {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 800px;
+  min-width: 800px;
+  max-width: 800px;
+  height: 300px;             /* altezza fissa */
+  padding: 40px;
+  overflow: hidden;          /* nasconde contenuto che esce */
+}
+
+
+.card-text {
+  flex: 1;
+  color: #000;
+  font-size: 2.5em;
+  line-height: 1.4em;
+  max-height: 100%;           /* non oltre l’altezza della card */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;      /* massimo 5 righe */
+  -webkit-box-orient: vertical;
+}
+
+
+.card-image img {
+  width: 300px;
+  height: 220px;              /* altezza fissa */
+  object-fit: cover;          /* taglia l’immagine se necessario */
+  border-radius: 10px;
+  margin-left: 40px;
+}
+
+
+/* === CARD VERTICALI (TITOLO + DATE + IMMAGINE) === */
+.card-list-info {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-top: 40px;
+  overflow-x: auto;
+  padding: 10px;
+  justify-content: left; 
+}
+
+.card-info {
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  width: 350px;
+  min-width: 350px;
+  max-width: 400px;
+  height: 500px;              /* aumentata per ospitare immagine più grande */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;        /* centra contenuto all'interno della card */
+  overflow: hidden;
+  text-align: center;         /* opzionale, migliora l’aspetto se tutto è centrato */
+}
+
+
+
+.card-title {
+  font-size: 2em;
+  margin: 0 0 5px 0;
+  color: #000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.card-dates {
+  font-size: 1.1em;
+  color: #555;
+  margin: 0 0 10px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.card-info-image img {
+  width: 100%;
+  height: 320px;           /* aumentata da 250px */
+  object-fit: cover;
+  border-radius: 10px;
+  align-self: center;
+}
+
+
+
+
+/* === CARD Immagine */
+.hero-card {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.hero-card img {
+  display: block;
+  width: 100vw;
+  height: auto;
+}
+
+.hero-text {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  color: #fff;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+.hero-title {
+  font-size: 3.5em;       /* più grande del precedente 2.5em */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  font-size: 1.5em;        /* più piccolo */
+  font-weight: normal;
+}
+
+/* Sezione la nostra storia */
+.story-section {
+  width: 100vw;
+  margin: 100px 0;
+  padding: 0 5vw;
+  text-align: center; /* centrato come richiesto prima */
+  color: #111;
+  font-family: 'Arial', sans-serif;
+  box-sizing: border-box;
+}
+
+.story-title {
+  font-size: 4em;
+  margin-bottom: 40px;
+  font-weight: bold;
+  color: #000;
+}
+
+.story-text {
+  font-size: 2.5em;
+  font-weight: 300;
+  line-height: 1.5; /* SPAZIO TRA LE RIGHE AUMENTATO */
+}
+
+/* Divisore */
+
+.section-divider {
+  height: 4px;
+  background: linear-gradient(to right, #aaa, #ddd, #aaa);
+  margin: 80px auto;
+  width: 60%;
+  border-radius: 2px;
+}
+
+/* Titolo sezione */
+.section-title {
+  text-align: center;
+  font-size: 3em;
+  margin: 80px auto 40px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* gestione Eventi e Attrazioni lato admin */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+.card-link:hover .card,
+.card-link:hover .card-info {
+  box-shadow: 0 0 12px rgba(0,0,0,0.2);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.card-wrapper {
+  margin-bottom: 40px;
+}
+
+
+/*Form attrazione Admin*/
+
+.admin-form {
+  max-width: 600px;
+  margin: 60px auto;
+  background-color: #f8f9fa;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+.admin-form h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.admin-form label {
+  font-weight: 600;
+}
+.admin-form img {
+  display: block;
+  margin-top: 10px;
+  max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.admin-form button {
+  width: 100%;
+  padding: 10px;
+  font-size: 1.1em;
+}

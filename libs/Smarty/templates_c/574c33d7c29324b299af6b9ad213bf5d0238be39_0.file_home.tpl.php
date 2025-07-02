@@ -1,110 +1,215 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-28 18:41:41
+/* Smarty version 5.5.1, created on 2025-07-02 18:19:32
   from 'file:utente/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68601b45569233_15087054',
+  'unifunc' => 'content_68655c14e6b935_20590834',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '574c33d7c29324b299af6b9ad213bf5d0238be39' => 
     array (
       0 => 'utente/home.tpl',
-      1 => 1751125862,
+      1 => 1751472503,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:partials/appbar.tpl' => 1,
   ),
 ))) {
-function content_68601b45569233_15087054 (\Smarty\Template $_smarty_tpl) {
+function content_68655c14e6b935_20590834 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
-$_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
-?>
+?><!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <title>Villa Agency - Real Estate HTML5 Template</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/Casette_Dei_Desideri/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/fontawesome.css">
+  <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/templatemo-villa-agency.css">
+  <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/owl.css">
+  <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/animate.css">
+  <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/style.css?v=1">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+</head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <ul class="info">
+            <li><i class="fa fa-envelope"></i> <?php echo $_smarty_tpl->getValue('email_admin');?>
+</li>
+            <li><i class="fa fa-map"></i> Poggio Bustone, RI 02018</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <nav class="main-nav">
+            <!-- ***** Logo Start ***** -->
+            <a href="index.html" class="logo" style="text-align: left; width: 100%;">
+            <h1 style="white-space: nowrap; font-size: 24px;">Casetta dei Desideri</h1>
+            </a>
+            <!-- ***** Logo End ***** -->
+            <!-- ***** Menu Start ***** -->
+            <ul class="nav">
+              <li><a href="/Casette_Dei_Desideri/User/home" class="active">Home</a></li>
+              <li><a href="/Casette_Dei_Desideri/Struttura/lista">Strutture</a></li>
+              <li><a href="/Casette_Dei_Desideri/Ordine/listaProdotti">Servizi</a></li>
+              <li><a href="/Casette_Dei_Desideri/User/profilo">Profilo</a></li>
+            </ul>
+            <a class='menu-trigger'>
+              <span>Menu</span>
+            </a>
+            <!-- ***** Menu End ***** -->
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="hero-card">
+    <img src="/Casette_Dei_Desideri/public/assets/immagini/hero.jpg" alt="B&B Casette Dei Desideri">
+    <div class="hero-text">
+      <div class="hero-title">B&amp;B Casette Dei Desideri</div>
+      <div class="hero-subtitle">"Buon giorno buona gente"...</div>
+      <div class="hero-subtitle">Il vostro soggiorno a Pogio Bustone presso Le Casette Dei Desideri vi aspetta.</div>
+      <div class="hero-subtitle">Venite a scoprire i nostri servizi e le meraviglie che vi riserva il nostro paese!</div>
+    </div>
+  </div>
 
 
-<?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_137094477668601b45552f57_89129855', "contenuto");
-?>
-
-<?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
-}
-/* {block "contenuto"} */
-class Block_137094477668601b45552f57_89129855 extends \Smarty\Runtime\Block
-{
-public function callBlock(\Smarty\Template $_smarty_tpl) {
-$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
-?>
+  <section class="story-section">
+    <h2 class="story-title">La nostra Storia</h2>
+    <p class="story-text">
+      Le nostre strutture nascono in antiche case nel borgo di Poggio Bustone e ormai da 10 anni ospitano tutti coloro che vogliono ammirare le bellezze della nostra terra.
+      Le strutture preservano il carattere rustico ma accogliente delle originarie abitazioni dei borghi di montagna.
+      Il nostro obiettivo è sempre stato quello di farvi sentire accolti grazie allo spirito genuino che conservano gli appartamenti e che rispetta la storia del posto.
+    </p>
+  </section>
 
 
-<?php $_smarty_tpl->renderSubTemplate("file:partials/appbar.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
-?>
+  <div class="section-divider"></div>
 
-<h2>Benvenuto nella tua area utente</h2>
+  <h2 class="section-title">Perchè venire a trovarci?</h2>
+  
 
-<section>
-    <h3>Attrazioni disponibili</h3>
+  <div class="card-container">
     <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('attrazioni')) > 0) {?>
-        <ul class="attrazioni">
-            <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('attrazioni'), 'attr');
+        <?php
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('attrazioni'), 'attrazione');
 $foreach0DoElse = true;
-foreach ($_from ?? [] as $_smarty_tpl->getVariable('attr')->value) {
+foreach ($_from ?? [] as $_smarty_tpl->getVariable('attrazione')->value) {
 $foreach0DoElse = false;
 ?>
-                <li>
-                    <?php if ((true && (true && null !== ($_smarty_tpl->getValue('attr')->base64img ?? null)))) {?>
-                        <img src="<?php echo $_smarty_tpl->getValue('attr')->base64img;?>
-" alt="Attrazione" width="200">
-                    <?php }?>
-                    <p><?php echo $_smarty_tpl->getValue('attr')->getDescrizione();?>
+            <div class="card">
+                <div class="card-text">
+                    <p><?php echo $_smarty_tpl->getValue('attrazione')->getDescrizione();?>
 </p>
-                </li>
-            <?php
+                </div>
+                <div class="card-image">
+                    <img src="<?php echo $_smarty_tpl->getValue('attrazione')->base64img;?>
+" alt="Immagine attrazione">
+                </div>
+            </div>
+        <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-        </ul>
     <?php } else { ?>
-        <p>Nessuna attrazione disponibile al momento.</p>
+        <p>Non ci sono attrazioni disponibili</p>
     <?php }?>
-</section>
+  </div>
 
-<section>
-    <h3>Eventi in programma</h3>
+
+  <div class="section-divider"></div>
+
+  <h2 class="section-title">Eventi da non perdere</h2>
+
+
+  <div class="card-list-info">
     <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('eventi')) > 0) {?>
-        <ul class="eventi">
-            <?php
+        <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('eventi'), 'evento');
 $foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('evento')->value) {
 $foreach1DoElse = false;
 ?>
-                <li>
-                    <?php if ((true && (true && null !== ($_smarty_tpl->getValue('evento')->base64img ?? null)))) {?>
-                        <img src="<?php echo $_smarty_tpl->getValue('evento')->base64img;?>
-" alt="Evento" width="200">
-                    <?php }?>
-                    <h4><?php echo $_smarty_tpl->getValue('evento')->getTitolo();?>
-</h4>
-                    <p>Dal <?php echo $_smarty_tpl->getValue('evento')->getDataInizioString('Y-m-d');?>
+            <div class="card-info">
+                  <h3 class="card-title"><?php echo $_smarty_tpl->getValue('evento')->getTitolo();?>
+</h3>
+                  <p class="card-dates">Dal <?php echo $_smarty_tpl->getValue('evento')->getDataInizioString('Y-m-d');?>
  al <?php echo $_smarty_tpl->getValue('evento')->getDataFineString('Y-m-d');?>
 </p>
-                </li>
-            <?php
+                <div class="card-info-image">
+                    <img src="<?php echo $_smarty_tpl->getValue('evento')->base64img;?>
+" alt="Immagine evento">
+                </div>
+            </div>
+        <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-        </ul>
     <?php } else { ?>
-        <p>Nessun evento programmato al momento.</p>
+        <p>Non ci sono attrazioni disponibili</p>
     <?php }?>
-</section>
 
-<?php
-}
-}
-/* {/block "contenuto"} */
+
+
+
+
+  <!-- Scripts -->
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/vendor/jquery/jquery.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/vendor/bootstrap/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/isotope.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/owl-carousel.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/counter.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/custom.js"><?php echo '</script'; ?>
+>
+
+</body>
+</html>
+<?php }
 }

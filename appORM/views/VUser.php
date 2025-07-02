@@ -71,21 +71,23 @@ class VUser
      * @param array $eventi     Lista di oggetti EEvento
      * @param array $attrazioni Lista di oggetti EAttrazione
      */
-    public function mostraHome(array $eventi, array $attrazioni): void
+    public function mostraHome(string $email,array $eventi, array $attrazioni): void
     {
-        $this->smarty->assign('eventi', $eventi);
         foreach ($eventi as $e) {
             if ($e->getImmagine()) {
                 $e->base64img = 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($e->getImmagine()));
             }
         }
+        
         foreach ($attrazioni as $a) {
             if ($a->getImmagine()) {
                 $a->base64img = 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($a->getImmagine()));
             }
         }
         $this->smarty->assign('attrazioni', $attrazioni);
-        $this->smarty->display('utente/template_esempio/index.tpl');
+        $this->smarty->assign('eventi', $eventi);
+        $this->smarty->assign('email_admin', $email);
+        $this->smarty->display('utente/home.tpl');
     }
 
     /**

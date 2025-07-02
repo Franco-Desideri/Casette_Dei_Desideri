@@ -108,9 +108,12 @@ class CUser
 
         $eventi = $em->getRepository(EEvento::class)->findAll();
         $attrazioni = $em->getRepository(EAttrazione::class)->findAll();
+        $utente = FPersistentManager::findOneBy(EUtente::class, ['ruolo' => 'admin']);
+        $email = $utente->getEmail();
+
 
         $view = new VUser();
-        $view->mostraHome($eventi, $attrazioni);
+        $view->mostraHome($email, $eventi, $attrazioni);
     }
 
     public function registrazione(): void
