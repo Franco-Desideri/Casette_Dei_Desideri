@@ -1,26 +1,17 @@
 /* === style.css === */
 
-/* --- Import Google Fonts --- */
-/* Aggiungi questi link nel tuo <head> HTML per caricare i font */
-/*
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-*/
-
-/* --- Variabili Colori (Facoltativo ma consigliato per facilitare la gestione) --- */
+/* --- Variabili Colori (Toni di Verde) --- */
 :root {
-    --primary-color: #17e439; /* Il viola che abbiamo deciso */
-    --primary-dark: #006107; /* Viola più scuro per hover */
-    --accent-color: #4CAF50; /* Il tuo verde attuale, da usare con parsimonia o come secondario */
-    --accent-dark: #45a049;
+    --primary-color: #4CAF50; /* Verde brillante, il colore principale */
+    --primary-dark: #388E3C; /* Verde più scuro per hover */
+    --primary-light: #81C784; /* Verde più chiaro, per accenti soft */
     --text-color: #333;
-    --light-text-color: #0c0000;
+    --light-text-color: #555;
     --border-color: #ddd;
-    --background-light: #f9f9f9;
+    --background-light: #f7f7f7; /* Sfondo generale chiaro */
     --background-white: #ffffff;
-    --shadow-light: rgba(0,0,0,0.05);
-    --shadow-medium: rgba(0,0,0,0.1);
+    --shadow-light: rgba(0,0,0,0.08); /* Ombra più definita */
+    --shadow-medium: rgba(0,0,0,0.15);
 }
 
 
@@ -32,47 +23,47 @@
 }
 
 body {
-    /* Utilizziamo i font di Google Fonts per un aspetto più moderno */
     font-family: 'Roboto', sans-serif; /* Pulito e leggibile per il corpo del testo */
-    background-color: var(--background-light); /* Sfondo leggermente grigio */
+    background-color: var(--background-light);
     color: var(--text-color);
     line-height: 1.6;
-    display: flex; /* Utilizziamo flexbox per la struttura generale della pagina */
+    display: flex;
     flex-direction: column;
-    min-height: 100vh; /* La pagina occupa almeno l'altezza della viewport */
+    min-height: 100vh;
 }
 
 /* Contenitore generale per centrare il contenuto */
 .container {
-    max-width: 1200px;
+    max-width: 1200px; /* Larghezza massima simile all'esempio VILLA */
     margin: 0 auto;
     padding: 0 20px; /* Padding orizzontale per evitare che il contenuto si attacchi ai bordi */
 }
 
 
 /* === Header === */
-header.site-header { /* Modificato il selettore per maggiore specificità */
-    background-color: var(--background-white); /* Sfondo bianco per un look pulito */
-    padding: 20px 0; /* Aumentato il padding verticale */
-    box-shadow: 0 2px 8px var(--shadow-light); /* Ombra sottile per profondità */
-    border-bottom: 1px solid var(--border-color); /* Linea sottile inferiore */
+header.site-header {
+    background-color: var(--background-white);
+    padding: 15px 0; /* Padding verticale */
+    box-shadow: 0 4px 10px var(--shadow-light); /* Ombra più pronunciata */
+    border-bottom: 1px solid var(--border-color);
 }
 
 header.site-header .container {
-    /*display: flex; /* Flexbox per allineare titolo e navigazione */
-    justify-content: space-between; /* Spazia gli elementi */
-    align-items: center; /* Allinea verticalmente */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permette al contenuto di andare a capo su schermi piccoli */
 }
 
-.site-title { /* Nuovo stile per il titolo del sito */
+.site-title {
     margin: 0;
-    font-family: 'Playfair Display', serif; /* Font più elegante */
-    font-size: 36px; /* Dimensione maggiore */
-    font-weight: bold;
+    font-family: 'Playfair Display', serif; /* Font più elegante come nell'esempio VILLA */
+    font-size: 38px; /* Dimensione maggiore per il titolo */
+    font-weight: 700; /* Bold per il titolo */
 }
 
 .site-title a {
-    color: var(--primary-color); /* Colore del titolo principale viola */
+    color: var(--primary-color); /* Colore del titolo principale verde */
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -81,54 +72,71 @@ header.site-header .container {
     color: var(--primary-dark);
 }
 
-nav.main-nav ul { /* Modificato il selettore per la navigazione */
+nav.main-nav { /* Contenitore della navigazione */
+    margin-left: auto; /* Spinge la navigazione a destra */
+}
+
+nav.main-nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 30px; /* Spazio tra gli elementi di navigazione */
+    gap: 35px; /* Spazio maggiore tra gli elementi di navigazione */
 }
 
-nav.main-nav a.nav-item { /* Modificato il selettore per i link di navigazione */
+nav.main-nav a.nav-item {
     color: var(--light-text-color);
     text-decoration: none;
-    font-weight: 500; /* Leggermente meno bold */
-    font-size: 17px;
-    padding: 10px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 18px; /* Leggermente più grande */
+    padding: 8px 0; /* Solo padding verticale */
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav.main-nav a.nav-item::after { /* Sottolineatura animata */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease;
 }
 
 nav.main-nav a.nav-item:hover {
-    background-color: var(--primary-color);
-    color: var(--background-white);
-    text-decoration: none; /* Rimuovi underline all'hover per i link di nav */
+    color: var(--primary-dark);
+    text-decoration: none;
 }
 
-nav.main-nav a.nav-item.active { /* Stile per la pagina attiva */
-    background-color: var(--primary-color);
-    color: var(--background-white);
-    font-weight: bold;
+nav.main-nav a.nav-item:hover::after,
+nav.main-nav a.nav-item.active::after {
+    width: 100%;
+}
+
+nav.main-nav a.nav-item.active {
+    color: var(--primary-color); /* Colore verde per la pagina attiva */
+    font-weight: 700;
 }
 
 
-/* === Hero Section (mantengo la tua, se la usi) === */
-/* Se questa sezione non viene usata per la spesa a domicilio, puoi rimuoverla.
-   Altrimenti, cambiamo i colori per essere coerenti. */
+/* === Hero Section === */
 .hero-section {
     position: relative;
-    width: 100%;
-    height: 350px; /* altezza fissa */
-    overflow: hidden; /* nasconde eventuali overflow */
-    margin-bottom: 2rem;
+    text-align: center;
+    color: white;
+    margin-bottom: 3rem; /* Margine inferiore */
+    overflow: hidden; /* Assicura che nulla esca dai bordi */
+    background-color: #333; /* Sfondo di fallback */
 }
 
-.hero-section img.hero-image {
+.hero-image {
     width: 100%;
-    height: 100%; /* prendiamo tutta l'altezza */
+    height: 450px; /* Altezza maggiore per la hero */
     object-fit: cover;
-    filter: brightness(60%);
-    display: block; /* evita spazi bianchi sotto l'immagine */
+    filter: brightness(55%); /* Leggermente più scuro per risaltare il testo */
+    display: block; /* Rimuove lo spazio extra sotto l'immagine */
 }
 
 .hero-overlay {
@@ -136,263 +144,262 @@ nav.main-nav a.nav-item.active { /* Stile per la pagina attiva */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: rgb(4, 149, 9);
     padding: 1.5rem 2rem;
-    background-color: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-    max-width: 90%;
-    text-align: center;
+    max-width: 800px; /* Limita la larghezza del testo overlay */
+    width: 90%; /* Adatta su mobile */
 }
 
 .hero-overlay h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+    font-family: 'Playfair Display', serif; /* Font del titolo per la hero */
+    font-size: 4rem; /* Dimensione molto maggiore per impatto */
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4); /* Ombra per leggibilità */
 }
 
 .hero-overlay p {
-    font-size: 1.4rem;
+    font-size: 1.6rem; /* Dimensione maggiore */
+    font-weight: 300;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 }
 
-/* === Intro Text (se usi un testo introduttivo nella pagina) === */
+/* === Intro Text === */
 .intro-text {
     text-align: center;
-    margin: 3rem auto 2rem auto; /* Maggior margine superiore e centrato */
-    max-width: 800px; /* Limita la larghezza per la leggibilità */
-    font-size: 1.1rem;
+    margin: 3rem auto 2rem auto;
+    max-width: 800px;
+    font-size: 1.2rem; /* Leggermente più grande */
     color: var(--light-text-color);
-    line-height: 5;
+    line-height: 1.8;
+    padding: 0 20px; /* Padding laterale */
 }
 
 /* === Main Content Area === */
-main.main-content { /* Aggiungo un selettore per il contenuto principale */
-    flex-grow: 1; /* Permette al contenuto di espandersi e spingere il footer in basso */
-    padding: 40px 0; /* Padding sopra e sotto il contenuto principale */
+main { /* Solo il tag main, non la classe container */
+    flex-grow: 1;
+    padding: 40px 0;
 }
+/* La classe container applicherà la larghezza massima e il padding */
+main.container {
+    padding: 40px 20px; /* padding se main ha anche la classe container */
+}
+
 
 /* === Sezioni Prodotti e Fascia Oraria === */
-.section-title {
-    text-align: left; /* Allineato a sinistra con il resto del contenuto */
-    margin: 40px 0 30px 0; /* Spazio maggiore */
-    font-size: 32px; /* Dimensione maggiore */
-    font-family: 'Playfair Display', serif; /* Font per i titoli di sezione */
+.section-title { /* Titolo principale della pagina, es. "Servizio Spesa in Struttura" */
+    text-align: center; /* Centrato come nell'esempio VILLA */
+    margin: 40px 0 30px 0;
+    font-size: 40px; /* Grande come nell'esempio */
+    font-family: 'Playfair Display', serif;
     color: var(--text-color);
-    border-bottom: 2px solid var(--primary-color); /* Linea sotto il titolo */
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    position: relative;
 }
 
-/* Sottotitoli delle categorie di prodotto */
-.section-subtitle { /* Nuovo stile per "Prodotti a Quantità" e "Prodotti a Peso" */
+.section-title::after { /* Sottolineatura decorativa */
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80px; /* Larghezza linea */
+    height: 3px; /* Spessore linea */
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.section-subtitle { /* Sottotitoli delle categorie di prodotto */
     font-family: 'Roboto', sans-serif;
-    font-size: 24px;
-    color: var(--light-text-color);
-    margin-top: 40px;
+    font-size: 28px; /* Leggermente più grande */
+    color: var(--text-color);
+    margin-top: 50px; /* Spazio maggiore sopra */
     margin-bottom: 25px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 8px;
+    text-align: center; /* Centrato */
+    position: relative;
 }
 
-.product-category { /* Contenitore per ogni sezione di prodotto */
+.section-subtitle::after { /* Sottolineatura soft per sottotitoli */
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -5px;
+    width: 60px;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.product-category {
     margin-bottom: 50px;
 }
 
-.no-products-message { /* Messaggio quando non ci sono prodotti */
+.no-products-message {
     color: #777;
     font-style: italic;
     padding: 15px;
     background-color: #f0f0f0;
     border-left: 5px solid var(--primary-color);
-    margin-top: 20px;
+    margin: 20px auto; /* Centrato e con margine */
+    max-width: 600px;
     border-radius: 5px;
+    text-align: center;
 }
 
 
-.product-list { /* Modificato per un look più moderno delle card */
+.product-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Aumentato leggermente min-width */
-    gap: 30px; /* Aumentato lo spazio tra le card */
-    padding: 0; /* Rimosso padding qui, lo gestisce il .container */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 0;
+    margin-bottom: 50px;
 }
 
 .product-card {
     background-color: var(--background-white);
-    border: 1px solid var(--border-color);
-    border-radius: 12px; /* Angoli più arrotondati */
-    box-shadow: 0 5px 15px var(--shadow-light); /* Ombra più pronunciata ma soft */
+    border: none; /* Rimosso il bordo */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px var(--shadow-light); /* Ombra più profonda e diffusa */
     display: flex;
-    flex-direction: column; /* Per impilare immagine e dettagli */
-    overflow: hidden; /* Nasconde ciò che esce dai bordi arrotondati */
-    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Effetti al passaggio del mouse */
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-5px); /* Solleva leggermente la card */
-    box-shadow: 0 8px 20px var(--shadow-medium); /* Ombra più intensa */
+    transform: translateY(-8px); /* Solleva di più */
+    box-shadow: 0 15px 40px var(--shadow-medium); /* Ombra più intensa al hover */
 }
 
 .product-image {
     width: 100%;
-    height: 200px; /* Aumentato leggermente l'altezza dell'immagine */
+    height: 220px; /* Altezza immagine leggermente maggiore */
     object-fit: cover;
-    border-radius: 12px 12px 0 0; /* Angoli arrotondati solo in alto */
-    margin-bottom: 15px; /* Spazio sotto l'immagine */
+    border-radius: 12px 12px 0 0;
+    margin-bottom: 15px;
 }
 
 .product-details {
-    padding: 0 20px 20px; /* Padding interno, più in basso */
-    flex-grow: 1; /* Permette al blocco dettagli di occupare lo spazio rimanente */
+    padding: 0 20px 20px;
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Spinge il pulsante in basso */
+    justify-content: space-between;
 }
 
 .product-name {
-    font-size: 1.3rem; /* Dimensione maggiore */
-    font-weight: bold;
+    font-size: 1.4rem; /* Dimensione maggiore */
+    font-weight: 700;
     color: var(--text-color);
     margin-bottom: 8px;
-    min-height: 48px; /* Assicura altezza minima per nomi su più righe */
+    min-height: 54px; /* Altezza minima per nomi su più righe */
 }
 
 .product-description {
-    font-size: 0.95rem;
-    margin: 0.5rem 0 15px 0; /* Spazio sotto */
+    font-size: 1rem;
+    margin: 0.5rem 0 15px 0;
     color: var(--light-text-color);
-    flex-grow: 1; /* Permette alla descrizione di occupare spazio */
+    flex-grow: 1;
 }
 
-.product-price, .product-unit {
-    font-size: 1.3rem; /* Dimensione maggiore */
+.product-price, .product-price-per-unit { /* Stili unificati per i prezzi */
+    font-size: 1.3rem;
     font-weight: bold;
-    color: var(--primary-color); /* Colore del prezzo viola */
+    color: var(--primary-color); /* Prezzo in verde */
     margin-bottom: 15px;
 }
 
 /* === Quantity/Weight Control === */
-.quantity-control, .weight-input-group { /* Ho unito le classi per stile comune */
+.quantity-control, .weight-input-group {
     display: flex;
     align-items: center;
-    justify-content: center; /* Centra gli elementi di controllo */
-    gap: 10px; /* Spazio tra i pulsanti e l'input */
+    justify-content: center;
+    gap: 10px;
     margin-top: 15px;
-    margin-bottom: 20px; /* Spazio sotto il controllo */
+    margin-bottom: 20px;
 }
 
-.qty-btn { /* Nuovo nome per i pulsanti quantità (+/-) */
+.qty-btn {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 0; /* Rimuovi padding */
-    width: 38px; /* Aumentata dimensione */
-    height: 38px; /* Aumentata dimensione */
+    width: 40px; /* Dimensione aumentata */
+    height: 40px; /* Dimensione aumentata */
     border-radius: 50%;
-    font-size: 1.4rem; /* Dimensione del testo per +/- */
+    font-size: 1.6rem; /* Dimensione del testo per +/- */
+    line-height: 1; /* Allineamento testo */
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Ombra leggera sui bottoni */
 }
 
 .qty-btn:hover {
     background-color: var(--primary-dark);
-    transform: scale(1.05); /* Piccolo ingrandimento al hover */
+    transform: scale(1.08); /* Piccolo ingrandimento al hover */
 }
 .qty-btn:active {
-    transform: scale(0.95); /* Piccolo rimpicciolimento al click */
+    transform: scale(0.95);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
-.product-quantity-input, .product-weight-input { /* Unito stili per input */
-    width: 70px; /* Larghezza maggiore */
+.product-quantity-input, .product-weight-input {
+    width: 75px; /* Larghezza maggiore */
     text-align: center;
-    padding: 8px 5px; /* Aumentato padding */
+    padding: 10px 5px; /* Aumentato padding */
     border: 1px solid var(--border-color);
-    border-radius: 5px;
-    font-size: 1.1rem; /* Dimensione testo input */
+    border-radius: 6px; /* Più arrotondati */
+    font-size: 1.2rem; /* Dimensione testo input */
     color: var(--text-color);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Ombra interna soft */
 }
 
-.product-weight-input + span { /* Stile per "Kg" o "g" dopo l'input del peso */
-    font-size: 1rem;
-    color: var(--light-text-color);
-    margin-left: -5px; /* Avvicina al campo input */
-}
-
-
-/* === Order Summary Table (La tua tabella è già ben fatta, piccoli ritocchi) === */
-.order-summary-table {
-    width: 90%;
-    max-width: 900px; /* Aumentata leggermente la larghezza massima */
-    margin: 3rem auto 3rem auto; /* Spazio maggiore sopra e sotto */
-    border-collapse: collapse;
-    box-shadow: 0 4px 15px var(--shadow-light); /* Ombra più soft */
-    background-color: var(--background-white);
-    border-radius: 10px; /* Angoli più arrotondati */
-    overflow: hidden;
-}
-
-.order-summary-table thead {
-    background-color: var(--primary-color); /* Intestazione tabella viola */
-    color: white;
-}
-
-.order-summary-table th,
-.order-summary-table td {
-    padding: 1rem 1.2rem; /* Aumentato il padding */
-    text-align: left;
-    border-bottom: 1px solid #eee; /* Bordo più chiaro */
-}
-
-.order-summary-table tbody tr:hover {
-    background-color: #f8f8f8; /* Sfondo più chiaro al hover */
-}
-
-.order-summary-table .order-total-row td {
-    font-weight: bold;
-    text-align: right;
-    padding-top: 1.5rem; /* Aumentato il padding */
-    border-top: 2px solid var(--primary-color); /* Bordo superiore viola */
+.product-weight-input + span {
     font-size: 1.1rem;
-    color: var(--text-color);
+    color: var(--light-text-color);
+    margin-left: 5px; /* Sposta "Grammi" un po' più a destra */
 }
 
 
-/* === Delivery Time Selection / Order Form (Modificato per coerenza) === */
-.delivery-time-section { /* Nuovo selettore per la sezione fascia oraria */
-    margin: 50px 0; /* Spazio per la sezione */
+/* === Delivery Time Selection / Order Form === */
+.delivery-time-section {
+    margin: 50px auto; /* Spazio e centrato */
+    max-width: 600px;
+    text-align: center;
 }
 
-.form-group { /* Contenitore per label e input/select */
+.form-group {
     margin-bottom: 25px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra gli elementi del form */
+    align-items: center;
+    gap: 10px; /* Spazio tra label e select/input */
 }
 
 .form-group label {
     display: block;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
+    font-size: 1.2rem; /* Più grande */
     color: var(--text-color);
     font-weight: 600;
 }
 
-.delivery-time-select, .order-form select { /* Stile combinato per i select */
+.delivery-time-select, .order-form select {
     width: 100%;
-    max-width: 350px; /* Larghezza massima per la select */
-    padding: 12px 15px; /* Aumentato padding */
+    max-width: 400px; /* Larghezza massima aumentata */
+    padding: 14px 20px; /* Aumentato padding */
     border: 1px solid var(--border-color);
-    border-radius: 8px; /* Angoli più arrotondati */
+    border-radius: 8px;
     background-color: var(--background-white);
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--text-color);
-    appearance: none; /* Rimuove lo stile di default del sistema operativo */
+    appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-5.4H18.8c-7.7%200-13.5%204.6-13.8%205.4a17.6%2017.6%200%200%200%200%2022.3l128%20128c4.8%204.8%2011.6%207.6%2018.6%207.6s13.8-2.8%2018.6-7.6l128-128c5-5.1%205.2-13.2.1-18.2z%22%2F%3E%3C%2Fsvg%3E'); /* Freccia personalizzata */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-5.4H18.8c-7.7%200-13.5%204.6-13.8%205.4a17.6%2017.6%200%200%200%200%2022.3l128%20128c4.8%204.8%2011.6%207.6%2018.6%207.6s13.8-2.8%2018.6-7.6l128-128c5-5.1%205.2-13.2.1-18.2z%22%2F%3E%3C%2Fsvg%3E'); /* Freccia personalizzata */
     background-repeat: no-repeat;
-    background-position: right 15px top 50%, 0 0;
-    background-size: 14px auto, 100%;
+    background-position: right 20px center;
+    background-size: 16px auto;
     cursor: pointer;
     box-shadow: 0 2px 5px var(--shadow-light);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -401,31 +408,32 @@ main.main-content { /* Aggiungo un selettore per il contenuto principale */
 .delivery-time-select:focus, .order-form select:focus {
     border-color: var(--primary-color);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(43, 226, 58, 0.2); /* Sottile alone viola al focus */
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2); /* Alone verde al focus */
 }
 
-.order-form { /* Il form vero e proprio, se usato per invio ordine */
+.order-form {
     width: 90%;
-    max-width: 450px; /* Larghezza leggermente maggiore */
+    max-width: 500px;
     margin: 0 auto 3rem auto;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; /* Spazio maggiore tra gli elementi */
-    padding: 25px;
+    gap: 1.5rem;
+    padding: 30px;
     background-color: var(--background-white);
-    border-radius: 10px;
-    box-shadow: 0 5px 15px var(--shadow-light);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow-light);
 }
 
 .order-form input[type="text"],
 .order-form input[type="email"],
-.order-form textarea { /* Stili per input di testo */
-    padding: 10px 12px;
+.order-form textarea {
+    padding: 12px 15px;
     border: 1px solid var(--border-color);
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 1rem;
     color: var(--text-color);
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
 }
 
 .order-form input[type="text"]:focus,
@@ -433,48 +441,49 @@ main.main-content { /* Aggiungo un selettore per il contenuto principale */
 .order-form textarea:focus {
     border-color: var(--primary-color);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.2);
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
 }
 
 /* === Pulsante principale (Vai al carrello / Invia Ordine) === */
+.cart-button-section {
+    text-align: center;
+    margin: 50px 0;
+}
+
 .main-button {
-    background-color: var(--primary-color); /* Pulsante viola */
+    background-color: var(--primary-color);
     color: white;
-    padding: 14px 28px; /* Aumentato padding */
-    font-size: 1.1rem; /* Dimensione maggiore del testo */
+    padding: 16px 32px; /* Aumentato padding per un bottone più imponente */
+    font-size: 1.2rem; /* Testo più grande */
     border: none;
-    border-radius: 8px; /* Angoli più arrotondati */
+    border-radius: 10px; /* Angoli più arrotondati */
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 700; /* Più bold */
+    letter-spacing: 0.5px; /* Spaziatura leggera per il testo */
+    text-transform: uppercase; /* Testo maiuscolo */
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 10px rgba(138, 43, 226, 0.2); /* Ombra per profondità */
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3); /* Ombra verde più accentuata */
 }
 
 .main-button:hover {
-    background-color: var(--primary-dark); /* Tonalità più scura al hover */
-    transform: translateY(-2px); /* Effetto leggero di sollevamento */
-    box-shadow: 0 6px 15px rgba(138, 43, 226, 0.3);
+    background-color: var(--primary-dark);
+    transform: translateY(-3px); /* Effetto di sollevamento più evidente */
+    box-shadow: 0 9px 20px rgba(76, 175, 80, 0.4);
 }
 
 .main-button:active {
-    transform: translateY(0); /* Al click torna alla posizione originale */
-    box-shadow: 0 2px 5px rgba(138, 43, 226, 0.2);
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(76, 175, 80, 0.2);
 }
-
-.cart-button-section { /* Contenitore per il pulsante del carrello */
-    text-align: center;
-    margin: 40px 0; /* Margine sopra e sotto */
-}
-
 
 /* === Footer === */
-footer.site-footer { /* Modificato il selettore */
-    background-color: #333; /* Sfondo scuro */
-    color: #eee; /* Testo chiaro */
+footer.site-footer {
+    background-color: #222; /* Grigio molto scuro */
+    color: #bbb; /* Testo grigio chiaro */
     text-align: center;
-    padding: 25px 0; /* Aumentato il padding */
-    font-size: 0.9rem;
-    margin-top: auto; /* Spinge il footer in fondo alla pagina */
+    padding: 30px 0; /* Aumentato il padding */
+    font-size: 0.95rem;
+    margin-top: auto;
 }
 
 footer.site-footer p {
@@ -482,154 +491,144 @@ footer.site-footer p {
 }
 
 /* === Media Queries per la responsività === */
-@media (max-width: 768px) {
+@media (max-width: 992px) { /* Tablet orizzontale */
     .site-title {
-        font-size: 28px;
+        font-size: 32px;
     }
-
     nav.main-nav ul {
-        flex-direction: column; /* Impila la navigazione su schermi piccoli */
-        gap: 10px;
-        text-align: center;
-        margin-top: 20px;
+        gap: 25px;
     }
-
     nav.main-nav a.nav-item {
-        padding: 8px 10px;
-        font-size: 15px;
+        font-size: 16px;
     }
-
-    .site-header .container {
-        flex-direction: column; /* Header su due righe */
-    }
-
     .hero-overlay h2 {
-        font-size: 2rem;
+        font-size: 3rem;
     }
-
     .hero-overlay p {
-        font-size: 1rem;
+        font-size: 1.4rem;
     }
-
     .section-title {
-        font-size: 26px;
-        text-align: center; /* Centra il titolo principale su mobile */
+        font-size: 34px;
     }
-
     .section-subtitle {
-        font-size: 20px;
-        text-align: center; /* Centra i sottotitoli su mobile */
+        font-size: 24px;
     }
-
     .product-list {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Riduci la larghezza minima della card */
-        gap: 20px;
-    }
-
-    .product-card {
-        padding-bottom: 15px;
-    }
-
-    .product-name {
-        font-size: 1.1rem;
-    }
-
-    .product-price, .product-unit {
-        font-size: 1.2rem;
-    }
-
-    .qty-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 1.2rem;
-    }
-
-    .product-quantity-input, .product-weight-input {
-        width: 60px;
-        font-size: 1rem;
-    }
-
-    .order-summary-table {
-        width: 95%; /* Leggermente più largo su mobile */
-    }
-
-    .order-summary-table th,
-    .order-summary-table td {
-        padding: 0.8rem 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    .main-button {
-        padding: 12px 20px;
-        font-size: 1rem;
-    }
-
-    .delivery-time-select, .order-form select {
-        padding: 10px 12px;
-        font-size: 0.95rem;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }
 }
 
-@media (max-width: 480px) {
-    .site-title {
-        font-size: 24px;
+@media (max-width: 768px) { /* Tablet verticale / Mobile orizzontale */
+    header.site-header .container {
+        flex-direction: column; /* Impila header e nav */
+        text-align: center;
+        gap: 15px; /* Spazio tra titolo e nav */
+    }
+    nav.main-nav {
+        margin-left: 0; /* Rimuovi auto-margin */
+        width: 100%; /* Occupare tutta la larghezza */
+    }
+    nav.main-nav ul {
+        flex-direction: column; /* Impila la navigazione */
+        gap: 10px;
+    }
+    nav.main-nav a.nav-item {
+        font-size: 17px;
+        padding: 5px 0;
+    }
+    nav.main-nav a.nav-item::after { /* Sottolineatura centrata */
+        left: 50%;
+        transform: translateX(-50%);
     }
 
-    .main-nav a.nav-item {
-        font-size: 14px;
-        padding: 6px 8px;
+    .hero-image {
+        height: 350px;
     }
-
     .hero-overlay h2 {
-        font-size: 1.8rem;
+        font-size: 2.5rem;
     }
     .hero-overlay p {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
     }
-
+    .intro-text {
+        font-size: 1.1rem;
+        margin: 2rem auto;
+    }
     .section-title {
-        font-size: 22px;
+        font-size: 30px;
         margin: 30px 0 20px 0;
     }
-
     .section-subtitle {
-        font-size: 18px;
-        margin-top: 30px;
+        font-size: 22px;
+        margin-top: 40px;
         margin-bottom: 20px;
     }
-
-    .product-list {
-        grid-template-columns: 1fr; /* Una colonna su schermi molto piccoli */
-        padding: 0 15px;
-    }
-
     .product-card {
-        margin: 0 auto; /* Centra le card */
-        max-width: 300px; /* Limita la larghezza massima per non essere troppo larghe */
+        margin: 0 auto;
+        max-width: 320px;
     }
     .product-image {
-        height: 160px;
+        height: 180px;
     }
-
-    .product-details {
-        padding: 0 15px 15px;
+    .product-name {
+        font-size: 1.2rem;
     }
-
-    .order-summary-table {
-        font-size: 0.85rem;
+    .product-price, .product-price-per-unit {
+        font-size: 1.1rem;
     }
-
-    .order-summary-table th,
-    .order-summary-table td {
-        padding: 0.6rem 0.6rem;
+    .qty-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.4rem;
     }
-
-    .main-button {
-        padding: 10px 15px;
-        font-size: 0.9rem;
+    .product-quantity-input, .product-weight-input {
+        width: 65px;
+        font-size: 1.1rem;
     }
-
     .delivery-time-select, .order-form select {
-        font-size: 0.9rem;
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+    .main-button {
+        padding: 14px 25px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile */
+    .site-title {
+        font-size: 28px;
+    }
+    nav.main-nav a.nav-item {
+        font-size: 16px;
+    }
+    .hero-image {
+        height: 300px;
+    }
+    .hero-overlay h2 {
+        font-size: 2rem;
+    }
+    .hero-overlay p {
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 26px;
+    }
+    .section-subtitle {
+        font-size: 20px;
+    }
+    .product-list {
+        grid-template-columns: 1fr; /* Una colonna su mobile stretto */
+        padding: 0 15px;
+    }
+    .product-card {
+        max-width: 280px; /* Ancora più stretto */
+    }
+    .product-image {
+        height: 150px;
+    }
+    .main-button {
+        padding: 12px 20px;
+        font-size: 1rem;
     }
 }

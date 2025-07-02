@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-27 17:16:45
+/* Smarty version 5.5.1, created on 2025-07-02 11:49:12
   from 'file:layouts/base.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685eb5ddf213d6_36205341',
+  'unifunc' => 'content_68650098e70023_59906758',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6a0607ea6dd56ded53b65d43a77552897765cdd6' => 
     array (
       0 => 'layouts/base.tpl',
-      1 => 1750707295,
+      1 => 1751449749,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_685eb5ddf213d6_36205341 (\Smarty\Template $_smarty_tpl) {
+function content_68650098e70023_59906758 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -30,34 +30,61 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 <html lang="it">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title><?php echo (($tmp = $_smarty_tpl->getValue('titolo_pagina') ?? null)===null||$tmp==='' ? "Casette dei Desideri" ?? null : $tmp);?>
 </title>
-    <link rel="stylesheet" href="/libs/Smarty/css/style.css">
-</head>
-<body>
 
-    <?php $_smarty_tpl->renderSubTemplate("file:partials/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/public/assets/css/style.css"> 
+    
+
+    <?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_52059738368650098e69908_71766385', "head_extra");
 ?>
 
-    <main>
+</head>
+<body>
+    <?php $_smarty_tpl->renderSubTemplate("file:partials/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
+    <main> 
         <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_340436622685eb5ddf20858_89865086', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_57090950268650098e6eef8_88255168', "contenuto");
 ?>
 
     </main>
-
     <?php $_smarty_tpl->renderSubTemplate("file:partials/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
+    <?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_95629489368650098e6faa7_64424604', "scripts");
 ?>
 
 </body>
-</html>
-<?php }
+</html> <?php }
+/* {block "head_extra"} */
+class Block_52059738368650098e69908_71766385 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\layouts';
+}
+}
+/* {/block "head_extra"} */
 /* {block "contenuto"} */
-class Block_340436622685eb5ddf20858_89865086 extends \Smarty\Runtime\Block
+class Block_57090950268650098e6eef8_88255168 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\layouts';
 }
 }
 /* {/block "contenuto"} */
+/* {block "scripts"} */
+class Block_95629489368650098e6faa7_64424604 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\layouts';
+}
+}
+/* {/block "scripts"} */
 }

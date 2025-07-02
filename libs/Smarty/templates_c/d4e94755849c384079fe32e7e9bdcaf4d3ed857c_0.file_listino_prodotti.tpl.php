@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-01 18:56:09
+/* Smarty version 5.5.1, created on 2025-07-02 12:44:54
   from 'file:utente/listino_prodotti.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68641329dbf019_54361492',
+  'unifunc' => 'content_68650da62c90d2_86794290',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd4e94755849c384079fe32e7e9bdcaf4d3ed857c' => 
     array (
       0 => 'utente/listino_prodotti.tpl',
-      1 => 1751388964,
+      1 => 1751453086,
       2 => 'file',
     ),
   ),
@@ -20,43 +20,40 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_68641329dbf019_54361492 (\Smarty\Template $_smarty_tpl) {
+function content_68650da62c90d2_86794290 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_205441948668641329d858d9_01540888', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_123923467768650da621d202_14270673', "contenuto");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5143350968641329dbe1b3_15628852', "scripts");
-?>
-
-<?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_148336000768650da62c85f3_22712462', "scripts");
+$_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_205441948668641329d858d9_01540888 extends \Smarty\Runtime\Block
+class Block_123923467768650da621d202_14270673 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?>
 
 
+<main class="main-content container">
 
-    <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/style.css">
+    <section class="hero-section">
+        <img src="/Casette_Dei_Desideri/public/assets/images/spesa_domicilio.jpg" class="hero-image" alt="Spesa a domicilio">
+        <div class="hero-overlay">
+            <h2>I NOSTRI SERVIZI</h2>
+            <p>Il soggiorno presso le nostre strutture è contornato dalla possibilità di ordinare spesa a domicilio.</p>
+        </div>
+    </section>
 
-
-
-    <section class="hero-section" style="position: relative; height: 400px;">
-  <img src="/public/assets/images/spesa_domicilio.jpg" class="img-fluid" alt="Spesa a domicilio">
-  <div class="hero-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
-    <h2>I NOSTRI SERVIZI</h2>
-    <p>Il soggiorno presso le nostre strutture è contornato dalla possibilità di ordinare spesa a domicilio.</p>
-  </div>
-</section>
+    
 
 
     <section class="intro-text">
@@ -93,7 +90,7 @@ $foreach0DoElse = false;
 ]" min="0" value="0" class="product-quantity-input" readonly>
                                 <button type="button" class="qty-btn" data-action="plus">+</button>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 <?php
 }
@@ -129,7 +126,7 @@ $foreach1DoElse = false;
                                 <input type="number" name="quantitaP[<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
 ]" min="0" step="50" value="0" class="product-weight-input"> Grammi
                             </div>
-                            </div>
+                        </div>
                     </div>
                 <?php
 }
@@ -142,7 +139,8 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
         <section class="delivery-time-section">
             <h3 class="section-subtitle">Scegli l'orario di consegna</h3>
-            <div class="form-group"> <label for="fascia_oraria">Orario preferito:</label>
+            <div class="form-group">
+                <label for="fascia_oraria">Orario preferito:</label>
                 <select id="fascia_oraria" name="fascia_oraria" class="delivery-time-select" required>
                     <option value="">Seleziona un orario</option>
                     <option value="09-10">09:00 - 10:00</option>
@@ -154,19 +152,20 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             </div>
         </section>
 
-
         <section class="cart-button-section">
             <button type="submit" class="main-button">Vai al Riepilogo</button>
         </section>
 
     </form>
 
+</main>
+
 <?php
 }
 }
 /* {/block "contenuto"} */
 /* {block "scripts"} */
-class Block_5143350968641329dbe1b3_15628852 extends \Smarty\Runtime\Block
+class Block_148336000768650da62c85f3_22712462 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
@@ -174,6 +173,30 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 
     <?php echo '<script'; ?>
  src="/public/assets/js/product_quantity.js"><?php echo '</script'; ?>
+>
+    <?php echo '<script'; ?>
+>
+        // Piccolo script per gestire la quantità dei prodotti (come prima)
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.quantity-control').forEach(function(control) {
+                const minusBtn = control.querySelector('[data-action="minus"]');
+                const plusBtn = control.querySelector('[data-action="plus"]');
+                const input = control.querySelector('.product-quantity-input');
+
+                minusBtn.addEventListener('click', function() {
+                    let value = parseInt(input.value);
+                    if (value > input.min) {
+                        input.value = value - 1;
+                    }
+                });
+
+                plusBtn.addEventListener('click', function() {
+                    let value = parseInt(input.value);
+                    input.value = value + 1;
+                });
+            });
+        });
+    <?php echo '</script'; ?>
 >
 <?php
 }

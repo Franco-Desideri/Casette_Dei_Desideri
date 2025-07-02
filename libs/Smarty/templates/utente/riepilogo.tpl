@@ -2,6 +2,8 @@
 
 {block name="contenuto"}
 
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/style.css">
+
 <h2 class="section-title">Riepilogo Ordine</h2>
 
 {if isset($ordine.prodotti) && count($ordine.prodotti) > 0}

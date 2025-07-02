@@ -2,18 +2,17 @@
 
 {block name="contenuto"}
 
+<main class="main-content container">
 
-    <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/style.css">
+    <section class="hero-section">
+        <img src="/Casette_Dei_Desideri/public/assets/images/spesa_domicilio.jpg" class="hero-image" alt="Spesa a domicilio">
+        <div class="hero-overlay">
+            <h2>I NOSTRI SERVIZI</h2>
+            <p>Il soggiorno presso le nostre strutture è contornato dalla possibilità di ordinare spesa a domicilio.</p>
+        </div>
+    </section>
 
-
-
-    <section class="hero-section" style="position: relative; height: 400px;">
-  <img src="/public/assets/images/spesa_domicilio.jpg" class="img-fluid" alt="Spesa a domicilio">
-  <div class="hero-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center;">
-    <h2>I NOSTRI SERVIZI</h2>
-    <p>Il soggiorno presso le nostre strutture è contornato dalla possibilità di ordinare spesa a domicilio.</p>
-  </div>
-</section>
+    
 
 
     <section class="intro-text">
@@ -38,7 +37,7 @@
                                 <input type="number" name="quantitaQ[{$prodotto->getId()}]" min="0" value="0" class="product-quantity-input" readonly>
                                 <button type="button" class="qty-btn" data-action="plus">+</button>
                             </div>
-                            </div>
+                        </div>
                     </div>
                 {/foreach}
             </section>
@@ -61,7 +60,7 @@
                             <div class="weight-input-group">
                                 <input type="number" name="quantitaP[{$prodotto->getId()}]" min="0" step="50" value="0" class="product-weight-input"> Grammi
                             </div>
-                            </div>
+                        </div>
                     </div>
                 {/foreach}
             </section>
@@ -72,7 +71,8 @@
 
         <section class="delivery-time-section">
             <h3 class="section-subtitle">Scegli l'orario di consegna</h3>
-            <div class="form-group"> <label for="fascia_oraria">Orario preferito:</label>
+            <div class="form-group">
+                <label for="fascia_oraria">Orario preferito:</label>
                 <select id="fascia_oraria" name="fascia_oraria" class="delivery-time-select" required>
                     <option value="">Seleziona un orario</option>
                     <option value="09-10">09:00 - 10:00</option>
@@ -84,15 +84,38 @@
             </div>
         </section>
 
-
         <section class="cart-button-section">
             <button type="submit" class="main-button">Vai al Riepilogo</button>
         </section>
 
     </form>
 
+</main>
+
 {/block}
 
 {block name="scripts"}
     <script src="/public/assets/js/product_quantity.js"></script>
+    <script>
+        // Piccolo script per gestire la quantità dei prodotti (come prima)
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.quantity-control').forEach(function(control) {
+                const minusBtn = control.querySelector('[data-action="minus"]');
+                const plusBtn = control.querySelector('[data-action="plus"]');
+                const input = control.querySelector('.product-quantity-input');
+
+                minusBtn.addEventListener('click', function() {
+                    let value = parseInt(input.value);
+                    if (value > input.min) {
+                        input.value = value - 1;
+                    }
+                });
+
+                plusBtn.addEventListener('click', function() {
+                    let value = parseInt(input.value);
+                    input.value = value + 1;
+                });
+            });
+        });
+    </script>
 {/block}
