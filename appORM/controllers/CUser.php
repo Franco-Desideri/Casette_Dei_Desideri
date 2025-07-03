@@ -194,4 +194,41 @@ class CUser
             $view->mostraRegistrazione();
         }
     }
+
+    public function modificaEmail(): void
+    {
+        USession::start();
+        $id = USession::get('utente_id');
+        $utente = FPersistentManager::get()->find(EUtente::class, $id);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
+            $newEmail = $_POST['email'];
+
+            if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+                die("Email non valida.");
+            }
+
+            $utente->setEmail($newEmail);
+            FPersistentManager::store($utente);
+
+            header("Location: /Casette_Dei_Desideri/User/profilo");
+            exit;
+        }
+    }
+
+    public function modificaTelefono(): void
+    {
+        USession::start();
+        $id = USession::get('utente_id');
+        $utente = FPersistentManager::get()->find(EUtente::class, $id);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['telefono'])) {
+            $telefono = trim($_POST['telefono']);
+            $utente->setTell($telefono);
+            FPersistentManager::store($utente);
+
+            header("Location: /Casette_Dei_Desideri/User/profilo");
+            exit;
+        }
+    }
 }

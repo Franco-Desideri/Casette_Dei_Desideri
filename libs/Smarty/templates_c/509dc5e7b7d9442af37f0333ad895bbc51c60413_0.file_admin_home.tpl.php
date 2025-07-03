@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-02 18:46:38
+/* Smarty version 5.5.1, created on 2025-07-03 20:36:47
   from 'file:admin/admin_home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6865626e8d5040_63233009',
+  'unifunc' => 'content_6866cdbfcd5897_78797354',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '509dc5e7b7d9442af37f0333ad895bbc51c60413' => 
     array (
       0 => 'admin/admin_home.tpl',
-      1 => 1751474705,
+      1 => 1751567804,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6865626e8d5040_63233009 (\Smarty\Template $_smarty_tpl) {
+function content_6866cdbfcd5897_78797354 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -85,10 +85,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li><a href="/Casette_Dei_Desideri/User/home" class="active">Home</a></li>
-              <li><a href="/Casette_Dei_Desideri/Struttura/lista">Strutture</a></li>
-              <li><a href="/Casette_Dei_Desideri/Ordine/listaProdotti">Servizi</a></li>
-              <li><a href="/Casette_Dei_Desideri/User/profilo">Profilo</a></li>
+              <li><a href="/Casette_Dei_Desideri/AdminContenuti/home" class="active">Home</a></li>
+              <li><a href="/Casette_Dei_Desideri/AdminStruttura/lista">Strutture</a></li>
+              <li><a href="/Casette_Dei_Desideri/AdminProdotto/lista">Servizi</a></li>
+              <li><a href="/Casette_Dei_Desideri/Admin/profilo">Profilo</a></li>
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
@@ -101,13 +101,16 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
   </header>
   <!-- ***** Header Area End ***** -->
 
-  <div class="hero-card">
-    <img src="/Casette_Dei_Desideri/public/assets/immagini/hero.jpg" alt="B&B Casette Dei Desideri">
-    <div class="hero-text">
-      <div class="hero-title">B&amp;B Casette Dei Desideri</div>
-      <div class="hero-subtitle">"Buon giorno buona gente"...</div>
-      <div class="hero-subtitle">Il vostro soggiorno a Pogio Bustone presso Le Casette Dei Desideri vi aspetta.</div>
-      <div class="hero-subtitle">Venite a scoprire i nostri servizi e le meraviglie che vi riserva il nostro paese!</div>
+  <div class="hero-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="hero-title">B&amp;B Casette Dei Desideri</h3>
+          <p class="hero-subtitle">"Buon giorno buona gente"...</p>
+          <p class="hero-subtitle">Il vostro soggiorno a Poggio Bustone presso Le Casette Dei Desideri vi aspetta.</p>
+          <p class="hero-subtitle">Venite a scoprire i nostri servizi e le meraviglie che vi riserva il nostro paese!</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -124,7 +127,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 
  <!-- Sezione ATTRAZIONI -->
 <div class="section-divider"></div>
-<h2 class="section-title">Perché venire a trovarci?</h2>
+<h2 class="section-title">Modifica, aggiungi ed elimina attrazioni</h2>
 
 <!-- Pulsante aggiungi attrazione -->
 <form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiAttrazione" method="post" style="margin-bottom: 20px;">
@@ -168,7 +171,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
 <!-- Sezione EVENTI -->
 <div class="section-divider"></div>
-<h2 class="section-title">Eventi da non perdere</h2>
+<h2 class="section-title">Modifica, aggiungi ed elimina eventi</h2>
 
 <!-- Pulsante aggiungi evento -->
 <form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiEvento" method="post" style="margin-bottom: 20px;">

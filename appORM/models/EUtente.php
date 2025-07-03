@@ -84,7 +84,14 @@ class EUtente
     public function getCodicefisc(): string { return $this->codicefisc; }
     public function setCodicefisc(string $codicefisc): void { $this->codicefisc = $codicefisc; }
 
-    public function getSesso(): string { return $this->sesso; }
+    public function getSesso(): string
+    {
+        return match (strtoupper($this->sesso)) {
+            'M' => 'Maschio',
+            'F' => 'Femmina',
+            default => 'Altro',
+        };
+    }
     public function setSesso(string $sesso): void { $this->sesso = $sesso; }
 
     public function getDataN(): \DateTime { return $this->dataN; }

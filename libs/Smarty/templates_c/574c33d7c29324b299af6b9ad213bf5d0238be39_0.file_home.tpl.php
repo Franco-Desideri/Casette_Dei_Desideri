@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-02 18:19:32
+/* Smarty version 5.5.1, created on 2025-07-03 20:16:14
   from 'file:utente/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68655c14e6b935_20590834',
+  'unifunc' => 'content_6866c8eee484e7_40767137',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '574c33d7c29324b299af6b9ad213bf5d0238be39' => 
     array (
       0 => 'utente/home.tpl',
-      1 => 1751472503,
+      1 => 1751566164,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_68655c14e6b935_20590834 (\Smarty\Template $_smarty_tpl) {
+function content_6866c8eee484e7_40767137 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -77,23 +77,21 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo" style="text-align: left; width: 100%;">
-            <h1 style="white-space: nowrap; font-size: 24px;">Casetta dei Desideri</h1>
+          <nav class="main-nav d-flex justify-content-between align-items-center">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+              <h1 style="white-space: nowrap; font-size: 24px;">Casetta dei Desideri</h1>
             </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-              <li><a href="/Casette_Dei_Desideri/User/home" class="active">Home</a></li>
-              <li><a href="/Casette_Dei_Desideri/Struttura/lista">Strutture</a></li>
-              <li><a href="/Casette_Dei_Desideri/Ordine/listaProdotti">Servizi</a></li>
-              <li><a href="/Casette_Dei_Desideri/User/profilo">Profilo</a></li>
-            </ul>
-            <a class='menu-trigger'>
-              <span>Menu</span>
-            </a>
-            <!-- ***** Menu End ***** -->
+
+            <!-- Menu -->
+            <div class="d-flex align-items-center" style="gap: 20px;">
+              <ul class="nav mb-0">
+                <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
+                <li><a href="/Casette_Dei_Desideri/Struttura/lista">Strutture</a></li>
+                <li><a href="/Casette_Dei_Desideri/Ordine/listaProdotti">Servizi</a></li>
+                <li><a href="/Casette_Dei_Desideri/User/profilo" class="active">Profilo</a></li>
+              </ul>
+            </div>
           </nav>
         </div>
       </div>
@@ -101,15 +99,19 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
   </header>
   <!-- ***** Header Area End ***** -->
 
-  <div class="hero-card">
-    <img src="/Casette_Dei_Desideri/public/assets/immagini/hero.jpg" alt="B&B Casette Dei Desideri">
-    <div class="hero-text">
-      <div class="hero-title">B&amp;B Casette Dei Desideri</div>
-      <div class="hero-subtitle">"Buon giorno buona gente"...</div>
-      <div class="hero-subtitle">Il vostro soggiorno a Pogio Bustone presso Le Casette Dei Desideri vi aspetta.</div>
-      <div class="hero-subtitle">Venite a scoprire i nostri servizi e le meraviglie che vi riserva il nostro paese!</div>
+  <div class="hero-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="hero-title">B&amp;B Casette Dei Desideri</h3>
+          <p class="hero-subtitle">"Buon giorno buona gente"...</p>
+          <p class="hero-subtitle">Il vostro soggiorno a Poggio Bustone presso Le Casette Dei Desideri vi aspetta.</p>
+          <p class="hero-subtitle">Venite a scoprire i nostri servizi e le meraviglie che vi riserva il nostro paese!</p>
+        </div>
+      </div>
     </div>
   </div>
+
 
 
   <section class="story-section">

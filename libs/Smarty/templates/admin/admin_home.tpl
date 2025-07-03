@@ -60,10 +60,10 @@
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li><a href="/Casette_Dei_Desideri/User/home" class="active">Home</a></li>
-              <li><a href="/Casette_Dei_Desideri/Struttura/lista">Strutture</a></li>
-              <li><a href="/Casette_Dei_Desideri/Ordine/listaProdotti">Servizi</a></li>
-              <li><a href="/Casette_Dei_Desideri/User/profilo">Profilo</a></li>
+              <li><a href="/Casette_Dei_Desideri/AdminContenuti/home" class="active">Home</a></li>
+              <li><a href="/Casette_Dei_Desideri/AdminStruttura/lista">Strutture</a></li>
+              <li><a href="/Casette_Dei_Desideri/AdminProdotto/lista">Servizi</a></li>
+              <li><a href="/Casette_Dei_Desideri/Admin/profilo">Profilo</a></li>
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
@@ -76,13 +76,16 @@
   </header>
   <!-- ***** Header Area End ***** -->
 
-  <div class="hero-card">
-    <img src="/Casette_Dei_Desideri/public/assets/immagini/hero.jpg" alt="B&B Casette Dei Desideri">
-    <div class="hero-text">
-      <div class="hero-title">B&amp;B Casette Dei Desideri</div>
-      <div class="hero-subtitle">"Buon giorno buona gente"...</div>
-      <div class="hero-subtitle">Il vostro soggiorno a Pogio Bustone presso Le Casette Dei Desideri vi aspetta.</div>
-      <div class="hero-subtitle">Venite a scoprire i nostri servizi e le meraviglie che vi riserva il nostro paese!</div>
+  <div class="hero-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h3 class="hero-title">B&amp;B Casette Dei Desideri</h3>
+          <p class="hero-subtitle">"Buon giorno buona gente"...</p>
+          <p class="hero-subtitle">Il vostro soggiorno a Poggio Bustone presso Le Casette Dei Desideri vi aspetta.</p>
+          <p class="hero-subtitle">Venite a scoprire i nostri servizi e le meraviglie che vi riserva il nostro paese!</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -99,7 +102,7 @@
 
  <!-- Sezione ATTRAZIONI -->
 <div class="section-divider"></div>
-<h2 class="section-title">Perché venire a trovarci?</h2>
+<h2 class="section-title">Modifica, aggiungi ed elimina attrazioni</h2>
 
 <!-- Pulsante aggiungi attrazione -->
 <form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiAttrazione" method="post" style="margin-bottom: 20px;">
@@ -132,7 +135,7 @@
 
 <!-- Sezione EVENTI -->
 <div class="section-divider"></div>
-<h2 class="section-title">Eventi da non perdere</h2>
+<h2 class="section-title">Modifica, aggiungi ed elimina eventi</h2>
 
 <!-- Pulsante aggiungi evento -->
 <form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiEvento" method="post" style="margin-bottom: 20px;">
