@@ -83,7 +83,6 @@ https://templatemo.com/tm-591-villa-agency
                       <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
                       <li><a href="/Casette_Dei_Desideri/Struttura/lista"class="active">Strutture</a></li>
                       <li><a href="contact.html">Contatti</a></li>
-                      <li><a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a></li>
                   </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>
@@ -483,18 +482,6 @@ https://templatemo.com/tm-591-villa-agency
       }
     });
   </script>
-
-
-
-
-
-
-
-
-
-
-
-
 
   </body>
 </html>

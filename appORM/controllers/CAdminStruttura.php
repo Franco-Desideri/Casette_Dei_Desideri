@@ -162,11 +162,12 @@ class CAdminStruttura
         $struttura->setLuogo($dati['luogo']);
         $struttura->setNBagni((int)$dati['nBagni']);
         $struttura->setNLetti((int)$dati['nLetti']);
-        $struttura->setColazione(isset($dati['colazione']));
-        $struttura->setAnimali(isset($dati['animali']));
-        $struttura->setParcheggio(isset($dati['parcheggio']));
-        $struttura->setWifi(isset($dati['wifi']));
-        $struttura->setBalcone(isset($dati['balcone']));
+        $struttura->setColazione($dati['colazione'] == "1");
+        $struttura->setAnimali($dati['animali'] == "1");
+        $struttura->setParcheggio($dati['parcheggio'] == "1");
+        $struttura->setWifi($dati['wifi'] == "1");
+        $struttura->setBalcone($dati['balcone'] == "1");
+
     }
 
     private function gestisciUploadFoto(EStruttura $struttura): void {
