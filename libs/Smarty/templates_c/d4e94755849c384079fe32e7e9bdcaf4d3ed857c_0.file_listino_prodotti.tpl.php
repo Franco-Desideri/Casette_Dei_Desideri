@@ -1,47 +1,65 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-02 12:44:54
+/* Smarty version 5.5.1, created on 2025-07-02 19:19:08
   from 'file:utente/listino_prodotti.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68650da62c90d2_86794290',
+  'unifunc' => 'content_68656a0cc9cff6_45156850',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd4e94755849c384079fe32e7e9bdcaf4d3ed857c' => 
     array (
       0 => 'utente/listino_prodotti.tpl',
-      1 => 1751453086,
+      1 => 1751476744,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:partials/header.tpl' => 1,
   ),
 ))) {
-function content_68650da62c90d2_86794290 (\Smarty\Template $_smarty_tpl) {
+function content_68656a0cc9cff6_45156850 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_123923467768650da621d202_14270673', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_195081066968656a0cc58230_11869444', "contenuto");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_148336000768650da62c85f3_22712462', "scripts");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_150283199768656a0cc9b8e6_22991557', "scripts");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_123923467768650da621d202_14270673 extends \Smarty\Runtime\Block
+class Block_195081066968656a0cc58230_11869444 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?>
 
+
+<p>ProdottiQ è settato? <?php if ((true && ($_smarty_tpl->hasVariable('prodottiQ') && null !== ($_smarty_tpl->getValue('prodottiQ') ?? null)))) {?>Sì<?php } else { ?>No<?php }?></p>
+<p>ProdottiQ count: <?php if ((true && ($_smarty_tpl->hasVariable('prodottiQ') && null !== ($_smarty_tpl->getValue('prodottiQ') ?? null)))) {
+echo $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('prodottiQ'));
+} else { ?>0<?php }?></p>
+
+<p>ProdottiP è settato? <?php if ((true && ($_smarty_tpl->hasVariable('prodottiP') && null !== ($_smarty_tpl->getValue('prodottiP') ?? null)))) {?>Sì<?php } else { ?>No<?php }?></p>
+<p>ProdottiP count: <?php if ((true && ($_smarty_tpl->hasVariable('prodottiP') && null !== ($_smarty_tpl->getValue('prodottiP') ?? null)))) {
+echo $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('prodottiP'));
+} else { ?>0<?php }?></p>
+
+<p>Test variabile: <?php echo $_smarty_tpl->getValue('testVar');?>
+</p>
+
+
+<?php $_smarty_tpl->renderSubTemplate("file:partials/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+?>
 
 <main class="main-content container">
 
@@ -62,27 +80,26 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 
     <form action="/Casette_Dei_Desideri/Ordine/riepilogo" method="POST">
 
-        <?php if ((true && ($_smarty_tpl->hasVariable('prodottiQ') && null !== ($_smarty_tpl->getValue('prodottiQ') ?? null))) && $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('prodottiQ')) > 0) {?>
-            <h3 class="section-subtitle">Prodotti a Quantità</h3>
+        <?php if ((true && ($_smarty_tpl->hasVariable('prodottiQuantita') && null !== ($_smarty_tpl->getValue('prodottiQuantita') ?? null))) && $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('prodottiQuantita')) > 0) {?>
+            <h3 class="section-subtitle">Prodotti a quantità</h3>
             <section class="product-list">
                 <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('prodottiQ'), 'prodotto');
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('prodottiQuantita'), 'prodotto');
 $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach0DoElse = false;
 ?>
                     <div class="product-card">
-                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->getImmagine();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image">
                         <div class="product-details">
                             <h4 class="product-name"><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 </h4>
-                            <p class="product-description"><?php echo $_smarty_tpl->getValue('prodotto')->getDescrizione();?>
+                            <p class="product-description"><?php echo $_smarty_tpl->getValue('prodotto')->getPeso();?>
 </p>
                             <p class="product-price">Prezzo: <?php echo sprintf("%.2f",$_smarty_tpl->getValue('prodotto')->getPrezzo());?>
- &euro; (<?php echo $_smarty_tpl->getValue('prodotto')->getUnitaMisura();?>
-)</p>
+ &euro;</p>
                             
                             <div class="quantity-control">
                                 <button type="button" class="qty-btn" data-action="minus">-</button>
@@ -101,30 +118,31 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <p class="no-products-message">Nessun prodotto a quantità disponibile al momento.</p>
         <?php }?>
 
-        <?php if ((true && ($_smarty_tpl->hasVariable('prodottiP') && null !== ($_smarty_tpl->getValue('prodottiP') ?? null))) && $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('prodottiP')) > 0) {?>
+        <?php if ((true && ($_smarty_tpl->hasVariable('prodottiPeso') && null !== ($_smarty_tpl->getValue('prodottiPeso') ?? null))) && $_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('prodottiPeso')) > 0) {?>
             <h3 class="section-subtitle">Prodotti a Peso</h3>
             <section class="product-list">
                 <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('prodottiP'), 'prodotto');
+$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('prodottiPeso'), 'prodotto');
 $foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach1DoElse = false;
 ?>
                     <div class="product-card">
-                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->getImmagine();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image">
                         <div class="product-details">
                             <h4 class="product-name"><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 </h4>
-                            <p class="product-description"><?php echo $_smarty_tpl->getValue('prodotto')->getDescrizione();?>
-</p>
+                            
                             <p class="product-price-per-unit">Prezzo: <?php echo sprintf("%.2f",$_smarty_tpl->getValue('prodotto')->getPrezzoKg());?>
  &euro;/Kg</p>
                             
                             <div class="weight-input-group">
+                                <button type="button" class="qty-btn" data-action="minus">-</button>
                                 <input type="number" name="quantitaP[<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
 ]" min="0" step="50" value="0" class="product-weight-input"> Grammi
+                                <button type="button" class="qty-btn" data-action="plus">+</button>
                             </div>
                         </div>
                     </div>
@@ -165,7 +183,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 }
 /* {/block "contenuto"} */
 /* {block "scripts"} */
-class Block_148336000768650da62c85f3_22712462 extends \Smarty\Runtime\Block
+class Block_150283199768656a0cc9b8e6_22991557 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';

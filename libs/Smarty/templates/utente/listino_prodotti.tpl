@@ -2,6 +2,17 @@
 
 {block name="contenuto"}
 
+<p>ProdottiQ è settato? {if isset($prodottiQ)}Sì{else}No{/if}</p>
+<p>ProdottiQ count: {if isset($prodottiQ)}{$prodottiQ|@count}{else}0{/if}</p>
+
+<p>ProdottiP è settato? {if isset($prodottiP)}Sì{else}No{/if}</p>
+<p>ProdottiP count: {if isset($prodottiP)}{$prodottiP|@count}{else}0{/if}</p>
+
+<p>Test variabile: {$testVar}</p>
+
+
+{include file="partials/header.tpl"}
+
 <main class="main-content container">
 
     <section class="hero-section">
@@ -21,16 +32,16 @@
 
     <form action="/Casette_Dei_Desideri/Ordine/riepilogo" method="POST">
 
-        {if isset($prodottiQ) && $prodottiQ|@count > 0}
-            <h3 class="section-subtitle">Prodotti a Quantità</h3>
+        {if isset($prodottiQuantita) && $prodottiQuantita|@count > 0}
+            <h3 class="section-subtitle">Prodotti a quantità</h3>
             <section class="product-list">
-                {foreach $prodottiQ as $prodotto}
+                {foreach $prodottiQuantita as $prodotto}
                     <div class="product-card">
-                        <img src="{$prodotto->getImmagine()}" alt="{$prodotto->getNome()}" class="product-image">
+                        <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image">
                         <div class="product-details">
                             <h4 class="product-name">{$prodotto->getNome()}</h4>
-                            <p class="product-description">{$prodotto->getDescrizione()}</p>
-                            <p class="product-price">Prezzo: {$prodotto->getPrezzo()|string_format:"%.2f"} &euro; ({$prodotto->getUnitaMisura()})</p>
+                            <p class="product-description">{$prodotto->getPeso()}</p>
+                            <p class="product-price">Prezzo: {$prodotto->getPrezzo()|string_format:"%.2f"} &euro;</p>
                             
                             <div class="quantity-control">
                                 <button type="button" class="qty-btn" data-action="minus">-</button>
@@ -46,19 +57,21 @@
             <p class="no-products-message">Nessun prodotto a quantità disponibile al momento.</p>
         {/if}
 
-        {if isset($prodottiP) && $prodottiP|@count > 0}
+        {if isset($prodottiPeso) && $prodottiPeso|@count > 0}
             <h3 class="section-subtitle">Prodotti a Peso</h3>
             <section class="product-list">
-                {foreach $prodottiP as $prodotto}
+                {foreach $prodottiPeso as $prodotto}
                     <div class="product-card">
-                        <img src="{$prodotto->getImmagine()}" alt="{$prodotto->getNome()}" class="product-image">
+                        <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image">
                         <div class="product-details">
                             <h4 class="product-name">{$prodotto->getNome()}</h4>
-                            <p class="product-description">{$prodotto->getDescrizione()}</p>
+                            
                             <p class="product-price-per-unit">Prezzo: {$prodotto->getPrezzoKg()|string_format:"%.2f"} &euro;/Kg</p>
                             
                             <div class="weight-input-group">
+                                <button type="button" class="qty-btn" data-action="minus">-</button>
                                 <input type="number" name="quantitaP[{$prodotto->getId()}]" min="0" step="50" value="0" class="product-weight-input"> Grammi
+                                <button type="button" class="qty-btn" data-action="plus">+</button>
                             </div>
                         </div>
                     </div>

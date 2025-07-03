@@ -28,6 +28,8 @@ class VOrdine
      */
     public function mostraListino(array $prodottiQ, array $prodottiP): void
     {
+        $this->smarty->assign('testVar', 'ciao mondo');
+
         $this->smarty->assign('prodottiQuantita', $prodottiQ);
         $this->smarty->assign('prodottiPeso', $prodottiP);
         $this->smarty->display('utente/listino_prodotti.tpl');

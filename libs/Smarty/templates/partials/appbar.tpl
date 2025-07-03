@@ -1,5 +1,3 @@
-{* Questo è il contenuto del tuo file partials/appbar.tpl *}
-
 <nav class="main-nav"> <ul>
         <li><a href="/Casette_Dei_Desideri/User/home" class="nav-item">Home</a></li>
         <li><a href="/Casette_Dei_Desideri/Struttura/lista" class="nav-item">Strutture</a></li>

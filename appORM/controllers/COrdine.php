@@ -27,6 +27,7 @@ class COrdine
         $prodottiQ = FPersistentManager::get()->getRepository(EProdottoQuantita::class)->findAll();
         $prodottiP = FPersistentManager::get()->getRepository(EProdottoPeso::class)->findAll();
 
+
         $view = new VOrdine();
         $view->mostraListino($prodottiQ, $prodottiP);
     }
@@ -69,12 +70,14 @@ class COrdine
             $qta = (int)$qta;
             if ($qta > 0) {
                 $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, (int)$id);
-                $parziale = $prodotto->getPrezzo() * $qta;
+                $prezzo_unitario = $prodotto->getPrezzo(); // <-- Recupera il prezzo unitario
+                $parziale = $prezzo_unitario * $qta; // Calcola il totale per la riga
                 $riepilogo[] = [
                     'prodotto_id' => $prodotto->getId(),
                     'tipo' => 'quantita',
                     'quantita' => $qta,
-                    'prezzo' => $parziale,
+                    'prezzo_unitario' => $prezzo_unitario, // <-- NUOVO: Prezzo unitario
+                    'prezzo_totale_riga' => $parziale,     // <-- NUOVO: Totale per questa riga
                     'nome' => $prodotto->getNome()
                 ];
                 $prezzoTotale += $parziale;
@@ -85,12 +88,14 @@ class COrdine
             $grammi = (int)$grammi;
             if ($grammi > 0) {
                 $prodotto = FPersistentManager::get()->find(EProdottoPeso::class, (int)$id);
-                $parziale = ($grammi / 1000) * $prodotto->getPrezzoKg();
+                $prezzo_unitario_kg = $prodotto->getPrezzoKg(); // <-- Recupera il prezzo unitario al kg
+                $parziale = ($grammi / 1000) * $prezzo_unitario_kg; // Calcola il totale per la riga
                 $riepilogo[] = [
                     'prodotto_id' => $prodotto->getId(),
                     'tipo' => 'peso',
                     'quantita' => $grammi,
-                    'prezzo' => $parziale,
+                    'prezzo_unitario_kg' => $prezzo_unitario_kg, // <-- NUOVO: Prezzo unitario al kg
+                    'prezzo_totale_riga' => $parziale,          // <-- NUOVO: Totale per questa riga
                     'nome' => $prodotto->getNome()
                 ];
                 $prezzoTotale += $parziale;

@@ -2,7 +2,7 @@
 
 <header class="site-header"> <div class="container"> <h1 class="site-title"> <a>Casette dei Desideri</a>
             </h1>
-{include file="partials/appbar.tpl"}
+{include file="partials/appbar_admin.tpl"}
     </div>
 
 </header>

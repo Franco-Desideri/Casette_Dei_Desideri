@@ -9,13 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/public/assets/css/style.css"> 
+    
+    <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/style.css"> 
     
 
     {block name="head_extra"}{/block}
 </head>
 <body>
-    {include file="partials/header.tpl"}
+    
     <main> 
         {block name="contenuto"}{/block}
     </main>

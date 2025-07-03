@@ -129,7 +129,7 @@ class CAdminProdotto
                 $prodotto->setFoto($blob);
             }
         } elseif ($tipo === 'peso') {
-            $p = FPersistentManager::get()->find('EProdottoPeso', $id);
+            $p = FPersistentManager::get()->find(EProdottoPeso::class, $id);
             $p->setNome($_POST['nome']);
             $p->setPrezzoKg((float)$_POST['prezzoKg']);
             $p->setRangePeso($_POST['rangePeso']);
