@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-03 13:55:24
-  from 'file:utente/lista_strutture.tpl' */
+/* Smarty version 5.5.1, created on 2025-07-03 12:13:58
+  from 'file:admin/lista_strutture.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68666faccaf236_95719699',
+  'unifunc' => 'content_686657e6cc08c7_75145089',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'b65fb2cd8fec660f00928285dcf98c5913e47f07' => 
+    '78dffcdeb4ff7651bee72f7aa625a91137d4416d' => 
     array (
-      0 => 'utente/lista_strutture.tpl',
-      1 => 1751536999,
+      0 => 'admin/lista_strutture.tpl',
+      1 => 1751537634,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_68666faccaf236_95719699 (\Smarty\Template $_smarty_tpl) {
-$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
+function content_686657e6cc08c7_75145089 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="it">
 
@@ -94,14 +94,14 @@ https://templatemo.com/tm-591-villa-agency
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="/Casette_Dei_Desideri/User/home" class="logo" style="white-space: nowrap;">
+                    <a href="/Casette_Dei_Desideri/AdminContenuti/home" class="logo" style="white-space: nowrap;">
                         <h1>Cassette Dei Desideri</h1>
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                      <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
-                      <li><a href="/Casette_Dei_Desideri/Struttura/lista" class="active">Strutture</a></li>
+                      <li><a href="/Casette_Dei_Desideri/AdminContenuti/home">Home</a></li>
+                      <li><a href="/Casette_Dei_Desideri/AdminStruttura/lista" class="active">Strutture</a></li>
                       <li><a href="contatti.tpl">Contatti</a></li>
                   </ul>   
                     <a class='menu-trigger'>
@@ -197,9 +197,17 @@ $foreach0DoElse = false;
                   </li>
 
                 </ul>
-                <div class="main-button">
-                    <a href="/Casette_Dei_Desideri/Struttura/dettaglio/<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
-">Prenota</a>
+                <div class="edit-button">
+                    <a href="/Casette_Dei_Desideri/AdminStruttura/modifica/<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
+" style="margin-right: 10px;">
+                    ✏️ Modifica
+                </a>
+                </div>
+                <div class="delate-button">
+                   <a href="/Casette_Dei_Desideri/AdminStruttura/elimina/<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
+" onclick="return confirm('Sei sicuro di voler eliminare questa struttura?');">
+                    🗑️ Elimina
+                </a>
                 </div>
                 </div>
             </div>
@@ -256,6 +264,8 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
   <?php echo '<script'; ?>
  src="/Casette_Dei_Desideri/public/assets/js/custom.js"><?php echo '</script'; ?>
 >
+  
+  <a href="/Casette_Dei_Desideri/AdminStruttura/aggiungi" class="pulsante-flottante" >+ Aggiungi struttura</a>
 
   </body>
 </html><?php }

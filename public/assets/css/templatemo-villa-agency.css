@@ -463,15 +463,7 @@ Header Style
   letter-spacing: .25px;
 }
 
-.header-area .main-nav .nav li:last-child a {
-  background-color: #1e1e1e;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 400;
-  text-transform: none;
-  border-radius: 20px;
-  padding-left: 0px;
-}
+
 
 .header-area .main-nav .nav li:last-child a i {
   background-color: #009e00;
@@ -825,8 +817,6 @@ Banner Style
   background-color: #009e00!important;
  
 }
-
-
 
 
 /*template_esampio*/
@@ -1662,6 +1652,48 @@ Single Page Style
    color: #fff; /* colore al passaggio del mouse */
 }
 
+
+
+/*pulsante SALVA MODIFICHE/STRUTTURA*/
+.salva-btn {
+  background-color: #000000; /* colore personalizzato */
+  color: #fff;
+  border: none;
+  padding: 15px 150px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.salva-btn:hover {
+  background-color: #00b00c;
+   color: #fff; /* colore al passaggio del mouse */
+}
+
+
+
+
+/*pulsante PRENOTA*/
+.annulla-btn {
+  background-color: #000000; /* colore personalizzato */
+  color: #fff;
+  border: none;
+  padding: 15px 150px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.annulla-btn:hover {
+  background-color: #b00000;
+   color: #fff; /* colore al passaggio del mouse */
+}
+
+
+
+
 /* 
 ---------------------------------------------
 Contact Page Style
@@ -1947,3 +1979,75 @@ body {
   border-radius: 50%;
 }
 
+
+
+/*Lista_Strutture ADMIN*/
+.edit-button {
+    display: inline-block; /* oppure inline-flex se vuoi padding + allineamento verticale */
+    padding: 10px 10px;
+    justify-content: center;
+}
+
+.edit-button a {
+  display: inline-block;
+  background-color: #1e1e1e;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 30px;
+  border-radius: 25px;
+  transition: all .3s;
+}
+
+.edit-button a:hover {
+  background-color: #009e00;
+  color: #fff;
+}
+
+
+
+.delate-button {
+    display: inline-block; /* oppure inline-flex se vuoi padding + allineamento verticale */
+    padding: 10px 10px;
+    justify-content: center;
+}
+
+.delate-button a {
+  display: inline-block;
+  background-color: #1e1e1e;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 30px;
+  border-radius: 25px;
+  transition: all .3s;
+}
+
+.delate-button a:hover {
+  background-color: #b00000;
+  color: #fff;
+}
+
+/* pulsante aggiungi struttura*/
+.pulsante-flottante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  background-color: #009e00;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: all .3s;
+}
+
+.pulsante-flottante:hover {
+  color: #000000;
+}

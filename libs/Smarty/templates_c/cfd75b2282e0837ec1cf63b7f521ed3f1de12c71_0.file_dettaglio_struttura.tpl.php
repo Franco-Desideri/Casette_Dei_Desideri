@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-02 12:26:55
+/* Smarty version 5.5.1, created on 2025-07-03 12:11:58
   from 'file:utente/dettaglio_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6865096f67b012_69770224',
+  'unifunc' => 'content_6866576e49d207_79479514',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cfd75b2282e0837ec1cf63b7f521ed3f1de12c71' => 
     array (
       0 => 'utente/dettaglio_struttura.tpl',
-      1 => 1751451973,
+      1 => 1751536999,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6865096f67b012_69770224 (\Smarty\Template $_smarty_tpl) {
+function content_6866576e49d207_79479514 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -107,7 +107,6 @@ https://templatemo.com/tm-591-villa-agency
                       <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
                       <li><a href="/Casette_Dei_Desideri/Struttura/lista"class="active">Strutture</a></li>
                       <li><a href="contact.html">Contatti</a></li>
-                      <li><a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a></li>
                   </ul>   
                     <a class='menu-trigger'>
                         <span>Menu</span>

@@ -32,7 +32,7 @@ class VAdminStruttura
         }
 
         $this->smarty->assign('strutture', $strutture);
-        $this->smarty->display('admin/strutture_lista.tpl');
+        $this->smarty->display('admin/lista_strutture.tpl');
     }
 
     /**
@@ -51,6 +51,6 @@ class VAdminStruttura
             }
         }
         $this->smarty->assign('struttura', $struttura);
-        $this->smarty->display('admin/struttura_form.tpl');
+        $this->smarty->display('admin/aggiungi_struttura.tpl');
     }
 }
