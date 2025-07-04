@@ -246,27 +246,40 @@ main.container {
 }
 
 
+/* Stili per la sezione che contiene la lista dei prodotti */
 .product-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 0;
-    margin-bottom: 30px;
+    display: grid; /* Abilita il layout a griglia */
+    /* Definisci come devono comportarsi le colonne:
+       - repeat(auto-fill, minmax(280px, 1fr)) creerà automaticamente
+         il numero di colonne che entrano, con una larghezza minima di 280px
+         e che si espandono per riempire lo spazio disponibile.
+       - Puoi regolare 280px in base alla larghezza ideale delle tue card. */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    
+    gap: 20px; /* Questo è il valore chiave: riduce lo spazio tra le card (sia orizzontale che verticale) */
+    
+    justify-content: center; /* Centra le card all'interno del contenitore se non riempiono completamente la riga */
+    align-items: stretch; /* Le card si estendono per occupare l'altezza disponibile nella riga */
+
+    padding: 20px 0; /* Aggiungi un po' di padding alla sezione per non far attaccare le card ai bordi del "container" */
+    margin-bottom: 40px; /* Spazio sotto la sezione dei prodotti, se necessario */
 }
 
+/* Assicurati che le card abbiano una larghezza massima per evitare che diventino troppo grandi */
 .product-card {
-    width: 280px;       /* o percentuale, es 80% */
-    max-width: 100%;    /* per renderlo responsive */
-    min-height: 250px;
-    background-color: var(--background-white);
-    border: none; /* Rimosso il bordo */
+    /* Assicurati che la larghezza massima della card sia impostata per funzionare bene con minmax */
+    max-width: 300px; /* Un po' più grande del minmax per dare un limite superiore */
+    width: 100%; /* La card occupa tutta la larghezza disponibile nella sua colonna */
+    
+    background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 6px 20px var(--shadow-light); /* Ombra più profonda e diffusa */
-    display: flex;
-    flex-direction: column;
-    overflow: visible;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* Rimuovi eventuali margin-left/right/bottom espliciti se li avevi per la spaziatura */
+    margin: 0 auto; /* Centra la singola card se la sua colonna è più grande della max-width */
 }
+
+/* Il resto dei tuoi stili per .product-image, .product-details, ecc. rimangono invariati */
 
 .product-card:hover {
     transform: translateY(-8px); /* Solleva di più */
@@ -275,8 +288,12 @@ main.container {
 
 .product-image {
     width: 100%;
-    height: 120px; /* Altezza immagine leggermente maggiore */
+    /* Aumenta l'altezza finché non vedi tutta la scatola */
+    height: 220px; /* Prova con 150px, poi 180px se non basta */
     object-fit: cover;
+    /* Puoi mantenere 'center' o 'center top' o 'center bottom' se senti che l'immagine
+       è un po' sbilanciata, ma l'aumento di altezza è la priorità. */
+    object-position: center; /* Inizialmente prova con center */
     border-radius: 10px 10px 0 0;
     margin-bottom: 10px;
 }
@@ -1049,3 +1066,66 @@ footer.site-footer p {
     }
 }
 
+/* Stili per la Pagina di Conferma Ordine */
+
+.confirmation-page-wrapper {
+    display: flex; /* Rendi il contenitore un flex container */
+    justify-content: center; /* Centra orizzontalmente i suoi elementi figli */
+    align-items: center; /* Centra verticalmente i suoi elementi figli */
+    min-height: calc(100vh - var(--header-height) - var(--footer-height)); /* Occupa l'altezza disponibile */
+    padding: 50px 20px; /* Padding su tutti i lati per schermi piccoli */
+    background-color: #f8f8f8; /* Mantiene lo sfondo leggermente grigio della pagina */
+    width: 100%;
+    /* Non è necessario rimuovere nulla qui */
+}
+
+/* Rimuovi completamente o commenta il blocco .popup-confirmation se non vuoi un riquadro */
+/* MODIFICA: Per rimuovere il riquadro, devi rimuovere gli stili che lo creano */
+/* Se vuoi che solo il contenuto sia centrato, puoi applicare gli stili direttamente al wrapper o mantenere solo text-align */
+.popup-confirmation {
+    /* Rimuovi i seguenti stili per eliminare il riquadro bianco, ombra e bordi arrotondati */
+    /* background-color: #fff; */
+    /* border-radius: 10px; */
+    /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); */
+
+    padding: 0; /* Rimuovi il padding interno se non vuoi spaziatura extra intorno al testo */
+    text-align: center; /* MANTIENI: Questo centra il testo e il bottone all'interno del popup */
+    max-width: 500px; /* MANTIENI: Limita la larghezza del blocco di testo per una migliore leggibilità */
+    width: 100%; /* MANTIENI: Per farlo funzionare con max-width e responsive */
+
+    /* Puoi rimuovere questi margini se il centramento con flexbox fa il suo lavoro */
+    /* margin-bottom: 50px; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+
+/* Mantieni gli stili per H2 e P, ma assicurati che usino il colore verde desiderato */
+.popup-confirmation h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-color); /* Utilizza il verde primario */
+    margin-bottom: 20px;
+}
+
+.popup-confirmation p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px; /* Mantiene lo spazio sotto il paragrafo */
+}
+
+.admin-button {
+    color: var(--primary-color); /* verde come vuoi tu */
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+}
+
+.admin-button:hover {
+    color: darkgreen;
+    text-decoration: underline;
+}

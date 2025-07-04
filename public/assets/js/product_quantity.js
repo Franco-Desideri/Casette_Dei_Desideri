@@ -1,19 +1,29 @@
-document.addEventListener("DOMContentLoaded", () => {
-    // Seleziona tutti i bottoni con classe "quantity-btn"
-    const buttons = document.querySelectorAll(".quantity-btn");
 
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            const action = button.getAttribute("data-action");
-            const quantityInput = button.parentElement.querySelector(".product-quantity");
+window.addEventListener('DOMContentLoaded', function () {
+    const controls = document.querySelectorAll('.quantity-control');
 
-            let currentValue = parseInt(quantityInput.value);
+    controls.forEach(control => {
+        const input = control.querySelector('.product-quantity-input');
+        const minusBtn = control.querySelector('[data-action="minus"]');
+        const plusBtn = control.querySelector('[data-action="plus"]');
 
-            if (action === "increment") {
-                quantityInput.value = currentValue + 1;
-            } else if (action === "decrement" && currentValue > 0) {
-                quantityInput.value = currentValue - 1;
-            }
+        const step = parseInt(input.step) || 1;
+        const min = parseInt(input.min) || 0;
+
+        minusBtn.addEventListener('click', function () {
+            let value = parseInt(input.value) || 0;
+            value = Math.max(min, value - step);
+            input.value = value;
+        });
+
+        plusBtn.addEventListener('click', function () {
+            let value = parseInt(input.value) || 0;
+            input.value = value + step;
         });
     });
 });
+
+
+
+
+

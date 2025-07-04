@@ -28,10 +28,12 @@ class VAdminProdotto
      * @param array $prodottiQ Elenco di EProdottoQuantita
      * @param array $prodottiP Elenco di EProdottoPeso
      */
-    public function mostraLista(array $prodottiQ, array $prodottiP): void
+    public function mostraLista(array $prodottiQ_visibili, array $prodottiP_visibili, array $prodottiQ_nascosti, array $prodottiP_nascosti): void
     {
-        $this->smarty->assign('prodottiQuantita', $prodottiQ);
-        $this->smarty->assign('prodottiPeso', $prodottiP);
+        $this->smarty->assign('prodottiQuantita_v', $prodottiQ_visibili);
+        $this->smarty->assign('prodottiPeso_v', $prodottiP_visibili);
+        $this->smarty->assign('prodottiQuantita_n', $prodottiQ_nascosti);
+        $this->smarty->assign('prodottiPeso_n', $prodottiP_nascosti);
         $this->smarty->display('admin/prodotti_lista.tpl');
     }
 

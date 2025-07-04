@@ -28,8 +28,6 @@ class VOrdine
      */
     public function mostraListino(array $prodottiQ, array $prodottiP): void
     {
-        $this->smarty->assign('testVar', 'ciao mondo');
-
         $this->smarty->assign('prodottiQuantita', $prodottiQ);
         $this->smarty->assign('prodottiPeso', $prodottiP);
         $this->smarty->display('utente/listino_prodotti.tpl');
@@ -51,9 +49,6 @@ class VOrdine
      */
     public function confermaOrdine(): void
     {
-        echo "<script>
-            alert('Ordine inviato! Riceverai conferma via email in base alla disponibilità della struttura.');
-            window.location.href='/Casette_Dei_Desideri/Struttura/lista';
-        </script>";
+        $this->smarty->display('libs/Smarty/templates/utente/conferma_ordine.tpl');
     }
 }

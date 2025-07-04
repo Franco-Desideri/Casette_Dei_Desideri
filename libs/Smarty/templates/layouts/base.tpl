@@ -21,6 +21,7 @@
         {block name="contenuto"}{/block}
     </main>
     {include file="partials/footer.tpl"}
-    {block name="scripts"}{/block}
+    {block name="scripts"}
+    {/block}
 </body>
 </html> 

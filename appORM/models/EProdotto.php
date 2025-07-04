@@ -19,8 +19,11 @@ abstract class EProdotto
     /** @ORM\Column(type="string", length=100) */
     protected string $nome;
 
-    /** @ORM\Column(type="blob", nullable=true) */
+    /** @ORM\Column(type="string",length=255, nullable=true) */
     protected $foto;
+
+    /** @ORM\Column(type="boolean") */
+    protected bool $visibile = true;
 
 
     // Getter e Setter
@@ -33,5 +36,9 @@ abstract class EProdotto
     public function getFoto(){ return $this->foto; }
 
     public function setFoto($foto): void { $this->foto = $foto; }
+
+    public function isVisibile(): bool {return $this->visibile;}
+    
+    public function setVisibile(bool $visibile): void {$this->visibile = $visibile;}
 
 }

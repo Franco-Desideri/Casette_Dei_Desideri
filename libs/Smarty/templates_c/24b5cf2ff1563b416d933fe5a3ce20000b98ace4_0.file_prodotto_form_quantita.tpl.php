@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-02 21:45:15
+/* Smarty version 5.5.1, created on 2025-07-04 10:51:28
   from 'file:admin/prodotto_form_quantita.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68658c4ba26485_41105762',
+  'unifunc' => 'content_68679610cbd209_87970075',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '24b5cf2ff1563b416d933fe5a3ce20000b98ace4' => 
     array (
       0 => 'admin/prodotto_form_quantita.tpl',
-      1 => 1751485507,
+      1 => 1751619073,
       2 => 'file',
     ),
   ),
@@ -21,18 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/header_admin.tpl' => 1,
   ),
 ))) {
-function content_68658c4ba26485_41105762 (\Smarty\Template $_smarty_tpl) {
+function content_68679610cbd209_87970075 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_186595687468658c4b63d275_39872267', "contenuto");
-$_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5312147468679610c95948_49411158', "contenuto");
+?>
+
+<?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_186595687468658c4b63d275_39872267 extends \Smarty\Runtime\Block
+class Block_5312147468679610c95948_49411158 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
@@ -48,7 +50,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
         <?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>Modifica prodotto a pezzi<?php } else { ?>Aggiungi nuovo prodotto a pezzi<?php }?>
     </h2>
 
-    <form method="post" action="/Casette_Dei_Desideri/AdminProdotto/<?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>salvaModifica<?php } else { ?>salva<?php }?>" class="admin-form-container">
+        <form method="post" action="/Casette_Dei_Desideri/AdminProdotto/<?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>salvaModifica<?php } else { ?>salva<?php }?>" enctype="multipart/form-data" class="admin-form-container">
         <input type="hidden" name="tipo" value="quantita">
         <?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>
             <input type="hidden" name="id" value="<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
@@ -76,17 +78,24 @@ echo $_smarty_tpl->getValue('prodotto')->getPeso();
 }?>">
         </div>
 
-        <div class="form-group-item">
-            <label for="foto">URL immagine:</label>
-            <input type="text" id="foto" name="foto" value="<?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {
-echo $_smarty_tpl->getValue('prodotto')->getFoto();
-}?>">
+                <div class="form-group-item">
+            <label for="foto">Immagine del prodotto:</label>
+            <input type="file" id="foto" name="foto" accept="image/*" <?php if (!(true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>required<?php }?>>
+            <?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>
+                <p>Immagine attuale: <br>
+                    <img src="<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+" alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
+" style="max-width: 200px; max-height: 200px;">
+                </p>
+            <?php }?>
         </div>
 
         <button type="submit" class="admin-form-button"><?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>Salva modifiche<?php } else { ?>Aggiungi prodotto<?php }?></button>
     </form>
 
-</div> <?php
+</div>
+
+<?php
 }
 }
 /* {/block "contenuto"} */

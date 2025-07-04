@@ -33,7 +33,6 @@ FPersistentManager::setEntityManager($entityManager);
 // Test connessione
 try {
     $entityManager->getConnection()->connect();
-    echo "Connessione a Doctrine riuscita!";
 } catch (\Exception $e) {
     echo "Errore connessione: " . $e->getMessage();
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-02 18:46:09
+/* Smarty version 5.5.1, created on 2025-07-03 16:57:02
   from 'file:utente/riepilogo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6865625116de62_06645684',
+  'unifunc' => 'content_68669a3eda4f81_61207838',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c9123da93b227ab46a7150e4aa42e1386f14762a' => 
     array (
       0 => 'utente/riepilogo.tpl',
-      1 => 1751474743,
+      1 => 1751554604,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6865625116de62_06645684 (\Smarty\Template $_smarty_tpl) {
+function content_68669a3eda4f81_61207838 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_91771747868656250f2dfa8_07878271', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_72801262168669a3ed6e649_91210293', "contenuto");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_91771747868656250f2dfa8_07878271 extends \Smarty\Runtime\Block
+class Block_72801262168669a3ed6e649_91210293 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
@@ -89,10 +89,10 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         </table>
     </section>
 
-    <form action="/Casette_Dei_Desideri/Ordine/inviaOrdine" method="POST" class="order-form" style="text-align: center; margin-top: 30px;">
+    <form action="/Casette_Dei_Desideri/Ordine/conferma" method="POST" class="order-form" style="text-align: center; margin-top: 30px;">
         <div class="form-group">
-            <label for="taglio_banconota">Seleziona taglio banconota per pagamento:</label>
-            <select id="taglio_banconota" name="taglio_banconota" class="payment-select" required>
+            <label for="contanti">Seleziona taglio banconota per pagamento:</label>
+            <select id="contanti" name="contanti" class="payment-select" required>
                 <option value="">Seleziona un taglio</option>
                 <option value="5">5 &euro;</option>
                 <option value="10">10 &euro;</option>

@@ -10,7 +10,8 @@
         {if isset($prodotto)}Modifica prodotto a pezzi{else}Aggiungi nuovo prodotto a pezzi{/if}
     </h2>
 
-    <form method="post" action="/Casette_Dei_Desideri/AdminProdotto/{if isset($prodotto)}salvaModifica{else}salva{/if}" class="admin-form-container">
+    {* 👇 AGGIUNTA enctype per permettere upload immagini *}
+    <form method="post" action="/Casette_Dei_Desideri/AdminProdotto/{if isset($prodotto)}salvaModifica{else}salva{/if}" enctype="multipart/form-data" class="admin-form-container">
         <input type="hidden" name="tipo" value="quantita">
         {if isset($prodotto)}
             <input type="hidden" name="id" value="{$prodotto->getId()}">
@@ -31,12 +32,20 @@
             <input type="number" id="quantita" name="peso" required value="{if isset($prodotto)}{$prodotto->getPeso()}{/if}">
         </div>
 
+        {* 👇 CAMBIATO campo immagine: da URL a file upload *}
         <div class="form-group-item">
-            <label for="foto">URL immagine:</label>
-            <input type="text" id="foto" name="foto" value="{if isset($prodotto)}{$prodotto->getFoto()}{/if}">
+            <label for="foto">Immagine del prodotto:</label>
+            <input type="file" id="foto" name="foto" accept="image/*" {if !isset($prodotto)}required{/if}>
+            {if isset($prodotto)}
+                <p>Immagine attuale: <br>
+                    <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" style="max-width: 200px; max-height: 200px;">
+                </p>
+            {/if}
         </div>
 
         <button type="submit" class="admin-form-button">{if isset($prodotto)}Salva modifiche{else}Aggiungi prodotto{/if}</button>
     </form>
 
-</div> {/block}
+</div>
+
+{/block}

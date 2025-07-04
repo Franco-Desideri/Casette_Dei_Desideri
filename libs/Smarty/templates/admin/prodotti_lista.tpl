@@ -13,16 +13,19 @@
     </div>
 
     <section>
-        <h3 class="admin-section-title">Prodotti a Quantità</h3>
-        {if $prodottiQuantita|@count > 0}
-            <ul class="admin-item-list"> {foreach from=$prodottiQuantita item=prodotto}
+        <h3 class="admin-section-title">Prodotti a Quantità (visibili)</h3>
+        {if $prodottiQuantita_v|@count > 0}
+            <ul class="admin-item-list"> {foreach from=$prodottiQuantita_v item=prodotto}
                     <li>
-                        <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
+                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
                             <strong>{$prodotto->getNome()}</strong> - {$prodotto->getPeso()}g - €{$prodotto->getPrezzo()}
                         </div>
                         <div class="admin-item-actions">
                             <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}">✏️ Modifica</a>
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/elimina/{$prodotto->getId()}" onclick="return confirm('Eliminare il prodotto?')">🗑️ Elimina</a>
+                            <form method="POST" action="/Casette_Dei_Desideri/AdminProdotto/disattiva" style="display:inline;" onsubmit="return confirm('Nascondere il prodotto?');">
+                               <input type="hidden" name="idProdotto" value="{$prodotto->getId()}">
+                               <button type="submit" style="background:none; border:none; padding:0;font:inherit; color:inherit; cursor:pointer;">🚫 Disattiva</button>
+                            </form>
                         </div>
                     </li>
                 {/foreach}
@@ -32,16 +35,57 @@
     </section>
 
     <section>
-        <h3 class="admin-section-title">Prodotti a Peso</h3>
-        {if $prodottiPeso|@count > 0}
-            <ul class="admin-item-list"> {foreach from=$prodottiPeso item=prodotto}
+        <h3 class="admin-section-title">Prodotti a Peso (visibili)</h3>
+        {if $prodottiPeso_v|@count > 0}
+            <ul class="admin-item-list"> {foreach from=$prodottiPeso_v item=prodotto}
                     <li>
-                        <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
+                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
                             <strong>{$prodotto->getNome()}</strong> - {$prodotto->getRangePeso()}g - €{$prodotto->getPrezzoRange()} (o €{$prodotto->getPrezzoKg()}/kg)
                         </div>
                         <div class="admin-item-actions">
                             <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}">✏️ Modifica</a>
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/elimina/{$prodotto->getId()}" onclick="return confirm('Eliminare il prodotto?')">🗑️ Elimina</a>
+                            <form method="POST" action="/Casette_Dei_Desideri/AdminProdotto/disattiva" style="display:inline;" onsubmit="return confirm('Nascondere il prodotto?');">
+                               <input type="hidden" name="idProdotto" value="{$prodotto->getId()}">
+                               <button type="submit" style="background:none; border:none; padding:0; font:inherit; color:inherit; cursor:pointer;">🚫 Disattiva</button>
+                            </form>
+                        </div>
+                    </li>
+                {/foreach}
+            </ul>
+        {else}
+            <p class="admin-no-items-message">Nessun prodotto a peso presente.</p> {/if}
+    </section>
+
+    <section>
+        <h3 class="admin-section-title">Prodotti a Quantità (nascosti)</h3>
+        {if $prodottiQuantita_n|@count > 0}
+            <ul class="admin-item-list"> {foreach from=$prodottiQuantita_n item=prodotto}
+                    <li>
+                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
+                            <strong>{$prodotto->getNome()}</strong> - {$prodotto->getPeso()}g - €{$prodotto->getPrezzo()}
+                        </div>
+                        <div class="admin-item-actions">
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}">✏️ Modifica</a>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/attiva/{$prodotto->getId()}" onclick="return confirm('Rendere visibile il prodotto?')">✅ Attiva</a>
+                        </div>
+                    </li>
+                {/foreach}
+            </ul>
+        {else}
+            <p class="admin-no-items-message">Nessun prodotto a quantità presente.</p> {/if}
+    </section>
+
+    <section>
+        <h3 class="admin-section-title">Prodotti a Peso (nascosti)</h3>
+        {if $prodottiPeso_n|@count > 0}
+            <ul class="admin-item-list"> {foreach from=$prodottiPeso_n item=prodotto}
+                    <li>
+                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
+                            <strong>{$prodotto->getNome()}</strong> - {$prodotto->getRangePeso()}g - €{$prodotto->getPrezzoRange()} (o €{$prodotto->getPrezzoKg()}/kg)
+                        </div>
+                        <div class="admin-item-actions">
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}">✏️ Modifica</a>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/attiva/{$prodotto->getId()}" onclick="return confirm('Rendere visibile il prodotto?')">✅ Attiva</a>
                         </div>
                     </li>
                 {/foreach}

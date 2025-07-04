@@ -2,14 +2,6 @@
 
 {block name="contenuto"}
 
-<p>ProdottiQ è settato? {if isset($prodottiQ)}Sì{else}No{/if}</p>
-<p>ProdottiQ count: {if isset($prodottiQ)}{$prodottiQ|@count}{else}0{/if}</p>
-
-<p>ProdottiP è settato? {if isset($prodottiP)}Sì{else}No{/if}</p>
-<p>ProdottiP count: {if isset($prodottiP)}{$prodottiP|@count}{else}0{/if}</p>
-
-<p>Test variabile: {$testVar}</p>
-
 
 {include file="partials/header.tpl"}
 
@@ -37,15 +29,15 @@
             <section class="product-list">
                 {foreach $prodottiQuantita as $prodotto}
                     <div class="product-card">
-                        <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image">
+                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image">
                         <div class="product-details">
                             <h4 class="product-name">{$prodotto->getNome()}</h4>
-                            <p class="product-description">{$prodotto->getPeso()}</p>
+                            <p class="product-description">{$prodotto->getPeso()}g</p>
                             <p class="product-price">Prezzo: {$prodotto->getPrezzo()|string_format:"%.2f"} &euro;</p>
                             
                             <div class="quantity-control">
                                 <button type="button" class="qty-btn" data-action="minus">-</button>
-                                <input type="number" name="quantitaQ[{$prodotto->getId()}]" min="0" value="0" class="product-quantity-input" readonly>
+                                <input type="number" name="quantitaQ[{$prodotto->getId()}]" min="0" step="1" value="0" class="product-quantity-input" readonly>
                                 <button type="button" class="qty-btn" data-action="plus">+</button>
                             </div>
                         </div>
@@ -62,15 +54,15 @@
             <section class="product-list">
                 {foreach $prodottiPeso as $prodotto}
                     <div class="product-card">
-                        <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image">
+                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image">
                         <div class="product-details">
                             <h4 class="product-name">{$prodotto->getNome()}</h4>
                             
                             <p class="product-price-per-unit">Prezzo: {$prodotto->getPrezzoKg()|string_format:"%.2f"} &euro;/Kg</p>
                             
-                            <div class="weight-input-group">
+                            <div class="quantity-control">
                                 <button type="button" class="qty-btn" data-action="minus">-</button>
-                                <input type="number" name="quantitaP[{$prodotto->getId()}]" min="0" step="50" value="0" class="product-weight-input"> Grammi
+                                <input type="number" name="quantitaP[{$prodotto->getId()}]" min="0" step="50" value="0" class="product-quantity-input"> g
                                 <button type="button" class="qty-btn" data-action="plus">+</button>
                             </div>
                         </div>
@@ -108,27 +100,27 @@
 {/block}
 
 {block name="scripts"}
-    <script src="/public/assets/js/product_quantity.js"></script>
     <script>
-        // Piccolo script per gestire la quantità dei prodotti (come prima)
         document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.quantity-control').forEach(function(control) {
-                const minusBtn = control.querySelector('[data-action="minus"]');
-                const plusBtn = control.querySelector('[data-action="plus"]');
-                const input = control.querySelector('.product-quantity-input');
+    document.querySelectorAll('.quantity-control').forEach(function(control) {
+        const minusBtn = control.querySelector('[data-action="minus"]');
+        const plusBtn = control.querySelector('[data-action="plus"]');
+        const input = control.querySelector('.product-quantity-input');
 
-                minusBtn.addEventListener('click', function() {
-                    let value = parseInt(input.value);
-                    if (value > input.min) {
-                        input.value = value - 1;
-                    }
-                });
+        const step = parseInt(input.step) || 1;
+        const min = parseInt(input.min) || 0;
 
-                plusBtn.addEventListener('click', function() {
-                    let value = parseInt(input.value);
-                    input.value = value + 1;
-                });
-            });
+        minusBtn.addEventListener('click', function() {
+            let value = parseInt(input.value) || 0;
+            value = Math.max(min, value - step);
+            input.value = value;
         });
+
+        plusBtn.addEventListener('click', function() {
+            let value = parseInt(input.value) || 0;
+            input.value = value + step;
+        });
+    });
+});
     </script>
 {/block}

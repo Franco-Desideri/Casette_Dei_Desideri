@@ -24,8 +24,8 @@ class COrdine
             exit;
         }
 
-        $prodottiQ = FPersistentManager::get()->getRepository(EProdottoQuantita::class)->findAll();
-        $prodottiP = FPersistentManager::get()->getRepository(EProdottoPeso::class)->findAll();
+        $prodottiQ = FPersistentManager::get()->getRepository(EProdottoQuantita::class)->findBy(['visibile' => true]);
+        $prodottiP = FPersistentManager::get()->getRepository(EProdottoPeso::class)->findBy(['visibile' => true]);
 
 
         $view = new VOrdine();
@@ -115,66 +115,73 @@ class COrdine
     }
 
     public function conferma(): void
-    {
-        USession::start();
+{
+    USession::start();
 
-        if (!USession::exists('ordine_temp')) {
-            header('Location: /Casette_Dei_Desideri/Ordine/listaProdotti');
-            exit;
+    if (!USession::exists('ordine_temp')) {
+        header('Location: /Casette_Dei_Desideri/Ordine/listaProdotti');
+        exit;
+    }
+
+    $ordineData = USession::get('ordine_temp');
+    USession::delete('ordine_temp');
+
+    $contanti = isset($_POST['contanti']) ? (float) $_POST['contanti'] : 0.0;
+    $prezzoTotale = $ordineData['prezzo'];
+
+    if ($contanti < $prezzoTotale) {
+        echo "<script>alert('L\'importo inserito è inferiore al totale dell\'ordine.'); window.location.href='/Casette_Dei_Desideri/Ordine/riepilogo';</script>";
+        return;
+    }
+
+    $utente = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
+
+    // Crea ordine
+    $ordine = new EOrdine();
+    $ordine->setUtente($utente);
+    $ordine->setPrezzo($prezzoTotale);
+    $ordine->setContanti($contanti);
+    $ordine->setData(new DateTime());
+    $ordine->setConferma(false);
+    $ordine->setFasciaOraria($ordineData['fascia_oraria']);
+
+    FPersistentManager::get()->persist($ordine);
+
+    // Aggiunge item
+    foreach ($ordineData['prodotti'] as $itemData) {
+        $item = new EOrdineItem();
+        $item->setQuantita((int)$itemData['quantita']);
+        $item->setOrdine($ordine);
+
+        if ($itemData['tipo'] === 'quantita') {
+            $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, $itemData['prodotto_id']);
+            $item->setProdottoQuantita($prodotto);
+        } else {
+            $prodotto = FPersistentManager::get()->find(EProdottoPeso::class, $itemData['prodotto_id']);
+            $item->setProdottoPeso($prodotto);
         }
 
-        $ordineData = USession::get('ordine_temp');
-        USession::delete('ordine_temp');
+        FPersistentManager::get()->persist($item);
+    }
 
-        $contanti = isset($_POST['contanti']) ? (float) $_POST['contanti'] : 0.0;
-        $prezzoTotale = $ordineData['prezzo'];
+    FPersistentManager::get()->flush();
 
-        if ($contanti < $prezzoTotale) {
-            echo "<script>alert('L\'importo inserito è inferiore al totale dell\'ordine.'); window.location.href='/Casette_Dei_Desideri/Ordine/riepilogo';</script>";
-            return;
-        }
+    // Invia mail riepilogo
+    /*$admin = FUtente::getAdmin();
+    $emailAdmin = $admin?->getEmail() ?? 'fallback@local';
+    $oggetto = 'Nuovo ordine ricevuto da un ospite';
+    $testo = FOrdine::generaTestoOrdine($ordine);
 
-        $utente = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
+    $esito = UEmail::invia($emailAdmin, $oggetto, $testo);
 
-        // Crea ordine
-        $ordine = new EOrdine();
-        $ordine->setUtente($utente);
-        $ordine->setPrezzo($prezzoTotale);
-        $ordine->setContanti($contanti);
-        $ordine->setData(new DateTime());
-        $ordine->setConferma(false);
-        $ordine->setFasciaOraria($ordineData['fascia_oraria']);
+    if (!$esito) {
+        // Puoi loggare o mostrare errore
+        error_log("Errore invio email ordine all'amministratore.");
+    }*/
 
-        FPersistentManager::get()->persist($ordine);
-
-        // Aggiunge item
-        foreach ($ordineData['prodotti'] as $itemData) {
-            $item = new EOrdineItem();
-            $item->setQuantita((int)$itemData['quantita']);
-            $item->setOrdine($ordine);
-
-            if ($itemData['tipo'] === 'quantita') {
-                $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, $itemData['prodotto_id']);
-                $item->setProdottoQuantita($prodotto);
-            } else {
-                $prodotto = FPersistentManager::get()->find(EProdottoPeso::class, $itemData['prodotto_id']);
-                $item->setProdottoPeso($prodotto);
-            }
-
-            FPersistentManager::get()->persist($item);
-        }
-
-        FPersistentManager::get()->flush();
-
-        // Invia mail riepilogo
-        $admin = FUtente::getAdmin();
-        $emailAdmin = $admin?->getEmail() ?? 'fallback@local';
-        $oggetto = 'Nuovo ordine ricevuto da un ospite';
-        $testo = FOrdine::generaTestoOrdine($ordine);
-        UEmail::invia($emailAdmin, $oggetto, $testo);
-
-        // Messaggio conferma
-        $view = new VOrdine();
-        $view->confermaOrdine();
+    // Redireziona alla pagina di conferma ordine
+    $view = new VOrdine();
+    $view->ConfermaOrdine();
+    exit;
     }
 }

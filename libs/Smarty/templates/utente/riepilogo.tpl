@@ -48,10 +48,10 @@
         </table>
     </section>
 
-    <form action="/Casette_Dei_Desideri/Ordine/inviaOrdine" method="POST" class="order-form" style="text-align: center; margin-top: 30px;">
+    <form action="/Casette_Dei_Desideri/Ordine/conferma" method="POST" class="order-form" style="text-align: center; margin-top: 30px;">
         <div class="form-group">
-            <label for="taglio_banconota">Seleziona taglio banconota per pagamento:</label>
-            <select id="taglio_banconota" name="taglio_banconota" class="payment-select" required>
+            <label for="contanti">Seleziona taglio banconota per pagamento:</label>
+            <select id="contanti" name="contanti" class="payment-select" required>
                 <option value="">Seleziona un taglio</option>
                 <option value="5">5 &euro;</option>
                 <option value="10">10 &euro;</option>
