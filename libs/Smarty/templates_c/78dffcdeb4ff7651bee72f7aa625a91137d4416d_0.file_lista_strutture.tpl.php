@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-03 12:13:58
+/* Smarty version 5.5.1, created on 2025-07-05 11:45:09
   from 'file:admin/lista_strutture.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686657e6cc08c7_75145089',
+  'unifunc' => 'content_6868f425e821c6_17209891',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '78dffcdeb4ff7651bee72f7aa625a91137d4416d' => 
     array (
       0 => 'admin/lista_strutture.tpl',
-      1 => 1751537634,
+      1 => 1751708705,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_686657e6cc08c7_75145089 (\Smarty\Template $_smarty_tpl) {
+function content_6868f425e821c6_17209891 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -140,8 +140,6 @@ $foreach0DoElse = false;
 ?>
             <div class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 str">
                 <div class="item">
-                <a href="/Casette_Dei_Desideri/Struttura/dettaglio/<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
-">
                     <?php if ($_smarty_tpl->getValue('struttura')->immaginePrincipale) {?>
                       <img src="<?php echo $_smarty_tpl->getValue('struttura')->immaginePrincipale;?>
 " alt="Struttura" />

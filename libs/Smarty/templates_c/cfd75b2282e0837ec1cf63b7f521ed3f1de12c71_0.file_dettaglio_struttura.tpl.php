@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-03 12:11:58
+/* Smarty version 5.5.1, created on 2025-07-04 17:54:54
   from 'file:utente/dettaglio_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6866576e49d207_79479514',
+  'unifunc' => 'content_6867f94eb4b219_37868329',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cfd75b2282e0837ec1cf63b7f521ed3f1de12c71' => 
     array (
       0 => 'utente/dettaglio_struttura.tpl',
-      1 => 1751536999,
+      1 => 1751644491,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6866576e49d207_79479514 (\Smarty\Template $_smarty_tpl) {
+function content_6867f94eb4b219_37868329 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -590,12 +590,68 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 >
 
 
+<?php echo '<script'; ?>
+>
+  function isRangeContinuo(startStr, endStr) {
+    const start = new Date(startStr);
+    const end = new Date(endStr);
 
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+      const ds = d.toISOString().slice(0, 10);
+      if (!isInIntervallo(ds) || isOccupata(ds)) {
+        return false;
+      }
+    }
+    return true;
+  }
 
+  document.querySelector('.prenotazione-form').addEventListener('submit', function(e) {
+    const inputInizio = document.getElementById('dataInizio');
+    const inputFine = document.getElementById('dataFine');
 
+    const dataInizio = inputInizio._flatpickr.selectedDates[0];
+    const dataFine = inputFine._flatpickr.selectedDates[0];
 
+    // Controllo che entrambi i campi siano compilati
+    if (!dataInizio || !dataFine) {
+      alert("Devi selezionare sia la data di inizio che quella di fine.");
+      e.preventDefault();
+      return;
+    }
 
+    // Formatta le date nel formato YYYY-MM-DD
+    const dataInizioStr = dataInizio.toISOString().slice(0, 10);
+    const dataFineStr = dataFine.toISOString().slice(0, 10);
 
+    // Controllo intervallo disponibile per inizio e fine
+    if (!isInIntervallo(dataInizioStr) || isOccupata(dataInizioStr)) {
+      alert("La data di inizio non è disponibile.");
+      e.preventDefault();
+      return;
+    }
+
+    if (!isInIntervallo(dataFineStr) || isOccupata(dataFineStr)) {
+      alert("La data di fine non è disponibile.");
+      e.preventDefault();
+      return;
+    }
+
+    // Controllo che data fine sia dopo o uguale a data inizio
+    if (dataFine < dataInizio) {
+      alert("La data di fine deve essere uguale o successiva a quella di inizio.");
+      e.preventDefault();
+      return;
+    }
+
+    // ✅ NUOVO controllo: range continuo senza buchi
+    if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
+      alert("L'intervallo selezionato contiene giorni non prenotabili.");
+      e.preventDefault();
+      return;
+    }
+  });
+<?php echo '</script'; ?>
+>
 
 
 

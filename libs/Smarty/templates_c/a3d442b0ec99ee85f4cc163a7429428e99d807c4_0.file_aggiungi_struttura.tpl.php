@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-03 12:11:41
+/* Smarty version 5.5.1, created on 2025-07-03 16:11:48
   from 'file:admin/aggiungi_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6866575df00935_73256377',
+  'unifunc' => 'content_68668fa49e76c7_76453962',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a3d442b0ec99ee85f4cc163a7429428e99d807c4' => 
     array (
       0 => 'admin/aggiungi_struttura.tpl',
-      1 => 1751537498,
+      1 => 1751551906,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6866575df00935_73256377 (\Smarty\Template $_smarty_tpl) {
+function content_68668fa49e76c7_76453962 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -213,8 +213,11 @@ $foreach1DoElse = false;
                 <div class="intervallo row gx-3 gy-2 align-items-end p-3 mb-3 border rounded bg-light">
                   <div class="col-sm-4">
                     <label class="form-label">Inizio</label>
+                    <input type="hidden" name="intervallo_id[]" value="<?php echo $_smarty_tpl->getValue('intervallo')->getId();?>
+">
                     <input type="date" name="intervallo_inizio[]" class="form-control" value="<?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('intervallo')->getDataI(),'%Y-%m-%d');?>
 ">
+
                   </div>
                   <div class="col-sm-4">
                     <label class="form-label">Fine</label>
@@ -456,6 +459,53 @@ echo $_smarty_tpl->getValue('struttura')->getNLetti();
     // Reset input per consentire nuova selezione
     selector.value = '';
   });
+<?php echo '</script'; ?>
+>
+
+
+
+
+
+
+<?php echo '<script'; ?>
+>
+function aggiungiIntervallo() {
+    const wrapper = document.getElementById('intervalli-wrapper');
+    const div = document.createElement('div');
+    div.className = 'intervallo row gx-3 gy-2 align-items-end p-3 mb-3 border rounded bg-light';
+    div.innerHTML = `
+    <input type="hidden" name="intervallo_id[]" value="">
+    <div class="col-sm-4">
+        <label class="form-label">Inizio</label>
+        <input type="date" name="intervallo_inizio[]" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label class="form-label">Fine</label>
+        <input type="date" name="intervallo_fine[]" class="form-control">
+    </div>
+    <div class="col-sm-3">
+        <label class="form-label">Prezzo (€)</label>
+        <input type="number" step="0.01" name="intervallo_prezzo[]" class="form-control">
+    </div>
+    <div class="col-sm-1 text-end">
+        <button type="button" class="btn btn-sm btn-outline-danger remove-intervallo" title="Rimuovi questo intervallo">✖</button>
+    </div>
+`;
+
+    wrapper.appendChild(div);
+}
+<?php echo '</script'; ?>
+>
+
+<?php echo '<script'; ?>
+>
+// Ascolta i click su tutti i pulsanti "✖" (anche quelli aggiunti dinamicamente)
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('remove-intervallo')) {
+        const intervallo = e.target.closest('.intervallo');
+        if (intervallo) intervallo.remove();
+    }
+});
 <?php echo '</script'; ?>
 >
 
