@@ -149,8 +149,6 @@ class VUser
         $this->smarty->assign('ospiti', $ospitiArray);
         $this->smarty->assign('totale', $totale);
 
-        $this->smarty->display('utente/riepilogo_prenotazione.tpl');
+        $this->smarty->display('utente/prenotazione_riepilogo.tpl');
     }
-
-
 }
