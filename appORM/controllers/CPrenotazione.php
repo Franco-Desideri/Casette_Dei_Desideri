@@ -52,6 +52,8 @@ class CPrenotazione
         exit;
     }
 
+
+    
     public function riepilogoParziale(): void
     {
         USession::start();
@@ -88,10 +90,14 @@ class CPrenotazione
                     isset($_FILES['ospiti']['tmp_name'][$i]['documento']) &&
                     is_uploaded_file($_FILES['ospiti']['tmp_name'][$i]['documento'])
                 ) {
-                    $ospiti[$i]['documento'] = file_get_contents($_FILES['ospiti']['tmp_name'][$i]['documento']);
+                    $fileTmp = $_FILES['ospiti']['tmp_name'][$i]['documento'];
+                    $fileName = $_FILES['ospiti']['name'][$i]['documento'];
+
+                    $ospiti[$i]['documento'] = base64_encode(file_get_contents($fileTmp));
+                    $ospiti[$i]['documento_mime'] = mime_content_type($fileTmp);
+                    $ospiti[$i]['documento_ext'] = pathinfo($fileName, PATHINFO_EXTENSION);
                 }
             }
-
 
             $data['ospiti'] = $ospiti;
             USession::set('prenotazione_temp', $data);

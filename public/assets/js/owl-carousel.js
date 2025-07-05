@@ -2901,6 +2901,40 @@
 			to: this._core.to
 		};
 
+
+
+//Per lo scrool delle immagini strutture
+$(document).ready(function () {
+  $(".owl-banner").owlCarousel({
+    items: 1,
+    loop: true,
+    dots: true,
+    nav: true,
+	autoplay: true,
+	  autoplayTimeout: 3000,   // 3 secondi tra slide
+  autoplayHoverPause: true,
+    navText: [
+      '<i class="fa fa-chevron-left"></i>',
+      '<i class="fa fa-chevron-right"></i>'
+    ]
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		/**
 		 * All event handlers.
 		 * @protected

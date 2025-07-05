@@ -21,7 +21,7 @@ class CStruttura
         $view->mostraLista($strutture);
     }
 
-    public function dettaglio($id): void
+        public function dettaglio($id): void
     {
         USession::start();
 

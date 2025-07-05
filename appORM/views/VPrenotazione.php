@@ -34,7 +34,7 @@ class VPrenotazione
     public function mostraFormOspiti(EStruttura $struttura): void
     {
         $this->smarty->assign('struttura', $struttura);
-        $this->smarty->display('utente/prenotazione_ospiti.tpl');
+        $this->smarty->display('utente/inserimento_dati_prenotazione.tpl');
     }
 
     /**
@@ -56,7 +56,7 @@ class VPrenotazione
         }
         $this->smarty->assign('ospiti', $ospiti);
         $this->smarty->assign('totale', $totale);
-        $this->smarty->display('utente/prenotazione_riepilogo.tpl');
+        $this->smarty->display('utente/riepilogo_prenotazione.tpl');
     }
 
     /**
@@ -64,6 +64,6 @@ class VPrenotazione
      */
     public function mostraPagamento(): void
     {
-        $this->smarty->display('utente/prenotazione_pagamento.tpl');
+        $this->smarty->display('utente/pagamento_prenotazione.tpl');
     }
 }

@@ -25,7 +25,7 @@ class VStruttura
         }
 
         $this->smarty->assign('strutture', $strutture);
-        $this->smarty->display('utente/struttura_lista.tpl');
+        $this->smarty->display('utente/lista_strutture.tpl');
     }
 
 
@@ -43,6 +43,6 @@ class VStruttura
         $this->smarty->assign('foto', $foto);
         $this->smarty->assign('intervalli', $intervalli);
         $this->smarty->assign('prenotazioni', $prenotazioni);
-        $this->smarty->display('utente/struttura_dettaglio.tpl');
+        $this->smarty->display('utente/dettaglio_struttura.tpl');
     }
 }

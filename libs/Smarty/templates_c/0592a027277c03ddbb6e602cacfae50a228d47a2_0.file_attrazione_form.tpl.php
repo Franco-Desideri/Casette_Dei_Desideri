@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-02 19:50:31
-  from 'file:admin/evento_form.tpl' */
+/* Smarty version 5.5.1, created on 2025-07-02 19:50:56
+  from 'file:admin/attrazione_form.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686571676520a4_51995953',
+  'unifunc' => 'content_68657180a08d36_13858690',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'e0f68f559de44f4a155dd175339796c040aef909' => 
+    '0592a027277c03ddbb6e602cacfae50a228d47a2' => 
     array (
-      0 => 'admin/evento_form.tpl',
-      1 => 1751478626,
+      0 => 'admin/attrazione_form.tpl',
+      1 => 1751478410,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_686571676520a4_51995953 (\Smarty\Template $_smarty_tpl) {
+function content_68657180a08d36_13858690 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -29,7 +29,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <title><?php if ($_smarty_tpl->getValue('evento') !== null) {?>Modifica Evento<?php } else { ?>Aggiungi Evento<?php }?> - Admin</title>
+  <title><?php if ($_smarty_tpl->getValue('attrazione') !== null) {?>Modifica Attrazione<?php } else { ?>Aggiungi Attrazione<?php }?> - Admin</title>
 
   <!-- Bootstrap core CSS -->
   <link href="/Casette_Dei_Desideri/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -45,45 +45,31 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 
 <body>
   <div class="admin-form">
-    <h2><?php if ($_smarty_tpl->getValue('evento') !== null) {?>Modifica Evento<?php } else { ?>Aggiungi Evento<?php }?></h2>
+    <h2><?php if ($_smarty_tpl->getValue('attrazione') !== null) {?>Modifica Attrazione<?php } else { ?>Aggiungi Attrazione<?php }?></h2>
 
-    <form action="<?php if ($_smarty_tpl->getValue('evento') !== null) {?>/Casette_Dei_Desideri/AdminContenuti/salvaModificaEvento<?php } else { ?>/Casette_Dei_Desideri/AdminContenuti/salvaEvento<?php }?>" method="post" enctype="multipart/form-data">
+    <form action="<?php if ($_smarty_tpl->getValue('attrazione') !== null) {?>/Casette_Dei_Desideri/AdminContenuti/salvaModificaAttrazione<?php } else { ?>/Casette_Dei_Desideri/AdminContenuti/salvaAttrazione<?php }?>" method="post" enctype="multipart/form-data">
 
-        <?php if ($_smarty_tpl->getValue('evento') !== null) {?>
-            <input type="hidden" name="id" value="<?php echo $_smarty_tpl->getValue('evento')->getId();?>
+        <?php if ($_smarty_tpl->getValue('attrazione') !== null) {?>
+            <input type="hidden" name="id" value="<?php echo $_smarty_tpl->getValue('attrazione')->getId();?>
 ">
         <?php }?>
 
         <div class="mb-3">
           <label for="immagine">Carica un'immagine</label>
-          <input type="file" class="form-control" name="immagine" accept="image/*" <?php if ($_smarty_tpl->getValue('evento') === null) {?>required<?php }?>>
+          <input type="file" class="form-control" name="immagine" accept="image/*" <?php if ($_smarty_tpl->getValue('attrazione') === null) {?>required<?php }?>>
         </div>
 
-        <?php if ($_smarty_tpl->getValue('evento') !== null && $_smarty_tpl->getValue('evento')->getImmagine()) {?>
+        <?php if ($_smarty_tpl->getValue('attrazione') !== null && $_smarty_tpl->getValue('attrazione')->getImmagine()) {?>
           <p>Immagine attuale:</p>
-          <img src="<?php echo $_smarty_tpl->getValue('evento')->base64img;?>
+          <img src="<?php echo $_smarty_tpl->getValue('attrazione')->base64img;?>
 " alt="Immagine attuale">
         <?php }?>
 
         <div class="mb-3">
-          <label for="titolo">Titolo</label>
-          <input type="text" class="form-control" name="titolo" value="<?php if ($_smarty_tpl->getValue('evento') !== null) {
-echo $_smarty_tpl->getValue('evento')->getTitolo();
-}?>" required>
-        </div>
-
-        <div class="mb-3">
-          <label for="dataInizio">Data inizio</label>
-          <input type="date" class="form-control" name="dataInizio" value="<?php if ($_smarty_tpl->getValue('evento') !== null) {
-echo $_smarty_tpl->getValue('evento')->getDataInizioString('Y-m-d');
-}?>" required>
-        </div>
-
-        <div class="mb-3">
-          <label for="dataFine">Data fine</label>
-          <input type="date" class="form-control" name="dataFine" value="<?php if ($_smarty_tpl->getValue('evento') !== null) {
-echo $_smarty_tpl->getValue('evento')->getDataFineString('Y-m-d');
-}?>" required>
+          <label for="descrizione">Descrizione</label>
+          <textarea name="descrizione" class="form-control" rows="4" required><?php if ($_smarty_tpl->getValue('attrazione') !== null) {
+echo $_smarty_tpl->getValue('attrazione')->getDescrizione();
+}?></textarea>
         </div>
 
         <button type="submit" class="btn btn-success">Salva</button>
@@ -110,5 +96,6 @@ echo $_smarty_tpl->getValue('evento')->getDataFineString('Y-m-d');
  src="/Casette_Dei_Desideri/public/assets/js/custom.js"><?php echo '</script'; ?>
 >
 </body>
-</html><?php }
+</html>
+<?php }
 }

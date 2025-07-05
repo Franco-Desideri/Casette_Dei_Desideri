@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-03 20:36:47
-  from 'file:admin/admin_home.tpl' */
+/* Smarty version 5.5.1, created on 2025-07-02 18:08:28
+  from 'file:utente/home1.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6866cdbfcd5897_78797354',
+  'unifunc' => 'content_6865597cc847b4_46687948',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '509dc5e7b7d9442af37f0333ad895bbc51c60413' => 
+    'df40d785121db716158d42fd12e217ced7e28e9e' => 
     array (
-      0 => 'admin/admin_home.tpl',
-      1 => 1751567804,
+      0 => 'utente/home1.tpl',
+      1 => 1751472503,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,8 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6866cdbfcd5897_78797354 (\Smarty\Template $_smarty_tpl) {
-$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
+function content_6865597cc847b4_46687948 (\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="en">
 
@@ -85,10 +85,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
             <!-- ***** Logo End ***** -->
             <!-- ***** Menu Start ***** -->
             <ul class="nav">
-              <li><a href="/Casette_Dei_Desideri/AdminContenuti/home" class="active">Home</a></li>
-              <li><a href="/Casette_Dei_Desideri/AdminStruttura/lista">Strutture</a></li>
-              <li><a href="/Casette_Dei_Desideri/AdminProdotto/lista">Servizi</a></li>
-              <li><a href="/Casette_Dei_Desideri/Admin/profilo">Profilo</a></li>
+              <li><a href="/Casette_Dei_Desideri/User/home" class="active">Home</a></li>
+              <li><a href="/Casette_Dei_Desideri/Struttura/lista">Strutture</a></li>
+              <li><a href="/Casette_Dei_Desideri/Ordine/listaProdotti">Servizi</a></li>
+              <li><a href="/Casette_Dei_Desideri/User/profilo">Profilo</a></li>
             </ul>
             <a class='menu-trigger'>
               <span>Menu</span>
@@ -101,16 +101,13 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
   </header>
   <!-- ***** Header Area End ***** -->
 
-  <div class="hero-section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <h3 class="hero-title">B&amp;B Casette Dei Desideri</h3>
-          <p class="hero-subtitle">"Buon giorno buona gente"...</p>
-          <p class="hero-subtitle">Il vostro soggiorno a Poggio Bustone presso Le Casette Dei Desideri vi aspetta.</p>
-          <p class="hero-subtitle">Venite a scoprire i nostri servizi e le meraviglie che vi riserva il nostro paese!</p>
-        </div>
-      </div>
+  <div class="hero-card">
+    <img src="/Casette_Dei_Desideri/public/assets/immagini/hero.jpg" alt="B&B Casette Dei Desideri">
+    <div class="hero-text">
+      <div class="hero-title">B&amp;B Casette Dei Desideri</div>
+      <div class="hero-subtitle">"Buon giorno buona gente"...</div>
+      <div class="hero-subtitle">Il vostro soggiorno a Pogio Bustone presso Le Casette Dei Desideri vi aspetta.</div>
+      <div class="hero-subtitle">Venite a scoprire i nostri servizi e le meraviglie che vi riserva il nostro paese!</div>
     </div>
   </div>
 
@@ -125,94 +122,71 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
   </section>
 
 
- <!-- Sezione ATTRAZIONI -->
-<div class="section-divider"></div>
-<h2 class="section-title">Modifica, aggiungi ed elimina attrazioni</h2>
+  <div class="section-divider"></div>
 
-<!-- Pulsante aggiungi attrazione -->
-<form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiAttrazione" method="post" style="margin-bottom: 20px;">
-  <button type="submit" class="btn btn-primary">Aggiungi Attrazione</button>
-</form>
+  <h2 class="section-title">Perchè venire a trovarci?</h2>
+  
 
-<div class="card-container">
-  <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('attrazioni')) > 0) {?>
-    <?php
+  <div class="card-container">
+    <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('attrazioni')) > 0) {?>
+        <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('attrazioni'), 'attrazione');
 $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('attrazione')->value) {
 $foreach0DoElse = false;
 ?>
-      <div class="card-wrapper">
-        <a href="/Casette_Dei_Desideri/AdminContenuti/modificaAttrazione/<?php echo $_smarty_tpl->getValue('attrazione')->getId();?>
-" class="card-link">
-          <div class="card">
-            <div class="card-text">
-              <p><?php echo $_smarty_tpl->getValue('attrazione')->getDescrizione();?>
+            <div class="card">
+                <div class="card-text">
+                    <p><?php echo $_smarty_tpl->getValue('attrazione')->getDescrizione();?>
 </p>
-            </div>
-            <div class="card-image">
-              <img src="<?php echo $_smarty_tpl->getValue('attrazione')->base64img;?>
+                </div>
+                <div class="card-image">
+                    <img src="<?php echo $_smarty_tpl->getValue('attrazione')->base64img;?>
 " alt="Immagine attrazione">
+                </div>
             </div>
-          </div>
-        </a>
-        <form action="/Casette_Dei_Desideri/AdminContenuti/eliminaAttrazione/<?php echo $_smarty_tpl->getValue('attrazione')->getId();?>
-" method="post" style="margin-top: 10px;">
-          <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler eliminare questa attrazione?');">Elimina</button>
-        </form>
-      </div>
-    <?php
+        <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-  <?php } else { ?>
-    <p>Non ci sono attrazioni disponibili</p>
-  <?php }?>
-</div>
+    <?php } else { ?>
+        <p>Non ci sono attrazioni disponibili</p>
+    <?php }?>
+  </div>
 
-<!-- Sezione EVENTI -->
-<div class="section-divider"></div>
-<h2 class="section-title">Modifica, aggiungi ed elimina eventi</h2>
 
-<!-- Pulsante aggiungi evento -->
-<form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiEvento" method="post" style="margin-bottom: 20px;">
-  <button type="submit" class="btn btn-primary">Aggiungi Evento</button>
-</form>
+  <div class="section-divider"></div>
 
-<div class="card-list-info">
-  <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('eventi')) > 0) {?>
-    <?php
+  <h2 class="section-title">Eventi da non perdere</h2>
+
+
+  <div class="card-list-info">
+    <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('eventi')) > 0) {?>
+        <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('eventi'), 'evento');
 $foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('evento')->value) {
 $foreach1DoElse = false;
 ?>
-      <div class="card-wrapper">
-        <a href="/Casette_Dei_Desideri/AdminContenuti/modificaEvento/<?php echo $_smarty_tpl->getValue('evento')->getId();?>
-" class="card-link">
-          <div class="card-info">
-            <h3 class="card-title"><?php echo $_smarty_tpl->getValue('evento')->getTitolo();?>
+            <div class="card-info">
+                  <h3 class="card-title"><?php echo $_smarty_tpl->getValue('evento')->getTitolo();?>
 </h3>
-            <p class="card-dates">Dal <?php echo $_smarty_tpl->getValue('evento')->getDataInizioString('Y-m-d');?>
+                  <p class="card-dates">Dal <?php echo $_smarty_tpl->getValue('evento')->getDataInizioString('Y-m-d');?>
  al <?php echo $_smarty_tpl->getValue('evento')->getDataFineString('Y-m-d');?>
 </p>
-            <div class="card-info-image">
-              <img src="<?php echo $_smarty_tpl->getValue('evento')->base64img;?>
+                <div class="card-info-image">
+                    <img src="<?php echo $_smarty_tpl->getValue('evento')->base64img;?>
 " alt="Immagine evento">
+                </div>
             </div>
-          </div>
-        </a>
-        <form action="/Casette_Dei_Desideri/AdminContenuti/eliminaEvento/<?php echo $_smarty_tpl->getValue('evento')->getId();?>
-" method="post" style="margin-top: 10px;">
-          <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler eliminare questo evento?');">Elimina</button>
-        </form>
-      </div>
-    <?php
+        <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-  <?php } else { ?>
-    <p>Non ci sono eventi disponibili</p>
-  <?php }?>
-</div>
+    <?php } else { ?>
+        <p>Non ci sono attrazioni disponibili</p>
+    <?php }?>
+
+
+
 
 
   <!-- Scripts -->

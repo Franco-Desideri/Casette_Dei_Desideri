@@ -85,33 +85,55 @@ class CAdminStruttura
         $view->mostraForm($struttura);
     }
 
-    public function salvaModificata(): void {
-        USession::start();
-        if (USession::get('ruolo') !== 'admin') {
-            echo "Accesso riservato.";
-            return;
+public function salvaModificata(): void {
+    USession::start();
+    if (USession::get('ruolo') !== 'admin') {
+        echo "Accesso riservato.";
+        return;
+    }
+
+    $dati = $_POST;
+    $struttura = FPersistentManager::get()->find(EStruttura::class, $dati['id']);
+    if (!$struttura) {
+        echo "Struttura non trovata.";
+        return;
+    }
+
+    $this->popolaStrutturaDaDati($struttura, $dati);
+
+    $idsForm = $dati['intervallo_id'] ?? [];
+
+    if (isset($dati['intervallo_inizio'], $dati['intervallo_fine'], $dati['intervallo_prezzo'])) {
+
+        // 1. Rimuovi gli intervalli presenti nella struttura ma non inviati dal form
+        foreach ($struttura->getIntervalli() as $intervalloEsistente) {
+            if (!in_array($intervalloEsistente->getId(), $idsForm)) {
+                $struttura->removeIntervallo($intervalloEsistente);
+                FPersistentManager::get()->remove($intervalloEsistente);
+            }
         }
 
-        $dati = $_POST;
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $dati['id']);
-        if (!$struttura) {
-            echo "Struttura non trovata.";
-            return;
-        }
+        // 2. Aggiungi nuovi intervalli o aggiorna quelli esistenti
+        foreach ($dati['intervallo_inizio'] as $i => $inizioStr) {
+            $fineStr = $dati['intervallo_fine'][$i];
+            $prezzoStr = $dati['intervallo_prezzo'][$i];
+            $idIntervallo = $idsForm[$i] ?? null;
 
-        $this->popolaStrutturaDaDati($struttura, $dati);
+            if ($inizioStr && $fineStr && is_numeric($prezzoStr)) {
+                $inizio = new DateTime($inizioStr);
+                $fine = new DateTime($fineStr);
 
-        // Intervalli non sovrapposti
-        if (isset($dati['intervallo_inizio'], $dati['intervallo_fine'], $dati['intervallo_prezzo'])) {
-            foreach ($dati['intervallo_inizio'] as $i => $inizioStr) {
-                $fineStr = $dati['intervallo_fine'][$i];
-                $prezzoStr = $dati['intervallo_prezzo'][$i];
-
-                if ($inizioStr && $fineStr && is_numeric($prezzoStr)) {
-                    $inizio = new DateTime($inizioStr);
-                    $fine = new DateTime($fineStr);
+                if ($idIntervallo) {
+                    // Aggiorna intervallo esistente
+                    $intervallo = FPersistentManager::get()->find(EIntervallo::class, $idIntervallo);
+                    if ($intervallo) {
+                        $intervallo->setDataI($inizio);
+                        $intervallo->setDataF($fine);
+                        $intervallo->setPrezzo((float)$prezzoStr);
+                    }
+                } else {
+                    // Nuovo intervallo → controlla che non sia sovrapposto
                     $sovrapposto = false;
-
                     foreach ($struttura->getIntervalli() as $esistente) {
                         if (
                             ($inizio <= $esistente->getDataF()) &&
@@ -128,16 +150,19 @@ class CAdminStruttura
                         $intervallo->setDataF($fine);
                         $intervallo->setPrezzo((float)$prezzoStr);
                         $struttura->addIntervallo($intervallo);
+                        FPersistentManager::get()->persist($intervallo);
                     }
                 }
             }
         }
-
-        $this->gestisciUploadFoto($struttura);
-
-        FPersistentManager::store($struttura);
-        header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
     }
+
+    $this->gestisciUploadFoto($struttura);
+
+    FPersistentManager::store($struttura);
+    header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
+}
+
 
     public function elimina($id): void {
         USession::start();
@@ -162,11 +187,12 @@ class CAdminStruttura
         $struttura->setLuogo($dati['luogo']);
         $struttura->setNBagni((int)$dati['nBagni']);
         $struttura->setNLetti((int)$dati['nLetti']);
-        $struttura->setColazione(isset($dati['colazione']));
-        $struttura->setAnimali(isset($dati['animali']));
-        $struttura->setParcheggio(isset($dati['parcheggio']));
-        $struttura->setWifi(isset($dati['wifi']));
-        $struttura->setBalcone(isset($dati['balcone']));
+    $struttura->setColazione($dati['colazione'] == "1");
+    $struttura->setAnimali($dati['animali'] == "1");
+    $struttura->setParcheggio($dati['parcheggio'] == "1");
+    $struttura->setWifi($dati['wifi'] == "1");
+    $struttura->setBalcone($dati['balcone'] == "1");
+
     }
 
     private function gestisciUploadFoto(EStruttura $struttura): void {
