@@ -132,6 +132,7 @@ class EStruttura
     }
 
     public function getIntervalli(): Collection { return $this->intervalli; }
+
     public function addIntervallo(EIntervallo $intervallo): void {
         if (!$this->intervalli->contains($intervallo)) {
             $this->intervalli[] = $intervallo;

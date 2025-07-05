@@ -2051,3 +2051,112 @@ body {
 .pulsante-flottante:hover {
   color: #000000;
 }
+
+
+/* Proprietà sezione PRENOTAZIONE  */
+
+/* Box bianco con ombra */
+.card-box {
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 3rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  min-height: 150px;
+}
+
+
+/* Titolo principale */
+.title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #2a2a2a;
+  margin-bottom: 3rem;
+}
+
+
+/* Riga info */
+.info {
+  font-size: 1.6rem;
+  color: #444;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+
+/* Titolo riepilogo */
+.riepilogo-title {
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 1.5rem; /* già gestito da mb-4 ma puoi personalizzare */
+  color: #2a2a2a;
+}
+
+/* Card ospite */
+.ospite-card {
+  background-color: #f8f9fa;
+  border: 1px solid #ddd;
+  padding: 20px;
+  width: 100%;
+  border-radius: 0.25rem; /* rounded */
+}
+
+/* Titolo ospite */
+.ospite-title {
+  font-weight: 700;
+  color: #2a2a2a;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+/* Paragrafi info ospite */
+.ospite-info {
+  font-size: 1.6rem;
+  color: #444;
+  margin: 0; /* rimuove margine p default */
+}
+
+/* Link documento */
+.documento-link a {
+  color: #1e90ff;
+  text-decoration: none;
+}
+
+.documento-link a:hover,
+.documento-link a:focus {
+  text-decoration: underline;
+}
+
+
+/* Spaziatura personalizzata */
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+
+
+/* Contenitore centrale a piena altezza */
+.fullpage-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* vh-100 */
+  background-color: #f5f5f5;
+}
+
+/* Card centrata con padding e ombra */
+.form-card {
+  width: 100%;
+  max-width: 500px;
+  padding: 3rem; /* p-5 */
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+
