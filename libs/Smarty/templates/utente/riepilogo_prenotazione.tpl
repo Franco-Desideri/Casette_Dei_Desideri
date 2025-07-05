@@ -249,4 +249,3 @@ https://templatemo.com/tm-591-villa-agency
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
   </body>
-</html>
