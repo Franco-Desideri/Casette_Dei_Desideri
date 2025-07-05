@@ -111,7 +111,6 @@ https://templatemo.com/tm-591-villa-agency
             {foreach from=$strutture item=struttura}
             <div class="col-lg-4 col-md-6 align-self-center mb-30 properties-items col-md-6 str">
                 <div class="item">
-                <a href="/Casette_Dei_Desideri/Struttura/dettaglio/{$struttura->getId()}">
                     {if $struttura->immaginePrincipale}
                       <img src="{$struttura->immaginePrincipale}" alt="Struttura" />
                     {/if}

@@ -483,5 +483,71 @@ https://templatemo.com/tm-591-villa-agency
     });
   </script>
 
+
+<script>
+  function isRangeContinuo(startStr, endStr) {
+    const start = new Date(startStr);
+    const end = new Date(endStr);
+
+    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+      const ds = d.toISOString().slice(0, 10);
+      if (!isInIntervallo(ds) || isOccupata(ds)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  document.querySelector('.prenotazione-form').addEventListener('submit', function(e) {
+    const inputInizio = document.getElementById('dataInizio');
+    const inputFine = document.getElementById('dataFine');
+
+    const dataInizio = inputInizio._flatpickr.selectedDates[0];
+    const dataFine = inputFine._flatpickr.selectedDates[0];
+
+    // Controllo che entrambi i campi siano compilati
+    if (!dataInizio || !dataFine) {
+      alert("Devi selezionare sia la data di inizio che quella di fine.");
+      e.preventDefault();
+      return;
+    }
+
+    // Formatta le date nel formato YYYY-MM-DD
+    const dataInizioStr = dataInizio.toISOString().slice(0, 10);
+    const dataFineStr = dataFine.toISOString().slice(0, 10);
+
+    // Controllo intervallo disponibile per inizio e fine
+    if (!isInIntervallo(dataInizioStr) || isOccupata(dataInizioStr)) {
+      alert("La data di inizio non è disponibile.");
+      e.preventDefault();
+      return;
+    }
+
+    if (!isInIntervallo(dataFineStr) || isOccupata(dataFineStr)) {
+      alert("La data di fine non è disponibile.");
+      e.preventDefault();
+      return;
+    }
+
+    // Controllo che data fine sia dopo o uguale a data inizio
+    if (dataFine < dataInizio) {
+      alert("La data di fine deve essere uguale o successiva a quella di inizio.");
+      e.preventDefault();
+      return;
+    }
+
+    // ✅ NUOVO controllo: range continuo senza buchi
+    if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
+      alert("L'intervallo selezionato contiene giorni non prenotabili.");
+      e.preventDefault();
+      return;
+    }
+  });
+</script>
+
+
+
+
+
   </body>
 </html>

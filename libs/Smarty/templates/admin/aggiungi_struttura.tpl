@@ -169,7 +169,9 @@ https://templatemo.com/tm-591-villa-agency
                 <div class="intervallo row gx-3 gy-2 align-items-end p-3 mb-3 border rounded bg-light">
                   <div class="col-sm-4">
                     <label class="form-label">Inizio</label>
+                    <input type="hidden" name="intervallo_id[]" value="{$intervallo->getId()}">
                     <input type="date" name="intervallo_inizio[]" class="form-control" value="{$intervallo->getDataI()|date_format:'%Y-%m-%d'}">
+
                   </div>
                   <div class="col-sm-4">
                     <label class="form-label">Fine</label>
@@ -386,6 +388,49 @@ https://templatemo.com/tm-591-villa-agency
   });
 </script>
 {/literal}
+
+
+
+
+
+<script>
+function aggiungiIntervallo() {
+    const wrapper = document.getElementById('intervalli-wrapper');
+    const div = document.createElement('div');
+    div.className = 'intervallo row gx-3 gy-2 align-items-end p-3 mb-3 border rounded bg-light';
+    div.innerHTML = `
+    <input type="hidden" name="intervallo_id[]" value="">
+    <div class="col-sm-4">
+        <label class="form-label">Inizio</label>
+        <input type="date" name="intervallo_inizio[]" class="form-control">
+    </div>
+    <div class="col-sm-4">
+        <label class="form-label">Fine</label>
+        <input type="date" name="intervallo_fine[]" class="form-control">
+    </div>
+    <div class="col-sm-3">
+        <label class="form-label">Prezzo (€)</label>
+        <input type="number" step="0.01" name="intervallo_prezzo[]" class="form-control">
+    </div>
+    <div class="col-sm-1 text-end">
+        <button type="button" class="btn btn-sm btn-outline-danger remove-intervallo" title="Rimuovi questo intervallo">✖</button>
+    </div>
+`;
+
+    wrapper.appendChild(div);
+}
+</script>
+
+<script>
+// Ascolta i click su tutti i pulsanti "✖" (anche quelli aggiunti dinamicamente)
+document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('remove-intervallo')) {
+        const intervallo = e.target.closest('.intervallo');
+        if (intervallo) intervallo.remove();
+    }
+});
+</script>
+
 
 
 
