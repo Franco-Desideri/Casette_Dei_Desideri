@@ -69,6 +69,7 @@ class CAdminProdotto
         $prodotto->setNome($_POST['nome']);
         $prodotto->setPrezzo((float)$_POST['prezzo']);
         $prodotto->setPeso((int)$_POST['peso']);
+        $prodotto->setUnitaMisura($_POST['unita_misura']);
     } elseif ($tipo === 'peso') {
         $prodotto = new EProdottoPeso();
         $prodotto->setNome($_POST['nome']);

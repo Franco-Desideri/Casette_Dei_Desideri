@@ -18,7 +18,7 @@
             <ul class="admin-item-list"> {foreach from=$prodottiQuantita_v item=prodotto}
                     <li>
                         <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
-                            <strong>{$prodotto->getNome()}</strong> - {$prodotto->getPeso()}g - €{$prodotto->getPrezzo()}
+                            <strong>{$prodotto->getNome()}</strong> - {$prodotto->getPeso()} {$prodotto->getUnitaMisura()} - €{$prodotto->getPrezzo()}
                         </div>
                         <div class="admin-item-actions">
                             <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}">✏️ Modifica</a>
@@ -62,7 +62,7 @@
             <ul class="admin-item-list"> {foreach from=$prodottiQuantita_n item=prodotto}
                     <li>
                         <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
-                            <strong>{$prodotto->getNome()}</strong> - {$prodotto->getPeso()}g - €{$prodotto->getPrezzo()}
+                            <strong>{$prodotto->getNome()}</strong> - {$prodotto->getPeso()} {$prodotto->getUnitaMisura()} - €{$prodotto->getPrezzo()}
                         </div>
                         <div class="admin-item-actions">
                             <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}">✏️ Modifica</a>

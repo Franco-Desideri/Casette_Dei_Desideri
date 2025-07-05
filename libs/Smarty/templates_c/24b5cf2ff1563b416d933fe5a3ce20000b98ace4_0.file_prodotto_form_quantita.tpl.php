@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-04 10:51:28
+/* Smarty version 5.5.1, created on 2025-07-05 23:06:22
   from 'file:admin/prodotto_form_quantita.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68679610cbd209_87970075',
+  'unifunc' => 'content_686993ce3f41e7_83125343',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '24b5cf2ff1563b416d933fe5a3ce20000b98ace4' => 
     array (
       0 => 'admin/prodotto_form_quantita.tpl',
-      1 => 1751619073,
+      1 => 1751749578,
       2 => 'file',
     ),
   ),
@@ -21,20 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/header_admin.tpl' => 1,
   ),
 ))) {
-function content_68679610cbd209_87970075 (\Smarty\Template $_smarty_tpl) {
+function content_686993ce3f41e7_83125343 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5312147468679610c95948_49411158', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2129866771686993ce3e4db6_94367826', "contenuto");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_5312147468679610c95948_49411158 extends \Smarty\Runtime\Block
+class Block_2129866771686993ce3e4db6_94367826 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
@@ -72,10 +72,21 @@ echo $_smarty_tpl->getValue('prodotto')->getPrezzo();
         </div>
 
         <div class="form-group-item">
-            <label for="quantita">Peso pacco (g):</label>
+            <label for="quantita">Peso pacco :</label>
             <input type="number" id="quantita" name="peso" required value="<?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {
 echo $_smarty_tpl->getValue('prodotto')->getPeso();
 }?>">
+        </div>
+
+        <div class="form-group-item">
+            <label for="unita_misura" >Unità di misura:</label>
+            <select id="unita_misura" name="unita_misura" class="delivery-time-select" required>
+                <option value="">-- Seleziona --</option>
+                <option value="g" <?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null))) && $_smarty_tpl->getValue('prodotto')->getUnitaMisura() == 'g') {?>selected<?php }?>>g</option>
+                <option value="Kg" <?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null))) && $_smarty_tpl->getValue('prodotto')->getUnitaMisura() == 'Kg') {?>selected<?php }?>>Kg</option>
+                <option value="L" <?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null))) && $_smarty_tpl->getValue('prodotto')->getUnitaMisura() == 'L') {?>selected<?php }?>>L</option>
+                <option value="ml" <?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null))) && $_smarty_tpl->getValue('prodotto')->getUnitaMisura() == 'ml') {?>selected<?php }?>>ml</option>
+                            </select>
         </div>
 
                 <div class="form-group-item">
@@ -83,9 +94,10 @@ echo $_smarty_tpl->getValue('prodotto')->getPeso();
             <input type="file" id="foto" name="foto" accept="image/*" <?php if (!(true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>required<?php }?>>
             <?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>
                 <p>Immagine attuale: <br>
-                    <img src="<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                    <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " style="max-width: 200px; max-height: 200px;">
+
                 </p>
             <?php }?>
         </div>

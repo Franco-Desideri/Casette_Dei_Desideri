@@ -41,7 +41,8 @@
             <input type="file" id="foto" name="foto" accept="image/*" {if !isset($prodotto)}required{/if}>
             {if isset($prodotto)}
                 <p>Immagine attuale: <br>
-                    <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" style="max-width: 200px; max-height: 200px;">
+                    <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" style="max-width: 200px; max-height: 200px;">
+
                 </p>
             {/if}
         </div>

@@ -32,7 +32,7 @@
                         <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image">
                         <div class="product-details">
                             <h4 class="product-name">{$prodotto->getNome()}</h4>
-                            <p class="product-description">{$prodotto->getPeso()}g</p>
+                            <p class="product-description">{$prodotto->getPeso()} {$prodotto->getUnitaMisura()}</p>
                             <p class="product-price">Prezzo: {$prodotto->getPrezzo()|string_format:"%.2f"} &euro;</p>
                             
                             <div class="quantity-control">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-05 21:47:23
+/* Smarty version 5.5.1, created on 2025-07-05 22:51:55
   from 'file:admin/prodotti_lista.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6869814ba41475_08574487',
+  'unifunc' => 'content_6869906b431d67_58008389',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a2d976e2ddc00d9d34777dd3ff782565fa0561d8' => 
     array (
       0 => 'admin/prodotti_lista.tpl',
-      1 => 1751744839,
+      1 => 1751748703,
       2 => 'file',
     ),
   ),
@@ -21,20 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/header_admin.tpl' => 1,
   ),
 ))) {
-function content_6869814ba41475_08574487 (\Smarty\Template $_smarty_tpl) {
+function content_6869906b431d67_58008389 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7333103216869814b9ff4e3_90823918', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17367179656869906b414f93_40098085', "contenuto");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_7333103216869814b9ff4e3_90823918 extends \Smarty\Runtime\Block
+class Block_17367179656869906b414f93_40098085 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
@@ -67,7 +67,8 @@ $foreach0DoElse = false;
 " class="product-image"> <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 </strong> - <?php echo $_smarty_tpl->getValue('prodotto')->getPeso();?>
-g - €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzo();?>
+ <?php echo $_smarty_tpl->getValue('prodotto')->getUnitaMisura();?>
+ - €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzo();?>
 
                         </div>
                         <div class="admin-item-actions">
@@ -138,7 +139,8 @@ $foreach2DoElse = false;
 " class="product-image"> <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 </strong> - <?php echo $_smarty_tpl->getValue('prodotto')->getPeso();?>
-g - €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzo();?>
+ <?php echo $_smarty_tpl->getValue('prodotto')->getUnitaMisura();?>
+ - €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzo();?>
 
                         </div>
                         <div class="admin-item-actions">
