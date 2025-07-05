@@ -1,0 +1,1131 @@
+/* === style.css === */
+
+/* --- Variabili Colori (Toni di Verde) --- */
+:root {
+    --primary-color: #4CAF50; /* Verde brillante, il colore principale */
+    --primary-dark: #388E3C; /* Verde più scuro per hover */
+    --primary-light: #81C784; /* Verde più chiaro, per accenti soft */
+    --text-color: #333;
+    --light-text-color: #555;
+    --border-color: #ddd;
+    --background-light: #f7f7f7; /* Sfondo generale chiaro */
+    --background-white: #ffffff;
+    --shadow-light: rgba(0,0,0,0.08); /* Ombra più definita */
+    --shadow-medium: rgba(0,0,0,0.15);
+}
+
+
+/* Reset base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif; /* Pulito e leggibile per il corpo del testo */
+    background-color: var(--background-light);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Contenitore generale per centrare il contenuto */
+.container {
+    max-width: 1200px; /* Larghezza massima simile all'esempio VILLA */
+    margin: 0 auto;
+    padding: 0 20px; /* Padding orizzontale per evitare che il contenuto si attacchi ai bordi */
+}
+
+
+/* === Header === */
+header.site-header {
+    background-color: var(--background-white);
+    padding: 15px 0; /* Padding verticale */
+    box-shadow: 0 4px 10px var(--shadow-light); /* Ombra più pronunciata */
+    border-bottom: 1px solid var(--border-color);
+}
+
+header.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permette al contenuto di andare a capo su schermi piccoli */
+}
+
+.site-title {
+    margin: 0;
+    font-family: 'Playfair Display', serif; /* Font più elegante come nell'esempio VILLA */
+    font-size: 38px; /* Dimensione maggiore per il titolo */
+    font-weight: 700; /* Bold per il titolo */
+}
+
+.site-title a {
+    color: var(--primary-color); /* Colore del titolo principale verde */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.site-title a:hover {
+    color: var(--primary-dark);
+}
+
+nav.main-nav { /* Contenitore della navigazione */
+    margin-left: auto; /* Spinge la navigazione a destra */
+}
+
+nav.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 35px; /* Spazio maggiore tra gli elementi di navigazione */
+}
+
+nav.main-nav a.nav-item {
+    color: var(--light-text-color);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px; /* Leggermente più grande */
+    padding: 8px 0; /* Solo padding verticale */
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav.main-nav a.nav-item::after { /* Sottolineatura animata */
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    left: 0;
+    bottom: -5px;
+    transition: width 0.3s ease;
+}
+
+nav.main-nav a.nav-item:hover {
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+nav.main-nav a.nav-item:hover::after,
+nav.main-nav a.nav-item.active::after {
+    width: 100%;
+}
+
+nav.main-nav a.nav-item.active {
+    color: var(--primary-color); /* Colore verde per la pagina attiva */
+    font-weight: 700;
+}
+
+
+/* === Hero Section === */
+.hero-section {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin-bottom: 3rem; /* Margine inferiore */
+    overflow: hidden; /* Assicura che nulla esca dai bordi */
+    background-color: #333; /* Sfondo di fallback */
+}
+
+.hero-image {
+    width: 100%;
+    height: 450px; /* Altezza maggiore per la hero */
+    object-fit: cover;
+    filter: brightness(55%); /* Leggermente più scuro per risaltare il testo */
+    display: block; /* Rimuove lo spazio extra sotto l'immagine */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1.5rem 2rem;
+    max-width: 800px; /* Limita la larghezza del testo overlay */
+    width: 90%; /* Adatta su mobile */
+}
+
+.hero-overlay h2 {
+    font-family: 'Playfair Display', serif; /* Font del titolo per la hero */
+    font-size: 4rem; /* Dimensione molto maggiore per impatto */
+    margin-bottom: 0.8rem;
+    line-height: 1.2;
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4); /* Ombra per leggibilità */
+}
+
+.hero-overlay p {
+    font-size: 1.6rem; /* Dimensione maggiore */
+    font-weight: 300;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+/* === Intro Text === */
+.intro-text {
+    text-align: center;
+    margin: 3rem auto 2rem auto;
+    max-width: 800px;
+    font-size: 1.2rem; /* Leggermente più grande */
+    color: var(--light-text-color);
+    line-height: 1.8;
+    padding: 0 20px; /* Padding laterale */
+}
+
+/* === Main Content Area === */
+main { /* Solo il tag main, non la classe container */
+    flex-grow: 1;
+    padding: 40px 0;
+}
+/* La classe container applicherà la larghezza massima e il padding */
+main.container {
+    padding: 40px 20px; /* padding se main ha anche la classe container */
+}
+
+
+/* === Sezioni Prodotti e Fascia Oraria === */
+.section-title { /* Titolo principale della pagina, es. "Servizio Spesa in Struttura" */
+    text-align: center; /* Centrato come nell'esempio VILLA */
+    margin: 40px 0 30px 0;
+    font-size: 40px; /* Grande come nell'esempio */
+    font-family: 'Playfair Display', serif;
+    color: var(--text-color);
+    padding-bottom: 15px;
+    position: relative;
+}
+
+.section-title::after { /* Sottolineatura decorativa */
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80px; /* Larghezza linea */
+    height: 3px; /* Spessore linea */
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.section-subtitle { /* Sottotitoli delle categorie di prodotto */
+    font-family: 'Roboto', sans-serif;
+    font-size: 28px; /* Leggermente più grande */
+    color: var(--text-color);
+    margin-top: 50px; /* Spazio maggiore sopra */
+    margin-bottom: 25px;
+    text-align: center; /* Centrato */
+    position: relative;
+}
+
+.section-subtitle::after { /* Sottolineatura soft per sottotitoli */
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -5px;
+    width: 60px;
+    height: 1px;
+    background-color: var(--border-color);
+}
+
+.product-category {
+    margin-bottom: 50px;
+}
+
+.no-products-message {
+    color: #777;
+    font-style: italic;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-left: 5px solid var(--primary-color);
+    margin: 20px auto; /* Centrato e con margine */
+    max-width: 600px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+/* Stili per la sezione che contiene la lista dei prodotti */
+.product-list {
+    display: grid; /* Abilita il layout a griglia */
+    /* Definisci come devono comportarsi le colonne:
+       - repeat(auto-fill, minmax(280px, 1fr)) creerà automaticamente
+         il numero di colonne che entrano, con una larghezza minima di 280px
+         e che si espandono per riempire lo spazio disponibile.
+       - Puoi regolare 280px in base alla larghezza ideale delle tue card. */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    
+    gap: 20px; /* Questo è il valore chiave: riduce lo spazio tra le card (sia orizzontale che verticale) */
+    
+    justify-content: center; /* Centra le card all'interno del contenitore se non riempiono completamente la riga */
+    align-items: stretch; /* Le card si estendono per occupare l'altezza disponibile nella riga */
+
+    padding: 20px 0; /* Aggiungi un po' di padding alla sezione per non far attaccare le card ai bordi del "container" */
+    margin-bottom: 40px; /* Spazio sotto la sezione dei prodotti, se necessario */
+}
+
+/* Assicurati che le card abbiano una larghezza massima per evitare che diventino troppo grandi */
+.product-card {
+    /* Assicurati che la larghezza massima della card sia impostata per funzionare bene con minmax */
+    max-width: 300px; /* Un po' più grande del minmax per dare un limite superiore */
+    width: 100%; /* La card occupa tutta la larghezza disponibile nella sua colonna */
+    
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    /* Rimuovi eventuali margin-left/right/bottom espliciti se li avevi per la spaziatura */
+    margin: 0 auto; /* Centra la singola card se la sua colonna è più grande della max-width */
+}
+
+/* Il resto dei tuoi stili per .product-image, .product-details, ecc. rimangono invariati */
+
+.product-card:hover {
+    transform: translateY(-8px); /* Solleva di più */
+    box-shadow: 0 10px 30px var(--shadow-medium); /* Ombra più intensa al hover */
+}
+
+.product-image {
+    width: 100%;
+    /* Aumenta l'altezza finché non vedi tutta la scatola */
+    height: 220px; /* Prova con 150px, poi 180px se non basta */
+    object-fit: cover;
+    /* Puoi mantenere 'center' o 'center top' o 'center bottom' se senti che l'immagine
+       è un po' sbilanciata, ma l'aumento di altezza è la priorità. */
+    object-position: center; /* Inizialmente prova con center */
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 10px;
+}
+
+.product-details {
+    height: auto;
+    padding: 0 8px 8px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-name {
+    font-size: 1.1rem; /* Dimensione maggiore */
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 6px;
+    min-height: 40px; /* Altezza minima per nomi su più righe */
+}
+
+.product-description {
+    font-size: 0.9rem;
+    margin: 0.3rem 0 9px 0;
+    color: var(--light-text-color);
+    flex-grow: 1;
+}
+
+.product-price, .product-price-per-unit { /* Stili unificati per i prezzi */
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color); /* Prezzo in verde */
+    margin-bottom: 10px;
+}
+
+/* === Quantity/Weight Control === */
+.quantity-control, .weight-input-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.qty-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    width: 32px; /* Dimensione aumentata */
+    height: 32px; /* Dimensione aumentata */
+    border-radius: 50%;
+    font-size: 1.2rem; /* Dimensione del testo per +/- */
+    line-height: 1; /* Allineamento testo */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Ombra leggera sui bottoni */
+}
+
+.qty-btn:hover {
+    background-color: var(--primary-dark);
+    transform: scale(1.05); /* Piccolo ingrandimento al hover */
+}
+.qty-btn:active {
+    transform: scale(0.9);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+.product-quantity-input, .product-weight-input {
+    width: 55px; /* Larghezza maggiore */
+    text-align: center;
+    padding: 6px 4px; /* Aumentato padding */
+    border: 1px solid var(--border-color);
+    border-radius: 6px; /* Più arrotondati */
+    font-size: 1rem; /* Dimensione testo input */
+    color: var(--text-color);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* Ombra interna soft */
+}
+
+.product-weight-input + span {
+    font-size: 0.95rem;
+    color: var(--light-text-color);
+    margin-left: 4px; /* Sposta "Grammi" un po' più a destra */
+}
+
+
+/* === Delivery Time Selection / Order Form === */
+.delivery-time-section {
+    margin: 50px auto; /* Spazio e centrato */
+    max-width: 600px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px; /* Spazio tra label e select/input */
+}
+
+.form-group label {
+    display: block;
+    font-size: 1.2rem; /* Più grande */
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.delivery-time-select, .order-form select {
+    width: 100%;
+    max-width: 400px; /* Larghezza massima aumentata */
+    padding: 14px 20px; /* Aumentato padding */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--background-white);
+    font-size: 1.1rem;
+    color: var(--text-color);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23333%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-5.4H18.8c-7.7%200-13.5%204.6-13.8%205.4a17.6%2017.6%200%200%200%200%2022.3l128%20128c4.8%204.8%2011.6%207.6%2018.6%207.6s13.8-2.8%2018.6-7.6l128-128c5-5.1%205.2-13.2.1-18.2z%22%2F%3E%3C%2Fsvg%3E'); /* Freccia personalizzata */
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 16px auto;
+    cursor: pointer;
+    box-shadow: 0 2px 5px var(--shadow-light);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.delivery-time-select:focus, .order-form select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2); /* Alone verde al focus */
+}
+
+.order-form {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto 3rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 30px;
+    background-color: var(--background-white);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+}
+
+.order-form input[type="text"],
+.order-form input[type="email"],
+.order-form textarea {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.order-form input[type="text"]:focus,
+.order-form input[type="email"]:focus,
+.order-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2);
+}
+
+/* === Pulsante principale (Vai al carrello / Invia Ordine) === */
+.cart-button-section {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.main-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 16px 32px; /* Aumentato padding per un bottone più imponente */
+    font-size: 1.2rem; /* Testo più grande */
+    border: none;
+    border-radius: 10px; /* Angoli più arrotondati */
+    cursor: pointer;
+    font-weight: 700; /* Più bold */
+    letter-spacing: 0.5px; /* Spaziatura leggera per il testo */
+    text-transform: uppercase; /* Testo maiuscolo */
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3); /* Ombra verde più accentuata */
+}
+
+.main-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px); /* Effetto di sollevamento più evidente */
+    box-shadow: 0 9px 20px rgba(76, 175, 80, 0.4);
+}
+
+.main-button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(76, 175, 80, 0.2);
+}
+
+
+
+/* === Footer === */
+footer.site-footer {
+    background-color: #222; /* Grigio molto scuro */
+    color: #bbb; /* Testo grigio chiaro */
+    text-align: center;
+    padding: 30px 0; /* Aumentato il padding */
+    font-size: 0.95rem;
+    margin-top: auto;
+}
+
+footer.site-footer p {
+    margin: 0;
+}
+
+/* === Media Queries per la responsività === */
+@media (max-width: 992px) { /* Tablet orizzontale */
+    .site-title {
+        font-size: 32px;
+    }
+    nav.main-nav ul {
+        gap: 25px;
+    }
+    nav.main-nav a.nav-item {
+        font-size: 16px;
+    }
+    .hero-overlay h2 {
+        font-size: 3rem;
+    }
+    .hero-overlay p {
+        font-size: 1.4rem;
+    }
+    .section-title {
+        font-size: 34px;
+    }
+    .section-subtitle {
+        font-size: 24px;
+    }
+    .product-list {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) { /* Tablet verticale / Mobile orizzontale */
+    header.site-header .container {
+        flex-direction: column; /* Impila header e nav */
+        text-align: center;
+        gap: 15px; /* Spazio tra titolo e nav */
+    }
+    nav.main-nav {
+        margin-left: 0; /* Rimuovi auto-margin */
+        width: 100%; /* Occupare tutta la larghezza */
+    }
+    nav.main-nav ul {
+        flex-direction: column; /* Impila la navigazione */
+        gap: 10px;
+    }
+    nav.main-nav a.nav-item {
+        font-size: 17px;
+        padding: 5px 0;
+    }
+    nav.main-nav a.nav-item::after { /* Sottolineatura centrata */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .hero-image {
+        height: 350px;
+    }
+    .hero-overlay h2 {
+        font-size: 2.5rem;
+    }
+    .hero-overlay p {
+        font-size: 1.2rem;
+    }
+    .intro-text {
+        font-size: 1.1rem;
+        margin: 2rem auto;
+    }
+    .section-title {
+        font-size: 30px;
+        margin: 30px 0 20px 0;
+    }
+    .section-subtitle {
+        font-size: 22px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    .product-card {
+        margin: 0 auto;
+        max-width: 320px;
+    }
+    .product-image {
+        height: 180px;
+    }
+    .product-name {
+        font-size: 1.2rem;
+    }
+    .product-price, .product-price-per-unit {
+        font-size: 1.1rem;
+    }
+    .qty-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.4rem;
+    }
+    .product-quantity-input, .product-weight-input {
+        width: 65px;
+        font-size: 1.1rem;
+    }
+    .delivery-time-select, .order-form select {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+    .main-button {
+        padding: 14px 25px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) { /* Mobile */
+    .site-title {
+        font-size: 28px;
+    }
+    nav.main-nav a.nav-item {
+        font-size: 16px;
+    }
+    .hero-image {
+        height: 300px;
+    }
+    .hero-overlay h2 {
+        font-size: 2rem;
+    }
+    .hero-overlay p {
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 26px;
+    }
+    .section-subtitle {
+        font-size: 20px;
+    }
+    .product-list {
+        grid-template-columns: 1fr; /* Una colonna su mobile stretto */
+        padding: 0 15px;
+    }
+    .product-card {
+        max-width: 280px; /* Ancora più stretto */
+    }
+    .product-image {
+        height: 150px;
+    }
+    .main-button {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* === Admin Specific Styles === */
+
+/* General Admin Container - similar to main.container but for admin sections */
+.admin-content-container {
+    padding: 30px 20px;
+    /*background-color: var(--background-white);*/
+    /*border-radius: 12px;*/
+    /*box-shadow: 0 5px 15px var(--shadow-light);*/
+    margin: 20px auto;
+    max-width: 1000px; /* Max width for admin content */
+}
+
+/* Admin Page Titles */
+.admin-page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.admin-page-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 60px;
+    height: 2px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+/* Admin Section Titles */
+.admin-section-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+    color: var(--text-color);
+    margin-top: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Action Buttons (e.g., "Aggiungi Prodotto") */
+.admin-action-links {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.admin-action-link {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 10px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.admin-action-link:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+}
+
+/* List of products/items (ul/li styles) */
+.admin-item-list {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-item-list li {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.admin-item-list li strong {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    flex-basis: 100%; /* Take full width on small screens */
+    margin-bottom: 5px;
+}
+
+.admin-item-list li img {
+    width: 80px; /* Reduced image size for lists */
+    height: 80px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.admin-item-details {
+    flex-grow: 1; /* Allow details to take available space */
+}
+
+.admin-item-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px; /* Space between details and actions on smaller screens */
+}
+
+.admin-item-actions a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.admin-item-actions a:hover {
+    color: var(--primary-dark);
+}
+
+/* No products message */
+.admin-no-items-message {
+    color: #777;
+    font-style: italic;
+    padding: 15px;
+    background-color: #f0f0f0;
+    border-left: 5px solid var(--primary-light);
+    margin: 20px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Responsive adjustments for admin lists */
+@media (max-width: 600px) {
+    .admin-item-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .admin-item-actions {
+        width: 100%; /* Actions take full width */
+        justify-content: flex-start;
+    }
+}
+
+/* === Stili per la Tabella di Riepilogo Ordine === */
+
+.order-summary-section {
+    padding: 30px;
+    background-color: var(--background-white);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-bottom: 40px;
+    text-align: left; /* Allinea il testo a sinistra all'interno della sezione */
+}
+
+.order-summary-table {
+    width: 100%;
+    border-collapse: collapse; /* Unisce i bordi delle celle */
+    margin-top: 20px;
+}
+
+.order-summary-table th,
+.order-summary-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color);
+    text-align: left;
+}
+
+.order-summary-table th {
+    background-color: var(--primary-light); /* Sfondo per l'intestazione */
+    color: var(--primary-dark);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.order-summary-table tbody tr:nth-child(even) {
+    background-color: var(--background-light); /* Sfondo alternato per le righe */
+}
+
+.order-summary-table tbody tr:hover {
+    background-color: var(--highlight-color); /* Sfondo al passaggio del mouse */
+}
+
+.order-summary-table tfoot td {
+    font-weight: 700;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
+    padding: 15px;
+    border-top: 2px solid var(--primary-color);
+}
+
+.order-summary-table tfoot td:first-child {
+    text-align: right; /* Allinea a destra "Totale Ordine" */
+    padding-right: 15px; /* Aggiungi un po' di spazio */
+}
+
+/* === Stili per la Tabella di Riepilogo Ordine (modifiche) === */
+
+/* Colore nero e dimensione per il Totale Ordine */
+.order-summary-table .total-amount {
+    color: var(--text-color); /* Imposta il colore del testo a nero (o la tua variabile per il testo nero) */
+    font-size: 1.5em; /* Mantieni la dimensione del font per maggiore visibilità */
+    font-weight: 800; /* Rendi il testo più spesso (bold) */
+}
+
+/* Rimuovi o Commenta le regole per .payment-section se non vuoi il riquadro */
+/* .payment-section {
+    padding: 20px 30px;
+    background-color: var(--background-white);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    margin-top: 30px;
+    text-align: center;
+} */
+/* Assicurati che non ci siano altre regole che ricreano un riquadro per il contenuto di questa sezione. */
+
+
+/* Stili per il pulsante "Ordina" (ripristina lo stile main-button) */
+.main-button { /* Se riutilizzi la classe main-button direttamente */
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 30px; /* Padding più generoso */
+    font-size: 1.2rem; /* Dimensione del font più grande */
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Aggiungi l'ombra */
+}
+
+.main-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Stili per la select (puoi mantenerli così o modificarli ulteriormente se non ti piacciono) */
+.payment-section label { /* Ho spostato la label fuori dalla .payment-section nel template, quindi potresti voler rimuovere .payment-section da qui se la sezione scompare */
+    font-size: 1.1em;
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.payment-select {
+    padding: 12px 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    background-color: var(--background-light);
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2C197.971L146.202%2C57.173L5.404%2C197.971h281.592z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.payment-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+}
+
+/* Rimuovi il padding dal pulsante se vuoi che sia più aderente alla select */
+.payment-button {
+    padding: 12px 25px; /* Riduci leggermente il padding del bottone */
+    font-size: 1.1rem; /* Riduci leggermente la dimensione del font del bottone */
+    margin-top: 20px; /* Spazio tra select e bottone */
+}
+
+/* Se vuoi un riquadro per la sezione di pagamento ancora più piccolo, puoi:
+   - ridurre ulteriormente il padding in .payment-section
+   - impostare un max-width più stretto e centrarlo */
+
+.payment-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+/* Titoli delle sezioni */
+.page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3em;
+    color: var(--primary-dark);
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block; /* Per far sì che la linea si adatti al testo */
+}
+
+/* === Admin Form Styles === */
+.admin-form-container {
+    width: 90%;
+    max-width: 600px; /* Larghezza massima per il form */
+    margin: 30px auto;
+    padding: 30px;
+    background-color: var(--background-white);
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Spazio tra i gruppi di form */
+}
+
+.admin-form-container label {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 8px; /* Spazio sotto la label */
+}
+
+.admin-form-container input[type="text"],
+.admin-form-container input[type="number"],
+.admin-form-container input[type="email"],
+.admin-form-container textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.admin-form-container input[type="text"]:focus,
+.admin-form-container input[type="number"]:focus,
+.admin-form-container input[type="email"]:focus,
+.admin-form-container textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2); /* Alone verde al focus */
+}
+
+.admin-form-container .form-group-item { /* Per raggruppare label e input */
+    margin-bottom: 15px; /* Spazio tra i campi del form */
+}
+
+/* Specific button for forms */
+.admin-form-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    margin-top: 20px; /* Spazio sopra il pulsante */
+    width: auto; /* Adatta la larghezza al contenuto */
+    align-self: center; /* Centra il pulsante nel flex container */
+}
+
+.admin-form-button:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+}
+
+.admin-form-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(76, 175, 80, 0.2);
+}
+
+/* Adjustments for responsive forms */
+@media (max-width: 480px) {
+    .admin-form-container {
+        padding: 20px;
+        margin: 20px auto;
+        gap: 1rem;
+    }
+    .admin-form-container label {
+        font-size: 1rem;
+    }
+    .admin-form-container input[type="text"],
+    .admin-form-container input[type="number"],
+    .admin-form-container input[type="email"],
+    .admin-form-container textarea {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+    .admin-form-button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+
+/* Stili per la Pagina di Conferma Ordine */
+
+.confirmation-page-wrapper {
+    display: flex; /* Rendi il contenitore un flex container */
+    justify-content: center; /* Centra orizzontalmente i suoi elementi figli */
+    align-items: center; /* Centra verticalmente i suoi elementi figli */
+    min-height: calc(100vh - var(--header-height) - var(--footer-height)); /* Occupa l'altezza disponibile */
+    padding: 50px 20px; /* Padding su tutti i lati per schermi piccoli */
+    background-color: #f8f8f8; /* Mantiene lo sfondo leggermente grigio della pagina */
+    width: 100%;
+    /* Non è necessario rimuovere nulla qui */
+}
+
+/* Rimuovi completamente o commenta il blocco .popup-confirmation se non vuoi un riquadro */
+/* MODIFICA: Per rimuovere il riquadro, devi rimuovere gli stili che lo creano */
+/* Se vuoi che solo il contenuto sia centrato, puoi applicare gli stili direttamente al wrapper o mantenere solo text-align */
+.popup-confirmation {
+    /* Rimuovi i seguenti stili per eliminare il riquadro bianco, ombra e bordi arrotondati */
+    /* background-color: #fff; */
+    /* border-radius: 10px; */
+    /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); */
+
+    padding: 0; /* Rimuovi il padding interno se non vuoi spaziatura extra intorno al testo */
+    text-align: center; /* MANTIENI: Questo centra il testo e il bottone all'interno del popup */
+    max-width: 500px; /* MANTIENI: Limita la larghezza del blocco di testo per una migliore leggibilità */
+    width: 100%; /* MANTIENI: Per farlo funzionare con max-width e responsive */
+
+    /* Puoi rimuovere questi margini se il centramento con flexbox fa il suo lavoro */
+    /* margin-bottom: 50px; */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+
+/* Mantieni gli stili per H2 e P, ma assicurati che usino il colore verde desiderato */
+.popup-confirmation h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--primary-color); /* Utilizza il verde primario */
+    margin-bottom: 20px;
+}
+
+.popup-confirmation p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px; /* Mantiene lo spazio sotto il paragrafo */
+}
+
+.admin-button {
+    color: var(--primary-color); /* verde come vuoi tu */
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+}
+
+.admin-button:hover {
+    color: darkgreen;
+    text-decoration: underline;
+}

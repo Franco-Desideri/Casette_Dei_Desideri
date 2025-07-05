@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-27 17:16:46
+/* Smarty version 5.5.1, created on 2025-07-02 15:45:01
   from 'file:partials/appbar.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685eb5de0cf666_22097097',
+  'unifunc' => 'content_686537ddbe0940_08580244',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c3bc38c40d526bb44446c13d4ee33fa5e59e0971' => 
     array (
       0 => 'partials/appbar.tpl',
-      1 => 1750958455,
+      1 => 1751463516,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,13 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_685eb5de0cf666_22097097 (\Smarty\Template $_smarty_tpl) {
+function content_686537ddbe0940_08580244 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\partials';
-?><nav style="background-color: #f0f0f0; padding: 10px; display: flex; justify-content: space-around; align-items: center;">
-    <a href="/Casette_Dei_Desideri/User/home" style="text-decoration: none; font-weight: bold;">Home</a>
-    <a href="/Casette_Dei_Desideri/Struttura/lista" style="text-decoration: none; font-weight: bold;">Strutture</a>
-    <a href="/Casette_Dei_Desideri/Ordine/listaProdotti" style="text-decoration: none; font-weight: bold;">Servizi</a>
-    <a href="/Casette_Dei_Desideri/User/profilo" style="text-decoration: none; font-weight: bold;">Profilo</a>
-</nav>
-<?php }
+?><nav class="main-nav"> <ul>
+        <li><a href="/Casette_Dei_Desideri/User/home" class="nav-item">Home</a></li>
+        <li><a href="/Casette_Dei_Desideri/Struttura/lista" class="nav-item">Strutture</a></li>
+        <li><a href="/Casette_Dei_Desideri/Ordine/listaProdotti" class="nav-item">Servizi</a></li>
+        <li><a href="/Casette_Dei_Desideri/User/profilo" class="nav-item">Profilo</a></li>
+    </ul>
+</nav><?php }
 }

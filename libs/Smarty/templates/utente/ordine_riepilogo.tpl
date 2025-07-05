@@ -1,3 +1,4 @@
+<!-- FILE NON UTILIZZATO -->
 {extends file="layouts/base.tpl"}
 
 {block name="contenuto"}
@@ -7,7 +8,7 @@
 <h2>Riepilogo del tuo Ordine</h2>
 
 {if $ordine.prodotti|@count > 0}
-    <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+    <table cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;">
         <thead>
             <tr>
                 <th>Prodotto</th>

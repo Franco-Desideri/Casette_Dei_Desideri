@@ -2,30 +2,50 @@
 
 {block name="contenuto"}
 
-{include file="partials/appbar_admin.tpl"}
+{include file="partials/header_admin.tpl"}
 
-<h2>{if isset($prodotto)}Modifica prodotto a pezzi{else}Aggiungi nuovo prodotto a pezzi{/if}</h2>
+<div class="admin-content-container">
 
-<form method="post" action="/Casette_Dei_Desideri/AdminProdotto/{if isset($prodotto)}salvaModifica{else}salva{/if}">
-    <input type="hidden" name="tipo" value="quantita">
-    {if isset($prodotto)}
-        <input type="hidden" name="id" value="{$prodotto->getId()}">
-    {/if}
+    <h2 class="admin-page-title">
+        {if isset($prodotto)}Modifica prodotto a pezzi{else}Aggiungi nuovo prodotto a pezzi{/if}
+    </h2>
 
-    <label>Nome:</label>
-    <input type="text" name="nome" required value="{if isset($prodotto)}{$prodotto->getNome()}{else}{/if}">
+    {* 👇 AGGIUNTA enctype per permettere upload immagini *}
+    <form method="post" action="/Casette_Dei_Desideri/AdminProdotto/{if isset($prodotto)}salvaModifica{else}salva{/if}" enctype="multipart/form-data" class="admin-form-container">
+        <input type="hidden" name="tipo" value="quantita">
+        {if isset($prodotto)}
+            <input type="hidden" name="id" value="{$prodotto->getId()}">
+        {/if}
 
-    <label>Prezzo (€):</label>
-    <input type="number" step="0.01" name="prezzo" required value="{if isset($prodotto)}{$prodotto->getPrezzo()}{else}{/if}">
+        <div class="form-group-item">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required value="{if isset($prodotto)}{$prodotto->getNome()}{/if}">
+        </div>
 
-    <label>Quantità (pezzi):</label>
-    <input type="number" name="peso" required value="{if isset($prodotto)}{$prodotto->getPeso()}{else}{/if}">
+        <div class="form-group-item">
+            <label for="prezzo">Prezzo (€):</label>
+            <input type="number" id="prezzo" step="0.01" name="prezzo" required value="{if isset($prodotto)}{$prodotto->getPrezzo()}{/if}">
+        </div>
 
-    <label>URL immagine:</label>
-    <input type="text" name="foto" value="{if isset($prodotto)}{$prodotto->getFoto()}{else}{/if}">
+        <div class="form-group-item">
+            <label for="quantita">Peso pacco (g):</label>
+            <input type="number" id="quantita" name="peso" required value="{if isset($prodotto)}{$prodotto->getPeso()}{/if}">
+        </div>
 
-    <br><br>
-    <button type="submit">{if isset($prodotto)}Salva modifiche{else}Aggiungi prodotto{/if}</button>
-</form>
+        {* 👇 CAMBIATO campo immagine: da URL a file upload *}
+        <div class="form-group-item">
+            <label for="foto">Immagine del prodotto:</label>
+            <input type="file" id="foto" name="foto" accept="image/*" {if !isset($prodotto)}required{/if}>
+            {if isset($prodotto)}
+                <p>Immagine attuale: <br>
+                    <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" style="max-width: 200px; max-height: 200px;">
+                </p>
+            {/if}
+        </div>
+
+        <button type="submit" class="admin-form-button">{if isset($prodotto)}Salva modifiche{else}Aggiungi prodotto{/if}</button>
+    </form>
+
+</div>
 
 {/block}
