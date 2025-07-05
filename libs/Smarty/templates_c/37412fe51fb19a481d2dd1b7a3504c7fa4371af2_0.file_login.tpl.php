@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-06-27 18:16:48
+/* Smarty version 5.5.1, created on 2025-07-03 20:59:27
   from 'file:utente/login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_685ec3f089aba8_77708435',
+  'unifunc' => 'content_6866d30f157d85_08544783',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '37412fe51fb19a481d2dd1b7a3504c7fa4371af2' => 
     array (
       0 => 'utente/login.tpl',
-      1 => 1750707378,
+      1 => 1751569155,
       2 => 'file',
     ),
   ),
@@ -20,45 +20,94 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_685ec3f089aba8_77708435 (\Smarty\Template $_smarty_tpl) {
+function content_6866d30f157d85_08544783 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
-$_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
-?>
+?><!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Login e Registrazione</title>
+  <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/auth.css">
+  
+</head>
+<body>
+  <div class="auth-wrapper">
+    <div class="auth-tabs">
+      <button class="tab-btn active" data-tab="login">Login</button>
+      <button class="tab-btn" data-tab="register">Registrazione</button>
+    </div>
 
-
-<?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1078328703685ec3f0892c26_88831971', "contenuto");
-?>
-
-<?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
-}
-/* {block "contenuto"} */
-class Block_1078328703685ec3f0892c26_88831971 extends \Smarty\Runtime\Block
-{
-public function callBlock(\Smarty\Template $_smarty_tpl) {
-$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
-?>
-
-    <h2>Login</h2>
-
-    <?php if ((true && ($_smarty_tpl->hasVariable('errore') && null !== ($_smarty_tpl->getValue('errore') ?? null)))) {?>
-        <div class="errore"><?php echo $_smarty_tpl->getValue('errore');?>
+    <div class="auth-container">
+      <!-- LOGIN -->
+      <div id="login" class="tab-content active">
+        <h2>Login</h2>
+        <?php if ((true && ($_smarty_tpl->hasVariable('erroreLogin') && null !== ($_smarty_tpl->getValue('erroreLogin') ?? null)))) {?>
+          <div class="errore"><?php echo $_smarty_tpl->getValue('erroreLogin');?>
 </div>
-    <?php }?>
+        <?php }?>
+        <form method="post" action="/Casette_Dei_Desideri/User/login">
+          <label>Email:</label>
+          <input type="email" name="email" required>
 
-    <form method="post" action="/Casette_Dei_Desideri/User/login">
-        <label for="email">Email:</label>
-        <input type="email" name="email" required>
+          <label>Password:</label>
+          <input type="password" name="password" required>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" required>
+          <button type="submit">Accedi</button>
+        </form>
+      </div>
 
-        <button type="submit">Accedi</button>
-    </form>
+      <!-- REGISTRAZIONE -->
+      <div id="register" class="tab-content">
+        <h2>Registrazione</h2>
+        <?php if ((true && ($_smarty_tpl->hasVariable('erroreReg') && null !== ($_smarty_tpl->getValue('erroreReg') ?? null)))) {?>
+          <div class="errore"><?php echo $_smarty_tpl->getValue('erroreReg');?>
+</div>
+        <?php }?>
+        <form method="post" action="/Casette_Dei_Desideri/User/registrazione">
+          <label>Nome:</label>
+          <input type="text" name="nome" required>
 
-    <p>Non hai un account? <a href="/Casette_Dei_Desideri/User/registrazione">Registrati</a></p>
-<?php
-}
-}
-/* {/block "contenuto"} */
+          <label>Cognome:</label>
+          <input type="text" name="cognome" required>
+
+          <label>Email:</label>
+          <input type="email" name="email" required>
+
+          <label>Password:</label>
+          <input type="password" name="password" required>
+
+          <label>Conferma Password:</label>
+          <input type="password" name="conferma_password" required>
+
+          <label>Codice Fiscale:</label>
+          <input type="text" name="codicefisc" maxlength="16" required>
+
+          <label>Sesso:</label>
+          <select name="sesso" required>
+            <option value="">Seleziona</option>
+            <option value="M">Maschio</option>
+            <option value="F">Femmina</option>
+          </select>
+
+          <label>Data di Nascita:</label>
+          <input type="date" name="dataN" required>
+
+          <label>Luogo di Nascita:</label>
+          <input type="text" name="luogoN" required>
+
+          <label>Telefono:</label>
+          <input type="text" name="tell" required>
+
+          <button type="submit">Registrati</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/auth.js"><?php echo '</script'; ?>
+>
+</body>
+</html>
+<?php }
 }

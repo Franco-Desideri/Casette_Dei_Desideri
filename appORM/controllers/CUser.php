@@ -108,9 +108,12 @@ class CUser
 
         $eventi = $em->getRepository(EEvento::class)->findAll();
         $attrazioni = $em->getRepository(EAttrazione::class)->findAll();
+        $utente = FPersistentManager::findOneBy(EUtente::class, ['ruolo' => 'admin']);
+        $email = $utente->getEmail();
+
 
         $view = new VUser();
-        $view->mostraHome($eventi, $attrazioni);
+        $view->mostraHome($email, $eventi, $attrazioni);
     }
 
     public function registrazione(): void
@@ -190,5 +193,132 @@ class CUser
         } else {
             $view->mostraRegistrazione();
         }
+    }
+
+    public function modificaEmail(): void
+    {
+        USession::start();
+        $id = USession::get('utente_id');
+        $utente = FPersistentManager::get()->find(EUtente::class, $id);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
+            $newEmail = $_POST['email'];
+
+            if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
+                die("Email non valida.");
+            }
+
+            $utente->setEmail($newEmail);
+            FPersistentManager::store($utente);
+
+            header("Location: /Casette_Dei_Desideri/User/profilo");
+            exit;
+        }
+    }
+
+    public function modificaTelefono(): void
+    {
+        USession::start();
+        $id = USession::get('utente_id');
+        $utente = FPersistentManager::get()->find(EUtente::class, $id);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['telefono'])) {
+            $telefono = trim($_POST['telefono']);
+            $utente->setTell($telefono);
+            FPersistentManager::store($utente);
+
+            header("Location: /Casette_Dei_Desideri/User/profilo");
+            exit;
+        }
+    }
+
+    public function riepilogo(int $id): void
+    {
+        USession::start();
+
+        if (!USession::exists('utente_id')) {
+            header('Location: /Casette_Dei_Desideri/User/login');
+            exit;
+        }
+
+        $prenotazione = FPersistentManager::get()->find(EPrenotazione::class, $id);
+
+        // Verifica che esista e appartenga all'utente loggato
+        if (!$prenotazione || $prenotazione->getUtente()->getId() !== USession::get('utente_id')) {
+            header('HTTP/1.1 403 Forbidden');
+            echo "Prenotazione non trovata o accesso non autorizzato.";
+            return;
+        }
+
+        $struttura = $prenotazione->getStruttura();
+        $periodo = $prenotazione->getPeriodo();
+        $ospiti = $prenotazione->getOspitiDettagli();
+        $totale = $prenotazione->getPrezzo();
+
+        // Immagine struttura in base64
+        $struttura->base64img = $struttura->getImmaginePrincipaleBase64();
+
+
+        $view = new VUser();
+        $view->mostraRiepilogoPrenotazione(
+            $prenotazione,
+            $struttura,
+            $periodo,
+            $ospiti,
+            $totale
+        );
+    }
+
+    public function riepilogoCompleto(): void
+    {
+        USession::start();
+
+        if (!USession::exists('utente_id') || !USession::exists('prenotazione_temp')) {
+            header('Location: /Casette_Dei_Desideri/Struttura/lista');
+            exit;
+        }
+
+        $data = USession::get('prenotazione_temp');
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ospiti'])) {
+            $ospiti = $_POST['ospiti'];
+
+            foreach ($ospiti as $i => $ospite) {
+                $ospiti[$i]['documento'] = null;
+                if (
+                    isset($_FILES['ospiti']['tmp_name'][$i]['documento']) &&
+                    is_uploaded_file($_FILES['ospiti']['tmp_name'][$i]['documento'])
+                ) {
+                    $fileTmp = $_FILES['ospiti']['tmp_name'][$i]['documento'];
+                    $fileName = $_FILES['ospiti']['name'][$i]['documento'];
+
+                    $ospiti[$i]['documento'] = base64_encode(file_get_contents($fileTmp));
+                    $ospiti[$i]['documento_mime'] = mime_content_type($fileTmp);
+                    $ospiti[$i]['documento_ext'] = pathinfo($fileName, PATHINFO_EXTENSION);
+                }
+
+
+            }
+
+
+            $data['ospiti'] = $ospiti;
+            USession::set('prenotazione_temp', $data);
+        }
+
+        if (!isset($data['ospiti'])) {
+            echo "Dati ospiti mancanti.";
+            return;
+        }
+
+        $struttura = FPersistentManager::get()->find(EStruttura::class, $data['id_struttura']);
+
+        $view = new VPrenotazione();
+        $view->mostraRiepilogoCompleto(
+            $struttura,
+            $data['data_inizio'],
+            $data['data_fine'],
+            $data['ospiti'],
+            $data['totale']
+        );
     }
 }

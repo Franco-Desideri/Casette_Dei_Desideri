@@ -26,10 +26,17 @@ class VAdminContenuti
      * @param EAttrazione|null $attrazione
      */
     public function mostraFormAttrazione(?EAttrazione $attrazione = null): void
-    {
-        $this->smarty->assign('attrazione', $attrazione);
-        $this->smarty->display('admin/attrazione_form.tpl');
+{
+    if ($attrazione !== null && $attrazione->getImmagine()) {
+        $attrazione->base64img = 'data:image/jpeg;base64,' . base64_encode(
+            stream_get_contents($attrazione->getImmagine())
+        );
     }
+
+    $this->smarty->assign('attrazione', $attrazione);
+    $this->smarty->display('admin/attrazione_form.tpl');
+}
+
 
     /**
      * Mostra il form per aggiungere o modificare un evento
@@ -38,9 +45,16 @@ class VAdminContenuti
      */
     public function mostraFormEvento(?EEvento $evento = null): void
     {
+        if ($evento !== null && $evento->getImmagine()) {
+            $evento->base64img = 'data:image/jpeg;base64,' . base64_encode(
+                stream_get_contents($evento->getImmagine())
+            );
+        }
+
         $this->smarty->assign('evento', $evento);
         $this->smarty->display('admin/evento_form.tpl');
     }
+
 
     /**
      * Mostra la dashboard amministratore con attrazioni ed eventi
@@ -50,18 +64,18 @@ class VAdminContenuti
      */
     public function mostraHome(array $attrazioni, array $eventi): void
     {
-        $this->smarty->assign('attrazioni', $attrazioni);
-        $this->smarty->assign('eventi', $eventi);
-        foreach ($attrazioni as $a) {
-            if ($a->getImmagine()) {
-                $a->base64img = 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($a->getImmagine()));
-            }
-        }
         foreach ($eventi as $e) {
             if ($e->getImmagine()) {
                 $e->base64img = 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($e->getImmagine()));
             }
         }
+        foreach ($attrazioni as $a) {
+            if ($a->getImmagine()) {
+                $a->base64img = 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($a->getImmagine()));
+            }
+        }
+        $this->smarty->assign('attrazioni', $attrazioni);
+        $this->smarty->assign('eventi', $eventi);
         $this->smarty->display('admin/admin_home.tpl');
     }
 }
