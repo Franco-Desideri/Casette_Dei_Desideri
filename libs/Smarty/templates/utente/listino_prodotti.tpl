@@ -29,7 +29,7 @@
             <section class="product-list">
                 {foreach $prodottiQuantita as $prodotto}
                     <div class="product-card">
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image">
+                        <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image">
                         <div class="product-details">
                             <h4 class="product-name">{$prodotto->getNome()}</h4>
                             <p class="product-description">{$prodotto->getPeso()}g</p>
@@ -54,7 +54,7 @@
             <section class="product-list">
                 {foreach $prodottiPeso as $prodotto}
                     <div class="product-card">
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image">
+                        <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image">
                         <div class="product-details">
                             <h4 class="product-name">{$prodotto->getNome()}</h4>
                             

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-04 15:01:23
+/* Smarty version 5.5.1, created on 2025-07-05 21:44:12
   from 'file:utente/listino_prodotti.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6867d0a39f1ea4_84884010',
+  'unifunc' => 'content_6869808c97ece7_39390251',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd4e94755849c384079fe32e7e9bdcaf4d3ed857c' => 
     array (
       0 => 'utente/listino_prodotti.tpl',
-      1 => 1751634079,
+      1 => 1751744636,
       2 => 'file',
     ),
   ),
@@ -21,25 +21,25 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/header.tpl' => 1,
   ),
 ))) {
-function content_6867d0a39f1ea4_84884010 (\Smarty\Template $_smarty_tpl) {
+function content_6869808c97ece7_39390251 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_9096242076867d0a39bc940_78555603', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_20321334686869808c944be6_30720988', "contenuto");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_2562837206867d0a39f0969_06660621', "scripts");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21142584706869808c97d809_43967219', "scripts");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_9096242076867d0a39bc940_78555603 extends \Smarty\Runtime\Block
+class Block_20321334686869808c944be6_30720988 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
@@ -79,7 +79,7 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach0DoElse = false;
 ?>
                     <div class="product-card">
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image">
                         <div class="product-details">
@@ -117,7 +117,7 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach1DoElse = false;
 ?>
                     <div class="product-card">
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image">
                         <div class="product-details">
@@ -172,7 +172,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 }
 /* {/block "contenuto"} */
 /* {block "scripts"} */
-class Block_2562837206867d0a39f0969_06660621 extends \Smarty\Runtime\Block
+class Block_21142584706869808c97d809_43967219 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';

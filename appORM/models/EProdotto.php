@@ -19,7 +19,7 @@ abstract class EProdotto
     /** @ORM\Column(type="string", length=100) */
     protected string $nome;
 
-    /** @ORM\Column(type="string",length=255, nullable=true) */
+    /** @ORM\Column(type="blob", nullable=true) */
     protected $foto;
 
     /** @ORM\Column(type="boolean") */
@@ -40,5 +40,24 @@ abstract class EProdotto
     public function isVisibile(): bool {return $this->visibile;}
     
     public function setVisibile(bool $visibile): void {$this->visibile = $visibile;}
+
+    public function getFotoBase64(): ?string
+{
+    $foto = $this->getFoto(); // Recupera il BLOB (binario o stream)
+    
+    if ($foto) {
+        if (is_resource($foto)) {
+            rewind($foto); // Riporta il cursore all'inizio del flusso
+            $data = stream_get_contents($foto);
+        } else {
+            $data = $foto; // È già una stringa binaria
+        }
+
+        return 'data:image/jpeg;base64,' . base64_encode($data);
+    }
+
+    return null; // Nessuna immagine disponibile
+}
+
 
 }

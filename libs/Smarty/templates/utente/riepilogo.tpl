@@ -50,15 +50,8 @@
 
     <form action="/Casette_Dei_Desideri/Ordine/conferma" method="POST" class="order-form" style="text-align: center; margin-top: 30px;">
         <div class="form-group">
-            <label for="contanti">Seleziona taglio banconota per pagamento:</label>
-            <select id="contanti" name="contanti" class="payment-select" required>
-                <option value="">Seleziona un taglio</option>
-                <option value="5">5 &euro;</option>
-                <option value="10">10 &euro;</option>
-                <option value="20">20 &euro;</option>
-                <option value="50">50 &euro;</option>
-                <option value="100">100 &euro;</option>
-            </select>
+            <label for="contanti">Cifra con la quale si intende pagare alla consegna:</label>
+            <input type= "number" id="contanti" name="contanti" class="payment-select" step = "0.01" min="0" required>
         </div>
         <button type="submit" class="main-button">Ordina</button>
     </form>

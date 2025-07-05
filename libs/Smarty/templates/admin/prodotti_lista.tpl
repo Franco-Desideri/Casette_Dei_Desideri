@@ -17,7 +17,7 @@
         {if $prodottiQuantita_v|@count > 0}
             <ul class="admin-item-list"> {foreach from=$prodottiQuantita_v item=prodotto}
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
+                        <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
                             <strong>{$prodotto->getNome()}</strong> - {$prodotto->getPeso()}g - €{$prodotto->getPrezzo()}
                         </div>
                         <div class="admin-item-actions">
@@ -39,7 +39,7 @@
         {if $prodottiPeso_v|@count > 0}
             <ul class="admin-item-list"> {foreach from=$prodottiPeso_v item=prodotto}
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
+                        <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
                             <strong>{$prodotto->getNome()}</strong> - €{$prodotto->getPrezzoKg()}/kg
                         </div>
                         <div class="admin-item-actions">
@@ -61,7 +61,7 @@
         {if $prodottiQuantita_n|@count > 0}
             <ul class="admin-item-list"> {foreach from=$prodottiQuantita_n item=prodotto}
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
+                        <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
                             <strong>{$prodotto->getNome()}</strong> - {$prodotto->getPeso()}g - €{$prodotto->getPrezzo()}
                         </div>
                         <div class="admin-item-actions">
@@ -80,7 +80,7 @@
         {if $prodottiPeso_n|@count > 0}
             <ul class="admin-item-list"> {foreach from=$prodottiPeso_n item=prodotto}
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
+                        <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
                             <strong>{$prodotto->getNome()}</strong> - {$prodotto->getRangePeso()}g - €{$prodotto->getPrezzoRange()} (o €{$prodotto->getPrezzoKg()}/kg)
                         </div>
                         <div class="admin-item-actions">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-05 11:18:45
+/* Smarty version 5.5.1, created on 2025-07-05 21:47:23
   from 'file:admin/prodotti_lista.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6868edf524efd1_04456187',
+  'unifunc' => 'content_6869814ba41475_08574487',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a2d976e2ddc00d9d34777dd3ff782565fa0561d8' => 
     array (
       0 => 'admin/prodotti_lista.tpl',
-      1 => 1751707120,
+      1 => 1751744839,
       2 => 'file',
     ),
   ),
@@ -21,20 +21,20 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/header_admin.tpl' => 1,
   ),
 ))) {
-function content_6868edf524efd1_04456187 (\Smarty\Template $_smarty_tpl) {
+function content_6869814ba41475_08574487 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5118156926868edf5205a03_25062946', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_7333103216869814b9ff4e3_90823918', "contenuto");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_5118156926868edf5205a03_25062946 extends \Smarty\Runtime\Block
+class Block_7333103216869814b9ff4e3_90823918 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
@@ -62,7 +62,7 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach0DoElse = false;
 ?>
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image"> <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
@@ -98,7 +98,7 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach1DoElse = false;
 ?>
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image"> <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
@@ -133,7 +133,7 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach2DoElse = false;
 ?>
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image"> <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
@@ -166,7 +166,7 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach3DoElse = false;
 ?>
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image"> <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
