@@ -40,7 +40,7 @@
             <ul class="admin-item-list"> {foreach from=$prodottiPeso_v item=prodotto}
                     <li>
                         <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
-                            <strong>{$prodotto->getNome()}</strong> - {$prodotto->getRangePeso()}g - €{$prodotto->getPrezzoRange()} (o €{$prodotto->getPrezzoKg()}/kg)
+                            <strong>{$prodotto->getNome()}</strong> - €{$prodotto->getPrezzoKg()}/kg
                         </div>
                         <div class="admin-item-actions">
                             <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}">✏️ Modifica</a>

@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 
     
-    <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/style.css"> 
+    <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/style1.css"> 
     
 
     {block name="head_extra"}{/block}
