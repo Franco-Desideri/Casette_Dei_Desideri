@@ -374,4 +374,29 @@ body {
   text-decoration: none;
 }
 
+.prenotazione-card-flex {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.prenotazione-image.small {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+.prenotazione-image.small img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
+  object-fit: cover;
+}
+
+.prenotazione-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 

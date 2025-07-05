@@ -198,13 +198,15 @@
         {foreach from=$prenotazioni item=prenotazione}
           <li class="profile-card-item with-image">
             <a href="/Casette_Dei_Desideri/User/riepilogo/{$prenotazione->getId()}" class="profile-card-link">
-              <div class="prenotazione-image small">
-                <img src="{$prenotazione->getStruttura()->getImmaginePrincipaleBase64()}" alt="Immagine struttura">
-              </div>
-              <div class="prenotazione-info">
-                <p><strong>Struttura:</strong> {$prenotazione->getStruttura()->getTitolo()}</p>
-                <p><strong>Periodo:</strong> dal {$prenotazione->getPeriodo()->getDataI()|date_format:"%d/%m/%Y"} al {$prenotazione->getPeriodo()->getDataF()|date_format:"%d/%m/%Y"}</p>
-                <p><strong>Numero ospiti:</strong> {$prenotazione->getOspiti()}</p>
+              <div class="prenotazione-card-flex">
+                <div class="prenotazione-image small">
+                  <img src="{$prenotazione->getStruttura()->getImmaginePrincipaleBase64()}" alt="Immagine struttura">
+                </div>
+                <div class="prenotazione-info">
+                  <p><strong>Struttura:</strong> {$prenotazione->getStruttura()->getTitolo()}</p>
+                  <p><strong>Periodo:</strong> dal {$prenotazione->getPeriodo()->getDataI()|date_format:"%d/%m/%Y"} al {$prenotazione->getPeriodo()->getDataF()|date_format:"%d/%m/%Y"}</p>
+                  <p><strong>Numero ospiti:</strong> {$prenotazione->getOspiti()}</p>
+                </div>
               </div>
             </a>
           </li>
@@ -215,6 +217,8 @@
     {/if}
   </div>
 </section>
+
+
 
 
   <!-- Scripts -->

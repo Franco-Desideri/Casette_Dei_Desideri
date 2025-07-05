@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-04 18:46:01
+/* Smarty version 5.5.1, created on 2025-07-05 11:50:01
   from 'file:utente/profilo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68680549823440_78868671',
+  'unifunc' => 'content_6868f5495e6633_48121115',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20926279abb68d6ab641a8fc2e6f3b6e52f3966a' => 
     array (
       0 => 'utente/profilo.tpl',
-      1 => 1751647532,
+      1 => 1751708971,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_68680549823440_78868671 (\Smarty\Template $_smarty_tpl) {
+function content_6868f5495e6633_48121115 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -239,18 +239,20 @@ $foreach0DoElse = false;
           <li class="profile-card-item with-image">
             <a href="/Casette_Dei_Desideri/User/riepilogo/<?php echo $_smarty_tpl->getValue('prenotazione')->getId();?>
 " class="profile-card-link">
-              <div class="prenotazione-image small">
-                <img src="<?php echo $_smarty_tpl->getValue('prenotazione')->getStruttura()->getImmaginePrincipaleBase64();?>
+              <div class="prenotazione-card-flex">
+                <div class="prenotazione-image small">
+                  <img src="<?php echo $_smarty_tpl->getValue('prenotazione')->getStruttura()->getImmaginePrincipaleBase64();?>
 " alt="Immagine struttura">
-              </div>
-              <div class="prenotazione-info">
-                <p><strong>Struttura:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getStruttura()->getTitolo();?>
+                </div>
+                <div class="prenotazione-info">
+                  <p><strong>Struttura:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getStruttura()->getTitolo();?>
 </p>
-                <p><strong>Periodo:</strong> dal <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('prenotazione')->getPeriodo()->getDataI(),"%d/%m/%Y");?>
+                  <p><strong>Periodo:</strong> dal <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('prenotazione')->getPeriodo()->getDataI(),"%d/%m/%Y");?>
  al <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('prenotazione')->getPeriodo()->getDataF(),"%d/%m/%Y");?>
 </p>
-                <p><strong>Numero ospiti:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getOspiti();?>
+                  <p><strong>Numero ospiti:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getOspiti();?>
 </p>
+                </div>
               </div>
             </a>
           </li>
@@ -263,6 +265,8 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     <?php }?>
   </div>
 </section>
+
+
 
 
   <!-- Scripts -->
