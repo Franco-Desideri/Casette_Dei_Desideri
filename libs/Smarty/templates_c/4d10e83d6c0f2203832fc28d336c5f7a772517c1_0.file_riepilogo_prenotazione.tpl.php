@@ -1,18 +1,23 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-05 11:34:44
+
+/* Smarty version 5.5.1, created on 2025-07-04 16:01:23
   from 'file:utente/riepilogo_prenotazione.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6868f1b4dd3908_08636218',
+
+  'unifunc' => 'content_6867deb3872a99_22088573',
+
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4d10e83d6c0f2203832fc28d336c5f7a772517c1' => 
     array (
       0 => 'utente/riepilogo_prenotazione.tpl',
-      1 => 1751708077,
+
+      1 => 1751637373,
+
       2 => 'file',
     ),
   ),
@@ -20,7 +25,9 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6868f1b4dd3908_08636218 (\Smarty\Template $_smarty_tpl) {
+
+function content_6867deb3872a99_22088573 (\Smarty\Template $_smarty_tpl) {
+
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -79,6 +86,16 @@ https://templatemo.com/tm-591-villa-agency
             <li><i class="fa-solid fa-location-dot"></i> Poggio Bustone, RI 057051</li>
           </ul>
         </div>
+
+        <div class="col-lg-4 col-md-4">
+          <ul class="social-links">
+            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+            <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </div>
@@ -96,11 +113,12 @@ https://templatemo.com/tm-591-villa-agency
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
-                        <li><a href="/Casette_Dei_Desideri/Struttura/lista">Strutture</a></li>
-                        <li><a href="/Casette_Dei_Desideri/Ordine/listaProdotti">Servizi</a></li>
-                        <li><a href="/Casette_Dei_Desideri/User/profilo" class="active">Profilo</a></li>
-                    </ul>   
+
+                      <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
+                      <li><a href="/Casette_Dei_Desideri/Struttura/lista"class="active">Strutture</a></li>
+                      <li><a href="contact.html">Contatti</a></li>
+                  </ul>   
+
                     <a class='menu-trigger'>
                         <span>Menu</span>
                     </a>
@@ -116,6 +134,9 @@ https://templatemo.com/tm-591-villa-agency
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
+
+          <span class="breadcrumb"><a href="#">Home</a>  /  Riepilogo</span>
+
           <h3>Riepilogo prenotazione</h3>
         </div>
       </div>
@@ -128,6 +149,7 @@ https://templatemo.com/tm-591-villa-agency
      <div class="col-12" style="padding-left: 80px; padding-right: 80px;">
 
         <div class="card-box">
+
           <!-- Titolo principale -->
           <h1 class="title">
             Struttura: <span style="color: #28a745;"><?php echo $_smarty_tpl->getValue('struttura')->getTitolo();?>
@@ -153,6 +175,7 @@ https://templatemo.com/tm-591-villa-agency
             <strong>Prezzo Totale:</strong>&nbsp;€ <?php echo $_smarty_tpl->getValue('totale');?>
 
           </p>
+
         </div>
       </div>
     </div>
@@ -235,12 +258,16 @@ $_smarty_tpl->tpl_vars['__smarty_foreach_ospitiLoop']->value['iteration']++;
 
                 </p>
               </div>
-              <?php if ((true && (true && null !== ($_smarty_tpl->getValue('ospite')['documento_base64'] ?? null))) && $_smarty_tpl->getValue('ospite')['documento_base64'] != '') {?>
+
+              <?php if ((true && (true && null !== ($_smarty_tpl->getValue('ospite')['documento'] ?? null))) && $_smarty_tpl->getValue('ospite')['documento'] != '') {?>
+
                 <div class="col-md-6">
                   <p class="ospite-info documento-link">
                     <strong>Documento:</strong>
                     <a href="data:<?php echo $_smarty_tpl->getValue('ospite')['documento_mime'];?>
-;base64,<?php echo $_smarty_tpl->getValue('ospite')['documento_base64'];?>
+
+;base64,<?php echo $_smarty_tpl->getValue('ospite')['documento'];?>
+
 "
                       target="_blank" 
                       download="documento_ospite.<?php echo $_smarty_tpl->getValue('ospite')['documento_ext'];?>
@@ -254,6 +281,15 @@ $_smarty_tpl->tpl_vars['__smarty_foreach_ospitiLoop']->value['iteration']++;
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
       </form>
+
+
+      <form method="post" action="/Casette_Dei_Desideri/Prenotazione/pagamento">
+        <div class="text-center" style="margin-top: 100px; margin-bottom: 20px;">
+          <input type="hidden" name="conferma" value="1">
+          <button type="submit" class="btn salva-btn">Conferma Prenotazione</button>
+        </div>
+      </form>
+
     </div>
   </div>
 </div>
