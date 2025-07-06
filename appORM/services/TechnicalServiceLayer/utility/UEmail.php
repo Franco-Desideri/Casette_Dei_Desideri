@@ -10,7 +10,8 @@ class UEmail
     public static function invia(string $destinatario, string $oggetto, string $testo, ?string $replyTo = null, ?string $replyToName = null): bool
     {
         // Carica configurazione SMTP (devi creare questo file a parte)
-        $config = include(__DIR__ . '/../../config/email_config.php');
+        $config = include(__DIR__ . '/../../../../config/config_email.php');
+
 
         // Mittente SMTP "generico" (il sistema)
         $fromEmail = $config['from_email'];

@@ -105,7 +105,9 @@ document.querySelectorAll('.quantity-control').forEach(control => {
     const minusBtn = control.querySelector('[data-action="minus"]');
     const plusBtn = control.querySelector('[data-action="plus"]');
     const input = control.querySelector('.product-quantity-input');
-    const step = parseInt(control.dataset.step) || 50; // fallback a 50 se mancante
+    
+    const tipo = input.dataset.tipo; // "peso" o "quantita"
+    const step = tipo === 'peso' ? parseInt(control.dataset.step) || 50 : 1;
 
     plusBtn.addEventListener('click', () => {
         let current = parseInt(input.value) || 0;
@@ -118,5 +120,6 @@ document.querySelectorAll('.quantity-control').forEach(control => {
     });
 });
 </script>
+
 
 {/block}

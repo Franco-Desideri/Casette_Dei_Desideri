@@ -18,9 +18,6 @@ class EProdottoPeso extends EProdotto
     /** @ORM\Column(type="string", length=50) */
     private string $rangePeso;
 
-    /** @ORM\Column(type="float") */
-    private float $prezzoRange;
-
     /**
      * @ORM\OneToMany(targetEntity="EOrdineItem", mappedBy="prodottoPeso")
      */

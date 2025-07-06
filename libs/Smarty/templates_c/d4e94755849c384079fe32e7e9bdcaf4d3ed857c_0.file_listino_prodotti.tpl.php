@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-06 10:31:39
+/* Smarty version 5.5.1, created on 2025-07-06 11:26:06
   from 'file:utente/listino_prodotti.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686a346b5429b2_20310087',
+  'unifunc' => 'content_686a412e74d086_73961699',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd4e94755849c384079fe32e7e9bdcaf4d3ed857c' => 
     array (
       0 => 'utente/listino_prodotti.tpl',
-      1 => 1751790681,
+      1 => 1751793959,
       2 => 'file',
     ),
   ),
@@ -21,25 +21,25 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/header.tpl' => 1,
   ),
 ))) {
-function content_686a346b5429b2_20310087 (\Smarty\Template $_smarty_tpl) {
+function content_686a412e74d086_73961699 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1475300306686a346b52a282_10128987', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_287364281686a412e49bfe7_62777156', "contenuto");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1991526876686a346b542143_71964006', "scripts");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_419424236686a412e74c6f8_18521267', "scripts");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_1475300306686a346b52a282_10128987 extends \Smarty\Runtime\Block
+class Block_287364281686a412e49bfe7_62777156 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
@@ -175,7 +175,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 }
 /* {/block "contenuto"} */
 /* {block "scripts"} */
-class Block_1991526876686a346b542143_71964006 extends \Smarty\Runtime\Block
+class Block_419424236686a412e74c6f8_18521267 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
@@ -187,7 +187,9 @@ document.querySelectorAll('.quantity-control').forEach(control => {
     const minusBtn = control.querySelector('[data-action="minus"]');
     const plusBtn = control.querySelector('[data-action="plus"]');
     const input = control.querySelector('.product-quantity-input');
-    const step = parseInt(control.dataset.step) || 50; // fallback a 50 se mancante
+    
+    const tipo = input.dataset.tipo; // "peso" o "quantita"
+    const step = tipo === 'peso' ? parseInt(control.dataset.step) || 50 : 1;
 
     plusBtn.addEventListener('click', () => {
         let current = parseInt(input.value) || 0;
@@ -201,6 +203,7 @@ document.querySelectorAll('.quantity-control').forEach(control => {
 });
 <?php echo '</script'; ?>
 >
+
 
 <?php
 }
