@@ -51,7 +51,7 @@
     <form action="/Casette_Dei_Desideri/Ordine/conferma" method="POST" class="order-form" style="text-align: center; margin-top: 30px;">
         <div class="form-group">
             <label for="contanti">Cifra con la quale si intende pagare alla consegna:</label>
-            <input type= "number" id="contanti" name="contanti" class="payment-select" step = "0.01" min="0" required>
+            <input type= "number" id="contanti" name="contanti" class="cash-amount-input" step = "0.1" min="0" required>
         </div>
         <button type="submit" class="main-button">Ordina</button>
     </form>

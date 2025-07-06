@@ -1130,4 +1130,47 @@ footer.site-footer p {
     text-decoration: underline;
 }
 
+/* Stili per la label sopra l'input */
+.cash-payment-form-card label {
+    font-size: 22px; /* Dimensione del font per la label */
+    color: var(--dark-color);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    display: block;
+}
 
+/* Stili per l'input numerico (cash-amount-input) */
+.cash-amount-input {
+    width: 280px;
+    height: 45px;
+    padding: 10px 15px;
+    font-size: 20px;
+    text-align: left;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--dark-color);
+    background-color: #fff;
+
+    margin: 20px auto;
+    display: block;
+
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    background-image: none;
+    background-repeat: initial;
+    background-position: initial;
+    background-size: initial;
+
+    /* Aggiungi questa linea per l'ombra! */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cash-amount-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    /* Mantieni l'ombra al focus più pronunciata, ma potresti volerla leggermente più forte rispetto a quella normale */
+    box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25), 0 3px 8px rgba(0, 0, 0, 0.1);
+}

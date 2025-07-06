@@ -42,9 +42,6 @@ class EProdottoPeso extends EProdotto
 
     public function setRangePeso(string $rangePeso): void { $this->rangePeso = $rangePeso; }
 
-    public function getPrezzoRange(): float { return $this->prezzoRange; }
-    public function setPrezzoRange(float $prezzoRange): void { $this->prezzoRange = $prezzoRange; }
-
     public function getOrdiniItem(): Collection { return $this->ordiniItem; }
 
     public function addOrdineItem(EOrdineItem $item): void

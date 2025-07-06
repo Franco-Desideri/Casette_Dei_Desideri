@@ -60,9 +60,9 @@
                             
                             <p class="product-price-per-unit">Prezzo: {$prodotto->getPrezzoKg()|string_format:"%.2f"} &euro;/Kg</p>
                             
-                            <div class="quantity-control">
+                            <div class="quantity-control" data-step="{$prodotto->getRangePeso()}">
                                 <button type="button" class="qty-btn" data-action="minus">-</button>
-                                <input type="number" name="quantitaP[{$prodotto->getId()}]" min="0" step="50" value="0" class="product-quantity-input"> g
+                                <input type="number" name="quantitaP[{$prodotto->getId()}]" min="0" step="{$prodotto->getRangePeso()}" value="0" class="product-quantity-input"> g
                                 <button type="button" class="qty-btn" data-action="plus">+</button>
                             </div>
                         </div>
@@ -101,26 +101,22 @@
 
 {block name="scripts"}
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.quantity-control').forEach(function(control) {
-        const minusBtn = control.querySelector('[data-action="minus"]');
-        const plusBtn = control.querySelector('[data-action="plus"]');
-        const input = control.querySelector('.product-quantity-input');
+document.querySelectorAll('.quantity-control').forEach(control => {
+    const minusBtn = control.querySelector('[data-action="minus"]');
+    const plusBtn = control.querySelector('[data-action="plus"]');
+    const input = control.querySelector('.product-quantity-input');
+    const step = parseInt(control.dataset.step) || 50; // fallback a 50 se mancante
 
-        const step = parseInt(input.step) || 1;
-        const min = parseInt(input.min) || 0;
+    plusBtn.addEventListener('click', () => {
+        let current = parseInt(input.value) || 0;
+        input.value = current + step;
+    });
 
-        minusBtn.addEventListener('click', function() {
-            let value = parseInt(input.value) || 0;
-            value = Math.max(min, value - step);
-            input.value = value;
-        });
-
-        plusBtn.addEventListener('click', function() {
-            let value = parseInt(input.value) || 0;
-            input.value = value + step;
-        });
+    minusBtn.addEventListener('click', () => {
+        let current = parseInt(input.value) || 0;
+        input.value = Math.max(0, current - step);
     });
 });
-    </script>
+</script>
+
 {/block}

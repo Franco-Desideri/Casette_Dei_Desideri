@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-04 12:12:59
+/* Smarty version 5.5.1, created on 2025-07-06 09:34:50
   from 'file:admin/prodotto_form_peso.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6867a92b023936_21073955',
+  'unifunc' => 'content_686a271a78d347_19952089',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0eda0ff72447569f4038dad36a6a06b6a93e31a5' => 
     array (
       0 => 'admin/prodotto_form_peso.tpl',
-      1 => 1751619073,
+      1 => 1751787286,
       2 => 'file',
     ),
   ),
@@ -21,18 +21,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/header_admin.tpl' => 1,
   ),
 ))) {
-function content_6867a92b023936_21073955 (\Smarty\Template $_smarty_tpl) {
+function content_686a271a78d347_19952089 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_11604655886867a92b015f93_36776718', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_568900032686a271a76c7a5_73904343', "contenuto");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_11604655886867a92b015f93_36776718 extends \Smarty\Runtime\Block
+class Block_568900032686a271a76c7a5_73904343 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
@@ -76,21 +76,16 @@ echo $_smarty_tpl->getValue('prodotto')->getRangePeso();
 }?>">
         </div>
 
-        <div class="form-group-item">
-            <label for="prezzoRange">Prezzo per range (€):</label>
-            <input type="number" id="prezzoRange" step="0.01" name="prezzoRange" required value="<?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {
-echo $_smarty_tpl->getValue('prodotto')->getPrezzoRange();
-}?>">
-        </div>
 
         <div class="form-group-item">
             <label for="foto">Immagine del prodotto:</label>
             <input type="file" id="foto" name="foto" accept="image/*" <?php if (!(true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>required<?php }?>>
             <?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>
                 <p>Immagine attuale: <br>
-                    <img src="<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                    <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " style="max-width: 200px; max-height: 200px;">
+
                 </p>
             <?php }?>
         </div>

@@ -75,7 +75,7 @@ class CAdminProdotto
         $prodotto->setNome($_POST['nome']);
         $prodotto->setPrezzoKg((float)$_POST['prezzoKg']);
         $prodotto->setRangePeso($_POST['rangePeso']);
-        $prodotto->setPrezzoRange((float)$_POST['prezzoRange']);
+        
     }
 
    // 📁 Salvataggio immagine come BLOB nel database
@@ -139,7 +139,6 @@ if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
         $p->setNome($_POST['nome']);
         $p->setPrezzoKg((float)$_POST['prezzoKg']);
         $p->setRangePeso($_POST['rangePeso']);
-        $p->setPrezzoRange((float)$_POST['prezzoRange']);
     }
 
     // 📁 Salvataggio immagine come BLOB nel database

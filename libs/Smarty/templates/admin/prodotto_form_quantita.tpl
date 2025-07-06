@@ -40,7 +40,7 @@
                 <option value="Kg" {if isset($prodotto) && $prodotto->getUnitaMisura() == 'Kg'}selected{/if}>Kg</option>
                 <option value="L" {if isset($prodotto) && $prodotto->getUnitaMisura() == 'L'}selected{/if}>L</option>
                 <option value="ml" {if isset($prodotto) && $prodotto->getUnitaMisura() == 'ml'}selected{/if}>ml</option>
-                {*<option value="pezzi" {if isset($prodotto) && $prodotto->getUnitaMisura() == 'pezzi'}selected{/if}>Pezzi</option>*}
+                <option value="pezzi" {if isset($prodotto) && $prodotto->getUnitaMisura() == 'pezzi'}selected{/if}>pezzi</option>
             </select>
         </div>
 
