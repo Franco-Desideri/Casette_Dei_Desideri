@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-07 10:45:11
+/* Smarty version 5.5.1, created on 2025-07-07 12:56:26
   from 'file:utente/lista_strutture.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686b8917a4d557_08738602',
+  'unifunc' => 'content_686ba7da87d122_60378635',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b65fb2cd8fec660f00928285dcf98c5913e47f07' => 
     array (
       0 => 'utente/lista_strutture.tpl',
-      1 => 1751809161,
+      1 => 1751883573,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
-function content_686b8917a4d557_08738602 (\Smarty\Template $_smarty_tpl) {
+function content_686ba7da87d122_60378635 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -43,13 +43,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
     <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/owl.css">
     <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
 
-TemplateMo 591 villa agency
 
-https://templatemo.com/tm-591-villa-agency
-
--->
   </head>
 
 <body>
@@ -153,18 +148,6 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         <p>Nessuna struttura trovata.</p>
         <?php }?>
   
-
-    <!--
-      <div class="row">
-        <div class="col-lg-12">
-          <ul class="pagination">
-            <li><a href="#">1</a></li>
-            <li><a class="is_active" href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">>></a></li>
-          </ul>
-        </div>
-      </div>-->
     </div>
   </div>
 

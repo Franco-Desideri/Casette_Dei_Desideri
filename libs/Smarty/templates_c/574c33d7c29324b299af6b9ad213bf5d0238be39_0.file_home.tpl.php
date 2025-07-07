@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-06 12:15:28
+/* Smarty version 5.5.1, created on 2025-07-07 13:05:15
   from 'file:utente/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686a4cc0d3be85_51923304',
+  'unifunc' => 'content_686ba9ebedc795_48742346',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '574c33d7c29324b299af6b9ad213bf5d0238be39' => 
     array (
       0 => 'utente/home.tpl',
-      1 => 1751796924,
+      1 => 1751886284,
       2 => 'file',
     ),
   ),
@@ -21,10 +21,10 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
-function content_686a4cc0d3be85_51923304 (\Smarty\Template $_smarty_tpl) {
+function content_686ba9ebedc795_48742346 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
   <meta charset="utf-8">
@@ -61,7 +61,6 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
       </div>
     </div>
   </div>
-
 
 
   <section class="story-section">

@@ -125,7 +125,7 @@
         Sei sicuro di voler effettuare il logout?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-annulla" data-bs-dismiss="modal">Annulla</button>
         <form action="/Casette_Dei_Desideri/User/logout" method="post" class="d-inline">
           <button type="submit" class="btn btn-danger">Conferma Logout</button>
         </form>

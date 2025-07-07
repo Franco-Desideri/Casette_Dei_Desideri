@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-06 14:35:00
+/* Smarty version 5.5.1, created on 2025-07-07 12:53:22
   from 'file:admin/profilo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686a6d7454b2e9_60845967',
+  'unifunc' => 'content_686ba722b77a65_23748590',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '201fdcfbb3927db3b5a2fdc7c83673bfd3446c25' => 
     array (
       0 => 'admin/profilo.tpl',
-      1 => 1751805298,
+      1 => 1751885598,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_templateAdmin.tpl' => 1,
   ),
 ))) {
-function content_686a6d7454b2e9_60845967 (\Smarty\Template $_smarty_tpl) {
+function content_686ba722b77a65_23748590 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -161,7 +161,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
         Sei sicuro di voler effettuare il logout?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-annulla" data-bs-dismiss="modal">Annulla</button>
         <form action="/Casette_Dei_Desideri/User/logout" method="post" class="d-inline">
           <button type="submit" class="btn btn-danger">Conferma Logout</button>
         </form>

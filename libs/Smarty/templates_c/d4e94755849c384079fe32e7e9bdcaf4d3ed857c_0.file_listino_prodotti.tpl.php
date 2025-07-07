@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-06 12:02:08
+/* Smarty version 5.5.1, created on 2025-07-07 13:05:15
   from 'file:utente/listino_prodotti.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686a49a01a63f4_19461785',
+  'unifunc' => 'content_686ba9eb4a28e4_57674557',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd4e94755849c384079fe32e7e9bdcaf4d3ed857c' => 
     array (
       0 => 'utente/listino_prodotti.tpl',
-      1 => 1751796126,
+      1 => 1751886306,
       2 => 'file',
     ),
   ),
@@ -21,25 +21,25 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
-function content_686a49a01a63f4_19461785 (\Smarty\Template $_smarty_tpl) {
+function content_686ba9eb4a28e4_57674557 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1416816385686a49a018c7e3_25505846', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1962775044686ba9eb471462_02397405', "contenuto");
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1495860394686a49a01a59c5_12844489', "scripts");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1099047749686ba9eb4a1819_71236715', "scripts");
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_1416816385686a49a018c7e3_25505846 extends \Smarty\Runtime\Block
+class Block_1962775044686ba9eb471462_02397405 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
@@ -203,7 +203,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 }
 /* {/block "contenuto"} */
 /* {block "scripts"} */
-class Block_1495860394686a49a01a59c5_12844489 extends \Smarty\Runtime\Block
+class Block_1099047749686ba9eb4a1819_71236715 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
