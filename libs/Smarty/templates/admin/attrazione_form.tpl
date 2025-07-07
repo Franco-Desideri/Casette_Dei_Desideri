@@ -20,7 +20,9 @@
 </head>
 
 <body>
+<div class="Sfondo-bg-wrapper">
   <div class="admin-form">
+  
     <h2>{if $attrazione !== null}Modifica Attrazione{else}Aggiungi Attrazione{/if}</h2>
 
     <form action="{if $attrazione !== null}/Casette_Dei_Desideri/AdminContenuti/salvaModificaAttrazione{else}/Casette_Dei_Desideri/AdminContenuti/salvaAttrazione{/if}" method="post" enctype="multipart/form-data">
@@ -44,9 +46,10 @@
           <textarea name="descrizione" class="form-control" rows="4" required>{if $attrazione !== null}{$attrazione->getDescrizione()}{/if}</textarea>
         </div>
 
-        <button type="submit" class="btn btn-success">Salva</button>
+        <button type="submit">Salva</button>
     </form>
   </div>
+</div>
 
   <!-- Scripts -->
   <script src="/Casette_Dei_Desideri/public/vendor/jquery/jquery.min.js"></script>

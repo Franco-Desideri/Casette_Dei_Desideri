@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-02 19:50:31
+/* Smarty version 5.5.1, created on 2025-07-07 11:30:16
   from 'file:admin/evento_form.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686571676520a4_51995953',
+  'unifunc' => 'content_686b93a86289d5_94481965',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e0f68f559de44f4a155dd175339796c040aef909' => 
     array (
       0 => 'admin/evento_form.tpl',
-      1 => 1751478626,
+      1 => 1751880611,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_686571676520a4_51995953 (\Smarty\Template $_smarty_tpl) {
+function content_686b93a86289d5_94481965 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -44,6 +44,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 </head>
 
 <body>
+  <div class="Sfondo-bg-wrapper">
   <div class="admin-form">
     <h2><?php if ($_smarty_tpl->getValue('evento') !== null) {?>Modifica Evento<?php } else { ?>Aggiungi Evento<?php }?></h2>
 
@@ -89,6 +90,7 @@ echo $_smarty_tpl->getValue('evento')->getDataFineString('Y-m-d');
         <button type="submit" class="btn btn-success">Salva</button>
     </form>
   </div>
+</div>
 
   <!-- Scripts -->
   <?php echo '<script'; ?>

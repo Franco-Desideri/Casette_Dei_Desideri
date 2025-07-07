@@ -32,13 +32,6 @@ body {
     min-height: 100vh;
 }
 
-/* Contenitore generale per centrare il contenuto */
-.container {
-    max-width: 1200px; /* Larghezza massima simile all'esempio VILLA */
-    margin: 0 auto;
-    padding: 0 20px; /* Padding orizzontale per evitare che il contenuto si attacchi ai bordi */
-}
-
 
 /* === Header === */
 header.site-header {
@@ -81,7 +74,6 @@ nav.main-nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 35px; /* Spazio maggiore tra gli elementi di navigazione */
 }
 
 nav.main-nav a.nav-item {
@@ -177,7 +169,6 @@ nav.main-nav a.nav-item.active {
 /* === Main Content Area === */
 main { /* Solo il tag main, non la classe container */
     flex-grow: 1;
-    padding: 40px 0;
 }
 /* La classe container applicherà la larghezza massima e il padding */
 main.container {
@@ -525,7 +516,7 @@ footer.site-footer p {
         font-size: 16px;
     }
     .hero-overlay h2 {
-        font-size: 3rem;
+        font-size: 3rem;  
     }
     .hero-overlay p {
         font-size: 1.4rem;
@@ -661,11 +652,10 @@ footer.site-footer p {
 /* General Admin Container - similar to main.container but for admin sections */
 .admin-content-container {
     padding: 30px 20px;
-    /*background-color: var(--background-white);*/
-    /*border-radius: 12px;*/
-    /*box-shadow: 0 5px 15px var(--shadow-light);*/
     margin: 20px auto;
     max-width: 1000px; /* Max width for admin content */
+    overflow: visible;
+    overflow: auto;
 }
 
 /* Admin Page Titles */
@@ -764,6 +754,48 @@ footer.site-footer p {
 .admin-item-details {
     flex-grow: 1; /* Allow details to take available space */
 }
+
+/*button edit-delete Servizi*/
+/* Pulsante Modifica */
+.btn-edit {
+  display: inline-block;
+  background-color: #000000;
+  border: 0px;
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 30px;
+  border-radius: 25px;
+  transition: all .3s;
+}
+
+.btn-edit:hover {
+  background-color: #009e00;
+  color: #fff !important;
+}
+
+/* Pulsante Disattiva */
+.btn-delete {
+  display: inline-block;
+  background-color: #000000;
+  border: 0px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 40px;
+  padding: 0px 30px;
+  border-radius: 25px;
+  transition: all .3s;
+}
+
+.btn-delete:hover {
+  background-color: #b00000;
+  color: #fff;
+}
+
 
 .admin-item-actions {
     display: flex;
@@ -1015,33 +1047,21 @@ footer.site-footer p {
 
 /* Specific button for forms */
 .admin-form-button {
-    background-color: var(--primary-color);
-    color: white;
-    padding: 12px 25px;
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
-    margin-top: 20px; /* Spazio sopra il pulsante */
-    width: auto; /* Adatta la larghezza al contenuto */
-    align-self: center; /* Centra il pulsante nel flex container */
+  background-color: #000000; /* colore personalizzato */
+  color: #fff;
+  border: none;
+  padding: 15px 75px;
+  border-radius: 25px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+  margin-bottom: 30px;
 }
 
 .admin-form-button:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+  background-color: #00b00c;
+   color: #fff; /* colore al passaggio del mouse */
 }
 
-.admin-form-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 5px rgba(76, 175, 80, 0.2);
-}
 
 /* Adjustments for responsive forms */
 @media (max-width: 480px) {
@@ -1129,3 +1149,11 @@ footer.site-footer p {
     color: darkgreen;
     text-decoration: underline;
 }
+
+
+/* Dice al browser: “tutti questi elementi devono usare il font Poppins”. */
+body, h1, h2, h3, h4, h5, h6, p, .hero-title, .hero-subtitle, .story-text, .card, .card-title {
+  font-family: 'Poppins', sans-serif;
+}
+
+

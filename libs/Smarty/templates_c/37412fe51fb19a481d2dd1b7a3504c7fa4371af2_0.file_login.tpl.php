@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-03 20:59:27
+/* Smarty version 5.5.1, created on 2025-07-07 15:47:05
   from 'file:utente/login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6866d30f157d85_08544783',
+  'unifunc' => 'content_686bcfd9761559_57360460',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '37412fe51fb19a481d2dd1b7a3504c7fa4371af2' => 
     array (
       0 => 'utente/login.tpl',
-      1 => 1751569155,
+      1 => 1751883604,
       2 => 'file',
     ),
   ),
@@ -20,11 +20,12 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6866d30f157d85_08544783 (\Smarty\Template $_smarty_tpl) {
+function content_686bcfd9761559_57360460 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
+
   <meta charset="UTF-8">
   <title>Login e Registrazione</title>
   <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/auth.css">
@@ -47,10 +48,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
         <?php }?>
         <form method="post" action="/Casette_Dei_Desideri/User/login">
           <label>Email:</label>
-          <input type="email" name="email" required>
+          <input type="email" name="email" required placeholder="e-mail">
 
           <label>Password:</label>
-          <input type="password" name="password" required>
+          <input type="password" name="password" required placeholder="password">
 
           <button type="submit">Accedi</button>
         </form>
@@ -65,22 +66,22 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
         <?php }?>
         <form method="post" action="/Casette_Dei_Desideri/User/registrazione">
           <label>Nome:</label>
-          <input type="text" name="nome" required>
+          <input type="text" name="nome" required placeholder="nome">
 
           <label>Cognome:</label>
-          <input type="text" name="cognome" required>
+          <input type="text" name="cognome" required placeholder="cognome">
 
           <label>Email:</label>
-          <input type="email" name="email" required>
+          <input type="email" name="email" required placeholder="e-mail">
 
           <label>Password:</label>
-          <input type="password" name="password" required>
+          <input type="password" name="password" required placeholder="password">
 
           <label>Conferma Password:</label>
-          <input type="password" name="conferma_password" required>
+          <input type="password" name="conferma_password" required placeholder="conferma password">
 
           <label>Codice Fiscale:</label>
-          <input type="text" name="codicefisc" maxlength="16" required>
+          <input type="text" name="codicefisc" maxlength="16" required placeholder="codice fiscale">
 
           <label>Sesso:</label>
           <select name="sesso" required>
@@ -93,10 +94,10 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
           <input type="date" name="dataN" required>
 
           <label>Luogo di Nascita:</label>
-          <input type="text" name="luogoN" required>
+          <input type="text" name="luogoN" required placeholder="luogo di nascita">
 
           <label>Telefono:</label>
-          <input type="text" name="tell" required>
+          <input type="text" name="tell" required placeholder="telefono">
 
           <button type="submit">Registrati</button>
         </form>

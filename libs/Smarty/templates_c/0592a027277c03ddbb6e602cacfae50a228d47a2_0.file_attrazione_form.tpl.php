@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-02 19:50:56
+/* Smarty version 5.5.1, created on 2025-07-07 11:30:13
   from 'file:admin/attrazione_form.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68657180a08d36_13858690',
+  'unifunc' => 'content_686b93a50d8717_04843896',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0592a027277c03ddbb6e602cacfae50a228d47a2' => 
     array (
       0 => 'admin/attrazione_form.tpl',
-      1 => 1751478410,
+      1 => 1751880611,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_68657180a08d36_13858690 (\Smarty\Template $_smarty_tpl) {
+function content_686b93a50d8717_04843896 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -44,7 +44,9 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 </head>
 
 <body>
+<div class="Sfondo-bg-wrapper">
   <div class="admin-form">
+  
     <h2><?php if ($_smarty_tpl->getValue('attrazione') !== null) {?>Modifica Attrazione<?php } else { ?>Aggiungi Attrazione<?php }?></h2>
 
     <form action="<?php if ($_smarty_tpl->getValue('attrazione') !== null) {?>/Casette_Dei_Desideri/AdminContenuti/salvaModificaAttrazione<?php } else { ?>/Casette_Dei_Desideri/AdminContenuti/salvaAttrazione<?php }?>" method="post" enctype="multipart/form-data">
@@ -72,9 +74,10 @@ echo $_smarty_tpl->getValue('attrazione')->getDescrizione();
 }?></textarea>
         </div>
 
-        <button type="submit" class="btn btn-success">Salva</button>
+        <button type="submit">Salva</button>
     </form>
   </div>
+</div>
 
   <!-- Scripts -->
   <?php echo '<script'; ?>

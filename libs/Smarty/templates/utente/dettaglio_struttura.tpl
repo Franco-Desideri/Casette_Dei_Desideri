@@ -23,83 +23,17 @@
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-
-    
-<!--
-https://templatemo.com/tm-591-villa-agency
-
--->
   </head>
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
+  {include file="partials/appbar_template.tpl" paginaCorrente="strutture"}
 
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-8">
-          <ul class="info">
-            <li><i class="fa fa-envelope"></i> CasetteDeiDesideri@gmail.com</li>
-            <li><i class="fa-solid fa-location-dot"></i> Poggio Bustone, RI 057051</li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-4">
-          <ul class="social-links">
-            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-            <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/Casette_Dei_Desideri/User/home" class="logo" style="white-space: nowrap;">
-                        <h1>Cassette Dei Desideri</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
-                      <li><a href="/Casette_Dei_Desideri/Struttura/lista"class="active">Strutture</a></li>
-                      <li><a href="contact.html">Contatti</a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
 
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <span class="breadcrumb"><a href="#">Home</a>  /  Struttura</span>
           <h3>{$struttura->getTitolo()}</h3>
         </div>
       </div>
@@ -111,36 +45,33 @@ https://templatemo.com/tm-591-villa-agency
       <div class="row">
         <div class="col-lg-8">
 
-
-{if $foto|@count > 0}
-  <div class="owl-carousel owl-banner">
-    {foreach from=$foto item=f}
-      {if isset($f->base64img)}
-        <div class="item">
-          <img src="{$f->base64img}" alt="foto" class="img-fluid">
-        </div>
-      {/if}
-    {/foreach}
-  </div>
-{else}
-  <p>Nessuna immagine disponibile.</p>
-{/if}
-
+          {if $foto|@count > 0}
+            <div class="owl-carousel owl-banner">
+              {foreach from=$foto item=f}
+                {if isset($f->base64img)}
+                  <div class="item">
+                    <img src="{$f->base64img}" alt="foto" class="img-fluid">
+                  </div>
+                {/if}
+              {/foreach}
+            </div>
+          {else}
+            <p>Nessuna immagine disponibile.</p>
+          {/if}
 
 
-            
-            <!--Visualizzazione foto
-            {if $foto|@count > 0}
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    {foreach from=$foto item=f}
-                        {if isset($f->base64img)}
-                            <img src="{$f->base64img}" alt="foto">
-                        {/if}
-                    {/foreach}
-                </div>
-            {else}
-                <p>Nessuna immagine disponibile.</p>
-            {/if}-->
+          <!--Visualizzazione foto
+          {if $foto|@count > 0}
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  {foreach from=$foto item=f}
+                      {if isset($f->base64img)}
+                          <img src="{$f->base64img}" alt="foto">
+                      {/if}
+                  {/foreach}
+              </div>
+          {else}
+              <p>Nessuna immagine disponibile.</p>
+          {/if}-->
 
 
           <div class="main-content">
@@ -148,49 +79,6 @@ https://templatemo.com/tm-591-villa-agency
             <h4>{$struttura->getLuogo()}</h4>
             <p>{$struttura->getDescrizione()}</p>
           </div> 
-
-
-
-            <!-- Sono pulsanti per visualizzare più dettagli--------------------
-          <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  Best useful links ?
-                </button>
-              </h2>
-              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologist incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  How does this work ?
-                </button>
-              </h2>
-              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologist incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingThree">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                  Why is Villa the best ?
-                </button>
-              </h2>
-              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                <div class="accordion-body">
-                  Dolor <strong>almesit amet</strong>, consectetur adipiscing elit, sed doesn't eiusmod tempor kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologist incididunt ut labore consectetur <code>adipiscing</code> elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </div>
-              </div>
-            </div>
-          </div>-->
-
 
 
         </div>    
@@ -242,156 +130,49 @@ https://templatemo.com/tm-591-villa-agency
     </div>
   </div>
 
-    <!-- Sezione Prenotazione -->
-<div class="prenotazione-wrapper section">
-  <div class="container">
-    <hr class="my-5">
-    <h3 class="mb-4">Prenota il tuo soggiorno</h3>
-
-    <!-- FORM completo con method POST e action -->
-    <form method="post" action="/Casette_Dei_Desideri/Prenotazione/calcola" class="prenotazione-form prenotazione-box">
-      
-      <!-- Campo nascosto per inviare l'ID della struttura -->
-      <input type="hidden" name="idStruttura" value="{$struttura->getId()}">
-
-      <div class="mb-3 input-with-icon">
-        <label for="dataInizio" class="form-label">Data inizio</label>
-          <input type="text" class="form-control" id="dataInizio" name="dataInizio" required readonly placeholder="gg/mm/aaaa">
-      </div>
-
-
-      <div class="mb-3">
-        <label for="dataFine" class="form-label">Data fine</label>
-          <input type="text" class="form-control" id="dataFine" name="dataFine" required readonly placeholder="gg/mm/aaaa">
-      </div>
-
-      <div class="mb-3">
-        <label for="numOspiti" class="form-label">Numero ospiti (max {$struttura->getNumOspiti()})</label>
-        <select class="form-select" id="numOspiti" name="numOspiti" required>
-          {assign var="maxOspiti" value=$struttura->getNumOspiti()}
-          {section name=i start=1 loop=$maxOspiti+1}
-            <option value="{$smarty.section.i.index}">
-              {$smarty.section.i.index}
-            </option>
-          {/section}
-        </select>
-      </div>
-
-      <div class="d-flex justify-content-end mt-4">
-        <button type="submit" class="btn prenota-btn">Procedi alla prenotazione</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-
-
-
-
-<!--
-  <div class="section best-deal">
+  <!-- Sezione Prenotazione -->
+  <div class="prenotazione-wrapper section">
     <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="section-heading">
-            <h6>| Best Deal</h6>
-            <h2>Find Your Best Deal Right Now!</h2>
-          </div>
+      <hr class="my-5">
+      <h3 class="mb-4">Prenota il tuo soggiorno</h3>
+
+      <!-- FORM completo con method POST e action -->
+      <form method="post" action="/Casette_Dei_Desideri/Prenotazione/calcola" class="prenotazione-form prenotazione-box">
+        
+        <!-- Campo nascosto per inviare l'ID della struttura -->
+        <input type="hidden" name="idStruttura" value="{$struttura->getId()}">
+
+        <div class="mb-3 input-with-icon">
+          <label for="dataInizio" class="form-label">Data inizio</label>
+            <input type="text" class="form-control" id="dataInizio" name="dataInizio" required readonly placeholder="gg/mm/aaaa">
         </div>
-        <div class="col-lg-12">
-          <div class="tabs-content">
-            <div class="row">
-              <div class="nav-wrapper ">
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="appartment-tab" data-bs-toggle="tab" data-bs-target="#appartment" type="button" role="tab" aria-controls="appartment" aria-selected="true">Appartment</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="villa-tab" data-bs-toggle="tab" data-bs-target="#villa" type="button" role="tab" aria-controls="villa" aria-selected="false">Villa House</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="penthouse-tab" data-bs-toggle="tab" data-bs-target="#penthouse" type="button" role="tab" aria-controls="penthouse" aria-selected="false">Penthouse</button>
-                  </li>
-                </ul>
-              </div>              
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="appartment" role="tabpanel" aria-labelledby="appartment-tab">
-                  <div class="row">
-                    <div class="col-lg-3">
-                      <div class="info-table">
-                        <ul>
-                          <li>Total Flat Space <span>540 m2</span></li>
-                          <li>Floor number <span>3</span></li>
-                          <li>Number of rooms <span>8</span></li>
-                          <li>Parking Available <span>Yes</span></li>
-                          <li>Payment Process <span>Bank</span></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <img src="/Casette_Dei_Desideri/public/assets/images/deal-01.jpg" alt="">
-                    </div>
-                    <div class="col-lg-3">
-                      <h4>All Info About Apartment</h4>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut labore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
-                      <div class="icon-button">
-                        <a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="villa" role="tabpanel" aria-labelledby="villa-tab">
-                  <div class="row">
-                    <div class="col-lg-3">
-                      <div class="info-table">
-                        <ul>
-                          <li>Total Flat Space <span>250 m2</span></li>
-                          <li>Floor number <span>26th</span></li>
-                          <li>Number of rooms <span>5</span></li>
-                          <li>Parking Available <span>Yes</span></li>
-                          <li>Payment Process <span>Bank</span></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <img src="/Casette_Dei_Desideri/public/assets/images/deal-02.jpg" alt="">
-                    </div>
-                    <div class="col-lg-3">
-                      <h4>Detail Info About New Villa</h4>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut labore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
-                      <div class="icon-button">
-                        <a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="penthouse" role="tabpanel" aria-labelledby="penthouse-tab">
-                  <div class="row">
-                    
 
 
-
-
-
-                    <div class="col-lg-6">
-                      <img src="/Casette_Dei_Desideri/public/assets/images/deal-03.jpg" alt="">
-                    </div>
-                    <div class="col-lg-3">
-                      <h4>Extra Info About Penthouse</h4>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut Kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologistlabore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
-                      <div class="icon-button">
-                        <a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="mb-3">
+          <label for="dataFine" class="form-label">Data fine</label>
+            <input type="text" class="form-control" id="dataFine" name="dataFine" required readonly placeholder="gg/mm/aaaa">
         </div>
-      </div>
+
+        <div class="mb-3">
+          <label for="numOspiti" class="form-label">Numero ospiti (max {$struttura->getNumOspiti()})</label>
+          <select class="form-select" id="numOspiti" name="numOspiti" required>
+            {assign var="maxOspiti" value=$struttura->getNumOspiti()}
+            {section name=i start=1 loop=$maxOspiti+1}
+              <option value="{$smarty.section.i.index}">
+                {$smarty.section.i.index}
+              </option>
+            {/section}
+          </select>
+        </div>
+
+        <div class="d-flex justify-content-end mt-4">
+          <button type="submit" class="btn prenota-btn">Procedi alla prenotazione</button>
+        </div>
+      </form>
     </div>
-  </div>-->
+  </div>
+
+
 
   <footer class="footer-no-gap">
     <div class="container">
@@ -484,69 +265,66 @@ https://templatemo.com/tm-591-villa-agency
   </script>
 
 
-<script>
-  function isRangeContinuo(startStr, endStr) {
-    const start = new Date(startStr);
-    const end = new Date(endStr);
+  <script>
+    function isRangeContinuo(startStr, endStr) {
+      const start = new Date(startStr);
+      const end = new Date(endStr);
 
-    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-      const ds = d.toISOString().slice(0, 10);
-      if (!isInIntervallo(ds) || isOccupata(ds)) {
-        return false;
+      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+        const ds = d.toISOString().slice(0, 10);
+        if (!isInIntervallo(ds) || isOccupata(ds)) {
+          return false;
+        }
       }
-    }
-    return true;
-  }
-
-  document.querySelector('.prenotazione-form').addEventListener('submit', function(e) {
-    const inputInizio = document.getElementById('dataInizio');
-    const inputFine = document.getElementById('dataFine');
-
-    const dataInizio = inputInizio._flatpickr.selectedDates[0];
-    const dataFine = inputFine._flatpickr.selectedDates[0];
-
-    // Controllo che entrambi i campi siano compilati
-    if (!dataInizio || !dataFine) {
-      alert("Devi selezionare sia la data di inizio che quella di fine.");
-      e.preventDefault();
-      return;
+      return true;
     }
 
-    // Formatta le date nel formato YYYY-MM-DD
-    const dataInizioStr = dataInizio.toISOString().slice(0, 10);
-    const dataFineStr = dataFine.toISOString().slice(0, 10);
+    document.querySelector('.prenotazione-form').addEventListener('submit', function(e) {
+      const inputInizio = document.getElementById('dataInizio');
+      const inputFine = document.getElementById('dataFine');
 
-    // Controllo intervallo disponibile per inizio e fine
-    if (!isInIntervallo(dataInizioStr) || isOccupata(dataInizioStr)) {
-      alert("La data di inizio non è disponibile.");
-      e.preventDefault();
-      return;
-    }
+      const dataInizio = inputInizio._flatpickr.selectedDates[0];
+      const dataFine = inputFine._flatpickr.selectedDates[0];
 
-    if (!isInIntervallo(dataFineStr) || isOccupata(dataFineStr)) {
-      alert("La data di fine non è disponibile.");
-      e.preventDefault();
-      return;
-    }
+      // Controllo che entrambi i campi siano compilati
+      if (!dataInizio || !dataFine) {
+        alert("Devi selezionare sia la data di inizio che quella di fine.");
+        e.preventDefault();
+        return;
+      }
 
-    // Controllo che data fine sia dopo o uguale a data inizio
-    if (dataFine < dataInizio) {
-      alert("La data di fine deve essere uguale o successiva a quella di inizio.");
-      e.preventDefault();
-      return;
-    }
+      // Formatta le date nel formato YYYY-MM-DD
+      const dataInizioStr = dataInizio.toISOString().slice(0, 10);
+      const dataFineStr = dataFine.toISOString().slice(0, 10);
 
-    // ✅ NUOVO controllo: range continuo senza buchi
-    if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
-      alert("L'intervallo selezionato contiene giorni non prenotabili.");
-      e.preventDefault();
-      return;
-    }
-  });
-</script>
+      // Controllo intervallo disponibile per inizio e fine
+      if (!isInIntervallo(dataInizioStr) || isOccupata(dataInizioStr)) {
+        alert("La data di inizio non è disponibile.");
+        e.preventDefault();
+        return;
+      }
 
+      if (!isInIntervallo(dataFineStr) || isOccupata(dataFineStr)) {
+        alert("La data di fine non è disponibile.");
+        e.preventDefault();
+        return;
+      }
 
+      // Controllo che data fine sia dopo o uguale a data inizio
+      if (dataFine < dataInizio) {
+        alert("La data di fine deve essere uguale o successiva a quella di inizio.");
+        e.preventDefault();
+        return;
+      }
 
+      // ✅ NUOVO controllo: range continuo senza buchi
+      if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
+        alert("L'intervallo selezionato contiene giorni non prenotabili.");
+        e.preventDefault();
+        return;
+      }
+    });
+  </script>
 
 
   </body>
