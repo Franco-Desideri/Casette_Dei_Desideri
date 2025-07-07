@@ -20,6 +20,7 @@
 </head>
 
 <body>
+  <div class="Sfondo-bg-wrapper">
   <div class="admin-form">
     <h2>{if $evento !== null}Modifica Evento{else}Aggiungi Evento{/if}</h2>
 
@@ -57,6 +58,7 @@
         <button type="submit" class="btn btn-success">Salva</button>
     </form>
   </div>
+</div>
 
   <!-- Scripts -->
   <script src="/Casette_Dei_Desideri/public/vendor/jquery/jquery.min.js"></script>

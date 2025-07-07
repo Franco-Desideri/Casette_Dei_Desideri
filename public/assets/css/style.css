@@ -1,5 +1,5 @@
 .hero-section {
-  background-image: url('/Casette_Dei_Desideri/public/assets/immagini/hero.jpg');
+  background-image: url('/Casette_Dei_Desideri/public/assets/images/hero.jpg');
   background-position: top center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -38,10 +38,8 @@
 }
 
 
-
 body {
   font-family: Arial, sans-serif;
-  margin: 20px;
   background-color: #f0f0f0;
 }
 
@@ -69,6 +67,25 @@ body {
   overflow: hidden;          /* nasconde contenuto che esce */
 }
 
+/*button salva*/
+button[type="submit"] {
+  margin-top: 25px;
+  padding: 12px, 600px;
+  background: #28a745;
+  border: none;
+  color: white;
+  font-weight: 00;
+  font-size: 18px;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+button[type="submit"]:hover {
+  background: #218838;
+  box-shadow: 0 6px 14px rgba(40, 167, 69, 0.3);
+}
 
 .card-text {
   flex: 1;
@@ -247,6 +264,19 @@ body {
 
 /*Form attrazione Admin*/
 
+/* Sfondo immagine con overlay scuro */
+.Sfondo-bg-wrapper {
+  background:
+    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+    url('/Casette_Dei_Desideri/public/assets/images/Poggio-Bustone.jpg')
+      no-repeat center center fixed;
+  background-size: cover;
+  padding: 80px 0;       /* spazio sopra/sotto la card */
+  min-height: 100vh;     /* copre almeno tutta l’altezza finestra */
+}
+
+
+
 .admin-form {
   max-width: 600px;
   margin: 60px auto;
@@ -399,4 +429,8 @@ body {
   justify-content: center;
 }
 
+/* Dice al browser: “tutti questi elementi devono usare il font Poppins”. */
+body, h1, h2, h3, h4, h5, h6, p, .hero-title, .hero-subtitle, .story-text, .card, .card-title {
+  font-family: 'Poppins', sans-serif;
+}
 

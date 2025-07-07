@@ -99,22 +99,33 @@ class CUser
         $view->mostraPrenotazione($prenotazione);
     }
 
-    // HOMEPAGE UTENTE CON ATTRAZIONI + EVENTI
     public function home(): void
     {
         USession::start();
 
-        $em = FPersistentManager::get(); // ottieni EntityManager
+        if (!USession::exists('utente_id')) {
+            header('Location: /Casette_Dei_Desideri/User/login');
+            exit;
+        }
+
+        $utenteId = USession::get('utente_id');
+        $utente = FPersistentManager::get()->find(EUtente::class, $utenteId);
+
+        if (!$utente) {
+            echo "Utente non trovato.";
+            exit;
+        }
+
+        $em = FPersistentManager::get(); // EntityManager
 
         $eventi = $em->getRepository(EEvento::class)->findAll();
         $attrazioni = $em->getRepository(EAttrazione::class)->findAll();
-        $utente = FPersistentManager::findOneBy(EUtente::class, ['ruolo' => 'admin']);
         $email = $utente->getEmail();
-
 
         $view = new VUser();
         $view->mostraHome($email, $eventi, $attrazioni);
     }
+
 
     public function registrazione(): void
     {
