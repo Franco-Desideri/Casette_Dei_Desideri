@@ -33,68 +33,8 @@ https://templatemo.com/tm-591-villa-agency
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-8">
-          <ul class="info">
-            <li><i class="fa fa-envelope"></i> CasetteDeiDesideri@gmail.com</li>
-            <li><i class="fa-solid fa-location-dot"></i> Poggio Bustone, RI 057051</li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-4">
-          <ul class="social-links">
-            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-            <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/Casette_Dei_Desideri/User/home" class="logo" style="white-space: nowrap;">
-                        <h1>Cassette Dei Desideri</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
-                      <li><a href="/Casette_Dei_Desideri/AdminStruttura/lista"class="active">Strutture</a></li>
-                      <li><a href="contact.html">Contatti</a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-
+  {include file="partials/appbar_templateAdmin.tpl" paginaCorrente="strutture"}  
+  
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
@@ -133,13 +73,16 @@ https://templatemo.com/tm-591-villa-agency
             {if isset($struttura) && $struttura->getFoto()->count() > 0}
               {foreach from=$struttura->getFoto() item=foto}
                 {if isset($foto->base64img)}
-                  <div style="width:120px; height:120px; overflow:hidden; border:1px solid #ccc; border-radius:4px; display:flex; align-items:center; justify-content:center; background:#fff;">
-                    <img src="{$foto->base64img}" alt="foto" style="max-width: 100%; max-height: 100%;">
+                  <div class="preview-item">
+                    <button type="button" class="remove-photo-btn">&times;</button>
+                    <img src="{$foto->base64img}" alt="foto" class="img-fluid">
+                    <input type="hidden" name="existing_foto_id[]" value="{$foto->getId()}">
                   </div>
                 {/if}
               {/foreach}
             {/if}
           </div>
+
 
 
           <div class="main-content">
@@ -330,64 +273,80 @@ https://templatemo.com/tm-591-villa-agency
 
 {literal}
 <script>
+  // elementi di base
   const selector = document.getElementById('foto-upload');
   const form = selector.closest('form');
   const container = document.getElementById('preview-images');
-
   const addedKeys = new Set();
 
+  // al cambio input, creo le preview
   selector.addEventListener('change', function(e) {
     const files = Array.from(e.target.files);
 
     files.forEach(file => {
       if (!file.type.startsWith('image/')) return;
 
+      // impedisco duplicati
       const key = `${file.name}|${file.size}|${file.lastModified}`;
       if (addedKeys.has(key)) return;
       addedKeys.add(key);
 
-      // Mostra anteprima
       const reader = new FileReader();
       reader.onload = function(ev) {
+        // wrapper principale
         const wrapper = document.createElement('div');
-        Object.assign(wrapper.style, {
-          width: '120px',
-          height: '120px',
-          overflow: 'hidden',
-          border: '1px solid #ccc',
-          borderRadius: '4px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: '#fff',
-          marginRight: '8px',
-          marginBottom: '8px'
-        });
+        wrapper.className = 'preview-item';
+
+        // bottone di rimozione (new)
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'remove-photo-btn';
+        btn.innerHTML = '&times;';
+        wrapper.appendChild(btn);
+
+        // immagine
         const img = document.createElement('img');
         img.src = ev.target.result;
-        img.style.maxWidth = '100%';
-        img.style.maxHeight = '100%';
         wrapper.appendChild(img);
+
+        // input file nascosto per il form (new_foto[])
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'file';
+        hiddenInput.name = 'foto[]';
+        hiddenInput.files = dt.files;
+        hiddenInput.style.display = 'none';
+        wrapper.appendChild(hiddenInput);
+
         container.appendChild(wrapper);
       };
       reader.readAsDataURL(file);
-
-      // Crea input file nascosto per ogni immagine
-      const dt = new DataTransfer();
-      dt.items.add(file);
-      const hiddenInput = document.createElement('input');
-      hiddenInput.type = 'file';
-      hiddenInput.name = 'foto[]';
-      hiddenInput.files = dt.files;
-      hiddenInput.style.display = 'none';
-      form.appendChild(hiddenInput);
     });
 
-    // Reset input per consentire nuova selezione
+    // reset per poter ricaricare gli stessi file
     selector.value = '';
+  });
+
+  // delegazione: rimuovo preview e, se esistente, segno l'eliminazione
+  container.addEventListener('click', function(e) {
+    if (!e.target.classList.contains('remove-photo-btn')) return;
+
+    const item = e.target.closest('.preview-item');
+    // se è una foto già in DB, contiene hidden existing_foto_id[]
+    const existingInput = item.querySelector('input[name="existing_foto_id[]"]');
+    if (existingInput) {
+      const marker = document.createElement('input');
+      marker.type = 'hidden';
+      marker.name = 'delete_foto_id[]';
+      marker.value = existingInput.value;
+      form.appendChild(marker);
+    }
+    item.remove();
   });
 </script>
 {/literal}
+
 
 
 
@@ -430,11 +389,6 @@ document.addEventListener('click', function (e) {
     }
 });
 </script>
-
-
-
-
-
 
 
 

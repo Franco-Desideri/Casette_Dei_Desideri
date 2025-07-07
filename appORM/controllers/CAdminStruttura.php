@@ -158,6 +158,22 @@ public function salvaModificata(): void {
     }
 
     $this->gestisciUploadFoto($struttura);
+    
+    //Rimozione foto
+    if (!empty($_POST['delete_foto_id'])) {
+        $pm = FPersistentManager::get();
+        foreach ($_POST['delete_foto_id'] as $fotoId) {
+            // recupera l'entità EFoto
+            $foto = $pm->find(EFoto::class, $fotoId);
+            if ($foto) {
+                // dissocia la foto dalla struttura
+                $struttura->removeFoto($foto);
+                // elimina l'entità dal DB
+                $pm->remove($foto);
+            }
+        }
+    }
+
 
     FPersistentManager::store($struttura);
     header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
