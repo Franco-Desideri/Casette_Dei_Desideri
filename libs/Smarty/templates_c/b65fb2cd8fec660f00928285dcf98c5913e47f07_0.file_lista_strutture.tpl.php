@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-07 12:56:26
+/* Smarty version 5.5.1, created on 2025-07-07 17:21:45
   from 'file:utente/lista_strutture.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686ba7da87d122_60378635',
+  'unifunc' => 'content_686be60996a235_00578180',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b65fb2cd8fec660f00928285dcf98c5913e47f07' => 
     array (
       0 => 'utente/lista_strutture.tpl',
-      1 => 1751883573,
+      1 => 1751896807,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
-function content_686ba7da87d122_60378635 (\Smarty\Template $_smarty_tpl) {
+function content_686be60996a235_00578180 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">

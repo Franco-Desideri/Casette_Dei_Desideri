@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-06 09:56:54
+/* Smarty version 5.5.1, created on 2025-07-07 18:06:25
   from 'file:utente/riepilogo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686a2c46bc8a90_40815412',
+  'unifunc' => 'content_686bf0816d7a81_62123012',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'c9123da93b227ab46a7150e4aa42e1386f14762a' => 
     array (
       0 => 'utente/riepilogo.tpl',
-      1 => 1751788609,
+      1 => 1751897021,
       2 => 'file',
     ),
   ),
@@ -20,18 +20,18 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_686a2c46bc8a90_40815412 (\Smarty\Template $_smarty_tpl) {
+function content_686bf0816d7a81_62123012 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_1983574668686a2c46b91cb8_17254928', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_289014714686bf081636ca6_69072576', "contenuto");
 $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
-class Block_1983574668686a2c46b91cb8_17254928 extends \Smarty\Runtime\Block
+class Block_289014714686bf081636ca6_69072576 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';

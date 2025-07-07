@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-07 11:30:13
+/* Smarty version 5.5.1, created on 2025-07-07 16:13:40
   from 'file:admin/attrazione_form.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686b93a50d8717_04843896',
+  'unifunc' => 'content_686bd61437a8a2_15014350',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0592a027277c03ddbb6e602cacfae50a228d47a2' => 
     array (
       0 => 'admin/attrazione_form.tpl',
-      1 => 1751880611,
+      1 => 1751896806,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_686b93a50d8717_04843896 (\Smarty\Template $_smarty_tpl) {
+function content_686bd61437a8a2_15014350 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="en">

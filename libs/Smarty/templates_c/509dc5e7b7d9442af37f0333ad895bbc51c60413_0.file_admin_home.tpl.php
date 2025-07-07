@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-06 15:12:06
+/* Smarty version 5.5.1, created on 2025-07-07 16:13:18
   from 'file:admin/admin_home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686a76262b45e3_43694992',
+  'unifunc' => 'content_686bd5fef014a8_32942898',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '509dc5e7b7d9442af37f0333ad895bbc51c60413' => 
     array (
       0 => 'admin/admin_home.tpl',
-      1 => 1751807524,
+      1 => 1751896806,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_templateAdmin.tpl' => 1,
   ),
 ))) {
-function content_686a76262b45e3_43694992 (\Smarty\Template $_smarty_tpl) {
+function content_686bd5fef014a8_32942898 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="en">

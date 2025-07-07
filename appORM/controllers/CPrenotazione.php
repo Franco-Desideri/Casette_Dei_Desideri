@@ -3,6 +3,7 @@
 use App\services\TechnicalServiceLayer\utility\USession;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\services\TechnicalServiceLayer\foundation\FPrenotazione;
+use App\services\TechnicalServiceLayer\foundation\FLockPrenotazione;
 use App\views\VPrenotazione;
 use App\models\EStruttura;
 use App\models\EUtente;
@@ -10,6 +11,7 @@ use App\models\EPrenotazione;
 use App\models\EDataPrenotazione;
 use App\models\EOspite;
 use App\models\ECartaCredito;
+use App\models\ELockPrenotazione;
 
 class CPrenotazione
 {
@@ -27,16 +29,52 @@ class CPrenotazione
             return;
         }
 
-        $idStruttura = $_POST['idStruttura'];
+        $idStruttura = (int) $_POST['idStruttura'];
         $dataInizio = new DateTime($_POST['dataInizio']);
         $dataFine = new DateTime($_POST['dataFine']);
-        $numOspiti = (int)$_POST['numOspiti'];
+        $numOspiti = (int) $_POST['numOspiti'];
+        $utenteId = USession::get('utente_id');
 
         $struttura = FPersistentManager::get()->find(EStruttura::class, $idStruttura);
         if (!$struttura) {
             echo "Struttura non trovata.";
             return;
         }
+
+        // === INIZIO BLOCCO LOCK PRENOTAZIONE ===
+        $lockRepo = new FLockPrenotazione();
+        $lockRepo->rimuoviScaduti();
+
+        $oggi = new DateTime();
+        $scadenza = (clone $oggi)->modify('+10 minutes');
+
+        $period = new DatePeriod(
+            $dataInizio,
+            new DateInterval('P1D'),
+            (clone $dataFine)->modify('+1 day')
+        );
+
+        foreach ($period as $giorno) {
+            $data = new DateTime($giorno->format('Y-m-d'));
+
+            if ($lockRepo->esisteLockAttivo($idStruttura, $data)) {
+                echo "<script>
+                    alert('⚠️ Queste date sono temporaneamente bloccate da un altro utente. Riprova tra 10 minuti o seleziona altre date.');
+                    window.location.href = '/Casette_Dei_Desideri/Struttura/dettaglio/" . $idStruttura . "';
+                </script>";
+                exit;
+
+            }
+
+            $lock = new \App\models\ELockPrenotazione();
+            $lock->setStrutturaId($idStruttura)
+                ->setData($data)
+                ->setUtenteId($utenteId)
+                ->setScadenza($scadenza);
+
+            $lockRepo->inserisciLock($lock);
+        }
+        // === FINE BLOCCO LOCK PRENOTAZIONE ===
 
         $prezzo = FPrenotazione::calcolaPrezzoTotale($struttura->getIntervalli(), $dataInizio, $dataFine);
 
@@ -51,6 +89,7 @@ class CPrenotazione
         header('Location: /Casette_Dei_Desideri/Prenotazione/riepilogoParziale');
         exit;
     }
+
 
 
     
@@ -240,6 +279,10 @@ class CPrenotazione
             echo "Errore: impossibile salvare la prenotazione (date non disponibili, ospiti in eccesso o conflitti).";
             return;
         }
+
+        // Rimuove tutti i lock associati all’utente
+        $lockRepo = new \App\foundation\FLockPrenotazione();
+        $lockRepo->rimuoviPerUtente($utente->getId());
 
         USession::delete('prenotazione_temp');
         header('Location: /Casette_Dei_Desideri/Struttura/lista');

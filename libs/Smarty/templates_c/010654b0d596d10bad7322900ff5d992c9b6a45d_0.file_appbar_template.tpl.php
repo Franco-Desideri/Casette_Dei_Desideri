@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-06 15:05:30
+/* Smarty version 5.5.1, created on 2025-07-07 16:49:01
   from 'file:partials/appbar_template.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686a749a22b878_78170760',
+  'unifunc' => 'content_686bde5d4e1688_58462056',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '010654b0d596d10bad7322900ff5d992c9b6a45d' => 
     array (
       0 => 'partials/appbar_template.tpl',
-      1 => 1751807127,
+      1 => 1751896806,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_686a749a22b878_78170760 (\Smarty\Template $_smarty_tpl) {
+function content_686bde5d4e1688_58462056 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\partials';
 ?><!-- ***** Animazione di Caricamento ***** -->
 <div id="js-preloader" class="js-preloader">

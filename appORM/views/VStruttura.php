@@ -5,6 +5,7 @@ namespace App\views;
 use Smarty\Smarty;
 use App\install\StartSmarty;
 use App\models\EStruttura;
+use App\services\TechnicalServiceLayer\utility\USession;
 
 /**
  * Classe View per la visualizzazione delle strutture lato utente.

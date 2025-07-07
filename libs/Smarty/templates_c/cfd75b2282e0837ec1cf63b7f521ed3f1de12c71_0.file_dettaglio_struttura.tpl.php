@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-07 10:45:14
+/* Smarty version 5.5.1, created on 2025-07-07 18:42:54
   from 'file:utente/dettaglio_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686b891a34a4b0_79047845',
+  'unifunc' => 'content_686bf90e2392b2_69082580',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cfd75b2282e0837ec1cf63b7f521ed3f1de12c71' => 
     array (
       0 => 'utente/dettaglio_struttura.tpl',
-      1 => 1751809161,
+      1 => 1751906500,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
-function content_686b891a34a4b0_79047845 (\Smarty\Template $_smarty_tpl) {
+function content_686bf90e2392b2_69082580 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -48,19 +48,12 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-
-    
-<!--
-https://templatemo.com/tm-591-villa-agency
-
--->
   </head>
 
 <body>
 
   <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_template.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
 ?>
-
 
   <div class="page-heading header-text">
     <div class="container">
@@ -78,52 +71,49 @@ https://templatemo.com/tm-591-villa-agency
       <div class="row">
         <div class="col-lg-8">
 
-
-<?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('foto')) > 0) {?>
-  <div class="owl-carousel owl-banner">
-    <?php
+          <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('foto')) > 0) {?>
+            <div class="owl-carousel owl-banner">
+              <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('foto'), 'f');
 $foreach0DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('f')->value) {
 $foreach0DoElse = false;
 ?>
-      <?php if ((true && (true && null !== ($_smarty_tpl->getValue('f')->base64img ?? null)))) {?>
-        <div class="item">
-          <img src="<?php echo $_smarty_tpl->getValue('f')->base64img;?>
+                <?php if ((true && (true && null !== ($_smarty_tpl->getValue('f')->base64img ?? null)))) {?>
+                  <div class="item">
+                    <img src="<?php echo $_smarty_tpl->getValue('f')->base64img;?>
 " alt="foto" class="img-fluid">
-        </div>
-      <?php }?>
-    <?php
+                  </div>
+                <?php }?>
+              <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-  </div>
-<?php } else { ?>
-  <p>Nessuna immagine disponibile.</p>
-<?php }?>
+            </div>
+          <?php } else { ?>
+            <p>Nessuna immagine disponibile.</p>
+          <?php }?>
 
 
-
-            
-            <!--Visualizzazione foto
-            <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('foto')) > 0) {?>
-                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                    <?php
+          <!--Visualizzazione foto
+          <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('foto')) > 0) {?>
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('foto'), 'f');
 $foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('f')->value) {
 $foreach1DoElse = false;
 ?>
-                        <?php if ((true && (true && null !== ($_smarty_tpl->getValue('f')->base64img ?? null)))) {?>
-                            <img src="<?php echo $_smarty_tpl->getValue('f')->base64img;?>
+                      <?php if ((true && (true && null !== ($_smarty_tpl->getValue('f')->base64img ?? null)))) {?>
+                          <img src="<?php echo $_smarty_tpl->getValue('f')->base64img;?>
 " alt="foto">
-                        <?php }?>
-                    <?php
+                      <?php }?>
+                  <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-                </div>
-            <?php } else { ?>
-                <p>Nessuna immagine disponibile.</p>
-            <?php }?>-->
+              </div>
+          <?php } else { ?>
+              <p>Nessuna immagine disponibile.</p>
+          <?php }?>-->
 
 
           <div class="main-content">
@@ -189,36 +179,36 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     </div>
   </div>
 
-    <!-- Sezione Prenotazione -->
-<div class="prenotazione-wrapper section">
-  <div class="container">
-    <hr class="my-5">
-    <h3 class="mb-4">Prenota il tuo soggiorno</h3>
+  <!-- Sezione Prenotazione -->
+  <div class="prenotazione-wrapper section">
+    <div class="container">
+      <hr class="my-5">
+      <h3 class="mb-4">Prenota il tuo soggiorno</h3>
 
-    <!-- FORM completo con method POST e action -->
-    <form method="post" action="/Casette_Dei_Desideri/Prenotazione/calcola" class="prenotazione-form prenotazione-box">
-      
-      <!-- Campo nascosto per inviare l'ID della struttura -->
-      <input type="hidden" name="idStruttura" value="<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
+      <!-- FORM completo con method POST e action -->
+      <form method="post" action="/Casette_Dei_Desideri/Prenotazione/calcola" class="prenotazione-form prenotazione-box">
+        
+        <!-- Campo nascosto per inviare l'ID della struttura -->
+        <input type="hidden" name="idStruttura" value="<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
 ">
 
-      <div class="mb-3 input-with-icon">
-        <label for="dataInizio" class="form-label">Data inizio</label>
-          <input type="text" class="form-control" id="dataInizio" name="dataInizio" required readonly placeholder="gg/mm/aaaa">
-      </div>
+        <div class="mb-3 input-with-icon">
+          <label for="dataInizio" class="form-label">Data inizio</label>
+            <input type="text" class="form-control" id="dataInizio" name="dataInizio" required readonly placeholder="gg/mm/aaaa">
+        </div>
 
 
-      <div class="mb-3">
-        <label for="dataFine" class="form-label">Data fine</label>
-          <input type="text" class="form-control" id="dataFine" name="dataFine" required readonly placeholder="gg/mm/aaaa">
-      </div>
+        <div class="mb-3">
+          <label for="dataFine" class="form-label">Data fine</label>
+            <input type="text" class="form-control" id="dataFine" name="dataFine" required readonly placeholder="gg/mm/aaaa">
+        </div>
 
-      <div class="mb-3">
-        <label for="numOspiti" class="form-label">Numero ospiti (max <?php echo $_smarty_tpl->getValue('struttura')->getNumOspiti();?>
+        <div class="mb-3">
+          <label for="numOspiti" class="form-label">Numero ospiti (max <?php echo $_smarty_tpl->getValue('struttura')->getNumOspiti();?>
 )</label>
-        <select class="form-select" id="numOspiti" name="numOspiti" required>
-          <?php $_smarty_tpl->assign('maxOspiti', $_smarty_tpl->getValue('struttura')->getNumOspiti(), false, NULL);?>
-          <?php
+          <select class="form-select" id="numOspiti" name="numOspiti" required>
+            <?php $_smarty_tpl->assign('maxOspiti', $_smarty_tpl->getValue('struttura')->getNumOspiti(), false, NULL);?>
+            <?php
 $__section_i_0_loop = (is_array(@$_loop=$_smarty_tpl->getValue('maxOspiti')+1) ? count($_loop) : max(0, (int) $_loop));
 $__section_i_0_start = min(1, $__section_i_0_loop);
 $__section_i_0_total = min(($__section_i_0_loop - $__section_i_0_start), $__section_i_0_loop);
@@ -226,24 +216,24 @@ $_smarty_tpl->tpl_vars['__smarty_section_i'] = new \Smarty\Variable(array());
 if ($__section_i_0_total !== 0) {
 for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index'] = $__section_i_0_start; $__section_i_0_iteration <= $__section_i_0_total; $__section_i_0_iteration++, $_smarty_tpl->tpl_vars['__smarty_section_i']->value['index']++){
 ?>
-            <option value="<?php echo ($_smarty_tpl->getValue('__smarty_section_i')['index'] ?? null);?>
+              <option value="<?php echo ($_smarty_tpl->getValue('__smarty_section_i')['index'] ?? null);?>
 ">
-              <?php echo ($_smarty_tpl->getValue('__smarty_section_i')['index'] ?? null);?>
+                <?php echo ($_smarty_tpl->getValue('__smarty_section_i')['index'] ?? null);?>
 
-            </option>
-          <?php
+              </option>
+            <?php
 }
 }
 ?>
-        </select>
-      </div>
+          </select>
+        </div>
 
-      <div class="d-flex justify-content-end mt-4">
-        <button type="submit" class="btn prenota-btn">Procedi alla prenotazione</button>
-      </div>
-    </form>
+        <div class="d-flex justify-content-end mt-4">
+          <button type="submit" class="btn prenota-btn">Procedi alla prenotazione</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 
 
 
@@ -382,72 +372,68 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 >
 
 
-<?php echo '<script'; ?>
+  <?php echo '<script'; ?>
 >
-  function isRangeContinuo(startStr, endStr) {
-    const start = new Date(startStr);
-    const end = new Date(endStr);
+    function isRangeContinuo(startStr, endStr) {
+      const start = new Date(startStr);
+      const end = new Date(endStr);
 
-    for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-      const ds = d.toISOString().slice(0, 10);
-      if (!isInIntervallo(ds) || isOccupata(ds)) {
-        return false;
+      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+        const ds = d.toISOString().slice(0, 10);
+        if (!isInIntervallo(ds) || isOccupata(ds)) {
+          return false;
+        }
       }
-    }
-    return true;
-  }
-
-  document.querySelector('.prenotazione-form').addEventListener('submit', function(e) {
-    const inputInizio = document.getElementById('dataInizio');
-    const inputFine = document.getElementById('dataFine');
-
-    const dataInizio = inputInizio._flatpickr.selectedDates[0];
-    const dataFine = inputFine._flatpickr.selectedDates[0];
-
-    // Controllo che entrambi i campi siano compilati
-    if (!dataInizio || !dataFine) {
-      alert("Devi selezionare sia la data di inizio che quella di fine.");
-      e.preventDefault();
-      return;
+      return true;
     }
 
-    // Formatta le date nel formato YYYY-MM-DD
-    const dataInizioStr = dataInizio.toISOString().slice(0, 10);
-    const dataFineStr = dataFine.toISOString().slice(0, 10);
+    document.querySelector('.prenotazione-form').addEventListener('submit', function(e) {
+      const inputInizio = document.getElementById('dataInizio');
+      const inputFine = document.getElementById('dataFine');
 
-    // Controllo intervallo disponibile per inizio e fine
-    if (!isInIntervallo(dataInizioStr) || isOccupata(dataInizioStr)) {
-      alert("La data di inizio non è disponibile.");
-      e.preventDefault();
-      return;
-    }
+      const dataInizio = inputInizio._flatpickr.selectedDates[0];
+      const dataFine = inputFine._flatpickr.selectedDates[0];
 
-    if (!isInIntervallo(dataFineStr) || isOccupata(dataFineStr)) {
-      alert("La data di fine non è disponibile.");
-      e.preventDefault();
-      return;
-    }
+      // Controllo che entrambi i campi siano compilati
+      if (!dataInizio || !dataFine) {
+        alert("Devi selezionare sia la data di inizio che quella di fine.");
+        e.preventDefault();
+        return;
+      }
 
-    // Controllo che data fine sia dopo o uguale a data inizio
-    if (dataFine < dataInizio) {
-      alert("La data di fine deve essere uguale o successiva a quella di inizio.");
-      e.preventDefault();
-      return;
-    }
+      // Formatta le date nel formato YYYY-MM-DD
+      const dataInizioStr = dataInizio.toISOString().slice(0, 10);
+      const dataFineStr = dataFine.toISOString().slice(0, 10);
 
-    // ✅ NUOVO controllo: range continuo senza buchi
-    if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
-      alert("L'intervallo selezionato contiene giorni non prenotabili.");
-      e.preventDefault();
-      return;
-    }
-  });
-<?php echo '</script'; ?>
+      // Controllo intervallo disponibile per inizio e fine
+      if (!isInIntervallo(dataInizioStr) || isOccupata(dataInizioStr)) {
+        alert("La data di inizio non è disponibile.");
+        e.preventDefault();
+        return;
+      }
+
+      if (!isInIntervallo(dataFineStr) || isOccupata(dataFineStr)) {
+        alert("La data di fine non è disponibile.");
+        e.preventDefault();
+        return;
+      }
+
+      // Controllo che data fine sia dopo o uguale a data inizio
+      if (dataFine < dataInizio) {
+        alert("La data di fine deve essere uguale o successiva a quella di inizio.");
+        e.preventDefault();
+        return;
+      }
+
+      // NUOVO controllo: range continuo senza buchi
+      if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
+        alert("L'intervallo selezionato contiene giorni non prenotabili.");
+        e.preventDefault();
+        return;
+      }
+    });
+  <?php echo '</script'; ?>
 >
-
-
-
-
 
   </body>
 </html><?php }

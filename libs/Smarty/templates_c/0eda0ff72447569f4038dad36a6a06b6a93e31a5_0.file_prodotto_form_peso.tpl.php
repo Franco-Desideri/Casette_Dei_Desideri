@@ -1,24 +1,18 @@
 <?php
-
-/* Smarty version 5.5.1, created on 2025-07-06 09:34:50
-
+/* Smarty version 5.5.1, created on 2025-07-07 16:12:12
   from 'file:admin/prodotto_form_peso.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-
-  'unifunc' => 'content_686a271a78d347_19952089',
-
+  'unifunc' => 'content_686bd5bced1cc3_70422473',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0eda0ff72447569f4038dad36a6a06b6a93e31a5' => 
     array (
       0 => 'admin/prodotto_form_peso.tpl',
-
-      1 => 1751787286,
-
+      1 => 1751897021,
       2 => 'file',
     ),
   ),
@@ -27,27 +21,27 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_templateAdmin.tpl' => 1,
   ),
 ))) {
-
-function content_686a271a78d347_19952089 (\Smarty\Template $_smarty_tpl) {
-
+function content_686bd5bced1cc3_70422473 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="it">
 
   <head>
 
+<!-- Bootstrap core CSS -->
+<link href="/Casette_Dei_Desideri/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_568900032686a271a76c7a5_73904343', "contenuto");
-$_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
-}
-/* {block "contenuto"} */
-class Block_568900032686a271a76c7a5_73904343 extends \Smarty\Runtime\Block
-{
-public function callBlock(\Smarty\Template $_smarty_tpl) {
-$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
-?>
 
+<!-- Additional CSS Files -->
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/fontawesome.css">
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/templatemo-villa-agency.css">
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/owl.css">
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/animate.css">
+<link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/style1.css"> 
+</head>
+
+<body>
 
 <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_templateAdmin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
 ?>  

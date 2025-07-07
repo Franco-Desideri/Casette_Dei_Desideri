@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-04 16:07:06
+/* Smarty version 5.5.1, created on 2025-07-07 17:30:21
   from 'file:utente/inserimento_dati_prenotazione.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6867e00a87ec29_14495831',
+  'unifunc' => 'content_686be80de14c88_63758151',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '6ca9d16a9cef41f46ff5a1f03eb45fa167ba8283' => 
     array (
       0 => 'utente/inserimento_dati_prenotazione.tpl',
-      1 => 1751638025,
+      1 => 1751711045,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_6867e00a87ec29_14495831 (\Smarty\Template $_smarty_tpl) {
+function content_686be80de14c88_63758151 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">

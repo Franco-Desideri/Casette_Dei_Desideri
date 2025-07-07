@@ -29,7 +29,6 @@
 
   {include file="partials/appbar_template.tpl" paginaCorrente="strutture"}
 
-
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
@@ -317,7 +316,7 @@
         return;
       }
 
-      // ✅ NUOVO controllo: range continuo senza buchi
+      // NUOVO controllo: range continuo senza buchi
       if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
         alert("L'intervallo selezionato contiene giorni non prenotabili.");
         e.preventDefault();
@@ -325,7 +324,6 @@
       }
     });
   </script>
-
 
   </body>
 </html>

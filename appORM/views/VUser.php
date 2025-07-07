@@ -130,7 +130,7 @@ class VUser
             $documento = $ospite->getDocumento();
 
             if ($documento) {
-                // ✅ Se è una risorsa, leggiamo il contenuto
+                // Se è una risorsa, leggiamo il contenuto
                 $docContent = is_resource($documento) ? stream_get_contents($documento) : $documento;
 
                 // Ora possiamo usarlo con finfo
