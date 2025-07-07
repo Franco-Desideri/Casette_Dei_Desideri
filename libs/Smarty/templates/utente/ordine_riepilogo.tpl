@@ -43,7 +43,7 @@
 
     <form action="/Casette_Dei_Desideri/Ordine/conferma" method="post">
         <label for="contanti">
-            Cifra che intendi lasciare in contanti alla consegna:
+            Cifra con la quale vuole pagare in contanti alla consegna:
         </label><br>
         <input type="number" name="contanti" step="0.01" min="0" required>
         <br><br>

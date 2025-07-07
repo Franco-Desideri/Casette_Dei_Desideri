@@ -28,6 +28,15 @@ class VOrdine
      */
     public function mostraListino(array $prodottiQ, array $prodottiP): void
     {
+
+        foreach ($prodottiQ as $prodotto) {
+        $prodotto->fotoBase64 = $prodotto->getFotoBase64();
+    }
+
+    // Aggiungiamo fotoBase64 ai prodotti a peso
+    foreach ($prodottiP as $prodotto) {
+        $prodotto->fotoBase64 = $prodotto->getFotoBase64();
+    }
         $this->smarty->assign('prodottiQuantita', $prodottiQ);
         $this->smarty->assign('prodottiPeso', $prodottiP);
         $this->smarty->display('utente/listino_prodotti.tpl');

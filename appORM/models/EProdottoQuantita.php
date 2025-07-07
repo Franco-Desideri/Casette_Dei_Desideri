@@ -18,6 +18,9 @@ class EProdottoQuantita extends EProdotto
     /** @ORM\Column(type="float") */
     private float $peso;
 
+    /** @ORM\Column(type="string") */
+    private string $unitaMisura;
+
     /**
      * @ORM\OneToMany(targetEntity="EOrdineItem", mappedBy="prodottoQuantita")
      */
@@ -35,6 +38,9 @@ class EProdottoQuantita extends EProdotto
 
     public function getPeso(): float { return $this->peso; }
     public function setPeso(float $peso): void { $this->peso = $peso; }
+
+    public function getUnitaMisura(): string { return $this->unitaMisura; }
+    public function setUnitaMisura(string $unitaMisura): void { $this-> unitaMisura = $unitaMisura; }
 
     public function getOrdiniItem(): Collection { return $this->ordiniItem; }
 

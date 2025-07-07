@@ -1,18 +1,24 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-07 11:12:05
+
+/* Smarty version 5.5.1, created on 2025-07-05 22:51:55
+
   from 'file:admin/prodotti_lista.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686b8f6540e472_47674424',
+
+  'unifunc' => 'content_6869906b431d67_58008389',
+
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a2d976e2ddc00d9d34777dd3ff782565fa0561d8' => 
     array (
       0 => 'admin/prodotti_lista.tpl',
-      1 => 1751879523,
+
+      1 => 1751748703,
+
       2 => 'file',
     ),
   ),
@@ -21,15 +27,27 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_templateAdmin.tpl' => 1,
   ),
 ))) {
-function content_686b8f6540e472_47674424 (\Smarty\Template $_smarty_tpl) {
+
+function content_6869906b431d67_58008389 (\Smarty\Template $_smarty_tpl) {
+
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="it">
 
   <head>
 
-<!-- Bootstrap core CSS -->
-<link href="/Casette_Dei_Desideri/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<?php 
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_17367179656869906b414f93_40098085', "contenuto");
+?>
+
+<?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
+}
+/* {block "contenuto"} */
+class Block_17367179656869906b414f93_40098085 extends \Smarty\Runtime\Block
+{
+public function callBlock(\Smarty\Template $_smarty_tpl) {
+$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
+?>
 
 
 <!-- Additional CSS Files -->
@@ -70,13 +88,14 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach0DoElse = false;
 ?>
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image">
                         <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 </strong> - <?php echo $_smarty_tpl->getValue('prodotto')->getPeso();?>
-g - €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzo();?>
+ <?php echo $_smarty_tpl->getValue('prodotto')->getUnitaMisura();?>
+ - €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzo();?>
 
                         </div>
                         <div class="admin-item-actions">
@@ -112,7 +131,7 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach1DoElse = false;
 ?>
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image"> <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
@@ -150,12 +169,13 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach2DoElse = false;
 ?>
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image"> <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 </strong> - <?php echo $_smarty_tpl->getValue('prodotto')->getPeso();?>
-g - €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzo();?>
+ <?php echo $_smarty_tpl->getValue('prodotto')->getUnitaMisura();?>
+ - €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzo();?>
 
                         </div>
                         <div class="admin-item-actions">
@@ -183,7 +203,7 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prodotto')->value) {
 $foreach3DoElse = false;
 ?>
                     <li>
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
+                        <img src="<?php echo $_smarty_tpl->getValue('prodotto')->fotoBase64;?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 " class="product-image"> <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>

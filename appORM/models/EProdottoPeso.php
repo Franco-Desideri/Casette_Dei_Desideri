@@ -18,9 +18,6 @@ class EProdottoPeso extends EProdotto
     /** @ORM\Column(type="string", length=50) */
     private string $rangePeso;
 
-    /** @ORM\Column(type="float") */
-    private float $prezzoRange;
-
     /**
      * @ORM\OneToMany(targetEntity="EOrdineItem", mappedBy="prodottoPeso")
      */
@@ -41,9 +38,6 @@ class EProdottoPeso extends EProdotto
     }
 
     public function setRangePeso(string $rangePeso): void { $this->rangePeso = $rangePeso; }
-
-    public function getPrezzoRange(): float { return $this->prezzoRange; }
-    public function setPrezzoRange(float $prezzoRange): void { $this->prezzoRange = $prezzoRange; }
 
     public function getOrdiniItem(): Collection { return $this->ordiniItem; }
 

@@ -48,17 +48,14 @@
             <input type="text" id="rangePeso" name="rangePeso" required value="{if isset($prodotto)}{$prodotto->getRangePeso()}{/if}">
         </div>
 
-        <div class="form-group-item">
-            <label for="prezzoRange">Prezzo per range (€):</label>
-            <input type="number" id="prezzoRange" step="0.01" name="prezzoRange" required value="{if isset($prodotto)}{$prodotto->getPrezzoRange()}{/if}">
-        </div>
 
         <div class="form-group-item">
             <label for="foto">Immagine del prodotto:</label>
             <input type="file" id="foto" name="foto" accept="image/*" {if !isset($prodotto)}required{/if}>
             {if isset($prodotto)}
                 <p>Immagine attuale: <br>
-                    <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" style="max-width: 200px; max-height: 200px;">
+                    <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" style="max-width: 200px; max-height: 200px;">
+
                 </p>
             {/if}
         </div>

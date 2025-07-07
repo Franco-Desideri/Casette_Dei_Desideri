@@ -44,8 +44,20 @@
         </div>
 
         <div class="form-group-item">
-            <label for="quantita">Peso pacco (g):</label>
+            <label for="quantita">Peso pacco :</label>
             <input type="number" id="quantita" name="peso" required value="{if isset($prodotto)}{$prodotto->getPeso()}{/if}">
+        </div>
+
+        <div class="form-group-item">
+            <label for="unita_misura" >Unità di misura:</label>
+            <select id="unita_misura" name="unita_misura" class="delivery-time-select" required>
+                <option value="">-- Seleziona --</option>
+                <option value="g" {if isset($prodotto) && $prodotto->getUnitaMisura() == 'g'}selected{/if}>g</option>
+                <option value="Kg" {if isset($prodotto) && $prodotto->getUnitaMisura() == 'Kg'}selected{/if}>Kg</option>
+                <option value="L" {if isset($prodotto) && $prodotto->getUnitaMisura() == 'L'}selected{/if}>L</option>
+                <option value="ml" {if isset($prodotto) && $prodotto->getUnitaMisura() == 'ml'}selected{/if}>ml</option>
+                <option value="pezzi" {if isset($prodotto) && $prodotto->getUnitaMisura() == 'pezzi'}selected{/if}>pezzi</option>
+            </select>
         </div>
 
         {* 👇 CAMBIATO campo immagine: da URL a file upload *}
@@ -54,7 +66,8 @@
             <input type="file" id="foto" name="foto" accept="image/*" {if !isset($prodotto)}required{/if}>
             {if isset($prodotto)}
                 <p>Immagine attuale: <br>
-                    <img src="{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" style="max-width: 200px; max-height: 200px;">
+                    <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" style="max-width: 200px; max-height: 200px;">
+
                 </p>
             {/if}
         </div>

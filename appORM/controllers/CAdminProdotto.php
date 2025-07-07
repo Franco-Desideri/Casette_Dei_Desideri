@@ -69,30 +69,26 @@ class CAdminProdotto
         $prodotto->setNome($_POST['nome']);
         $prodotto->setPrezzo((float)$_POST['prezzo']);
         $prodotto->setPeso((int)$_POST['peso']);
+        $prodotto->setUnitaMisura($_POST['unita_misura']);
     } elseif ($tipo === 'peso') {
         $prodotto = new EProdottoPeso();
         $prodotto->setNome($_POST['nome']);
         $prodotto->setPrezzoKg((float)$_POST['prezzoKg']);
         $prodotto->setRangePeso($_POST['rangePeso']);
-        $prodotto->setPrezzoRange((float)$_POST['prezzoRange']);
+        
     }
 
-    // 📁 Salvataggio immagine
-    if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
-        $fileTmp = $_FILES['foto']['tmp_name'];
-        $fileName = basename($_FILES['foto']['name']);
-        $targetDir = __DIR__ . '/../../public/uploads/prodotti/';
-        $targetPath = $targetDir . $fileName;
+   // 📁 Salvataggio immagine come BLOB nel database
+if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
+    $fileTmp = $_FILES['foto']['tmp_name'];
 
-        if (!file_exists($targetDir)) {
-            mkdir($targetDir, 0775, true);
-        }
+    // Legge i dati binari del file
+    $fileData = file_get_contents($fileTmp);
 
-        if (move_uploaded_file($fileTmp, $targetPath)) {
-            $relativePath = $fileName;
-            $prodotto->setFoto($relativePath); // ✅ salva il percorso nel DB
-        }
-    }
+    // Imposta l'immagine come BLOB nell'entità
+    $prodotto->setFoto($fileData); // Assicurati che EProdotto::foto sia una colonna BLOB
+}
+
 
     if ($prodotto) {
         FPersistentManager::store($prodotto);
@@ -143,25 +139,19 @@ class CAdminProdotto
         $p->setNome($_POST['nome']);
         $p->setPrezzoKg((float)$_POST['prezzoKg']);
         $p->setRangePeso($_POST['rangePeso']);
-        $p->setPrezzoRange((float)$_POST['prezzoRange']);
     }
 
-    // 📁 Salvataggio nuova immagine (se inviata)
-    if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
-        $fileTmp = $_FILES['foto']['tmp_name'];
-        $fileName = basename($_FILES['foto']['name']);
-        $targetDir = __DIR__ . '/../../public/uploads/prodotti/';
-        $targetPath = $targetDir . $fileName;
+    // 📁 Salvataggio immagine come BLOB nel database
+if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
+    $fileTmp = $_FILES['foto']['tmp_name'];
 
-        if (!file_exists($targetDir)) {
-            mkdir($targetDir, 0775, true);
-        }
+    // Legge i dati binari del file
+    $fileData = file_get_contents($fileTmp);
 
-        if (move_uploaded_file($fileTmp, $targetPath)) {
-            $relativePath = $fileName;
-            $p->setFoto($relativePath); // ✅ salva nuovo path immagine
-        }
-    }
+    // Imposta l'immagine come BLOB nell'entità
+    $prodotto->setFoto($fileData); // Assicurati che EProdotto::foto sia una colonna BLOB
+}
+
 
     FPersistentManager::store($p);
     header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');

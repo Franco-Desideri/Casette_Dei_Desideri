@@ -30,6 +30,24 @@ class VAdminProdotto
      */
     public function mostraLista(array $prodottiQ_visibili, array $prodottiP_visibili, array $prodottiQ_nascosti, array $prodottiP_nascosti): void
     {
+        foreach ($prodottiQ_visibili as $prodotto) {
+        $prodotto->fotoBase64 = $prodotto->getFotoBase64();
+    }
+
+    // Aggiungiamo fotoBase64 ai prodotti a peso
+    foreach ($prodottiP_visibili as $prodotto) {
+        $prodotto->fotoBase64 = $prodotto->getFotoBase64();
+    }
+
+    foreach ($prodottiQ_nascosti as $prodotto) {
+        $prodotto->fotoBase64 = $prodotto->getFotoBase64();
+    }
+
+    // Aggiungiamo fotoBase64 ai prodotti a peso
+    foreach ($prodottiP_nascosti as $prodotto) {
+        $prodotto->fotoBase64 = $prodotto->getFotoBase64();
+    }
+
         $this->smarty->assign('prodottiQuantita_v', $prodottiQ_visibili);
         $this->smarty->assign('prodottiPeso_v', $prodottiP_visibili);
         $this->smarty->assign('prodottiQuantita_n', $prodottiQ_nascosti);

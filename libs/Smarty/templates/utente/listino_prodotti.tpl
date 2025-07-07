@@ -39,10 +39,10 @@
             <section class="product-list">
                 {foreach $prodottiQuantita as $prodotto}
                     <div class="product-card">
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image">
+                        <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image">
                         <div class="product-details">
                             <h4 class="product-name">{$prodotto->getNome()}</h4>
-                            <p class="product-description">{$prodotto->getPeso()}g</p>
+                            <p class="product-description">{$prodotto->getPeso()} {$prodotto->getUnitaMisura()}</p>
                             <p class="product-price">Prezzo: {$prodotto->getPrezzo()|string_format:"%.2f"} &euro;</p>
                             
                             <div class="quantity-control">
@@ -64,15 +64,15 @@
             <section class="product-list">
                 {foreach $prodottiPeso as $prodotto}
                     <div class="product-card">
-                        <img src="/Casette_Dei_Desideri/public/uploads/prodotti/{$prodotto->getFoto()}" alt="{$prodotto->getNome()}" class="product-image">
+                        <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image">
                         <div class="product-details">
                             <h4 class="product-name">{$prodotto->getNome()}</h4>
                             
                             <p class="product-price-per-unit">Prezzo: {$prodotto->getPrezzoKg()|string_format:"%.2f"} &euro;/Kg</p>
                             
-                            <div class="quantity-control">
+                            <div class="quantity-control" data-step="{$prodotto->getRangePeso()}">
                                 <button type="button" class="qty-btn" data-action="minus">-</button>
-                                <input type="number" name="quantitaP[{$prodotto->getId()}]" min="0" step="50" value="0" class="product-quantity-input"> g
+                                <input type="number" name="quantitaP[{$prodotto->getId()}]" min="0" step="{$prodotto->getRangePeso()}" value="0" class="product-quantity-input"> g
                                 <button type="button" class="qty-btn" data-action="plus">+</button>
                             </div>
                         </div>
@@ -120,26 +120,25 @@
 
 {block name="scripts"}
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.quantity-control').forEach(function(control) {
-        const minusBtn = control.querySelector('[data-action="minus"]');
-        const plusBtn = control.querySelector('[data-action="plus"]');
-        const input = control.querySelector('.product-quantity-input');
+document.querySelectorAll('.quantity-control').forEach(control => {
+    const minusBtn = control.querySelector('[data-action="minus"]');
+    const plusBtn = control.querySelector('[data-action="plus"]');
+    const input = control.querySelector('.product-quantity-input');
+    
+    const tipo = input.dataset.tipo; // "peso" o "quantita"
+    const step = tipo === 'peso' ? parseInt(control.dataset.step) || 50 : 1;
 
-        const step = parseInt(input.step) || 1;
-        const min = parseInt(input.min) || 0;
+    plusBtn.addEventListener('click', () => {
+        let current = parseInt(input.value) || 0;
+        input.value = current + step;
+    });
 
-        minusBtn.addEventListener('click', function() {
-            let value = parseInt(input.value) || 0;
-            value = Math.max(min, value - step);
-            input.value = value;
-        });
-
-        plusBtn.addEventListener('click', function() {
-            let value = parseInt(input.value) || 0;
-            input.value = value + step;
-        });
+    minusBtn.addEventListener('click', () => {
+        let current = parseInt(input.value) || 0;
+        input.value = Math.max(0, current - step);
     });
 });
-    </script>
+</script>
+
+
 {/block}
