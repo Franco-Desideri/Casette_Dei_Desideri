@@ -12,6 +12,7 @@ use App\models\EDataPrenotazione;
 use App\models\EOspite;
 use App\models\ECartaCredito;
 use App\models\ELockPrenotazione;
+use App\services\TechnicalServiceLayer\utility\UEmail;
 
 class CPrenotazione
 {
@@ -281,12 +282,56 @@ class CPrenotazione
         }
 
         // Rimuove tutti i lock associati all’utente
-        $lockRepo = new \App\foundation\FLockPrenotazione();
+        $lockRepo = new FLockPrenotazione();
         $lockRepo->rimuoviPerUtente($utente->getId());
+
+        //Invio Email
+        $admin = FPersistentManager::get()->getRepository(EUtente::class)->findBy(['ruolo' => 'admin']);
+
+    if (!$admin || count($admin) === 0) {
+        error_log("Errore: nessun amministratore trovato per inviare la mail.");
+        return;
+    }
+
+    $adminEmail = $admin[0]->getEmail();
+    $utenteEmail = $utente ->getEmail();
+
+    // Costruzione contenuto email
+    $contenutoAD = "Hai ricevuto un nuova prenotazione!\n\n";
+    $contenutoAD .= "Cliente: " . $utente->getNome() . " " . $utente->getCognome() . "\n";
+    $contenutoAD .= "Email cliente: " . $utente->getEmail() . "\n";
+    $contenutoAD .= "Data di inizio prenotazione: " . $prenotazione->getPeriodo()->getDataI()->format('d/m/Y') . "\n";
+    $contenutoAD .= "Data di fine prenotazione: " . $prenotazione->getPeriodo()->getDataF()->format('d/m/Y') . "\n";
+    $contenutoAD .= "Numero Ospiti: " . $prenotazione->getOspiti() . "\n";
+    $contenutoAD .= "Importo totale: " . number_format($prenotazione->getPrezzo(), 2) . " €\n";
+
+    $contenutoAD .= "Struttura prenotata:" . $prenotazione->getStruttura()->getTitolo() . "\n";
+
+
+    $contenutoU = "La tua prenotazione è avvenuta con successo!\n\n";
+    $contenutoU .= "Cliente: " . $utente->getNome() . " " . $utente->getCognome() . "\n";
+    $contenutoU .= "Data di inizio prenotazione: " . $prenotazione->getPeriodo()->getDataI()->format('d/m/Y') . "\n";
+    $contenutoU .= "Data di fine prenotazione: " . $prenotazione->getPeriodo()->getDataF()->format('d/m/Y') . "\n";
+    $contenutoU .= "Numero Ospiti: " . $prenotazione->getOspiti() . "\n";
+    $contenutoU .= "Importo totale: " . number_format($prenotazione->getPrezzo(), 2) . " €\n";
+
+    $contenutoU .= "Struttura prenotata:" . $prenotazione->getStruttura()->getTitolo() . "\n";
+
+
+
+    $oggettoAD = "Nuova prenotazione da " . $utente->getNome() . " " . $utente->getCognome();
+    $oggettoU = "Prenotazione confermata " ;
+
+    // Invio
+    $esito = UEmail::invia($adminEmail, $oggettoAD, $contenutoAD);
+    $esitoU = UEmail::invia($utenteEmail, $oggettoU, $contenutoU);
+
+    if (!$esito) {
+        error_log("Errore invio email ordine all'amministratore.");
+    }
 
         USession::delete('prenotazione_temp');
         header('Location: /Casette_Dei_Desideri/Struttura/lista');
         exit;
     }
-
 }

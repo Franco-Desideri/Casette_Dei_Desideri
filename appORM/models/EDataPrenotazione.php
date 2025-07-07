@@ -36,4 +36,6 @@ class EDataPrenotazione
 
     public function getDataF(): \DateTime { return $this->dataF; }
     public function setDataF(\DateTime $dataF): void { $this->dataF = $dataF; }
+
+    
 }
