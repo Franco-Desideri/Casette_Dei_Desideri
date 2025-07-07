@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-05 11:45:09
+/* Smarty version 5.5.1, created on 2025-07-07 11:13:33
   from 'file:admin/lista_strutture.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6868f425e821c6_17209891',
+  'unifunc' => 'content_686b8fbd02f2f3_36846047',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '78dffcdeb4ff7651bee72f7aa625a91137d4416d' => 
     array (
       0 => 'admin/lista_strutture.tpl',
-      1 => 1751708705,
+      1 => 1751879607,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:partials/appbar_templateAdmin.tpl' => 1,
   ),
 ))) {
-function content_6868f425e821c6_17209891 (\Smarty\Template $_smarty_tpl) {
+function content_686b8fbd02f2f3_36846047 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -53,73 +54,13 @@ https://templatemo.com/tm-591-villa-agency
 
 <body>
 
-  <!-- ***** Animazione di Caricamento ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Barra Superiore ***** -->
-
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-8">
-          <ul class="info">
-            <li><i class="fa fa-envelope"></i> CasetteDeiDesideri@gmail.com</li>
-            <li><i class="fa-solid fa-location-dot"></i> Poggio Bustone, RI 057051</li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-4">
-          <ul class="social-links">
-            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-            <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ***** Header principale e Menù di navigazione ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/Casette_Dei_Desideri/AdminContenuti/home" class="logo" style="white-space: nowrap;">
-                        <h1>Cassette Dei Desideri</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li><a href="/Casette_Dei_Desideri/AdminContenuti/home">Home</a></li>
-                      <li><a href="/Casette_Dei_Desideri/AdminStruttura/lista" class="active">Strutture</a></li>
-                      <li><a href="contatti.tpl">Contatti</a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Fine Menù ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
-  <!-- ***** Intestazione della pagina ***** -->
-
+  <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_templateAdmin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>   
+  
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <span class="breadcrumb"><a href="#">Home</a> / Strutture</span>
           <h3>Strutture</h3>
         </div>
       </div>
@@ -201,7 +142,7 @@ $foreach0DoElse = false;
                     ✏️ Modifica
                 </a>
                 </div>
-                <div class="delate-button">
+                <div class="delete-button">
                    <a href="/Casette_Dei_Desideri/AdminStruttura/elimina/<?php echo $_smarty_tpl->getValue('struttura')->getId();?>
 " onclick="return confirm('Sei sicuro di voler eliminare questa struttura?');">
                     🗑️ Elimina

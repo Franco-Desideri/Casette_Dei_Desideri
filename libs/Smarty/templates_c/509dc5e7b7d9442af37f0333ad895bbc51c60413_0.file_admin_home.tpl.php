@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-03 20:36:47
+/* Smarty version 5.5.1, created on 2025-07-06 15:12:06
   from 'file:admin/admin_home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6866cdbfcd5897_78797354',
+  'unifunc' => 'content_686a76262b45e3_43694992',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '509dc5e7b7d9442af37f0333ad895bbc51c60413' => 
     array (
       0 => 'admin/admin_home.tpl',
-      1 => 1751567804,
+      1 => 1751807524,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:partials/appbar_templateAdmin.tpl' => 1,
   ),
 ))) {
-function content_6866cdbfcd5897_78797354 (\Smarty\Template $_smarty_tpl) {
+function content_686a76262b45e3_43694992 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -45,61 +46,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12">
-          <ul class="info">
-            <li><i class="fa fa-envelope"></i> <?php echo $_smarty_tpl->getValue('email_admin');?>
-</li>
-            <li><i class="fa fa-map"></i> Poggio Bustone, RI 02018</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo" style="text-align: left; width: 100%;">
-            <h1 style="white-space: nowrap; font-size: 24px;">Casetta dei Desideri</h1>
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-              <li><a href="/Casette_Dei_Desideri/AdminContenuti/home" class="active">Home</a></li>
-              <li><a href="/Casette_Dei_Desideri/AdminStruttura/lista">Strutture</a></li>
-              <li><a href="/Casette_Dei_Desideri/AdminProdotto/lista">Servizi</a></li>
-              <li><a href="/Casette_Dei_Desideri/Admin/profilo">Profilo</a></li>
-            </ul>
-            <a class='menu-trigger'>
-              <span>Menu</span>
-            </a>
-            <!-- ***** Menu End ***** -->
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
+  <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_templateAdmin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>  
 
   <div class="hero-section">
     <div class="container">
@@ -130,11 +78,14 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 <h2 class="section-title">Modifica, aggiungi ed elimina attrazioni</h2>
 
 <!-- Pulsante aggiungi attrazione -->
-<form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiAttrazione" method="post" style="margin-bottom: 20px;">
-  <button type="submit" class="btn btn-primary">Aggiungi Attrazione</button>
-</form>
+<div style="text-align: center; margin-bottom: 20px;">
+  <form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiAttrazione" method="post" style="margin-bottom: 20px;">
+    <button type="submit" class="btn salva-btn">Aggiungi Attrazione</button>
+  </form>
+</div>
 
-<div class="card-container">
+
+<div style="text-align: center; margin-bottom: 20px;">
   <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('attrazioni')) > 0) {?>
     <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('attrazioni'), 'attrazione');
@@ -174,11 +125,13 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 <h2 class="section-title">Modifica, aggiungi ed elimina eventi</h2>
 
 <!-- Pulsante aggiungi evento -->
-<form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiEvento" method="post" style="margin-bottom: 20px;">
-  <button type="submit" class="btn btn-primary">Aggiungi Evento</button>
-</form>
+<div style="text-align: center; margin-bottom: 20px;">
+  <form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiEvento" method="post" style="margin-bottom: 20px;">
+    <button type="submit" class="btn salva-btn">Aggiungi Evento</button>
+  </form>
+</div>
 
-<div class="card-list-info">
+<div style="text-align: center; margin-bottom: 20px;">
   <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('eventi')) > 0) {?>
     <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('eventi'), 'evento');

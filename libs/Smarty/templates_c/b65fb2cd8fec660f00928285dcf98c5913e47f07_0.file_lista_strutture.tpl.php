@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-03 13:55:24
+/* Smarty version 5.5.1, created on 2025-07-07 12:56:26
   from 'file:utente/lista_strutture.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68666faccaf236_95719699',
+  'unifunc' => 'content_686ba7da87d122_60378635',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b65fb2cd8fec660f00928285dcf98c5913e47f07' => 
     array (
       0 => 'utente/lista_strutture.tpl',
-      1 => 1751536999,
+      1 => 1751883573,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
-function content_68666faccaf236_95719699 (\Smarty\Template $_smarty_tpl) {
+function content_686ba7da87d122_60378635 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -42,84 +43,20 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
     <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/owl.css">
     <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/animate.css">
     <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-<!--
 
-TemplateMo 591 villa agency
 
-https://templatemo.com/tm-591-villa-agency
-
--->
   </head>
 
 <body>
 
-  <!-- ***** Animazione di Caricamento ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Barra Superiore ***** -->
+  <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_template.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>
 
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-8">
-          <ul class="info">
-            <li><i class="fa fa-envelope"></i> CasetteDeiDesideri@gmail.com</li>
-            <li><i class="fa-solid fa-location-dot"></i> Poggio Bustone, RI 057051</li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-4">
-          <ul class="social-links">
-            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-            <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ***** Header principale e Menù di navigazione ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/Casette_Dei_Desideri/User/home" class="logo" style="white-space: nowrap;">
-                        <h1>Cassette Dei Desideri</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
-                      <li><a href="/Casette_Dei_Desideri/Struttura/lista" class="active">Strutture</a></li>
-                      <li><a href="contatti.tpl">Contatti</a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Fine Menù ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
   <!-- ***** Intestazione della pagina ***** -->
-
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <span class="breadcrumb"><a href="#">Home</a> / Strutture</span>
           <h3>Strutture</h3>
         </div>
       </div>
@@ -211,18 +148,6 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         <p>Nessuna struttura trovata.</p>
         <?php }?>
   
-
-    <!--
-      <div class="row">
-        <div class="col-lg-12">
-          <ul class="pagination">
-            <li><a href="#">1</a></li>
-            <li><a class="is_active" href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">>></a></li>
-          </ul>
-        </div>
-      </div>-->
     </div>
   </div>
 

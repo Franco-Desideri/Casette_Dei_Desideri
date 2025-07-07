@@ -1,30 +1,40 @@
 <?php
+
 /* Smarty version 5.5.1, created on 2025-07-06 09:34:50
+
   from 'file:admin/prodotto_form_peso.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
+
   'unifunc' => 'content_686a271a78d347_19952089',
+
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0eda0ff72447569f4038dad36a6a06b6a93e31a5' => 
     array (
       0 => 'admin/prodotto_form_peso.tpl',
+
       1 => 1751787286,
+
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:partials/header_admin.tpl' => 1,
+    'file:partials/appbar_templateAdmin.tpl' => 1,
   ),
 ))) {
+
 function content_686a271a78d347_19952089 (\Smarty\Template $_smarty_tpl) {
+
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
-$_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
-?>
+?><!DOCTYPE html>
+<html lang="it">
+
+  <head>
 
 
 <?php 
@@ -39,8 +49,9 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 ?>
 
 
-<?php $_smarty_tpl->renderSubTemplate("file:partials/header_admin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
-?>
+<?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_templateAdmin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>  
+
 
 <div class="admin-content-container">
 
@@ -93,8 +104,30 @@ echo $_smarty_tpl->getValue('prodotto')->getRangePeso();
         <button type="submit" class="admin-form-button"><?php if ((true && ($_smarty_tpl->hasVariable('prodotto') && null !== ($_smarty_tpl->getValue('prodotto') ?? null)))) {?>Salva modifiche<?php } else { ?>Aggiungi prodotto<?php }?></button>
     </form>
 
-</div> <?php
-}
-}
-/* {/block "contenuto"} */
+</div>
+          <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/vendor/jquery/jquery.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/vendor/bootstrap/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/isotope.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/owl-carousel.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/counter.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/custom.js"><?php echo '</script'; ?>
+>
+
+
+
+  </body>
+</html><?php }
 }

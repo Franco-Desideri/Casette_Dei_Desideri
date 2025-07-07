@@ -477,14 +477,6 @@ Header Style
   margin-left: -1px;
 }
 
-.header-area .main-nav .nav li:last-child:hover a {
-  background-color: #1e1e1e;
-}
-
-.header-area .main-nav .nav li:last-child:hover a i {
-  color: #fff;
-}
-
 .header-area .main-nav .nav li:hover a {
   color: #009e00;
 }
@@ -1437,11 +1429,13 @@ Page Header Style
 }
 
 .page-heading h3 {
+  margin-top: 50px;
   font-size: 48px;
   font-weight: 900;
   text-transform: uppercase;
   color: #fff;
 }
+
 
 
 /* 
@@ -1990,7 +1984,7 @@ body {
 
 .edit-button a {
   display: inline-block;
-  background-color: #1e1e1e;
+  background-color: #000000;
   color: #fff;
   font-size: 14px;
   font-weight: 500;
@@ -2008,15 +2002,15 @@ body {
 
 
 
-.delate-button {
+.delete-button {
     display: inline-block; /* oppure inline-flex se vuoi padding + allineamento verticale */
     padding: 10px 10px;
     justify-content: center;
 }
 
-.delate-button a {
+.delete-button a {
   display: inline-block;
-  background-color: #1e1e1e;
+  background-color: #000000;
   color: #fff;
   font-size: 14px;
   font-weight: 500;
@@ -2027,7 +2021,7 @@ body {
   transition: all .3s;
 }
 
-.delate-button a:hover {
+.delete-button a:hover {
   background-color: #b00000;
   color: #fff;
 }
@@ -2040,7 +2034,7 @@ body {
   z-index: 9999;
   background-color: #009e00;
   color: white;
-  padding: 12px 20px;
+  padding: 16px 60px;
   border-radius: 25px;
   text-decoration: none;
   font-weight: bold;
@@ -2049,6 +2043,7 @@ body {
 }
 
 .pulsante-flottante:hover {
+  background-color: #008e00;
   color: #000000;
 }
 
@@ -2157,6 +2152,52 @@ body {
   background-color: #ffffff;
   border-radius: 20px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* pagina Servizi */
+  .hero-overlay h2 {
+      font-size: 3rem; 
+      color: white; 
+  }
+  .hero-overlay p {
+      font-size: 1.4rem;
+      color: white;
+  }
+
+
+
+/*anteprima immagini edit/delete struttura con bottone rimozione*/
+.preview-item {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.remove-photo-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-size: 16px;
+  line-height: 1;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 2;
 }
 
 

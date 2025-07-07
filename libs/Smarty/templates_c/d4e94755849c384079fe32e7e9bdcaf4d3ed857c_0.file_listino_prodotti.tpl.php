@@ -1,56 +1,80 @@
 <?php
+
 /* Smarty version 5.5.1, created on 2025-07-06 11:26:06
+
   from 'file:utente/listino_prodotti.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
+
   'unifunc' => 'content_686a412e74d086_73961699',
+
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'd4e94755849c384079fe32e7e9bdcaf4d3ed857c' => 
     array (
       0 => 'utente/listino_prodotti.tpl',
+
       1 => 1751793959,
+
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:partials/header.tpl' => 1,
+    'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
+
 function content_686a412e74d086_73961699 (\Smarty\Template $_smarty_tpl) {
+
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
 ?>
 
 
 <?php 
+
 $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_287364281686a412e49bfe7_62777156', "contenuto");
+
 ?>
 
 
 <?php 
+
 $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_419424236686a412e74c6f8_18521267', "scripts");
+
 ?>
 
 <?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
 }
 /* {block "contenuto"} */
+
 class Block_287364281686a412e49bfe7_62777156 extends \Smarty\Runtime\Block
+
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?>
 
 
+    <!-- Bootstrap core CSS -->
+    <link href="/Casette_Dei_Desideri/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<?php $_smarty_tpl->renderSubTemplate("file:partials/header.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/templatemo-villa-agency.css">
+    <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/owl.css">
+    <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+
+    <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_template.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
 ?>
 
-<main class="main-content container">
 
     <section class="hero-section">
         <img src="/Casette_Dei_Desideri/public/assets/images/spesa_domicilio.jpg" class="hero-image" alt="Spesa a domicilio">
@@ -168,14 +192,37 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 
     </form>
 
-</main>
+
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/vendor/jquery/jquery.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/vendor/bootstrap/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/isotope.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/owl-carousel.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/counter.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/custom.js"><?php echo '</script'; ?>
+>
 
 <?php
 }
 }
 /* {/block "contenuto"} */
 /* {block "scripts"} */
+
 class Block_419424236686a412e74c6f8_18521267 extends \Smarty\Runtime\Block
+
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';

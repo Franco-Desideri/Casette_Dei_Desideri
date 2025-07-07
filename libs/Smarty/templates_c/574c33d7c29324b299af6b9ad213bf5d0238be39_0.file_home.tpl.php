@@ -1,29 +1,30 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-03 20:16:14
+/* Smarty version 5.5.1, created on 2025-07-07 13:05:15
   from 'file:utente/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6866c8eee484e7_40767137',
+  'unifunc' => 'content_686ba9ebedc795_48742346',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '574c33d7c29324b299af6b9ad213bf5d0238be39' => 
     array (
       0 => 'utente/home.tpl',
-      1 => 1751566164,
+      1 => 1751886284,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
-function content_6866c8eee484e7_40767137 (\Smarty\Template $_smarty_tpl) {
+function content_686ba9ebedc795_48742346 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
   <meta charset="utf-8">
@@ -45,59 +46,8 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12">
-          <ul class="info">
-            <li><i class="fa fa-envelope"></i> <?php echo $_smarty_tpl->getValue('email_admin');?>
-</li>
-            <li><i class="fa fa-map"></i> Poggio Bustone, RI 02018</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav d-flex justify-content-between align-items-center">
-            <!-- Logo -->
-            <a href="index.html" class="logo">
-              <h1 style="white-space: nowrap; font-size: 24px;">Casetta dei Desideri</h1>
-            </a>
-
-            <!-- Menu -->
-            <div class="d-flex align-items-center" style="gap: 20px;">
-              <ul class="nav mb-0">
-                <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
-                <li><a href="/Casette_Dei_Desideri/Struttura/lista">Strutture</a></li>
-                <li><a href="/Casette_Dei_Desideri/Ordine/listaProdotti">Servizi</a></li>
-                <li><a href="/Casette_Dei_Desideri/User/profilo" class="active">Profilo</a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
+  <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_template.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>
 
   <div class="hero-section">
     <div class="container">
@@ -111,7 +61,6 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
       </div>
     </div>
   </div>
-
 
 
   <section class="story-section">
@@ -186,6 +135,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     <?php } else { ?>
         <p>Non ci sono attrazioni disponibili</p>
     <?php }?>
+  </div>
 
 
 
