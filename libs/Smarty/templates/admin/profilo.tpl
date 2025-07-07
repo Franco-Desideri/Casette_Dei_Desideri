@@ -21,58 +21,7 @@
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12">
-          <ul class="info">
-            <li><i class="fa fa-envelope"></i> {$email_admin}</li>
-            <li><i class="fa fa-map"></i> Poggio Bustone, RI 02018</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav d-flex justify-content-between align-items-center">
-            <!-- Logo -->
-            <a href="index.html" class="logo">
-              <h1 style="white-space: nowrap; font-size: 24px;">Casetta dei Desideri</h1>
-            </a>
-
-            <!-- Menu -->
-            <div class="d-flex align-items-center" style="gap: 20px;">
-              <ul class="nav mb-0">
-                <li><a href="/Casette_Dei_Desideri/AdminContenuti/home">Home</a></li>
-                <li><a href="/Casette_Dei_Desideri/AdminStruttura/lista">Strutture</a></li>
-                <li><a href="/Casette_Dei_Desideri/AdminProdotto/lista">Servizi</a></li>
-                <li><a href="/Casette_Dei_Desideri/Admin/profilo" class="active">Profilo</a></li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
+{include file="partials/appbar_templateAdmin.tpl" paginaCorrente="strutture"}  
 
   <div class="page-heading header-text">
     <div class="container">

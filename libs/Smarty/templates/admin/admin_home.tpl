@@ -21,60 +21,7 @@
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12">
-          <ul class="info">
-            <li><i class="fa fa-envelope"></i> {$email_admin}</li>
-            <li><i class="fa fa-map"></i> Poggio Bustone, RI 02018</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <nav class="main-nav">
-            <!-- ***** Logo Start ***** -->
-            <a href="index.html" class="logo" style="text-align: left; width: 100%;">
-            <h1 style="white-space: nowrap; font-size: 24px;">Casetta dei Desideri</h1>
-            </a>
-            <!-- ***** Logo End ***** -->
-            <!-- ***** Menu Start ***** -->
-            <ul class="nav">
-              <li><a href="/Casette_Dei_Desideri/AdminContenuti/home" class="active">Home</a></li>
-              <li><a href="/Casette_Dei_Desideri/AdminStruttura/lista">Strutture</a></li>
-              <li><a href="/Casette_Dei_Desideri/AdminProdotto/lista">Servizi</a></li>
-              <li><a href="/Casette_Dei_Desideri/Admin/profilo">Profilo</a></li>
-            </ul>
-            <a class='menu-trigger'>
-              <span>Menu</span>
-            </a>
-            <!-- ***** Menu End ***** -->
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
+  {include file="partials/appbar_templateAdmin.tpl" paginaCorrente="strutture"}  
 
   <div class="hero-section">
     <div class="container">
@@ -105,11 +52,14 @@
 <h2 class="section-title">Modifica, aggiungi ed elimina attrazioni</h2>
 
 <!-- Pulsante aggiungi attrazione -->
-<form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiAttrazione" method="post" style="margin-bottom: 20px;">
-  <button type="submit" class="btn btn-primary">Aggiungi Attrazione</button>
-</form>
+<div style="text-align: center; margin-bottom: 20px;">
+  <form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiAttrazione" method="post" style="margin-bottom: 20px;">
+    <button type="submit" class="btn salva-btn">Aggiungi Attrazione</button>
+  </form>
+</div>
 
-<div class="card-container">
+
+<div style="text-align: center; margin-bottom: 20px;">
   {if $attrazioni|@count > 0}
     {foreach from=$attrazioni item=attrazione}
       <div class="card-wrapper">
@@ -138,11 +88,13 @@
 <h2 class="section-title">Modifica, aggiungi ed elimina eventi</h2>
 
 <!-- Pulsante aggiungi evento -->
-<form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiEvento" method="post" style="margin-bottom: 20px;">
-  <button type="submit" class="btn btn-primary">Aggiungi Evento</button>
-</form>
+<div style="text-align: center; margin-bottom: 20px;">
+  <form action="/Casette_Dei_Desideri/AdminContenuti/aggiungiEvento" method="post" style="margin-bottom: 20px;">
+    <button type="submit" class="btn salva-btn">Aggiungi Evento</button>
+  </form>
+</div>
 
-<div class="card-list-info">
+<div style="text-align: center; margin-bottom: 20px;">
   {if $eventi|@count > 0}
     {foreach from=$eventi item=evento}
       <div class="card-wrapper">
