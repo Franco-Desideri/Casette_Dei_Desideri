@@ -1,55 +1,63 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-05 11:18:45
+/* Smarty version 5.5.1, created on 2025-07-07 11:12:05
   from 'file:admin/prodotti_lista.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_6868edf524efd1_04456187',
+  'unifunc' => 'content_686b8f6540e472_47674424',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a2d976e2ddc00d9d34777dd3ff782565fa0561d8' => 
     array (
       0 => 'admin/prodotti_lista.tpl',
-      1 => 1751707120,
+      1 => 1751879523,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
-    'file:partials/header_admin.tpl' => 1,
+    'file:partials/appbar_templateAdmin.tpl' => 1,
   ),
 ))) {
-function content_6868edf524efd1_04456187 (\Smarty\Template $_smarty_tpl) {
+function content_686b8f6540e472_47674424 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
-$_smarty_tpl->getInheritance()->init($_smarty_tpl, true);
-?>
+?><!DOCTYPE html>
+<html lang="it">
+
+  <head>
+
+<!-- Bootstrap core CSS -->
+<link href="/Casette_Dei_Desideri/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 
-<?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_5118156926868edf5205a03_25062946', "contenuto");
-?>
+<!-- Additional CSS Files -->
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/fontawesome.css">
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/templatemo-villa-agency.css">
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/owl.css">
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/animate.css">
+<link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+<link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/style1.css"> 
+</head>
 
-<?php $_smarty_tpl->getInheritance()->endChild($_smarty_tpl, "layouts/base.tpl", $_smarty_current_dir);
-}
-/* {block "contenuto"} */
-class Block_5118156926868edf5205a03_25062946 extends \Smarty\Runtime\Block
-{
-public function callBlock(\Smarty\Template $_smarty_tpl) {
-$_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
-?>
+<body>
+
+<?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_templateAdmin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>  
+
+    <section class="hero-section">
+        <img src="/Casette_Dei_Desideri/public/assets/images/spesa_domicilio.jpg" class="hero-image" alt="Spesa a domicilio">
+        <div class="hero-overlay">
+            <h2>Gestione Dei Prodotti</h2>
+        </div>
+    </section>
 
 
-<?php $_smarty_tpl->renderSubTemplate("file:partials/header_admin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
-?>
-
-
-<div class="admin-content-container">
-
-    <h2 class="admin-page-title">Gestione Prodotti</h2> <div class="admin-action-links">
-        <a href="/Casette_Dei_Desideri/AdminProdotto/aggiungiQuantita" class="admin-action-link"> Nuovo prodotto a pezzi</a>
-        <a href="/Casette_Dei_Desideri/AdminProdotto/aggiungiPeso" class="admin-action-link"> Nuovo prodotto a peso</a>
+    <div class="admin-content-container">
+        <h2 class="admin-page-title">Aggiungi Prodotti</h2> <div class="admin-action-links">
+            <a href="/Casette_Dei_Desideri/AdminProdotto/aggiungiQuantita" class="btn salva-btn"> Nuovo prodotto a pezzi</a>
+            <a href="/Casette_Dei_Desideri/AdminProdotto/aggiungiPeso" class="btn salva-btn"> Nuovo prodotto a peso</a>
     </div>
 
     <section>
@@ -64,21 +72,27 @@ $foreach0DoElse = false;
                     <li>
                         <img src="/Casette_Dei_Desideri/public/uploads/prodotti/<?php echo $_smarty_tpl->getValue('prodotto')->getFoto();?>
 " alt="<?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
-" class="product-image"> <div class="admin-item-details">
+" class="product-image">
+                        <div class="admin-item-details">
                             <strong><?php echo $_smarty_tpl->getValue('prodotto')->getNome();?>
 </strong> - <?php echo $_smarty_tpl->getValue('prodotto')->getPeso();?>
 g - €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzo();?>
 
                         </div>
                         <div class="admin-item-actions">
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
-">✏️ Modifica</a>
-                            <form method="POST" action="/Casette_Dei_Desideri/AdminProdotto/disattiva" style="display:inline;" onsubmit="return confirm('Nascondere il prodotto?');">
-                               <input type="hidden" name="idProdotto" value="<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
+                        <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
+"
+                            class="btn-edit">✏️ Modifica</a>
+                        <form method="POST"
+                                action="/Casette_Dei_Desideri/AdminProdotto/disattiva"
+                                class="d-inline"
+                                onsubmit="return confirm('Nascondere il prodotto?');">
+                            <input type="hidden" name="idProdotto" value="<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
 ">
-                               <button type="submit" style="background:none; border:none; padding:0;font:inherit; color:inherit; cursor:pointer;">🚫 Disattiva</button>
-                            </form>
+                            <button type="submit" class="btn-delete">🚫 Disattiva</button>
+                        </form>
                         </div>
+
                     </li>
                 <?php
 }
@@ -107,11 +121,14 @@ $foreach1DoElse = false;
                         </div>
                         <div class="admin-item-actions">
                             <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
-">✏️ Modifica</a>
-                            <form method="POST" action="/Casette_Dei_Desideri/AdminProdotto/disattiva" style="display:inline;" onsubmit="return confirm('Nascondere il prodotto?');">
+"
+                                class="btn-edit">✏️ Modifica</a>
+                            <form method="POST" action="/Casette_Dei_Desideri/AdminProdotto/disattiva" 
+                                class = "btn-delate"
+                                onsubmit="return confirm('Nascondere il prodotto?');">
                                <input type="hidden" name="idProdotto" value="<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
 ">
-                               <button type="submit" style="background:none; border:none; padding:0; font:inherit; color:inherit; cursor:pointer;">🚫 Disattiva</button>
+                               <button type="submit" class="btn-delete">🚫 Disattiva</button>
                             </form>
                         </div>
                     </li>
@@ -190,8 +207,31 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <p class="admin-no-items-message">Nessun prodotto a peso presente.</p> <?php }?>
     </section>
 
-</div> <?php
-}
-}
-/* {/block "contenuto"} */
+
+      <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/vendor/jquery/jquery.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/vendor/bootstrap/js/bootstrap.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/isotope.min.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/owl-carousel.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/counter.js"><?php echo '</script'; ?>
+>
+  <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/custom.js"><?php echo '</script'; ?>
+>
+
+</div>
+  </body>
+</html>
+
+<?php }
 }

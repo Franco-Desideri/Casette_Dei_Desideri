@@ -1,26 +1,27 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-03 16:11:48
+/* Smarty version 5.5.1, created on 2025-07-07 10:47:52
   from 'file:admin/aggiungi_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_68668fa49e76c7_76453962',
+  'unifunc' => 'content_686b89b80ed127_16805572',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a3d442b0ec99ee85f4cc163a7429428e99d807c4' => 
     array (
       0 => 'admin/aggiungi_struttura.tpl',
-      1 => 1751551906,
+      1 => 1751878065,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:partials/appbar_templateAdmin.tpl' => 1,
   ),
 ))) {
-function content_68668fa49e76c7_76453962 (\Smarty\Template $_smarty_tpl) {
+function content_686b89b80ed127_16805572 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -57,68 +58,9 @@ https://templatemo.com/tm-591-villa-agency
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-8">
-          <ul class="info">
-            <li><i class="fa fa-envelope"></i> CasetteDeiDesideri@gmail.com</li>
-            <li><i class="fa-solid fa-location-dot"></i> Poggio Bustone, RI 057051</li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-4">
-          <ul class="social-links">
-            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-            <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/Casette_Dei_Desideri/User/home" class="logo" style="white-space: nowrap;">
-                        <h1>Cassette Dei Desideri</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
-                      <li><a href="/Casette_Dei_Desideri/AdminStruttura/lista"class="active">Strutture</a></li>
-                      <li><a href="contact.html">Contatti</a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-
+  <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_templateAdmin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>  
+  
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
@@ -163,9 +105,12 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('foto')->value) {
 $foreach0DoElse = false;
 ?>
                 <?php if ((true && (true && null !== ($_smarty_tpl->getValue('foto')->base64img ?? null)))) {?>
-                  <div style="width:120px; height:120px; overflow:hidden; border:1px solid #ccc; border-radius:4px; display:flex; align-items:center; justify-content:center; background:#fff;">
+                  <div class="preview-item">
+                    <button type="button" class="remove-photo-btn">&times;</button>
                     <img src="<?php echo $_smarty_tpl->getValue('foto')->base64img;?>
-" alt="foto" style="max-width: 100%; max-height: 100%;">
+" alt="foto" class="img-fluid">
+                    <input type="hidden" name="existing_foto_id[]" value="<?php echo $_smarty_tpl->getValue('foto')->getId();?>
+">
                   </div>
                 <?php }?>
               <?php
@@ -173,6 +118,7 @@ $foreach0DoElse = false;
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
             <?php }?>
           </div>
+
 
 
           <div class="main-content">
@@ -403,64 +349,80 @@ echo $_smarty_tpl->getValue('struttura')->getNLetti();
 
 <?php echo '<script'; ?>
 >
+  // elementi di base
   const selector = document.getElementById('foto-upload');
   const form = selector.closest('form');
   const container = document.getElementById('preview-images');
-
   const addedKeys = new Set();
 
+  // al cambio input, creo le preview
   selector.addEventListener('change', function(e) {
     const files = Array.from(e.target.files);
 
     files.forEach(file => {
       if (!file.type.startsWith('image/')) return;
 
+      // impedisco duplicati
       const key = `${file.name}|${file.size}|${file.lastModified}`;
       if (addedKeys.has(key)) return;
       addedKeys.add(key);
 
-      // Mostra anteprima
       const reader = new FileReader();
       reader.onload = function(ev) {
+        // wrapper principale
         const wrapper = document.createElement('div');
-        Object.assign(wrapper.style, {
-          width: '120px',
-          height: '120px',
-          overflow: 'hidden',
-          border: '1px solid #ccc',
-          borderRadius: '4px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: '#fff',
-          marginRight: '8px',
-          marginBottom: '8px'
-        });
+        wrapper.className = 'preview-item';
+
+        // bottone di rimozione (new)
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'remove-photo-btn';
+        btn.innerHTML = '&times;';
+        wrapper.appendChild(btn);
+
+        // immagine
         const img = document.createElement('img');
         img.src = ev.target.result;
-        img.style.maxWidth = '100%';
-        img.style.maxHeight = '100%';
         wrapper.appendChild(img);
+
+        // input file nascosto per il form (new_foto[])
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        const hiddenInput = document.createElement('input');
+        hiddenInput.type = 'file';
+        hiddenInput.name = 'foto[]';
+        hiddenInput.files = dt.files;
+        hiddenInput.style.display = 'none';
+        wrapper.appendChild(hiddenInput);
+
         container.appendChild(wrapper);
       };
       reader.readAsDataURL(file);
-
-      // Crea input file nascosto per ogni immagine
-      const dt = new DataTransfer();
-      dt.items.add(file);
-      const hiddenInput = document.createElement('input');
-      hiddenInput.type = 'file';
-      hiddenInput.name = 'foto[]';
-      hiddenInput.files = dt.files;
-      hiddenInput.style.display = 'none';
-      form.appendChild(hiddenInput);
     });
 
-    // Reset input per consentire nuova selezione
+    // reset per poter ricaricare gli stessi file
     selector.value = '';
+  });
+
+  // delegazione: rimuovo preview e, se esistente, segno l'eliminazione
+  container.addEventListener('click', function(e) {
+    if (!e.target.classList.contains('remove-photo-btn')) return;
+
+    const item = e.target.closest('.preview-item');
+    // se è una foto già in DB, contiene hidden existing_foto_id[]
+    const existingInput = item.querySelector('input[name="existing_foto_id[]"]');
+    if (existingInput) {
+      const marker = document.createElement('input');
+      marker.type = 'hidden';
+      marker.name = 'delete_foto_id[]';
+      marker.value = existingInput.value;
+      form.appendChild(marker);
+    }
+    item.remove();
   });
 <?php echo '</script'; ?>
 >
+
 
 
 
@@ -508,11 +470,6 @@ document.addEventListener('click', function (e) {
 });
 <?php echo '</script'; ?>
 >
-
-
-
-
-
 
 
 
