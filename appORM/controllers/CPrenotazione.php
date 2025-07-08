@@ -45,7 +45,7 @@ class CPrenotazione
         // === VERIFICHE PRIMA DI BLOCCARE LE DATE ===
         if (!FPrenotazione::copreIntervalli($struttura->getIntervalli(), $dataInizio, $dataFine)) {
             echo "<script>
-                alert('⚠️ Le date selezionate non sono disponibili per questa struttura.');
+                alert('Le date selezionate non sono disponibili per questa struttura.');
                 window.location.href = '/Casette_Dei_Desideri/Struttura/dettaglio/" . $idStruttura . "';
             </script>";
             exit;
@@ -53,7 +53,7 @@ class CPrenotazione
 
         if (FPrenotazione::conflittoConPrenotazioni($struttura, $dataInizio, $dataFine)) {
             echo "<script>
-                alert('⚠️ Le date selezionate si sovrappongono a una prenotazione esistente.');
+                alert('Le date selezionate si sovrappongono a una prenotazione esistente.');
                 window.location.href = '/Casette_Dei_Desideri/Struttura/dettaglio/" . $idStruttura . "';
             </script>";
             exit;
@@ -61,7 +61,7 @@ class CPrenotazione
 
         if ($numOspiti > $struttura->getNumOspiti()) {
             echo "<script>
-                alert('⚠️ Numero di ospiti superiore alla capienza massima della struttura.');
+                alert('Numero di ospiti superiore alla capienza massima della struttura.');
                 window.location.href = '/Casette_Dei_Desideri/Struttura/dettaglio/" . $idStruttura . "';
             </script>";
             exit;
