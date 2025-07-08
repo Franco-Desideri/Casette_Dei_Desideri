@@ -252,7 +252,7 @@ main.container {
     justify-content: center; /* Centra le card all'interno del contenitore se non riempiono completamente la riga */
     align-items: stretch; /* Le card si estendono per occupare l'altezza disponibile nella riga */
 
-    padding: 20px 0; /* Aggiungi un po' di padding alla sezione per non far attaccare le card ai bordi del "container" */
+    padding: 20px 25px; /* Aggiungi un po' di padding alla sezione per non far attaccare le card ai bordi del "container" */
     margin-bottom: 40px; /* Spazio sotto la sezione dei prodotti, se necessario */
 }
 

@@ -100,7 +100,7 @@
         </section>
 
         <section class="cart-button-section">
-            <button type="submit" class="main-button">Vai al Riepilogo</button>
+            <button type="submit" class="btn prenota-btn">Vai al Riepilogo</button>
         </section>
 
     </form>
