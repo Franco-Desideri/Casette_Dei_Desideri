@@ -2,6 +2,15 @@
 
 {block name="contenuto"}
 
+{if isset($errore_contanti)}
+  <div class="alert-custom">
+    <strong>Attenzione:</strong> {$errore_contanti}
+  </div>
+{/if}
+
+
+
+
 <div class="main-content container">
     <h2 class="page-title">Riepilogo Ordine</h2>
 

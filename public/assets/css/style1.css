@@ -1201,5 +1201,26 @@ body, h1, h2, h3, h4, h5, h6, p, .hero-title, .hero-subtitle, .story-text, .card
   font-family: 'Poppins', sans-serif;
 }
 
+.alert-custom {
+  padding: 15px;
+  background-color: #f44336;
+  color: white;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.alert-custom .close-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
 
 

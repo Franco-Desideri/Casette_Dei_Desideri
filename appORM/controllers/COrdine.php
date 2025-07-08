@@ -124,15 +124,26 @@ class COrdine
     }
 
     $ordineData = USession::get('ordine_temp');
-    USession::delete('ordine_temp');
+    //USession::delete('ordine_temp');
 
     $contanti = isset($_POST['contanti']) ? (float) $_POST['contanti'] : 0.0;
     $prezzoTotale = $ordineData['prezzo'];
 
     if ($contanti < $prezzoTotale) {
-        echo "<script>alert('L\'importo inserito è inferiore al totale dell\'ordine.'); window.location.href='/Casette_Dei_Desideri/Ordine/riepilogo';</script>";
-        return;
-    }
+    USession::set('errore_contanti', "L'importo inserito è inferiore al totale dell'ordine.");
+    
+    $errore = USession::get('errore_contanti');
+    USession::delete('errore_contanti');
+
+    // Ricrea i dati del riepilogo
+    //$ordineTemp = USession::get('ordine_temp');
+    $view = new VOrdine();
+    $view->mostraRiepilogo($ordineData, $errore);
+
+    return;
+}
+    USession::delete('ordine_temp');
+
 
     $utente = FPersistentManager::get()->find(EUtente::class, USession::get('utente_id'));
 
