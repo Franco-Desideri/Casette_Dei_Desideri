@@ -67,46 +67,6 @@ body {
   overflow: hidden;          /* nasconde contenuto che esce */
 }
 
-/*button Annulla Logout*/
-.btn-annulla {
-  margin-top: 25px;
-  padding: 12px, 600px;
-  background: #5a6268;
-  border: none;
-  color: white;
-  font-weight: 00;
-  font-size: 18px;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
-}
-
-.btn-annulla:hover {
-  background: #b02a37;
-  color: white;
-}
-
-
-/*button salva*/
-button[type="submit"] {
-  margin-top: 25px;
-  padding: 12px, 600px;
-  background: #28a745;
-  border: none;
-  color: white;
-  font-weight: 00;
-  font-size: 18px;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
-}
-
-button[type="submit"]:hover {
-  background: #218838;
-  box-shadow: 0 6px 14px rgba(40, 167, 69, 0.3);
-}
 
 .card-text {
   flex: 1;
@@ -278,8 +238,36 @@ button[type="submit"]:hover {
   transition: box-shadow 0.3s ease;
   cursor: pointer;
 }
-.card-wrapper {
-  margin-bottom: 40px;
+
+.attrazioni-container {
+  display: flex;
+  gap: 20px; /* spazio tra card */
+  overflow-x: auto; /* scroll orizzontale */
+  padding: 20px; /* distanza dai bordi */
+  box-sizing: border-box;
+}
+
+.attrazioni-container {
+  display: flex;
+  gap: 20px; /* spazio tra card */
+  overflow-x: auto; /* scroll orizzontale */
+  padding: 20px; /* distanza dai bordi */
+  box-sizing: border-box;
+}
+
+.card-wrapper-attrazioni {
+  flex: 0 0 auto; /* impedisce lo "shrink" e consente scroll */
+  width: 800px; /* larghezza fissa delle card */
+}
+
+.card-wrapper-eventi {
+  flex: 0 0 auto; /* impedisce lo "shrink" e consente scroll */
+  width: 350px; /* larghezza fissa delle card */
+}
+
+.elimina-wrapper {
+  text-align: center;
+  margin-top: 10px;
 }
 
 
