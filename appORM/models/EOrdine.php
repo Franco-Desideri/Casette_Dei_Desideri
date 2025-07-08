@@ -25,9 +25,6 @@ class EOrdine
     /** @ORM\Column(type="datetime") */
     private \DateTime $data;
 
-    /** @ORM\Column(type="boolean") */
-    private bool $conferma;
-
     /** @ORM\Column(type="string", nullable=true) */
     private ?string $fasciaOraria = null;
 
