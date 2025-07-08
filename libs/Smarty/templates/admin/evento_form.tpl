@@ -55,7 +55,7 @@
           <input type="date" class="form-control" name="dataFine" value="{if $evento !== null}{$evento->getDataFineString('Y-m-d')}{/if}" required>
         </div>
 
-        <button type="submit" class="btn btn-success">Salva</button>
+        <button type="submit" class="btn salva-btn">Salva</button>
     </form>
   </div>
 </div>
