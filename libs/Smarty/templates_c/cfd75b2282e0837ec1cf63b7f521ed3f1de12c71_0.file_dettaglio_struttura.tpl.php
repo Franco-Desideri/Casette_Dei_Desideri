@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-07 18:42:54
+/* Smarty version 5.5.1, created on 2025-07-08 17:55:25
   from 'file:utente/dettaglio_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686bf90e2392b2_69082580',
+  'unifunc' => 'content_686d3f6d6c38c3_76983943',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cfd75b2282e0837ec1cf63b7f521ed3f1de12c71' => 
     array (
       0 => 'utente/dettaglio_struttura.tpl',
-      1 => 1751906500,
+      1 => 1751990117,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
-function content_686bf90e2392b2_69082580 (\Smarty\Template $_smarty_tpl) {
+function content_686d3f6d6c38c3_76983943 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -273,6 +273,7 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 
 
 
+
   <?php echo '<script'; ?>
 >
     // 1) Prepara i tuoi dati PHP/Smarty in JS
@@ -287,7 +288,7 @@ $_smarty_tpl->getVariable('i')->iteration++;
 $_smarty_tpl->getVariable('i')->last = $_smarty_tpl->getVariable('i')->iteration === $_smarty_tpl->getVariable('i')->total;
 $foreach2Backup = clone $_smarty_tpl->getVariable('i');
 ?>
-        { // Smarty copierà queste righe
+        {
           inizio: '<?php echo $_smarty_tpl->getValue('i')->getDataI()->format("Y-m-d");?>
 ',
           fine:   '<?php echo $_smarty_tpl->getValue('i')->getDataF()->format("Y-m-d");?>
@@ -322,37 +323,65 @@ $_smarty_tpl->setVariable('p', $foreach3Backup);
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     ];
 
-    // 2) Le tue funzioni di disponibilità
+  console.log("▶ INTERVALLI DISPONIBILI:");
+  intervalliDisponibili.forEach(i =>
+    console.log(i.inizio, i.fine, parseLocalDate(i.inizio), parseLocalDate(i.fine))
+  );
+
+  console.log("▶ DATE OCCUPATE:");
+  dateOccupate.forEach(p =>
+    console.log(p.inizio, p.fine, parseLocalDate(p.inizio), parseLocalDate(p.fine))
+  );
+
+    // Funzione per creare una data locale corretta (no UTC shift)
+    function parseLocalDate(isoStr) {
+      const [year, month, day] = isoStr.split('-').map(Number);
+      return new Date(year, month - 1, day); // mese 0-based
+    }
+
+    // 2) Funzioni di disponibilità
     function isInIntervallo(dateStr) {
-      const d = new Date(dateStr);
+      const d = parseLocalDate(dateStr);
       return intervalliDisponibili.some(i =>
-        d >= new Date(i.inizio) && d <= new Date(i.fine)
+        d >= parseLocalDate(i.inizio) && d <= parseLocalDate(i.fine)
       );
     }
+
     function isOccupata(dateStr) {
-      const d = new Date(dateStr);
+      const d = parseLocalDate(dateStr);
       return dateOccupate.some(p =>
-        d >= new Date(p.inizio) && d <= new Date(p.fine)
+        d >= parseLocalDate(p.inizio) && d <= parseLocalDate(p.fine)
       );
     }
 
-    // 3) Funzione che Flatpickr userà per disabilitare le date
+    // 3) Disabilita date non valide
     function disableDates(date) {
-      const ds = date.toISOString().slice(0,10); // "YYYY-MM-DD"
-      return !isInIntervallo(ds) || isOccupata(ds);
-    }
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const ds = year + "-" + month + "-" + day; // data nel formato "YYYY-MM-DD" forzata
 
-    // 4) Inizializzazione dei due datepickers
+    console.log("🧪 disableDates (local):", ds);
+    console.log("🧪 Verifica su:", ds,
+      "| isInIntervallo:", isInIntervallo(ds),
+      "| isOccupata:", isOccupata(ds)
+    );
+
+    return !isInIntervallo(ds) || isOccupata(ds);
+  }
+
+
+    // 4) Inizializza Flatpickr
     const dataFinePicker = flatpickr("#dataFine", {
       dateFormat: "d-m-Y",
       minDate: "today",
-      disable: [ disableDates ], //rende alcune date non selezionabili
-      onDayCreate: function(dObj, dStr, fp, dayElem) {  //è chiamata per la creazione di ogni singolo giorno del calendario
+      disable: [disableDates],
+      disableMobile: true,
+      defaultHour: 12,
+      onDayCreate: function(dObj, dStr, fp, dayElem) {
         const dataInizioDate = flatpickr.parseDate(document.getElementById('dataInizio').value, "d-m-Y");
-        if (dataInizioDate) {
-          if (dayElem.dateObj.toDateString() === dataInizioDate.toDateString()) {
-            dayElem.classList.add('highlight-day'); //se la data attuale di creazione del Cal. == dataInizio allora colora
-          }
+        if (dataInizioDate && dayElem.dateObj.toDateString() === dataInizioDate.toDateString()) {
+          dayElem.classList.add('highlight-day');
         }
       }
     });
@@ -360,10 +389,11 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     flatpickr("#dataInizio", {
       dateFormat: "d-m-Y",
       minDate: "today",
-      disable: [ disableDates ],
+      disable: [disableDates],
+      disableMobile: true,
+      defaultHour: 12,
       onChange: function(selectedDates, dateStr) {
         if (dateStr) {
-          // non permettere a dataFine di essere precedente
           dataFinePicker.set('minDate', dateStr);
         }
       }
@@ -371,22 +401,24 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
   <?php echo '</script'; ?>
 >
 
-
   <?php echo '<script'; ?>
 >
+    // 5) Verifica che l'intervallo selezionato sia continuo e valido
     function isRangeContinuo(startStr, endStr) {
-      const start = new Date(startStr);
-      const end = new Date(endStr);
+      const start = parseLocalDate(startStr);
+      const end = parseLocalDate(endStr);
 
-      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-        const ds = d.toISOString().slice(0, 10);
-        if (!isInIntervallo(ds) || isOccupata(ds)) {
+      for (let d = new Date(start); d <= end; d = new Date(d.getTime() + 86400000)) {
+        let giornoStr = d.toISOString().slice(0, 10);
+        if (!isInIntervallo(giornoStr) || isOccupata(giornoStr)) {
           return false;
         }
       }
+
       return true;
     }
 
+    // 6) Validazione lato client prima dell'invio
     document.querySelector('.prenotazione-form').addEventListener('submit', function(e) {
       const inputInizio = document.getElementById('dataInizio');
       const inputFine = document.getElementById('dataFine');
@@ -394,18 +426,15 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
       const dataInizio = inputInizio._flatpickr.selectedDates[0];
       const dataFine = inputFine._flatpickr.selectedDates[0];
 
-      // Controllo che entrambi i campi siano compilati
       if (!dataInizio || !dataFine) {
         alert("Devi selezionare sia la data di inizio che quella di fine.");
         e.preventDefault();
         return;
       }
 
-      // Formatta le date nel formato YYYY-MM-DD
       const dataInizioStr = dataInizio.toISOString().slice(0, 10);
       const dataFineStr = dataFine.toISOString().slice(0, 10);
 
-      // Controllo intervallo disponibile per inizio e fine
       if (!isInIntervallo(dataInizioStr) || isOccupata(dataInizioStr)) {
         alert("La data di inizio non è disponibile.");
         e.preventDefault();
@@ -418,14 +447,12 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
         return;
       }
 
-      // Controllo che data fine sia dopo o uguale a data inizio
       if (dataFine < dataInizio) {
         alert("La data di fine deve essere uguale o successiva a quella di inizio.");
         e.preventDefault();
         return;
       }
 
-      // NUOVO controllo: range continuo senza buchi
       if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
         alert("L'intervallo selezionato contiene giorni non prenotabili.");
         e.preventDefault();
@@ -434,6 +461,7 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     });
   <?php echo '</script'; ?>
 >
+
 
   </body>
 </html><?php }

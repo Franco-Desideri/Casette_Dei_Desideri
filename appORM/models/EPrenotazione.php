@@ -97,11 +97,13 @@ class EPrenotazione
         if (!$this->ospitiDettagli->contains($ospite)) {
             $this->ospitiDettagli[] = $ospite;
             $ospite->setPrenotazione($this);
+            $this->ospiti++;
         }
     }
 
     public function removeOspite(EOspite $ospite): void
     {
         $this->ospitiDettagli->removeElement($ospite);
+        $this->ospiti--;
     }
 }
