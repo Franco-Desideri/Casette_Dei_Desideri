@@ -146,13 +146,7 @@
 </div>
 
 
-  <footer class="footer-no-gap">
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2025 Casette Dei Desideri. 
-      </div>
-    </div>
-  </footer>
+  {include file="partials/footer.tpl" paginaCorrente="strutture"}  
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

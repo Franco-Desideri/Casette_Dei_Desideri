@@ -92,7 +92,7 @@
   </div>
 
 
-
+  {include file="partials/footer.tpl" paginaCorrente="strutture"}  
 
 
   <!-- Scripts -->

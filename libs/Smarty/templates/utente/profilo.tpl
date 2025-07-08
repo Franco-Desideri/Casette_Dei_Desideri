@@ -167,7 +167,7 @@
     </div>
   </section>
 
-
+  {include file="partials/footer.tpl" paginaCorrente="strutture"} 
 
 
   <!-- Scripts -->
