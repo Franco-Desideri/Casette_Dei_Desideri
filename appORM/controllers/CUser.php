@@ -28,14 +28,12 @@ class CUser
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
 
-            // Validazione base email e password
             if (!filter_var($email, FILTER_VALIDATE_EMAIL) || strlen($password) < 6) {
-                $view->mostraLoginConErrore("Credenziali non valide");
+                $view->mostraAutenticazione("Credenziali non valide");
                 return;
             }
 
             try {
-                // Verifica credenziali tramite FUtente
                 $utente = FUtente::verificaCredenziali($email, $password);
 
                 USession::set('utente_id', $utente->getId());
@@ -46,13 +44,93 @@ class CUser
                 exit;
 
             } catch (Exception $e) {
-                $view->mostraLoginConErrore($e->getMessage());
+                $view->mostraAutenticazione($e->getMessage());
             }
-
         } else {
-            $view->mostraLogin();
+            $view->mostraAutenticazione();
         }
     }
+
+    public function registrazione(): void
+    {
+        USession::start();
+
+        if (USession::exists('utente_id')) {
+            header('Location: /Casette_Dei_Desideri/User/profilo');
+            exit;
+        }
+
+        $view = new VUser();
+
+        if (UHTTPMethods::isPost()) {
+            $d = $_POST; // alias veloce
+
+            // Validazioni
+            if (!UValidazione::emailValida($d['email'] ?? '')) {
+                $view->mostraAutenticazione(null, "Email non valida.");
+                return;
+            }
+
+            if (!UValidazione::passwordSicura($d['password'] ?? '') ||
+                !UValidazione::confermaPassword($d['password'] ?? '', $d['conferma_password'] ?? '')) {
+                $view->mostraAutenticazione(null, "Le password non corrispondono o sono troppo corte.");
+                return;
+            }
+
+            if (!UValidazione::codiceFiscaleValido($d['codicefisc'] ?? '')) {
+                $view->mostraAutenticazione(null, "Codice fiscale non valido.");
+                return;
+            }
+
+            if (!UValidazione::sessoValido($d['sesso'] ?? '')) {
+                $view->mostraAutenticazione(null, "Sesso non valido.");
+                return;
+            }
+
+            if (!UValidazione::telefonoValido($d['tell'] ?? '')) {
+                $view->mostraAutenticazione(null, "Numero di telefono non valido.");
+                return;
+            }
+
+            if (FUtente::getByEmail($d['email'])) {
+                $view->mostraAutenticazione(null, "Email già registrata.");
+                return;
+            }
+
+            if (FUtente::getByCodiceFiscale($d['codicefisc'])) {
+                $view->mostraAutenticazione(null, "Codice fiscale già registrato.");
+                return;
+            }
+
+            // Creazione utente
+            $utente = new EUtente();
+            $utente->setNome($d['nome']);
+            $utente->setCognome($d['cognome']);
+            $utente->setEmail($d['email']);
+            $utente->setPassword($d['password']);
+            $utente->setCodicefisc($d['codicefisc']);
+            $utente->setSesso($d['sesso']);
+            $utente->setDataN(new DateTime($d['dataN']));
+            $utente->setLuogoN($d['luogoN']);
+            $utente->setTell($d['tell']);
+            $utente->setRuolo("utente");
+
+            FPersistentManager::store($utente);
+
+            USession::set('utente_id', $utente->getId());
+            USession::set('ruolo', $utente->getRuolo());
+
+            header('Location: /Casette_Dei_Desideri/User/home');
+            exit;
+
+        } else {
+            $view->mostraAutenticazione();
+        }
+    }
+
+
+
+
 
     public function logout(): void
     {
@@ -61,6 +139,10 @@ class CUser
         header('Location: /Casette_Dei_Desideri/User/login');
         exit;
     }
+
+
+
+
 
     public function profilo(): void
     {
@@ -72,7 +154,7 @@ class CUser
         }
 
         $utenteId = USession::get('utente_id');
-        $utente = FPersistentManager::get()->find(EUtente::class, $utenteId);
+        $utente = FUtente::getById($utenteId);
 
         $view = new VUser();
         $view->mostraProfilo($utente);
@@ -109,14 +191,14 @@ class CUser
         }
 
         $utenteId = USession::get('utente_id');
-        $utente = FPersistentManager::get()->find(EUtente::class, $utenteId);
+        $utente = FUtente::getById($utenteId);;
 
         if (!$utente) {
             echo "Utente non trovato.";
             exit;
         }
 
-        $em = FPersistentManager::get(); // EntityManager
+        $em = FPersistentManager::get(); 
 
         $eventi = $em->getRepository(EEvento::class)->findAll();
         $attrazioni = $em->getRepository(EAttrazione::class)->findAll();
@@ -126,91 +208,11 @@ class CUser
         $view->mostraHome($email, $eventi, $attrazioni);
     }
 
-
-    public function registrazione(): void
-    {
-        USession::start();
-
-        if (USession::exists('utente_id')) {
-            header('Location: /Casette_Dei_Desideri/User/profilo');
-            exit;
-        }
-
-        $view = new VUser();
-
-        if (UHTTPMethods::isPost()) {
-            $nome = $_POST['nome'] ?? '';
-            $cognome = $_POST['cognome'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
-            $conferma = $_POST['conferma_password'] ?? '';
-            $cf = $_POST['codicefisc'] ?? '';
-            $sesso = $_POST['sesso'] ?? '';
-            $dataN = $_POST['dataN'] ?? '';
-            $luogoN = $_POST['luogoN'] ?? '';
-            $telefono = $_POST['tell'] ?? '';
-
-            // Validazioni minime
-            if (!UValidazione::emailValida($email)) {
-                $view->mostraRegistrazioneConErrore("Email non valida.");
-                return;
-            }
-
-            if (!UValidazione::passwordSicura($password) || !UValidazione::confermaPassword($password, $conferma)) {
-                $view->mostraRegistrazioneConErrore("Le password non corrispondono o sono troppo corte.");
-                return;
-            }
-
-            if (!UValidazione::codiceFiscaleValido($cf)) {
-                $view->mostraRegistrazioneConErrore("Codice fiscale non valido.");
-                return;
-            }
-
-            if (!UValidazione::sessoValido($sesso)) {
-                $view->mostraRegistrazioneConErrore("Sesso non valido.");
-                return;
-            }
-
-            if (!UValidazione::telefonoValido($telefono)) {
-                $view->mostraRegistrazioneConErrore("Numero di telefono non valido.");
-                return;
-            }
-
-            if (FUtente::getByEmail($email)) {
-                $view->mostraRegistrazioneConErrore("Email già registrata.");
-                return;
-            }
-
-            // Creazione utente
-            $utente = new EUtente();
-            $utente->setNome($nome);
-            $utente->setCognome($cognome);
-            $utente->setEmail($email);
-            $utente->setPassword($password);
-            $utente->setCodicefisc($cf);
-            $utente->setSesso($sesso);
-            $utente->setDataN(new DateTime($dataN));
-            $utente->setLuogoN($luogoN);
-            $utente->setTell($telefono);
-            $utente->setRuolo("utente");
-
-            FPersistentManager::store($utente);
-
-            USession::set('utente_id', $utente->getId());
-            USession::set('ruolo', $utente->getRuolo());
-
-            header('Location: /Casette_Dei_Desideri/User/home');
-            exit;
-        } else {
-            $view->mostraRegistrazione();
-        }
-    }
-
     public function modificaEmail(): void
     {
         USession::start();
         $id = USession::get('utente_id');
-        $utente = FPersistentManager::get()->find(EUtente::class, $id);
+        $utente = FUtente::getById($id);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
             $newEmail = $_POST['email'];
@@ -219,9 +221,7 @@ class CUser
                 die("Email non valida.");
             }
 
-            $utente->setEmail($newEmail);
-            FPersistentManager::store($utente);
-
+            FUtente::aggiornaEmail($utente, $newEmail);
             header("Location: /Casette_Dei_Desideri/User/profilo");
             exit;
         }
@@ -230,13 +230,17 @@ class CUser
     public function modificaTelefono(): void
     {
         USession::start();
-        $id = USession::get('utente_id');
-        $utente = FPersistentManager::get()->find(EUtente::class, $id);
+        $utenteId = USession::get('utente_id');
+        $utente = FUtente::getById($utenteId);
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['telefono'])) {
             $telefono = trim($_POST['telefono']);
-            $utente->setTell($telefono);
-            FPersistentManager::store($utente);
+
+            if (!UValidazione::telefonoValido($telefono)) {
+                die("Numero di telefono non valido.");
+            }
+
+            FUtente::aggiornaTelefono($utente, $telefono);
 
             header("Location: /Casette_Dei_Desideri/User/profilo");
             exit;
@@ -277,59 +281,6 @@ class CUser
             $periodo,
             $ospiti,
             $totale
-        );
-    }
-
-    public function riepilogoCompleto(): void
-    {
-        USession::start();
-
-        if (!USession::exists('utente_id') || !USession::exists('prenotazione_temp')) {
-            header('Location: /Casette_Dei_Desideri/Struttura/lista');
-            exit;
-        }
-
-        $data = USession::get('prenotazione_temp');
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ospiti'])) {
-            $ospiti = $_POST['ospiti'];
-
-            foreach ($ospiti as $i => $ospite) {
-                $ospiti[$i]['documento'] = null;
-                if (
-                    isset($_FILES['ospiti']['tmp_name'][$i]['documento']) &&
-                    is_uploaded_file($_FILES['ospiti']['tmp_name'][$i]['documento'])
-                ) {
-                    $fileTmp = $_FILES['ospiti']['tmp_name'][$i]['documento'];
-                    $fileName = $_FILES['ospiti']['name'][$i]['documento'];
-
-                    $ospiti[$i]['documento'] = base64_encode(file_get_contents($fileTmp));
-                    $ospiti[$i]['documento_mime'] = mime_content_type($fileTmp);
-                    $ospiti[$i]['documento_ext'] = pathinfo($fileName, PATHINFO_EXTENSION);
-                }
-
-
-            }
-
-
-            $data['ospiti'] = $ospiti;
-            USession::set('prenotazione_temp', $data);
-        }
-
-        if (!isset($data['ospiti'])) {
-            echo "Dati ospiti mancanti.";
-            return;
-        }
-
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $data['id_struttura']);
-
-        $view = new VPrenotazione();
-        $view->mostraRiepilogoCompleto(
-            $struttura,
-            $data['data_inizio'],
-            $data['data_fine'],
-            $data['ospiti'],
-            $data['totale']
         );
     }
 }

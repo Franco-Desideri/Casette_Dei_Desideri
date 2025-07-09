@@ -14,9 +14,7 @@ class CAdminStruttura
     /*Mostra la Lista delle strutture*/
     public function lista(): void
     {
-        $strutture = FPersistentManager::get()
-            ->getRepository(EStruttura::class)
-            ->findAll();
+        $strutture = FStruttura::getTutteStrutture();
 
         // → Inserisci qui il codice per popolare immaginePrincipale
         foreach ($strutture as $s) {
@@ -88,7 +86,7 @@ class CAdminStruttura
 
         // Tutto valido: procedi con il salvataggio
         $this->gestisciUploadFoto($struttura);
-        FPersistentManager::store($struttura);
+        FStruttura::salvaStruttura($struttura);
 
         foreach ($intervalliTemporanei as $intervallo) {
             $intervallo->setStruttura($struttura);
@@ -228,7 +226,7 @@ class CAdminStruttura
             }
         }
 
-        FPersistentManager::store($struttura);
+        FStruttura::salvaStruttura($struttura);
         header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
     }
 
@@ -247,7 +245,7 @@ class CAdminStruttura
 
         $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
         if ($struttura) {
-            FPersistentManager::delete($struttura);
+            FStruttura::rimuoviStruttura($struttura);
         }
 
         header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');

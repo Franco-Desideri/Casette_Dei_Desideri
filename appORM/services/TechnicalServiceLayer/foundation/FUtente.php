@@ -51,13 +51,26 @@ class FUtente
         return $utente->getPrenotazioni()->toArray();
     }
 
-    public static function getOrdini(EUtente $utente): array
-    {
-        return $utente->getOrdini()->toArray();
-    }
-
     public static function getAdmin(): ?EUtente
     {
         return FPersistentManager::findOneBy(EUtente::class, ['ruolo' => 'admin']);
     }
+
+    public static function getByCodiceFiscale(string $cf): ?EUtente
+    {
+        return FPersistentManager::findOneBy(EUtente::class, ['codicefisc' => $cf]);
+    }
+
+    public static function aggiornaEmail(EUtente $utente, string $email): void
+    {
+        $utente->setEmail($email);
+        FPersistentManager::store($utente);
+    }
+
+    public static function aggiornaTelefono(EUtente $utente, string $telefono): void
+    {
+        $utente->setTell($telefono);
+        FPersistentManager::store($utente);
+    }
+
 }

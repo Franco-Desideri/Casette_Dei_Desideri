@@ -41,29 +41,4 @@ class FStruttura
     {
         FPersistentManager::delete($struttura);
     }
-
-    /**
-     * Restituisce le strutture disponibili tra due date
-     */
-    public static function getStruttureDisponibili(\DateTime $dataInizio, \DateTime $dataFine): array
-    {
-        $tutteStrutture = FPersistentManager::findAll(EStruttura::class);
-        $struttureDisponibili = [];
-
-        foreach ($tutteStrutture as $struttura) {
-            $intervalli = $struttura->getIntervalli();
-
-            foreach ($intervalli as $intervallo) {
-                if (
-                    $intervallo->getDataI() <= $dataInizio &&
-                    $intervallo->getDataF() >= $dataFine
-                ) {
-                    $struttureDisponibili[] = $struttura;
-                    break;
-                }
-            }
-        }
-
-        return $struttureDisponibili;
-    }
 }

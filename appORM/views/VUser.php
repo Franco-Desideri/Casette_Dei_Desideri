@@ -24,23 +24,15 @@ class VUser
     }
 
     /**
-     * Mostra il form di login (senza errori)
+     * Mostra il form di login e registrazione
      */
-    public function mostraLogin(): void
+    public function mostraAutenticazione(string $erroreLogin = null, string $erroreReg = null): void
     {
-        $this->smarty->display('utente/login.tpl');
+        $this->smarty->assign("erroreLogin", $erroreLogin);
+        $this->smarty->assign("erroreReg", $erroreReg);
+        $this->smarty->display("utente/login.tpl");
     }
 
-    /**
-     * Mostra il form di login con un messaggio di errore
-     *
-     * @param string $errore Messaggio di errore da mostrare all'utente
-     */
-    public function mostraLoginConErrore(string $errore): void
-    {
-        $this->smarty->assign('errore', $errore);
-        $this->smarty->display('utente/login.tpl');
-    }
 
     /**
      * Mostra la pagina del profilo dell'utente con lo storico delle prenotazioni
@@ -88,23 +80,6 @@ class VUser
         $this->smarty->assign('eventi', $eventi);
         $this->smarty->assign('email_admin', $email);
         $this->smarty->display('utente/home.tpl');
-    }
-
-    /**
-     * Mostra il form di registrazione
-     */
-    public function mostraRegistrazione(): void
-    {
-        $this->smarty->display('utente/registrazione.tpl');
-    }
-
-    /**
-     * Mostra il form di registrazione con errore
-     */
-    public function mostraRegistrazioneConErrore(string $errore): void
-    {
-        $this->smarty->assign('errore', $errore);
-        $this->smarty->display('utente/registrazione.tpl');
     }
 
     public function mostraRiepilogoPrenotazione($prenotazione, $struttura, $periodo, $ospiti, $totale): void
