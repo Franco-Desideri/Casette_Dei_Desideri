@@ -177,46 +177,21 @@ class COrdine
 
     FPersistentManager::get()->flush();
 
-    $admin = FPersistentManager::get()->getRepository(EUtente::class)->findBy(['ruolo' => 'admin']);
+    //Scrittura struttura email
+    $mailData=UEmail::email_ordine($utente, $ordine, $ordineData);
 
-    if (!$admin || count($admin) === 0) {
-        error_log("Errore: nessun amministratore trovato per inviare la mail.");
-        return;
-    }
-
-    $adminEmail = $admin[0]->getEmail();
-
-    // Costruzione contenuto email
-    $contenuto = "Hai ricevuto un nuovo ordine!\n\n";
-    $contenuto .= "Cliente: " . $utente->getNome() . " " . $utente->getCognome() . "\n";
-    $contenuto .= "Email cliente: " . $utente->getEmail() . "\n";
-    $contenuto .= "Fascia oraria di consegna: " . $ordine->getFasciaOraria() . "\n";
-    $contenuto .= "Importo totale: " . number_format($ordine->getPrezzo(), 2) . " €\n";
-    $contenuto .= "Taglio di banconota fornito: " . number_format($ordine->getContanti(), 2) . " €\n\n";
-    $contenuto .= "Prodotti ordinati:\n";
-
-    foreach ($ordineData['prodotti'] as $itemData) {
-    $nome = '';
-    if ($itemData['tipo'] === 'quantita') {
-        $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, $itemData['prodotto_id']);
-    } else {
-        $prodotto = FPersistentManager::get()->find(EProdottoPeso::class, $itemData['prodotto_id']);
-    }
-
-    $nome = $prodotto->getNome();
-    $qta = $itemData['quantita'];
-    $contenuto .= "- {$nome} x{$qta}\n";
-}
-
-
-    $oggetto = "Nuovo ordine da " . $utente->getNome() . " " . $utente->getCognome();
+    if (!empty($mailData)) {
+    $adminEmail = $mailData['adminEmail'];
+    $oggetto = $mailData['oggetto'];
+    $contenuto = $mailData['contenuto'];
 
     // Invio
-    $esito = UEmail::invia($adminEmail, $oggetto, $contenuto, $utente->getEmail());
+    $esito = UEmail::invia($mailData, $utente->getEmail());
 
     if (!$esito) {
         error_log("Errore invio email ordine all'amministratore.");
     }
+}
 
     // Redireziona alla pagina di conferma ordine
     $view = new VOrdine();
