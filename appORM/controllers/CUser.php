@@ -142,8 +142,6 @@ class CUser
 
 
 
-
-
     public function profilo(): void
     {
         USession::start();
@@ -169,7 +167,7 @@ class CUser
             exit;
         }
 
-        $prenotazione = FPersistentManager::get()->find(EPrenotazione::class, $id);
+        $prenotazione = FPersistentManager::find(EPrenotazione::class, $id);
         $utenteId = USession::get('utente_id');
 
         if (!$prenotazione || $prenotazione->getUtente()->getId() !== $utenteId) {
@@ -183,30 +181,14 @@ class CUser
 
     public function home(): void
     {
-        USession::start();
-
-        if (!USession::exists('utente_id')) {
-            header('Location: /Casette_Dei_Desideri/User/login');
-            exit;
-        }
-
-        $utenteId = USession::get('utente_id');
-        $utente = FUtente::getById($utenteId);;
-
-        if (!$utente) {
-            echo "Utente non trovato.";
-            exit;
-        }
-
-        $em = FPersistentManager::get(); 
-
-        $eventi = $em->getRepository(EEvento::class)->findAll();
-        $attrazioni = $em->getRepository(EAttrazione::class)->findAll();
-        $email = $utente->getEmail();
+        $eventi = FPersistentManager::findAll(EEvento::class);
+        $attrazioni = FPersistentManager::findAll(EAttrazione::class);
 
         $view = new VUser();
-        $view->mostraHome($email, $eventi, $attrazioni);
+        $view->mostraHome($eventi, $attrazioni);
     }
+
+
 
     public function modificaEmail(): void
     {
@@ -256,7 +238,7 @@ class CUser
             exit;
         }
 
-        $prenotazione = FPersistentManager::get()->find(EPrenotazione::class, $id);
+        $prenotazione = FPersistentManager::find(EPrenotazione::class, $id);
 
         // Verifica che esista e appartenga all'utente loggato
         if (!$prenotazione || $prenotazione->getUtente()->getId() !== USession::get('utente_id')) {

@@ -63,7 +63,7 @@ class VUser
      * @param array $eventi     Lista di oggetti EEvento
      * @param array $attrazioni Lista di oggetti EAttrazione
      */
-    public function mostraHome(string $email,array $eventi, array $attrazioni): void
+    public function mostraHome(array $eventi, array $attrazioni): void
     {
         foreach ($eventi as $e) {
             if ($e->getImmagine()) {
@@ -78,7 +78,6 @@ class VUser
         }
         $this->smarty->assign('attrazioni', $attrazioni);
         $this->smarty->assign('eventi', $eventi);
-        $this->smarty->assign('email_admin', $email);
         $this->smarty->display('utente/home.tpl');
     }
 
