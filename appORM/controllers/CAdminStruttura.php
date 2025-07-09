@@ -125,25 +125,25 @@ class CAdminStruttura
     /*Metodo per modificare una struttura esistente con verifica di eventuali errori*/
     public function salvaModificata(): void {
         USession::start();
+
         if (USession::get('ruolo') !== 'admin') {
-            echo "<script>alert('Accesso riservato.'); window.location.href = '/Casette_Dei_Desideri/AdminStruttura/lista';</script>";
-            exit;
+            $this->alertAndRedirect("Accesso riservato.", "/Casette_Dei_Desideri/AdminStruttura/lista");
+            return;
         }
 
         $dati = $_POST;
         $struttura = FStruttura::getStrutturaById($dati['id']);
+
         if (!$struttura) {
-            echo "<script>alert('Struttura non trovata.'); window.location.href = '/Casette_Dei_Desideri/AdminStruttura/lista';</script>";
-            exit;
+            $this->alertAndRedirect("Struttura non trovata.", "/Casette_Dei_Desideri/AdminStruttura/lista");
+            return;
         }
 
         $this->popolaStrutturaDaDati($struttura, $dati);
         $idsForm = $dati['intervallo_id'] ?? [];
 
-        $intervalliFinali = []; // array temporaneo per validazione collettiva
-        $mappaEsistenti = [];
-
         // Mappa intervalli esistenti per ID
+        $mappaEsistenti = [];
         foreach ($struttura->getIntervalli() as $esistente) {
             $mappaEsistenti[$esistente->getId()] = $esistente;
         }
@@ -152,12 +152,12 @@ class CAdminStruttura
         foreach ($mappaEsistenti as $id => $int) {
             if (!in_array($id, $idsForm)) {
                 $struttura->removeIntervallo($int);
-                FPersistentManager::get()->remove($int);
+                FIntervallo::eliminaIntervallo($int);
                 unset($mappaEsistenti[$id]);
             }
         }
 
-        // Ricostruisce la lista completa di intervalli da salvare
+        // Gestione intervalli aggiornati o nuovi
         foreach ($dati['intervallo_inizio'] as $i => $inizioStr) {
             $fineStr = $dati['intervallo_fine'][$i];
             $prezzoStr = $dati['intervallo_prezzo'][$i];
@@ -170,49 +170,29 @@ class CAdminStruttura
 
                 if ($idIntervallo && isset($mappaEsistenti[$idIntervallo])) {
                     $intervallo = $mappaEsistenti[$idIntervallo];
-                    $intervallo->setDataI($inizio);
-                    $intervallo->setDataF($fine);
-                    $intervallo->setPrezzo($prezzo);
+                    $esito = FIntervallo::modificaIntervallo($intervallo, $inizio, $fine, $prezzo);
                 } else {
                     $intervallo = new EIntervallo();
+                    $intervallo->setStruttura($struttura);
                     $intervallo->setDataI($inizio);
                     $intervallo->setDataF($fine);
                     $intervallo->setPrezzo($prezzo);
+                    $esito = FIntervallo::creaIntervallo($intervallo);
                 }
 
-                $intervalliFinali[] = $intervallo;
+                if ($esito !== true) {
+                    $id = $struttura->getId();
+                    $this->alertAndRedirect("Errore intervallo: $esito", "/Casette_Dei_Desideri/AdminStruttura/modifica/$id");
+                    return;
+                }
+
+                if (!isset($idIntervallo) || !$struttura->getIntervalli()->contains($intervallo)) {
+                    $struttura->addIntervallo($intervallo);
+                }
             }
         }
 
-        // Validazione collettiva
-        foreach ($intervalliFinali as $intervallo) {
-            $esito = FIntervallo::validaSingoloIntervallo($intervallo);
-            if ($esito !== true) {
-                echo "<script>alert('Errore intervallo: $esito'); window.location.href = '/Casette_Dei_Desideri/AdminStruttura/modifica/" . $struttura->getId() . "';</script>";
-                exit;
-            }
-        }
-
-        $esitoSovrapposizione = FIntervallo::verificaSovrapposizioni($intervalliFinali);
-        if ($esitoSovrapposizione !== true) {
-            echo "<script>alert('Errore: $esitoSovrapposizione'); window.location.href = '/Casette_Dei_Desideri/AdminStruttura/modifica/" . $struttura->getId() . "';</script>";
-            exit;
-        }
-
-        // Aggiunta e salvataggio finale
-        foreach ($intervalliFinali as $intervallo) {
-            $intervallo->setStruttura($struttura);
-
-            // evita duplicati solo se non ha ID o non è già nella collezione
-            if (!isset($intervallo->id) || !$struttura->getIntervalli()->contains($intervallo)) {
-                $struttura->addIntervallo($intervallo);
-            }
-
-            FPersistentManager::store($intervallo);
-        }
-
-
-
+        // Gestione upload immagini
         $this->gestisciUploadFoto($struttura);
 
         // Rimozione foto
@@ -230,6 +210,7 @@ class CAdminStruttura
         FStruttura::salvaStruttura($struttura);
         header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
     }
+
 
 
 
@@ -287,4 +268,14 @@ class CAdminStruttura
         }
     }
 
+    private function alertAndRedirect(string $msg, string $url): void {
+        $safeMsg = addslashes($msg); // Escapa apostrofi, virgolette ecc.
+        echo <<<HTML
+    <script>
+        alert('$safeMsg');
+        window.location.href = '$url';
+    </script>
+    HTML;
+        exit;
+    }
 }
