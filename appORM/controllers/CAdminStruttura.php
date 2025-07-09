@@ -3,6 +3,7 @@
 use App\services\TechnicalServiceLayer\utility\USession;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\services\TechnicalServiceLayer\foundation\FIntervallo;
+use App\services\TechnicalServiceLayer\foundation\FStruttura;
 use App\views\VAdminStruttura;
 use App\models\EStruttura;
 use App\models\EIntervallo;
@@ -108,7 +109,7 @@ class CAdminStruttura
             return;
         }
 
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
+        $struttura = FStruttura::getStrutturaById($id);
         if (!$struttura) {
             echo "Struttura non trovata.";
             return;
@@ -130,7 +131,7 @@ class CAdminStruttura
         }
 
         $dati = $_POST;
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $dati['id']);
+        $struttura = FStruttura::getStrutturaById($dati['id']);
         if (!$struttura) {
             echo "<script>alert('Struttura non trovata.'); window.location.href = '/Casette_Dei_Desideri/AdminStruttura/lista';</script>";
             exit;
@@ -235,7 +236,7 @@ class CAdminStruttura
 
 
 
-    /*Metodo per eliminare una struttura esistente*/
+    /*Metodo per eliminare una strutura (in realtà viene impostato il valore cancellata come true)*/
     public function elimina($id): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
@@ -243,13 +244,14 @@ class CAdminStruttura
             return;
         }
 
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
+        $struttura = FStruttura::getStrutturaById($id);
         if ($struttura) {
             FStruttura::rimuoviStruttura($struttura);
         }
 
         header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
     }
+
 
 
 

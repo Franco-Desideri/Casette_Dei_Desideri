@@ -56,7 +56,7 @@ class CStruttura
             exit;
         }
 
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
+        $struttura = FStruttura::getStrutturaById($id);
 
         if (!$struttura) {
             echo "Struttura non trovata.";

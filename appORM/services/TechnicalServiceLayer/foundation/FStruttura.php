@@ -4,6 +4,7 @@ namespace App\services\TechnicalServiceLayer\foundation;
 
 use App\models\EStruttura;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Foundation per gestione Strutture
@@ -11,19 +12,22 @@ use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 class FStruttura
 {
     /**
-     * Trova una struttura per ID
+     * Trova una struttura per ID, solo se non cancellata
      */
     public static function getStrutturaById(int $id): ?EStruttura
     {
-        return FPersistentManager::find(EStruttura::class, $id);
+        $struttura = FPersistentManager::find(EStruttura::class, $id);
+        return ($struttura !== null && !$struttura->isCancellata()) ? $struttura : null;
     }
 
     /**
-     * Restituisce tutte le strutture
+     * Restituisce tutte le strutture non cancellate
      */
     public static function getTutteStrutture(): array
     {
-        return FPersistentManager::findAll(EStruttura::class);
+        return FPersistentManager::getEntityManager()
+            ->getRepository(EStruttura::class)
+            ->findBy(['cancellata' => false]);
     }
 
     /**
@@ -35,10 +39,12 @@ class FStruttura
     }
 
     /**
-     * Rimuove una struttura
+     * Soft-delete: marca la struttura come cancellata
      */
     public static function rimuoviStruttura(EStruttura $struttura): void
     {
-        FPersistentManager::delete($struttura);
+        $struttura->setCancellata(true);
+        FPersistentManager::store($struttura);
     }
 }
+
