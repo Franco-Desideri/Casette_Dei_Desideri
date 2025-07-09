@@ -26,7 +26,6 @@
         {if isset($prodotto)}Modifica prodotto a pezzi{else}Aggiungi nuovo prodotto a pezzi{/if}
     </h2>
 
-    {* 👇 AGGIUNTA enctype per permettere upload immagini *}
     <form method="post" action="/Casette_Dei_Desideri/AdminProdotto/{if isset($prodotto)}salvaModifica{else}salva{/if}" enctype="multipart/form-data" class="admin-form-container">
         <input type="hidden" name="tipo" value="quantita">
         {if isset($prodotto)}
@@ -60,7 +59,6 @@
             </select>
         </div>
 
-        {* 👇 CAMBIATO campo immagine: da URL a file upload *}
         <div class="form-group-item">
             <label for="foto">Immagine del prodotto:</label>
             <input type="file" id="foto" name="foto" accept="image/*" {if !isset($prodotto)}required{/if}>

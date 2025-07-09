@@ -1,6 +1,6 @@
-/* === style.css === */
+/* === style1.css === */
 
-/* --- Variabili Colori (Toni di Verde) --- */
+/* --- Variabili Colori --- */
 :root {
     --primary-color: #4CAF50; /* Verde brillante, il colore principale */
     --primary-dark: #388E3C; /* Verde più scuro per hover */
@@ -10,12 +10,10 @@
     --border-color: #ddd;
     --background-light: #f7f7f7; /* Sfondo generale chiaro */
     --background-white: #ffffff;
-    --shadow-light: rgba(0,0,0,0.08); /* Ombra più definita */
+    --shadow-light: rgba(0,0,0,0.08); 
     --shadow-medium: rgba(0,0,0,0.15);
 }
 
-
-/* Reset base */
 * {
     margin: 0;
     padding: 0;
@@ -23,7 +21,7 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif; /* Pulito e leggibile per il corpo del testo */
+    font-family: 'Roboto', sans-serif; 
     background-color: var(--background-light);
     color: var(--text-color);
     line-height: 1.6;
@@ -36,8 +34,8 @@ body {
 /* === Header === */
 header.site-header {
     background-color: var(--background-white);
-    padding: 15px 0; /* Padding verticale */
-    box-shadow: 0 4px 10px var(--shadow-light); /* Ombra più pronunciata */
+    padding: 15px 0; 
+    box-shadow: 0 4px 10px var(--shadow-light); 
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -45,18 +43,18 @@ header.site-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Permette al contenuto di andare a capo su schermi piccoli */
+    flex-wrap: wrap; 
 }
 
 .site-title {
     margin: 0;
-    font-family: 'Playfair Display', serif; /* Font più elegante come nell'esempio VILLA */
-    font-size: 38px; /* Dimensione maggiore per il titolo */
-    font-weight: 700; /* Bold per il titolo */
+    font-family: 'Playfair Display', serif; 
+    font-size: 38px; 
+    font-weight: 700; 
 }
 
 .site-title a {
-    color: var(--primary-color); /* Colore del titolo principale verde */
+    color: var(--primary-color); 
     text-decoration: none;
     transition: color 0.3s ease;
 }
@@ -66,7 +64,7 @@ header.site-header .container {
 }
 
 nav.main-nav { /* Contenitore della navigazione */
-    margin-left: auto; /* Spinge la navigazione a destra */
+    margin-left: auto; 
 }
 
 nav.main-nav ul {
@@ -80,8 +78,8 @@ nav.main-nav a.nav-item {
     color: var(--light-text-color);
     text-decoration: none;
     font-weight: 500;
-    font-size: 18px; /* Leggermente più grande */
-    padding: 8px 0; /* Solo padding verticale */
+    font-size: 18px; 
+    padding: 8px 0; 
     position: relative;
     transition: color 0.3s ease;
 }
@@ -108,27 +106,27 @@ nav.main-nav a.nav-item.active::after {
 }
 
 nav.main-nav a.nav-item.active {
-    color: var(--primary-color); /* Colore verde per la pagina attiva */
+    color: var(--primary-color); 
     font-weight: 700;
 }
 
 
-/* === Hero Section === */
+
 .hero-section {
     position: relative;
     text-align: center;
     color: white;
-    margin-bottom: 3rem; /* Margine inferiore */
-    overflow: hidden; /* Assicura che nulla esca dai bordi */
-    background-color: #333; /* Sfondo di fallback */
+    margin-bottom: 3rem; 
+    overflow: hidden; 
+    background-color: #333; 
 }
 
 .hero-image {
     width: 100%;
-    height: 450px; /* Altezza maggiore per la hero */
+    height: 450px; 
     object-fit: cover;
-    filter: brightness(55%); /* Leggermente più scuro per risaltare il testo */
-    display: block; /* Rimuove lo spazio extra sotto l'immagine */
+    filter: brightness(55%); 
+    display: block; 
 }
 
 .hero-overlay {
@@ -137,50 +135,50 @@ nav.main-nav a.nav-item.active {
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 1.5rem 2rem;
-    max-width: 800px; /* Limita la larghezza del testo overlay */
-    width: 90%; /* Adatta su mobile */
+    max-width: 800px; 
+    width: 90%; 
 }
 
 .hero-overlay h2 {
-    font-family: 'Playfair Display', serif; /* Font del titolo per la hero */
-    font-size: 4rem; /* Dimensione molto maggiore per impatto */
+    font-family: 'Playfair Display', serif; 
+    font-size: 4rem; 
     margin-bottom: 0.8rem;
     line-height: 1.2;
-    text-shadow: 2px 2px 5px rgba(0,0,0,0.4); /* Ombra per leggibilità */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.4); 
 }
 
 .hero-overlay p {
-    font-size: 1.6rem; /* Dimensione maggiore */
+    font-size: 1.6rem; 
     font-weight: 300;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 }
 
-/* === Intro Text === */
+
 .intro-text {
     text-align: center;
     margin: 3rem auto 2rem auto;
     max-width: 800px;
-    font-size: 1.2rem; /* Leggermente più grande */
+    font-size: 1.2rem; 
     color: var(--light-text-color);
     line-height: 1.8;
-    padding: 0 20px; /* Padding laterale */
+    padding: 0 20px; 
 }
 
-/* === Main Content Area === */
-main { /* Solo il tag main, non la classe container */
+
+main { 
     flex-grow: 1;
 }
-/* La classe container applicherà la larghezza massima e il padding */
+
 main.container {
-    padding: 40px 20px; /* padding se main ha anche la classe container */
+    padding: 40px 20px; 
 }
 
 
 /* === Sezioni Prodotti e Fascia Oraria === */
 .section-title { /* Titolo principale della pagina, es. "Servizio Spesa in Struttura" */
-    text-align: center; /* Centrato come nell'esempio VILLA */
+    text-align: center; 
     margin: 40px 0 30px 0;
-    font-size: 40px; /* Grande come nell'esempio */
+    font-size: 40px; 
     font-family: 'Playfair Display', serif;
     color: var(--text-color);
     padding-bottom: 15px;
@@ -193,23 +191,23 @@ main.container {
     left: 50%;
     transform: translateX(-50%);
     bottom: 0;
-    width: 80px; /* Larghezza linea */
-    height: 3px; /* Spessore linea */
+    width: 80px; 
+    height: 3px; 
     background-color: var(--primary-color);
     border-radius: 2px;
 }
 
 .section-subtitle { /* Sottotitoli delle categorie di prodotto */
     font-family: 'Roboto', sans-serif;
-    font-size: 28px; /* Leggermente più grande */
+    font-size: 28px; 
     color: var(--text-color);
-    margin-top: 50px; /* Spazio maggiore sopra */
+    margin-top: 50px; 
     margin-bottom: 25px;
-    text-align: center; /* Centrato */
+    text-align: center; 
     position: relative;
 }
 
-.section-subtitle::after { /* Sottolineatura soft per sottotitoli */
+.section-subtitle::after { 
     content: '';
     position: absolute;
     left: 50%;
@@ -230,7 +228,7 @@ main.container {
     padding: 15px;
     background-color: #f0f0f0;
     border-left: 5px solid var(--primary-color);
-    margin: 20px auto; /* Centrato e con margine */
+    margin: 20px auto; 
     max-width: 600px;
     border-radius: 5px;
     text-align: center;
@@ -239,52 +237,38 @@ main.container {
 
 /* Stili per la sezione che contiene la lista dei prodotti */
 .product-list {
-    display: grid; /* Abilita il layout a griglia */
-    /* Definisci come devono comportarsi le colonne:
-       - repeat(auto-fill, minmax(280px, 1fr)) creerà automaticamente
-         il numero di colonne che entrano, con una larghezza minima di 280px
-         e che si espandono per riempire lo spazio disponibile.
-       - Puoi regolare 280px in base alla larghezza ideale delle tue card. */
+    display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    
-    gap: 20px; /* Questo è il valore chiave: riduce lo spazio tra le card (sia orizzontale che verticale) */
-    
-    justify-content: center; /* Centra le card all'interno del contenitore se non riempiono completamente la riga */
-    align-items: stretch; /* Le card si estendono per occupare l'altezza disponibile nella riga */
-
-    padding: 20px 0; /* Aggiungi un po' di padding alla sezione per non far attaccare le card ai bordi del "container" */
-    margin-bottom: 40px; /* Spazio sotto la sezione dei prodotti, se necessario */
+    gap: 20px; 
+    justify-content: center; 
+    align-items: stretch; 
+    padding: 20px 0; 
+    margin-bottom: 40px; 
 }
 
-/* Assicurati che le card abbiano una larghezza massima per evitare che diventino troppo grandi */
 .product-card {
-    /* Assicurati che la larghezza massima della card sia impostata per funzionare bene con minmax */
-    max-width: 300px; /* Un po' più grande del minmax per dare un limite superiore */
-    width: 100%; /* La card occupa tutta la larghezza disponibile nella sua colonna */
+    max-width: 300px; 
+    width: 100%; 
     
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    /* Rimuovi eventuali margin-left/right/bottom espliciti se li avevi per la spaziatura */
-    margin: 0 auto; /* Centra la singola card se la sua colonna è più grande della max-width */
+    margin: 0 auto; 
 }
 
-/* Il resto dei tuoi stili per .product-image, .product-details, ecc. rimangono invariati */
+
 
 .product-card:hover {
-    transform: translateY(-8px); /* Solleva di più */
-    box-shadow: 0 10px 30px var(--shadow-medium); /* Ombra più intensa al hover */
+    transform: translateY(-8px); 
+    box-shadow: 0 10px 30px var(--shadow-medium); 
 }
 
 .product-image {
     width: 100%;
-    /* Aumenta l'altezza finché non vedi tutta la scatola */
-    height: 220px; /* Prova con 150px, poi 180px se non basta */
+    height: 220px; 
     object-fit: cover;
-    /* Puoi mantenere 'center' o 'center top' o 'center bottom' se senti che l'immagine
-       è un po' sbilanciata, ma l'aumento di altezza è la priorità. */
-    object-position: center; /* Inizialmente prova con center */
+    object-position: center; 
     border-radius: 10px 10px 0 0;
     margin-bottom: 10px;
 }
@@ -299,11 +283,11 @@ main.container {
 }
 
 .product-name {
-    font-size: 1.1rem; /* Dimensione maggiore */
+    font-size: 1.1rem; 
     font-weight: 700;
     color: var(--text-color);
     margin-bottom: 6px;
-    min-height: 40px; /* Altezza minima per nomi su più righe */
+    min-height: 40px; 
 }
 
 .product-description {
@@ -313,14 +297,14 @@ main.container {
     flex-grow: 1;
 }
 
-.product-price, .product-price-per-unit { /* Stili unificati per i prezzi */
+.product-price, .product-price-per-unit { 
     font-size: 1.1rem;
     font-weight: bold;
-    color: var(--primary-color); /* Prezzo in verde */
+    color: var(--primary-color); 
     margin-bottom: 10px;
 }
 
-/* === Quantity/Weight Control === */
+
 .quantity-control, .weight-input-group {
     display: flex;
     align-items: center;
@@ -334,22 +318,22 @@ main.container {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    width: 32px; /* Dimensione aumentata */
-    height: 32px; /* Dimensione aumentata */
+    width: 32px; 
+    height: 32px; 
     border-radius: 50%;
-    font-size: 1.2rem; /* Dimensione del testo per +/- */
-    line-height: 1; /* Allineamento testo */
+    font-size: 1.2rem; 
+    line-height: 1; 
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: background-color 0.2s ease, transform 0.1s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Ombra leggera sui bottoni */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
 }
 
 .qty-btn:hover {
     background-color: var(--primary-dark);
-    transform: scale(1.05); /* Piccolo ingrandimento al hover */
+    transform: scale(1.05); 
 }
 .qty-btn:active {
     transform: scale(0.9);
@@ -357,26 +341,26 @@ main.container {
 }
 
 .product-quantity-input, .product-weight-input {
-    width: 55px; /* Larghezza maggiore */
+    width: 55px; 
     text-align: center;
-    padding: 6px 4px; /* Aumentato padding */
+    padding: 6px 4px; 
     border: 1px solid var(--border-color);
-    border-radius: 6px; /* Più arrotondati */
-    font-size: 1rem; /* Dimensione testo input */
+    border-radius: 6px; 
+    font-size: 1rem; 
     color: var(--text-color);
-    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* Ombra interna soft */
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); 
 }
 
 .product-weight-input + span {
     font-size: 0.95rem;
     color: var(--light-text-color);
-    margin-left: 4px; /* Sposta "Grammi" un po' più a destra */
+    margin-left: 4px; 
 }
 
 
 /* === Delivery Time Selection / Order Form === */
 .delivery-time-section {
-    margin: 50px auto; /* Spazio e centrato */
+    margin: 50px auto; 
     max-width: 600px;
     text-align: center;
 }
@@ -386,7 +370,7 @@ main.container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px; /* Spazio tra label e select/input */
+    gap: 10px; 
 }
 
 .form-group label {
@@ -465,21 +449,21 @@ main.container {
 .main-button {
     background-color: var(--primary-color);
     color: white;
-    padding: 16px 32px; /* Aumentato padding per un bottone più imponente */
-    font-size: 1.2rem; /* Testo più grande */
+    padding: 16px 32px; 
+    font-size: 1.2rem; 
     border: none;
-    border-radius: 10px; /* Angoli più arrotondati */
+    border-radius: 10px; 
     cursor: pointer;
-    font-weight: 700; /* Più bold */
-    letter-spacing: 0.5px; /* Spaziatura leggera per il testo */
-    text-transform: uppercase; /* Testo maiuscolo */
+    font-weight: 700; 
+    letter-spacing: 0.5px; 
+    text-transform: uppercase; 
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3); /* Ombra verde più accentuata */
+    box-shadow: 0 6px 15px rgba(76, 175, 80, 0.3); 
 }
 
 .main-button:hover {
     background-color: var(--primary-dark);
-    transform: translateY(-3px); /* Effetto di sollevamento più evidente */
+    transform: translateY(-3px); 
     box-shadow: 0 9px 20px rgba(76, 175, 80, 0.4);
 }
 
@@ -492,10 +476,10 @@ main.container {
 
 /* === Footer === */
 footer.site-footer {
-    background-color: #222; /* Grigio molto scuro */
-    color: #bbb; /* Testo grigio chiaro */
+    background-color: #222; 
+    color: #bbb; 
     text-align: center;
-    padding: 30px 0; /* Aumentato il padding */
+    padding: 30px 0; 
     font-size: 0.95rem;
     margin-top: auto;
 }
@@ -504,8 +488,8 @@ footer.site-footer p {
     margin: 0;
 }
 
-/* === Media Queries per la responsività === */
-@media (max-width: 992px) { /* Tablet orizzontale */
+
+@media (max-width: 992px) { 
     .site-title {
         font-size: 32px;
     }
@@ -532,15 +516,15 @@ footer.site-footer p {
     }
 }
 
-@media (max-width: 768px) { /* Tablet verticale / Mobile orizzontale */
+@media (max-width: 768px) { 
     header.site-header .container {
-        flex-direction: column; /* Impila header e nav */
+        flex-direction: column; 
         text-align: center;
-        gap: 15px; /* Spazio tra titolo e nav */
+        gap: 15px; 
     }
     nav.main-nav {
-        margin-left: 0; /* Rimuovi auto-margin */
-        width: 100%; /* Occupare tutta la larghezza */
+        margin-left: 0; 
+        width: 100%; 
     }
     nav.main-nav ul {
         flex-direction: column; /* Impila la navigazione */
@@ -609,7 +593,7 @@ footer.site-footer p {
     }
 }
 
-@media (max-width: 480px) { /* Mobile */
+@media (max-width: 480px) { 
     .site-title {
         font-size: 28px;
     }
@@ -632,11 +616,11 @@ footer.site-footer p {
         font-size: 20px;
     }
     .product-list {
-        grid-template-columns: 1fr; /* Una colonna su mobile stretto */
+        grid-template-columns: 1fr; 
         padding: 0 15px;
     }
     .product-card {
-        max-width: 280px; /* Ancora più stretto */
+        max-width: 280px; 
     }
     .product-image {
         height: 150px;
@@ -647,18 +631,18 @@ footer.site-footer p {
     }
 }
 
-/* === Admin Specific Styles === */
+/* === Stili specifici admin === */
 
-/* General Admin Container - similar to main.container but for admin sections */
+
 .admin-content-container {
     padding: 30px 20px;
     margin: 20px auto;
-    max-width: 1000px; /* Max width for admin content */
+    max-width: 1000px; 
     overflow: visible;
     overflow: auto;
 }
 
-/* Admin Page Titles */
+
 .admin-page-title {
     font-family: 'Playfair Display', serif;
     font-size: 32px;
@@ -681,7 +665,7 @@ footer.site-footer p {
     border-radius: 2px;
 }
 
-/* Admin Section Titles */
+
 .admin-section-title {
     font-family: 'Roboto', sans-serif;
     font-size: 24px;
@@ -692,7 +676,7 @@ footer.site-footer p {
     border-bottom: 1px solid var(--border-color);
 }
 
-/* Action Buttons (e.g., "Aggiungi Prodotto") */
+/* Bottoni di azione(es. aggiungi prodotto) */
 .admin-action-links {
     text-align: center;
     margin-bottom: 30px;
@@ -717,7 +701,7 @@ footer.site-footer p {
     box-shadow: 0 5px 12px rgba(0,0,0,0.3);
 }
 
-/* List of products/items (ul/li styles) */
+/* Lista di prodotti*/
 .admin-item-list {
     list-style: none;
     padding: 0;
@@ -739,12 +723,12 @@ footer.site-footer p {
 .admin-item-list li strong {
     font-size: 1.1rem;
     color: var(--text-color);
-    flex-basis: 100%; /* Take full width on small screens */
+    flex-basis: 100%; 
     margin-bottom: 5px;
 }
 
 .admin-item-list li img {
-    width: 80px; /* Reduced image size for lists */
+    width: 80px; 
     height: 80px;
     object-fit: cover;
     border-radius: 4px;
@@ -752,10 +736,10 @@ footer.site-footer p {
 }
 
 .admin-item-details {
-    flex-grow: 1; /* Allow details to take available space */
+    flex-grow: 1; 
 }
 
-/*button edit-delete Servizi*/
+
 /* Pulsante Modifica */
 .btn-edit {
   display: inline-block;
@@ -800,7 +784,7 @@ footer.site-footer p {
 .admin-item-actions {
     display: flex;
     gap: 10px;
-    margin-top: 10px; /* Space between details and actions on smaller screens */
+    margin-top: 10px; 
 }
 
 .admin-item-actions a {
@@ -814,7 +798,7 @@ footer.site-footer p {
     color: var(--primary-dark);
 }
 
-/* No products message */
+/* Messaggio per assenza di prodotti */
 .admin-no-items-message {
     color: #777;
     font-style: italic;
@@ -826,14 +810,13 @@ footer.site-footer p {
     text-align: center;
 }
 
-/* Responsive adjustments for admin lists */
 @media (max-width: 600px) {
     .admin-item-list li {
         flex-direction: column;
         align-items: flex-start;
     }
     .admin-item-actions {
-        width: 100%; /* Actions take full width */
+        width: 100%; 
         justify-content: flex-start;
     }
 }
@@ -888,43 +871,31 @@ footer.site-footer p {
 
 .order-summary-table tfoot td:first-child {
     text-align: right; /* Allinea a destra "Totale Ordine" */
-    padding-right: 15px; /* Aggiungi un po' di spazio */
+    padding-right: 15px; 
 }
 
-/* === Stili per la Tabella di Riepilogo Ordine (modifiche) === */
 
-/* Colore nero e dimensione per il Totale Ordine */
 .order-summary-table .total-amount {
-    color: var(--text-color); /* Imposta il colore del testo a nero (o la tua variabile per il testo nero) */
-    font-size: 1.5em; /* Mantieni la dimensione del font per maggiore visibilità */
-    font-weight: 800; /* Rendi il testo più spesso (bold) */
+    color: var(--text-color); 
+    font-size: 1.5em; 
+    font-weight: 800; 
 }
 
-/* Rimuovi o Commenta le regole per .payment-section se non vuoi il riquadro */
-/* .payment-section {
-    padding: 20px 30px;
-    background-color: var(--background-white);
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    margin-top: 30px;
-    text-align: center;
-} */
-/* Assicurati che non ci siano altre regole che ricreano un riquadro per il contenuto di questa sezione. */
 
 
-/* Stili per il pulsante "Ordina" (ripristina lo stile main-button) */
-.main-button { /* Se riutilizzi la classe main-button direttamente */
+/* Stili per il pulsante "Ordina"  */
+.main-button { 
     background-color: var(--primary-color);
     color: white;
-    padding: 15px 30px; /* Padding più generoso */
-    font-size: 1.2rem; /* Dimensione del font più grande */
+    padding: 15px 30px; 
+    font-size: 1.2rem; 
     font-weight: 600;
     border: none;
     border-radius: 10px;
     cursor: pointer;
     text-decoration: none;
     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); /* Aggiungi l'ombra */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .main-button:hover {
@@ -933,50 +904,14 @@ footer.site-footer p {
     box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 }
 
-/* Stili per la select (puoi mantenerli così o modificarli ulteriormente se non ti piacciono) */
-.payment-section label { /* Ho spostato la label fuori dalla .payment-section nel template, quindi potresti voler rimuovere .payment-section da qui se la sezione scompare */
-    font-size: 1.1em;
-    color: var(--text-color);
-    margin-bottom: 10px;
-    font-weight: 600;
-}
 
-.payment-select {
-    padding: 12px 20px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    font-size: 1.1rem;
-    color: var(--text-color);
-    background-color: var(--background-light);
-    cursor: pointer;
-    width: 100%;
-    max-width: 300px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23000%22%20d%3D%22M287%2C197.971L146.202%2C57.173L5.404%2C197.971h281.592z%22%2F%3E%3C%2Fsvg%3E');
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 12px;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
 
-.payment-select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
-}
-
-/* Rimuovi il padding dal pulsante se vuoi che sia più aderente alla select */
 .payment-button {
-    padding: 12px 25px; /* Riduci leggermente il padding del bottone */
-    font-size: 1.1rem; /* Riduci leggermente la dimensione del font del bottone */
-    margin-top: 20px; /* Spazio tra select e bottone */
+    padding: 12px 25px; 
+    font-size: 1.1rem; 
+    margin-top: 20px; 
 }
 
-/* Se vuoi un riquadro per la sezione di pagamento ancora più piccolo, puoi:
-   - ridurre ulteriormente il padding in .payment-section
-   - impostare un max-width più stretto e centrarlo */
 
 .payment-button:hover {
     background-color: var(--primary-dark);
@@ -1015,7 +950,7 @@ footer.site-footer p {
     font-size: 1.1rem;
     color: var(--text-color);
     font-weight: 600;
-    margin-bottom: 8px; /* Spazio sotto la label */
+    margin-bottom: 8px; 
 }
 
 .admin-form-container input[type="text"],
@@ -1038,16 +973,16 @@ footer.site-footer p {
 .admin-form-container textarea:focus {
     border-color: var(--primary-color);
     outline: none;
-    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2); /* Alone verde al focus */
+    box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.2); 
 }
 
 .admin-form-container .form-group-item { /* Per raggruppare label e input */
-    margin-bottom: 15px; /* Spazio tra i campi del form */
+    margin-bottom: 15px; 
 }
 
-/* Specific button for forms */
+
 .admin-form-button {
-  background-color: #000000; /* colore personalizzato */
+  background-color: #000000; 
   color: #fff;
   border: none;
   padding: 15px 75px;
@@ -1062,8 +997,7 @@ footer.site-footer p {
    color: #fff; /* colore al passaggio del mouse */
 }
 
-
-/* Adjustments for responsive forms */
+/*css per le form dell'admin*/
 @media (max-width: 480px) {
     .admin-form-container {
         padding: 20px;
@@ -1089,41 +1023,29 @@ footer.site-footer p {
 /* Stili per la Pagina di Conferma Ordine */
 
 .confirmation-page-wrapper {
-    display: flex; /* Rendi il contenitore un flex container */
-    justify-content: center; /* Centra orizzontalmente i suoi elementi figli */
-    align-items: center; /* Centra verticalmente i suoi elementi figli */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
     min-height: calc(100vh - var(--header-height) - var(--footer-height)); /* Occupa l'altezza disponibile */
-    padding: 50px 20px; /* Padding su tutti i lati per schermi piccoli */
+    padding: 50px 20px; 
     background-color: #f8f8f8; /* Mantiene lo sfondo leggermente grigio della pagina */
     width: 100%;
-    /* Non è necessario rimuovere nulla qui */
 }
 
-/* Rimuovi completamente o commenta il blocco .popup-confirmation se non vuoi un riquadro */
-/* MODIFICA: Per rimuovere il riquadro, devi rimuovere gli stili che lo creano */
-/* Se vuoi che solo il contenuto sia centrato, puoi applicare gli stili direttamente al wrapper o mantenere solo text-align */
+
 .popup-confirmation {
-    /* Rimuovi i seguenti stili per eliminare il riquadro bianco, ombra e bordi arrotondati */
-    /* background-color: #fff; */
-    /* border-radius: 10px; */
-    /* box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); */
 
-    padding: 0; /* Rimuovi il padding interno se non vuoi spaziatura extra intorno al testo */
-    text-align: center; /* MANTIENI: Questo centra il testo e il bottone all'interno del popup */
-    max-width: 500px; /* MANTIENI: Limita la larghezza del blocco di testo per una migliore leggibilità */
-    width: 100%; /* MANTIENI: Per farlo funzionare con max-width e responsive */
-
-    /* Puoi rimuovere questi margini se il centramento con flexbox fa il suo lavoro */
-    /* margin-bottom: 50px; */
-    /* margin-left: auto; */
-    /* margin-right: auto; */
+    padding: 0; 
+    text-align: center; 
+    max-width: 500px; 
+    width: 100%; 
 }
 
-/* Mantieni gli stili per H2 e P, ma assicurati che usino il colore verde desiderato */
+/* Mantiene gli stili per H2 e P */
 .popup-confirmation h2 {
     font-size: 36px;
     font-weight: 700;
-    color: var(--primary-color); /* Utilizza il verde primario */
+    color: var(--primary-color); 
     margin-bottom: 20px;
 }
 
@@ -1152,14 +1074,14 @@ footer.site-footer p {
 
 /* Stili per la label sopra l'input */
 .cash-payment-form-card label {
-    font-size: 22px; /* Dimensione del font per la label */
+    font-size: 22px; 
     color: var(--dark-color);
     line-height: 1.5;
     margin-bottom: 20px;
     display: block;
 }
 
-/* Stili per l'input numerico (cash-amount-input) */
+/* Stili per l'input numerico dei soldi */
 .cash-amount-input {
     width: 280px;
     height: 45px;
@@ -1182,7 +1104,7 @@ footer.site-footer p {
     background-position: initial;
     background-size: initial;
 
-    /* Aggiungi questa linea per l'ombra! */
+    /* linea per l'ombra! */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombra leggera */
 
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -1191,7 +1113,6 @@ footer.site-footer p {
 .cash-amount-input:focus {
     outline: none;
     border-color: var(--primary-color);
-    /* Mantieni l'ombra al focus più pronunciata, ma potresti volerla leggermente più forte rispetto a quella normale */
     box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.25), 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -1201,6 +1122,7 @@ body, h1, h2, h3, h4, h5, h6, p, .hero-title, .hero-subtitle, .story-text, .card
   font-family: 'Poppins', sans-serif;
 }
 
+/*css per l'alert*/
 .alert-custom {
   padding: 15px;
   background-color: #f44336;
