@@ -1,26 +1,28 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-09 22:09:13
+/* Smarty version 5.5.1, created on 2025-07-10 17:03:44
   from 'file:utente/riepilogo_prenotazione.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686ecc69202620_76550158',
+  'unifunc' => 'content_686fd650265081_72561196',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4d10e83d6c0f2203832fc28d336c5f7a772517c1' => 
     array (
       0 => 'utente/riepilogo_prenotazione.tpl',
-      1 => 1751711045,
+      1 => 1752139402,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
+    'file:partials/appbar_template.tpl' => 1,
+    'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686ecc69202620_76550158 (\Smarty\Template $_smarty_tpl) {
+function content_686fd650265081_72561196 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -47,78 +49,13 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
     <!-- Flatpickr CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-
-    
-<!--
-https://templatemo.com/tm-591-villa-agency
-
--->
   </head>
 
 <body>
 
-  <!-- ***** Preloader Start ***** -->
-  <div id="js-preloader" class="js-preloader">
-    <div class="preloader-inner">
-      <span class="dot"></span>
-      <div class="dots">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-  </div>
-  <!-- ***** Preloader End ***** -->
-
-  <div class="sub-header">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-8">
-          <ul class="info">
-            <li><i class="fa fa-envelope"></i> CasetteDeiDesideri@gmail.com</li>
-            <li><i class="fa-solid fa-location-dot"></i> Poggio Bustone, RI 057051</li>
-          </ul>
-        </div>
-        <div class="col-lg-4 col-md-4">
-          <ul class="social-links">
-            <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-            <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ***** Header Area Start ***** -->
-  <header class="header-area header-sticky">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <nav class="main-nav">
-                    <!-- ***** Logo Start ***** -->
-                    <a href="/Casette_Dei_Desideri/User/home" class="logo" style="white-space: nowrap;">
-                        <h1>Cassette Dei Desideri</h1>
-                    </a>
-                    <!-- ***** Logo End ***** -->
-                    <!-- ***** Menu Start ***** -->
-                    <ul class="nav">
-                      <li><a href="/Casette_Dei_Desideri/User/home">Home</a></li>
-                      <li><a href="/Casette_Dei_Desideri/Struttura/lista"class="active">Strutture</a></li>
-                      <li><a href="contact.html">Contatti</a></li>
-                  </ul>   
-                    <a class='menu-trigger'>
-                        <span>Menu</span>
-                    </a>
-                    <!-- ***** Menu End ***** -->
-                </nav>
-            </div>
-        </div>
-    </div>
-  </header>
-  <!-- ***** Header Area End ***** -->
-
+  <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_template.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>
+  
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
@@ -279,13 +216,8 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
 </div>
 
 
-  <footer class="footer-no-gap">
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2025 Casette Dei Desideri. 
-      </div>
-    </div>
-  </footer>
+  <?php $_smarty_tpl->renderSubTemplate("file:partials/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?> 
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

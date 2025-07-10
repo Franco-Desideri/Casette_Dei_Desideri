@@ -220,7 +220,6 @@ class CUser
 
         $prenotazione = FPersistentManager::find(EPrenotazione::class, $id);
 
-        // Verifica che esista e appartenga all'utente loggato
         if (!$prenotazione || $prenotazione->getUtente()->getId() !== USession::get('utente_id')) {
             header('HTTP/1.1 403 Forbidden');
             echo "Prenotazione non trovata o accesso non autorizzato.";
@@ -232,20 +231,47 @@ class CUser
         $ospiti = $prenotazione->getOspitiDettagli();
         $totale = $prenotazione->getPrezzo();
 
-        // Immagine struttura in base64
         $struttura->base64img = $struttura->getImmaginePrincipaleBase64();
 
-        $ruolo = USession::get('ruolo');
+        // Converti EOspite in array associativi per Smarty
+        $ospitiArray = [];
 
+        foreach ($ospiti as $ospite) {
+            $documento = $ospite->getDocumento();
+            $docContent = null;
+
+            if ($documento) {
+                $docContent = is_resource($documento)
+                    ? stream_get_contents($documento)
+                    : $documento;
+            }
+
+            $ospitiArray[] = [
+                'nome' => $ospite->getNome(),
+                'cognome' => $ospite->getCognome(),
+                'tell' => $ospite->getTell(),
+                'codiceFiscale' => $ospite->getCodiceF(),
+                'sesso' => $ospite->getSesso(),
+                'dataNascita' => $ospite->getDataN()->format('d/m/Y'),
+                'luogoNascita' => $ospite->getLuogoN(),
+                'documento_base64' => $docContent ? base64_encode($docContent) : null,
+                'documento_mime' => $ospite->getDocumentoMime(),
+                'documento_ext' => $ospite->getDocumentoExt()
+            ];
+        }
+
+        $ruolo = USession::get('ruolo');
 
         $view = new VUser();
         $view->mostraRiepilogoPrenotazione(
             $prenotazione,
             $struttura,
             $periodo,
-            $ospiti,
+            $ospitiArray,  // array associativo compatibile con Smarty
             $totale,
             $ruolo
         );
     }
+
+
 }

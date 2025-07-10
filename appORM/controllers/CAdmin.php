@@ -25,7 +25,6 @@ class CAdmin
         $view->mostraProfilo($admin, $prenotazioni);
     }
 
-
     public function riepilogo(int $id): void
     {
         USession::start();
@@ -42,20 +41,46 @@ class CAdmin
         $ospiti = $prenotazione->getOspitiDettagli();
         $totale = $prenotazione->getPrezzo();
 
-        // Immagine struttura in base64
         $struttura->base64img = $struttura->getImmaginePrincipaleBase64();
 
-        $ruolo = USession::get('ruolo');
+        // Converti gli ospiti in array compatibili con Smarty
+        $ospitiArray = [];
 
+        foreach ($ospiti as $ospite) {
+            $documento = $ospite->getDocumento();
+            $docContent = null;
+
+            if ($documento) {
+                $docContent = is_resource($documento)
+                    ? stream_get_contents($documento)
+                    : $documento;
+            }
+
+            $ospitiArray[] = [
+                'nome' => $ospite->getNome(),
+                'cognome' => $ospite->getCognome(),
+                'tell' => $ospite->getTell(),
+                'codiceFiscale' => $ospite->getCodiceF(),
+                'sesso' => $ospite->getSesso(),
+                'dataNascita' => $ospite->getDataN()->format('d/m/Y'),
+                'luogoNascita' => $ospite->getLuogoN(),
+                'documento_base64' => $docContent ? base64_encode($docContent) : null,
+                'documento_mime' => $ospite->getDocumentoMime(),
+                'documento_ext' => $ospite->getDocumentoExt()
+            ];
+        }
+
+        $ruolo = USession::get('ruolo');
 
         $view = new VAdmin();
         $view->mostraRiepilogoPrenotazione(
             $prenotazione,
             $struttura,
             $periodo,
-            $ospiti,
+            $ospitiArray, // array associativi per compatibilità Smarty
             $totale,
             $ruolo
         );
     }
+
 }

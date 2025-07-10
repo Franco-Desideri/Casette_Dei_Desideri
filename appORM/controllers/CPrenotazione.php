@@ -295,7 +295,12 @@ class CPrenotazione
             $ospite->setSesso($ospiteData['sesso']);
             $ospite->setDataN(new DateTime($ospiteData['dataNascita']));
             $ospite->setLuogoN($ospiteData['luogoNascita']);
-            $prenotazione->addOspite($ospite);
+            if (isset($ospiteData['documento_mime'])) {
+                $ospite->setDocumentoMime($ospiteData['documento_mime']);
+            }
+            if (isset($ospiteData['documento_ext'])) {
+                $ospite->setDocumentoExt($ospiteData['documento_ext']);
+            }
 
             $prenotazione->addOspite($ospite);
         }

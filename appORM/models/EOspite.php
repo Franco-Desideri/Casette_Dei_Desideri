@@ -41,6 +41,13 @@ class EOspite
     /** @ORM\Column(type="string", length=100) */
     private string $luogoN;
 
+    /** @ORM\Column(type="string", nullable=true) */
+    private ?string $documentoMime = null;
+
+    /** @ORM\Column(type="string", nullable=true) */
+    private ?string $documentoExt = null;
+
+
     /**
      * @ORM\ManyToOne(targetEntity="EPrenotazione", inversedBy="ospitiDettagli")
      * @ORM\JoinColumn(nullable=false)
@@ -88,4 +95,10 @@ class EOspite
 
     public function getPrenotazione(): EPrenotazione { return $this->prenotazione; }
     public function setPrenotazione(EPrenotazione $prenotazione): void { $this->prenotazione = $prenotazione; }
+
+    public function getDocumentoMime(): ?string { return $this->documentoMime; }
+    public function setDocumentoMime(string $mime): void { $this->documentoMime = $mime; }
+
+    public function getDocumentoExt(): ?string { return $this->documentoExt; }
+    public function setDocumentoExt(string $ext): void { $this->documentoExt = $ext; }
 }

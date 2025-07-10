@@ -77,15 +77,14 @@
     </div>
 
     <hr class="my-5">
-
     <div class="container-fluid px-5">
       <div class="row justify-content-center">
         <div class="col-12" style="padding-left: 80px; padding-right: 80px;">
           
           <form method="post" action="/Casette_Dei_Desideri/Prenotazione/riepilogoCompleto" enctype="multipart/form-data">
-
             <h3 class="mb-4" style="font-weight: 700; font-size: 2rem;">RIEPILOGO DATI OSPITI:</h3>
-              {foreach from=$ospiti item=ospite name=ospitiLoop}
+            
+            {foreach from=$ospiti item=ospite name=ospitiLoop}
               <div class="card ospite-card mb-4 rounded">
                 <h4 class="ospite-title mb-4">
                   Ospite {$smarty.foreach.ospitiLoop.iteration}
@@ -136,13 +135,14 @@
                       <strong>Luogo di Nascita:</strong>&nbsp;{$ospite.luogoNascita}
                     </p>
                   </div>
+
                   {if isset($ospite.documento_base64) && $ospite.documento_base64 != ''}
                     <div class="col-md-6">
                       <p class="ospite-info documento-link">
                         <strong>Documento:</strong>
-                        <a href="data:{$ospite.documento_mime};base64,{$ospite.documento_base64}"
-                          target="_blank" 
-                          download="documento_ospite.{$ospite.documento_ext}">📄 Visualizza documento</a>
+                        <a href="data:{$ospite.documento_mime|escape:'html'};base64,{$ospite.documento_base64|escape:'url'}"
+                          target="_blank"
+                          download="documento_ospite.{$ospite.documento_ext|escape:'html'}">📄 Visualizza documento</a>
                       </p>
                     </div>
                   {/if}
@@ -153,6 +153,8 @@
         </div>
       </div>
     </div>
+
+
 
 
       <footer class="footer-no-gap">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-10 11:34:15
+/* Smarty version 5.5.1, created on 2025-07-10 14:56:25
   from 'file:admin/aggiungi_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686f8917c15ae8_71901183',
+  'unifunc' => 'content_686fb8796fe198_55686123',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a3d442b0ec99ee85f4cc163a7429428e99d807c4' => 
     array (
       0 => 'admin/aggiungi_struttura.tpl',
-      1 => 1752139402,
+      1 => 1752152057,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686f8917c15ae8_71901183 (\Smarty\Template $_smarty_tpl) {
+function content_686fb8796fe198_55686123 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -343,130 +343,17 @@ echo $_smarty_tpl->getValue('struttura')->getNLetti();
 
 
 
-
-<?php echo '<script'; ?>
+  
+    <?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/admin_struttura_form.js"><?php echo '</script'; ?>
 >
-  // elementi di base
-  const selector = document.getElementById('foto-upload');
-  const form = selector.closest('form');
-  const container = document.getElementById('preview-images');
-  const addedKeys = new Set();
-
-  // al cambio input, creo le preview
-  selector.addEventListener('change', function(e) {
-    const files = Array.from(e.target.files);
-
-    files.forEach(file => {
-      if (!file.type.startsWith('image/')) return;
-
-      // impedisco duplicati
-      const key = `${file.name}|${file.size}|${file.lastModified}`;
-      if (addedKeys.has(key)) return;
-      addedKeys.add(key);
-
-      const reader = new FileReader();
-      reader.onload = function(ev) {
-        // wrapper principale
-        const wrapper = document.createElement('div');
-        wrapper.className = 'preview-item';
-
-        // bottone di rimozione (new)
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'remove-photo-btn';
-        btn.innerHTML = '&times;';
-        wrapper.appendChild(btn);
-
-        // immagine
-        const img = document.createElement('img');
-        img.src = ev.target.result;
-        wrapper.appendChild(img);
-
-        // input file nascosto per il form (new_foto[])
-        const dt = new DataTransfer();
-        dt.items.add(file);
-        const hiddenInput = document.createElement('input');
-        hiddenInput.type = 'file';
-        hiddenInput.name = 'foto[]';
-        hiddenInput.files = dt.files;
-        hiddenInput.style.display = 'none';
-        wrapper.appendChild(hiddenInput);
-
-        container.appendChild(wrapper);
-      };
-      reader.readAsDataURL(file);
-    });
-
-    // reset per poter ricaricare gli stessi file
-    selector.value = '';
-  });
-
-  // delegazione: rimuovo preview e, se esistente, segno l'eliminazione
-  container.addEventListener('click', function(e) {
-    if (!e.target.classList.contains('remove-photo-btn')) return;
-
-    const item = e.target.closest('.preview-item');
-    // se è una foto già in DB, contiene hidden existing_foto_id[]
-    const existingInput = item.querySelector('input[name="existing_foto_id[]"]');
-    if (existingInput) {
-      const marker = document.createElement('input');
-      marker.type = 'hidden';
-      marker.name = 'delete_foto_id[]';
-      marker.value = existingInput.value;
-      form.appendChild(marker);
-    }
-    item.remove();
-  });
-<?php echo '</script'; ?>
+    <?php echo '<script'; ?>
 >
-
-
-
-
-
-
-
-<?php echo '<script'; ?>
+      inizializzaAdminStrutturaForm();
+    <?php echo '</script'; ?>
 >
-function aggiungiIntervallo() {
-    const wrapper = document.getElementById('intervalli-wrapper');
-    const div = document.createElement('div');
-    div.className = 'intervallo row gx-3 gy-2 align-items-end p-3 mb-3 border rounded bg-light';
-    div.innerHTML = `
-    <input type="hidden" name="intervallo_id[]" value="">
-    <div class="col-sm-4">
-        <label class="form-label">Inizio</label>
-        <input type="date" name="intervallo_inizio[]" class="form-control">
-    </div>
-    <div class="col-sm-4">
-        <label class="form-label">Fine</label>
-        <input type="date" name="intervallo_fine[]" class="form-control">
-    </div>
-    <div class="col-sm-3">
-        <label class="form-label">Prezzo (€)</label>
-        <input type="number" step="0.01" name="intervallo_prezzo[]" class="form-control">
-    </div>
-    <div class="col-sm-1 text-end">
-        <button type="button" class="btn btn-sm btn-outline-danger remove-intervallo" title="Rimuovi questo intervallo">✖</button>
-    </div>
-`;
+  
 
-    wrapper.appendChild(div);
-}
-<?php echo '</script'; ?>
->
-
-<?php echo '<script'; ?>
->
-// Ascolta i click su tutti i pulsanti "✖" (anche quelli aggiunti dinamicamente)
-document.addEventListener('click', function (e) {
-    if (e.target.classList.contains('remove-intervallo')) {
-        const intervallo = e.target.closest('.intervallo');
-        if (intervallo) intervallo.remove();
-    }
-});
-<?php echo '</script'; ?>
->
 
 
 

@@ -267,10 +267,11 @@ https://templatemo.com/tm-591-villa-agency
 
 
   {literal}
-  <script src="/Casette_Dei_Desideri/public/assets/js/admin_struttura_form.js"></script>
-  <script>
-    inizializzaAdminStrutturaForm();
-  </script>
+    <script src="/Casette_Dei_Desideri/public/assets/js/admin_struttura_form.js"></script>
+    <script>
+      inizializzaAdminStrutturaForm();
+    </script>
+  {/literal}
 
 
 

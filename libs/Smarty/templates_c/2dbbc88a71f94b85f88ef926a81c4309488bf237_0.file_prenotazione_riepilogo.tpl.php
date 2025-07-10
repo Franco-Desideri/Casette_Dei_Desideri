@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-10 12:19:54
+/* Smarty version 5.5.1, created on 2025-07-10 17:35:36
   from 'file:utente/prenotazione_riepilogo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686f93cab54076_93300049',
+  'unifunc' => 'content_686fddc878d275_03041055',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2dbbc88a71f94b85f88ef926a81c4309488bf237' => 
     array (
       0 => 'utente/prenotazione_riepilogo.tpl',
-      1 => 1752142790,
+      1 => 1752161732,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
-function content_686f93cab54076_93300049 (\Smarty\Template $_smarty_tpl) {
+function content_686fddc878d275_03041055 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -111,14 +111,14 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 
     <hr class="my-5">
 
-    <div class="container-fluid px-5">
-      <div class="row justify-content-center">
-        <div class="col-12" style="padding-left: 80px; padding-right: 80px;">
-          
-          <form method="post" action="/Casette_Dei_Desideri/Prenotazione/riepilogoCompleto" enctype="multipart/form-data">
-
-            <h3 class="mb-4" style="font-weight: 700; font-size: 2rem;">RIEPILOGO DATI OSPITI:</h3>
-              <?php
+<div class="container-fluid px-5">
+  <div class="row justify-content-center">
+    <div class="col-12" style="padding-left: 80px; padding-right: 80px;">
+      
+      <form method="post" action="/Casette_Dei_Desideri/Prenotazione/riepilogoCompleto" enctype="multipart/form-data">
+        <h3 class="mb-4" style="font-weight: 700; font-size: 2rem;">RIEPILOGO DATI OSPITI:</h3>
+        
+        <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('ospiti'), 'ospite', false, NULL, 'ospitiLoop', array (
   'iteration' => true,
 ));
@@ -127,86 +127,89 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('ospite')->value) {
 $foreach0DoElse = false;
 $_smarty_tpl->tpl_vars['__smarty_foreach_ospitiLoop']->value['iteration']++;
 ?>
-              <div class="card ospite-card mb-4 rounded">
-                <h4 class="ospite-title mb-4">
-                  Ospite <?php echo ($_smarty_tpl->getValue('__smarty_foreach_ospitiLoop')['iteration'] ?? null);?>
+          <div class="card ospite-card mb-4 rounded">
+            <h4 class="ospite-title mb-4">
+              Ospite <?php echo ($_smarty_tpl->getValue('__smarty_foreach_ospitiLoop')['iteration'] ?? null);?>
 
-                </h4>
+            </h4>
 
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <p class="ospite-info">
-                      <strong>Nome:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['nome'];?>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p class="ospite-info">
+                  <strong>Nome:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['nome'];?>
 
-                    </p>
-                  </div>
-                  <div class="col-md-6">
-                    <p class="ospite-info">
-                      <strong>Cognome:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['cognome'];?>
-
-                    </p>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <p class="ospite-info">
-                      <strong>Telefono:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['tell'];?>
-
-                    </p>
-                  </div>
-                  <div class="col-md-6">
-                    <p class="ospite-info">
-                      <strong>Codice Fiscale:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['codiceFiscale'];?>
-
-                    </p>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <p class="ospite-info">
-                      <strong>Sesso:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['sesso'];?>
-
-                    </p>
-                  </div>
-                  <div class="col-md-6">
-                    <p class="ospite-info">
-                      <strong>Data di Nascita:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['dataNascita'];?>
-
-                    </p>
-                  </div>
-                </div>
-
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <p class="ospite-info">
-                      <strong>Luogo di Nascita:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['luogoNascita'];?>
-
-                    </p>
-                  </div>
-                  <?php if ((true && (true && null !== ($_smarty_tpl->getValue('ospite')['documento_base64'] ?? null))) && $_smarty_tpl->getValue('ospite')['documento_base64'] != '') {?>
-                    <div class="col-md-6">
-                      <p class="ospite-info documento-link">
-                        <strong>Documento:</strong>
-                        <a href="data:<?php echo $_smarty_tpl->getValue('ospite')['documento_mime'];?>
-;base64,<?php echo $_smarty_tpl->getValue('ospite')['documento_base64'];?>
-"
-                          target="_blank" 
-                          download="documento_ospite.<?php echo $_smarty_tpl->getValue('ospite')['documento_ext'];?>
-">📄 Visualizza documento</a>
-                      </p>
-                    </div>
-                  <?php }?>
-                </div>
+                </p>
               </div>
-            <?php
+              <div class="col-md-6">
+                <p class="ospite-info">
+                  <strong>Cognome:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['cognome'];?>
+
+                </p>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p class="ospite-info">
+                  <strong>Telefono:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['tell'];?>
+
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p class="ospite-info">
+                  <strong>Codice Fiscale:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['codiceFiscale'];?>
+
+                </p>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p class="ospite-info">
+                  <strong>Sesso:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['sesso'];?>
+
+                </p>
+              </div>
+              <div class="col-md-6">
+                <p class="ospite-info">
+                  <strong>Data di Nascita:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['dataNascita'];?>
+
+                </p>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <p class="ospite-info">
+                  <strong>Luogo di Nascita:</strong>&nbsp;<?php echo $_smarty_tpl->getValue('ospite')['luogoNascita'];?>
+
+                </p>
+              </div>
+
+              <?php if ((true && (true && null !== ($_smarty_tpl->getValue('ospite')['documento_base64'] ?? null))) && $_smarty_tpl->getValue('ospite')['documento_base64'] != '') {?>
+                <div class="col-md-6">
+                  <p class="ospite-info documento-link">
+                    <strong>Documento:</strong>
+                    <a href="data:<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('ospite')['documento_mime'], ENT_QUOTES, 'UTF-8', true);?>
+;base64,<?php echo rawurlencode((string)$_smarty_tpl->getValue('ospite')['documento_base64']);?>
+"
+                      target="_blank"
+                      download="documento_ospite.<?php echo htmlspecialchars((string)$_smarty_tpl->getValue('ospite')['documento_ext'], ENT_QUOTES, 'UTF-8', true);?>
+">📄 Visualizza documento</a>
+                  </p>
+                </div>
+              <?php }?>
+            </div>
+          </div>
+        <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-          </form>
-        </div>
-      </div>
+      </form>
     </div>
+  </div>
+</div>
+
+
 
 
       <footer class="footer-no-gap">

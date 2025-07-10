@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-10 12:57:14
+/* Smarty version 5.5.1, created on 2025-07-10 17:02:17
   from 'file:utente/dettaglio_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686f9c8ac7cbf4_53068581',
+  'unifunc' => 'content_686fd5f98b6ee3_27940434',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cfd75b2282e0837ec1cf63b7f521ed3f1de12c71' => 
     array (
       0 => 'utente/dettaglio_struttura.tpl',
-      1 => 1752144966,
+      1 => 1752145144,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686f9c8ac7cbf4_53068581 (\Smarty\Template $_smarty_tpl) {
+function content_686fd5f98b6ee3_27940434 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -320,19 +320,15 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     ];
   <?php echo '</script'; ?>
 >
-
   
-<?php echo '<script'; ?>
+  <?php echo '<script'; ?>
  src="/Casette_Dei_Desideri/public/assets/js/prenotazione.js"><?php echo '</script'; ?>
 >
-<?php echo '<script'; ?>
+  <?php echo '<script'; ?>
 >
-  inizializzaPrenotazione();
-<?php echo '</script'; ?>
+    inizializzaPrenotazione();
+  <?php echo '</script'; ?>
 >
-
-
-
 
   </body>
 </html><?php }
