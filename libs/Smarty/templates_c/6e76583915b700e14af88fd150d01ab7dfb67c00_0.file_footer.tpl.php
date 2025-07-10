@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-07 18:04:32
+/* Smarty version 5.5.1, created on 2025-07-09 22:19:32
   from 'file:partials/footer.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686bf010569c52_97446542',
+  'unifunc' => 'content_686eced4892747_75481301',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_686bf010569c52_97446542 (\Smarty\Template $_smarty_tpl) {
+function content_686eced4892747_75481301 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\partials';
 ?><footer class="site-footer"> 
     <div class="container"> 

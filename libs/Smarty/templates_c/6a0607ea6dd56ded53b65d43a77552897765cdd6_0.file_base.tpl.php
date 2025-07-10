@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-07 18:04:32
+/* Smarty version 5.5.1, created on 2025-07-09 22:19:32
   from 'file:layouts/base.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686bf0104862c9_86840445',
+  'unifunc' => 'content_686eced47ca183_15624809',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
@@ -21,7 +21,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686bf0104862c9_86840445 (\Smarty\Template $_smarty_tpl) {
+function content_686eced47ca183_15624809 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\layouts';
 $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
 ?>
@@ -42,7 +42,7 @@ $_smarty_tpl->getInheritance()->init($_smarty_tpl, false);
     
 
     <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_575140860686bf010484976_10051385', "head_extra");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_159693111686eced47c8882_35949845', "head_extra");
 ?>
 
 </head>
@@ -50,20 +50,20 @@ $_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_575140860686b
     
     <main> 
         <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_97219415686bf0104851e8_22069579', "contenuto");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_332537847686eced47c9085_42866168', "contenuto");
 ?>
 
     </main>
     <?php $_smarty_tpl->renderSubTemplate("file:partials/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), (int) 0, $_smarty_current_dir);
 ?>
     <?php 
-$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_336019485686bf010485d42_84357603', "scripts");
+$_smarty_tpl->getInheritance()->instanceBlock($_smarty_tpl, 'Block_21384870686eced47c9c19_21684735', "scripts");
 ?>
 
 </body>
 </html> <?php }
 /* {block "head_extra"} */
-class Block_575140860686bf010484976_10051385 extends \Smarty\Runtime\Block
+class Block_159693111686eced47c8882_35949845 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\layouts';
@@ -71,7 +71,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 }
 /* {/block "head_extra"} */
 /* {block "contenuto"} */
-class Block_97219415686bf0104851e8_22069579 extends \Smarty\Runtime\Block
+class Block_332537847686eced47c9085_42866168 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\layouts';
@@ -79,7 +79,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
 }
 /* {/block "contenuto"} */
 /* {block "scripts"} */
-class Block_336019485686bf010485d42_84357603 extends \Smarty\Runtime\Block
+class Block_21384870686eced47c9c19_21684735 extends \Smarty\Runtime\Block
 {
 public function callBlock(\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\layouts';

@@ -22,7 +22,7 @@ class CFrontController
 
         // Controller e metodo di default
         $controllerName = !empty($uriParts[0]) ? ucfirst($uriParts[0]) : 'User';
-        $methodName = !empty($uriParts[1]) ? $uriParts[1] : 'login';
+        $methodName = !empty($uriParts[1]) ? $uriParts[1] : 'home';
 
         $controllerClass = 'C' . $controllerName;
         $controllerFile = __DIR__ . "/{$controllerClass}.php";
