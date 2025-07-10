@@ -248,13 +248,8 @@ https://templatemo.com/tm-591-villa-agency
           </div>
         </form>
 
-        <footer class="footer-no-gap">
-          <div class="container">
-            <div class="col-lg-12">
-              <p>Copyright © 2025 Casette Dei Desideri. 
-            </div>
-          </div>
-        </footer>
+        {include file="partials/footer.tpl" paginaCorrente="strutture"}  
+        
       </div>
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

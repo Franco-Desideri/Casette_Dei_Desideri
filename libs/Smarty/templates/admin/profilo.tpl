@@ -125,7 +125,7 @@
         Sei sicuro di voler effettuare il logout?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-annulla" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
         <form action="/Casette_Dei_Desideri/User/logout" method="post" class="d-inline">
           <button type="submit" class="btn btn-danger">Conferma Logout</button>
         </form>
@@ -146,14 +146,18 @@
       <ul class="profile-card-list">
         {foreach from=$prenotazioni item=prenotazione}
           <li class="profile-card-item with-image">
-            <div class="prenotazione-image small">
-              <img src="{$prenotazione->getStruttura()->getImmaginePrincipaleBase64()}" alt="Immagine struttura">
-            </div>
-            <div class="prenotazione-info">
-              <p><strong>Struttura:</strong> {$prenotazione->getStruttura()->getTitolo()}</p>
-              <p><strong>Periodo:</strong> dal {$prenotazione->getPeriodo()->getDataI()|date_format:"%d/%m/%Y"} al {$prenotazione->getPeriodo()->getDataF()|date_format:"%d/%m/%Y"}</p>
-              <p><strong>Numero ospiti:</strong> {$prenotazione->getOspiti()}</p>
-            </div>
+            <a href="/Casette_Dei_Desideri/User/riepilogo/{$prenotazione->getId()}" class="profile-card-link">
+              <div class="prenotazione-card-flex">            
+                <div class="prenotazione-image small">
+                    <img src="{$prenotazione->getStruttura()->getImmaginePrincipaleBase64()}" alt="Immagine struttura">
+                </div>
+                <div class="prenotazione-info">
+                  <p><strong>Struttura:</strong> {$prenotazione->getStruttura()->getTitolo()}</p>
+                  <p><strong>Periodo:</strong> dal {$prenotazione->getPeriodo()->getDataI()|date_format:"%d/%m/%Y"} al {$prenotazione->getPeriodo()->getDataF()|date_format:"%d/%m/%Y"}</p>
+                  <p><strong>Numero ospiti:</strong> {$prenotazione->getOspiti()}</p>
+                </div>
+              </div>
+            </a>
           </li>
         {/foreach}
       </ul>
@@ -162,6 +166,9 @@
     {/if}
   </div>
 </section>
+
+
+{include file="partials/footer.tpl" paginaCorrente="strutture"}  
 
 
   <!-- Scripts -->

@@ -46,10 +46,12 @@
           <textarea name="descrizione" class="form-control" rows="4" required>{if $attrazione !== null}{$attrazione->getDescrizione()}{/if}</textarea>
         </div>
 
-        <button type="submit">Salva</button>
+        <button type="submit" class="btn salva-btn">Salva</button>
     </form>
   </div>
 </div>
+
+{include file="partials/footer.tpl" paginaCorrente="strutture"}  
 
   <!-- Scripts -->
   <script src="/Casette_Dei_Desideri/public/vendor/jquery/jquery.min.js"></script>

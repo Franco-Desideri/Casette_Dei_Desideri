@@ -59,10 +59,10 @@
 </div>
 
 
-<div style="text-align: center; margin-bottom: 20px;">
+<div class="attrazioni-container">
   {if $attrazioni|@count > 0}
     {foreach from=$attrazioni item=attrazione}
-      <div class="card-wrapper">
+      <div class="card-wrapper-attrazioni">
         <a href="/Casette_Dei_Desideri/AdminContenuti/modificaAttrazione/{$attrazione->getId()}" class="card-link">
           <div class="card">
             <div class="card-text">
@@ -74,7 +74,9 @@
           </div>
         </a>
         <form action="/Casette_Dei_Desideri/AdminContenuti/eliminaAttrazione/{$attrazione->getId()}" method="post" style="margin-top: 10px;">
+        <div class="elimina-wrapper">
           <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler eliminare questa attrazione?');">Elimina</button>
+        </div>
         </form>
       </div>
     {/foreach}
@@ -94,10 +96,12 @@
   </form>
 </div>
 
-<div style="text-align: center; margin-bottom: 20px;">
+
+
+<div class="attrazioni-container">
   {if $eventi|@count > 0}
     {foreach from=$eventi item=evento}
-      <div class="card-wrapper">
+      <div class="card-wrapper-eventi">
         <a href="/Casette_Dei_Desideri/AdminContenuti/modificaEvento/{$evento->getId()}" class="card-link">
           <div class="card-info">
             <h3 class="card-title">{$evento->getTitolo()}</h3>
@@ -108,7 +112,9 @@
           </div>
         </a>
         <form action="/Casette_Dei_Desideri/AdminContenuti/eliminaEvento/{$evento->getId()}" method="post" style="margin-top: 10px;">
+        <div class="elimina-wrapper">
           <button type="submit" class="btn btn-danger" onclick="return confirm('Sei sicuro di voler eliminare questo evento?');">Elimina</button>
+        </div>
         </form>
       </div>
     {/foreach}
@@ -116,6 +122,9 @@
     <p>Non ci sono eventi disponibili</p>
   {/if}
 </div>
+
+
+  {include file="partials/footer.tpl" paginaCorrente="strutture"}  
 
 
   <!-- Scripts -->

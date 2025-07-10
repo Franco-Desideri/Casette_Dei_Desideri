@@ -1,5 +1,7 @@
-<footer class="site-footer"> 
-    <div class="container"> 
-        <p>&copy; 2025 Casette dei Desideri. Tutti i diritti riservati.</p>
+  <footer>
+    <div class="container">
+      <div class="col-lg-12">
+        <p>Casette Dei Desideri
+      </div>
     </div>
-</footer>
+  </footer>

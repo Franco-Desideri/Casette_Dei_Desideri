@@ -239,11 +239,22 @@ main.container {
 .product-list {
     display: grid; 
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+<<<<<<< HEAD
+    
+    gap: 20px; /* Questo è il valore chiave: riduce lo spazio tra le card (sia orizzontale che verticale) */
+    
+    justify-content: center; /* Centra le card all'interno del contenitore se non riempiono completamente la riga */
+    align-items: stretch; /* Le card si estendono per occupare l'altezza disponibile nella riga */
+
+    padding: 20px 25px; /* Aggiungi un po' di padding alla sezione per non far attaccare le card ai bordi del "container" */
+    margin-bottom: 40px; /* Spazio sotto la sezione dei prodotti, se necessario */
+=======
     gap: 20px; 
     justify-content: center; 
     align-items: stretch; 
     padding: 20px 0; 
     margin-bottom: 40px; 
+>>>>>>> origin/master
 }
 
 .product-card {

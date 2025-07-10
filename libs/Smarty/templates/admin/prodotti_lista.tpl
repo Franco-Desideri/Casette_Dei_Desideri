@@ -98,8 +98,8 @@
                             <strong>{$prodotto->getNome()}</strong> - {$prodotto->getPeso()} {$prodotto->getUnitaMisura()} - €{$prodotto->getPrezzo()}
                         </div>
                         <div class="admin-item-actions">
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}">✏️ Modifica</a>
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/attiva/{$prodotto->getId()}" onclick="return confirm('Rendere visibile il prodotto?')">✅ Attiva</a>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}" class="btn-edit">✏️ Modifica</a>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/attiva/{$prodotto->getId()}" onclick="return confirm('Rendere visibile il prodotto?')" class="btn-edit">✅ Attiva</a>
                         </div>
                     </li>
                 {/foreach}
@@ -114,11 +114,11 @@
             <ul class="admin-item-list"> {foreach from=$prodottiPeso_n item=prodotto}
                     <li>
                         <img src="{$prodotto->fotoBase64}" alt="{$prodotto->getNome()}" class="product-image"> <div class="admin-item-details">
-                            <strong>{$prodotto->getNome()}</strong> - {$prodotto->getRangePeso()}g - €{$prodotto->getPrezzoRange()} (o €{$prodotto->getPrezzoKg()}/kg)
+                            <strong>{$prodotto->getNome()}</strong> - {$prodotto->getRangePeso()}g - €{$prodotto->getPrezzoKg()} (o €{$prodotto->getPrezzoKg()}/kg)
                         </div>
                         <div class="admin-item-actions">
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}">✏️ Modifica</a>
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/attiva/{$prodotto->getId()}" onclick="return confirm('Rendere visibile il prodotto?')">✅ Attiva</a>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}"class="btn-edit">✏️ Modifica</a>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/attiva/{$prodotto->getId()}" onclick="return confirm('Rendere visibile il prodotto?')"class="btn-edit">✅ Attiva</a>
                         </div>
                     </li>
                 {/foreach}
@@ -126,7 +126,9 @@
         {else}
             <p class="admin-no-items-message">Nessun prodotto a peso presente.</p> {/if}
     </section>
+</div>
 
+    {include file="partials/footer.tpl" paginaCorrente="strutture"}  
 
       <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
@@ -137,7 +139,7 @@
   <script src="/Casette_Dei_Desideri/public/assets/js/counter.js"></script>
   <script src="/Casette_Dei_Desideri/public/assets/js/custom.js"></script>
 
-</div>
+
   </body>
 </html>
 

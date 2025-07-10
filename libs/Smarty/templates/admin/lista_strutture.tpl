@@ -114,31 +114,11 @@ https://templatemo.com/tm-591-villa-agency
         {else}
         <p>Nessuna struttura trovata.</p>
         {/if}
-  
 
-    <!--
-      <div class="row">
-        <div class="col-lg-12">
-          <ul class="pagination">
-            <li><a href="#">1</a></li>
-            <li><a class="is_active" href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">>></a></li>
-          </ul>
-        </div>
-      </div>-->
     </div>
   </div>
 
-  <footer>
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Casette Dei Desideri ..... 
-        
-        Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-      </div>
-    </div>
-  </footer>
+  {include file="partials/footer.tpl" paginaCorrente="strutture"}  
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
