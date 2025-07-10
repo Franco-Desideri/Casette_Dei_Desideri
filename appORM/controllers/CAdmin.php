@@ -26,7 +26,7 @@ class CAdmin
     }
 
 
-    public function prenotazione($id): void
+    public function riepilogo(int $id): void
     {
         USession::start();
 
@@ -35,14 +35,27 @@ class CAdmin
             return;
         }
 
-        $prenotazione = FPersistentManager::get()->find('EPrenotazione', $id);
+        $prenotazione = FPersistentManager::find(EPrenotazione::class, $id);
 
-        if (!$prenotazione) {
-            echo "Prenotazione non trovata.";
-            return;
-        }
+        $struttura = $prenotazione->getStruttura();
+        $periodo = $prenotazione->getPeriodo();
+        $ospiti = $prenotazione->getOspitiDettagli();
+        $totale = $prenotazione->getPrezzo();
+
+        // Immagine struttura in base64
+        $struttura->base64img = $struttura->getImmaginePrincipaleBase64();
+
+        $ruolo = USession::get('ruolo');
+
 
         $view = new VAdmin();
-        $view->mostraDettagliPrenotazione($prenotazione);
+        $view->mostraRiepilogoPrenotazione(
+            $prenotazione,
+            $struttura,
+            $periodo,
+            $ospiti,
+            $totale,
+            $ruolo
+        );
     }
 }

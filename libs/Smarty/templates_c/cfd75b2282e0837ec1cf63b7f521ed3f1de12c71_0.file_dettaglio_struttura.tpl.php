@@ -1,27 +1,28 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-09 22:08:18
+/* Smarty version 5.5.1, created on 2025-07-10 11:32:04
   from 'file:utente/dettaglio_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686ecc32852194_13809550',
+  'unifunc' => 'content_686f8894eab436_53301159',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cfd75b2282e0837ec1cf63b7f521ed3f1de12c71' => 
     array (
       0 => 'utente/dettaglio_struttura.tpl',
-      1 => 1751991458,
+      1 => 1752139402,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:partials/appbar_template.tpl' => 1,
+    'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686ecc32852194_13809550 (\Smarty\Template $_smarty_tpl) {
+function content_686f8894eab436_53301159 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -237,13 +238,8 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
 
 
 
-  <footer class="footer-no-gap">
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Copyright © 2025 Casette Dei Desideri. 
-      </div>
-    </div>
-  </footer>
+  <?php $_smarty_tpl->renderSubTemplate("file:partials/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>  
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

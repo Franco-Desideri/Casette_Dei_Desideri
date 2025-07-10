@@ -34,14 +34,51 @@ class VAdmin
         $this->smarty->display('admin/profilo.tpl');
     }
 
-    /**
-     * Mostra i dettagli completi di una singola prenotazione
-     *
-     * @param EPrenotazione $prenotazione La prenotazione da esaminare
-     */
-    public function mostraDettagliPrenotazione(EPrenotazione $prenotazione): void
+    /*Mostra i dettagli di una singola prenotazione*/
+
+    public function mostraRiepilogoPrenotazione($prenotazione, $struttura, $periodo, $ospiti, $totale, $ruolo): void
     {
-        $this->smarty->assign('prenotazione', $prenotazione);
-        $this->smarty->display('admin/prenotazione_dettagli.tpl');
+        $this->smarty->assign('ruolo', $ruolo);
+        $this->smarty->assign('struttura', $struttura);
+        $this->smarty->assign('dataInizio', $periodo->getDataI()->format('d/m/Y'));
+        $this->smarty->assign('dataFine', $periodo->getDataF()->format('d/m/Y'));
+
+        $ospitiArray = [];
+        $finfo = new \finfo(FILEINFO_MIME_TYPE);
+
+        foreach ($ospiti as $ospite) {
+            $ospiteData = [
+                'nome' => $ospite->getNome(),
+                'cognome' => $ospite->getCognome(),
+                'tell' => $ospite->getTell(),
+                'codiceFiscale' => $ospite->getCodiceF(),
+                'sesso' => $ospite->getSesso(),
+                'dataNascita' => $ospite->getDataN()->format('d/m/Y'),
+                'luogoNascita' => $ospite->getLuogoN()
+            ];
+
+            $documento = $ospite->getDocumento();
+
+            if ($documento) {
+                // Se è una risorsa, leggiamo il contenuto
+                $docContent = is_resource($documento) ? stream_get_contents($documento) : $documento;
+
+                // Ora possiamo usarlo con finfo
+                $mimeType = $finfo->buffer($docContent);
+                $base64 = base64_encode($docContent);
+                $ext = explode('/', $mimeType)[1] ?? 'bin';
+
+                $ospiteData['documento_base64'] = $base64;
+                $ospiteData['documento_mime'] = $mimeType;
+                $ospiteData['documento_ext'] = $ext;
+            }
+
+            $ospitiArray[] = $ospiteData;
+        }
+
+        $this->smarty->assign('ospiti', $ospitiArray);
+        $this->smarty->assign('totale', $totale);
+
+        $this->smarty->display('utente/prenotazione_riepilogo.tpl');
     }
 }

@@ -1,27 +1,28 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-09 22:08:14
+/* Smarty version 5.5.1, created on 2025-07-10 11:31:41
   from 'file:utente/lista_strutture.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686ecc2ee2ad66_41038229',
+  'unifunc' => 'content_686f887db306a1_93562771',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b65fb2cd8fec660f00928285dcf98c5913e47f07' => 
     array (
       0 => 'utente/lista_strutture.tpl',
-      1 => 1751896807,
+      1 => 1752139402,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:partials/appbar_template.tpl' => 1,
+    'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686ecc2ee2ad66_41038229 (\Smarty\Template $_smarty_tpl) {
+function content_686f887db306a1_93562771 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -151,15 +152,8 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     </div>
   </div>
 
-  <footer>
-    <div class="container">
-      <div class="col-lg-12">
-        <p>Casette Dei Desideri ..... 
-        
-        Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-      </div>
-    </div>
-  </footer>
+  <?php $_smarty_tpl->renderSubTemplate("file:partials/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>  
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

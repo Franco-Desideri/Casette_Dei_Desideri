@@ -146,7 +146,7 @@
       <ul class="profile-card-list">
         {foreach from=$prenotazioni item=prenotazione}
           <li class="profile-card-item with-image">
-            <a href="/Casette_Dei_Desideri/User/riepilogo/{$prenotazione->getId()}" class="profile-card-link">
+            <a href="/Casette_Dei_Desideri/Admin/riepilogo/{$prenotazione->getId()}" class="profile-card-link">
               <div class="prenotazione-card-flex">            
                 <div class="prenotazione-image small">
                     <img src="{$prenotazione->getStruttura()->getImmaginePrincipaleBase64()}" alt="Immagine struttura">

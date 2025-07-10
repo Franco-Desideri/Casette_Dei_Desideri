@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-09 21:23:35
+/* Smarty version 5.5.1, created on 2025-07-10 11:31:34
   from 'file:partials/appbar_template.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686ec1b7386467_72581110',
+  'unifunc' => 'content_686f8876c73032_10432754',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '010654b0d596d10bad7322900ff5d992c9b6a45d' => 
     array (
       0 => 'partials/appbar_template.tpl',
-      1 => 1751896806,
+      1 => 1752139402,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_686ec1b7386467_72581110 (\Smarty\Template $_smarty_tpl) {
+function content_686f8876c73032_10432754 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\partials';
 ?><!-- ***** Animazione di Caricamento ***** -->
 <div id="js-preloader" class="js-preloader">
@@ -47,7 +47,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
       <div class="col-lg-4 col-md-4">
         <ul class="social-links">
           <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-          <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
+          <li><a href="#"><i class="fab fa-twitter"></i></a></li>
           <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
           <li><a href="#"><i class="fab fa-instagram"></i></a></li>
         </ul>

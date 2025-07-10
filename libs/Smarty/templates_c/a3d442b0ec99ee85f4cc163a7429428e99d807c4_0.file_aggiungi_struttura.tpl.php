@@ -1,27 +1,28 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-09 23:21:15
+/* Smarty version 5.5.1, created on 2025-07-10 11:34:15
   from 'file:admin/aggiungi_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686edd4b727145_38215709',
+  'unifunc' => 'content_686f8917c15ae8_71901183',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a3d442b0ec99ee85f4cc163a7429428e99d807c4' => 
     array (
       0 => 'admin/aggiungi_struttura.tpl',
-      1 => 1751896806,
+      1 => 1752139402,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:partials/appbar_templateAdmin.tpl' => 1,
+    'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686edd4b727145_38215709 (\Smarty\Template $_smarty_tpl) {
+function content_686f8917c15ae8_71901183 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -309,13 +310,9 @@ echo $_smarty_tpl->getValue('struttura')->getNLetti();
           </div>
         </form>
 
-        <footer class="footer-no-gap">
-          <div class="container">
-            <div class="col-lg-12">
-              <p>Copyright © 2025 Casette Dei Desideri. 
-            </div>
-          </div>
-        </footer>
+        <?php $_smarty_tpl->renderSubTemplate("file:partials/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>  
+        
       </div>
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->

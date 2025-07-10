@@ -158,26 +158,6 @@ class CUser
         $view->mostraProfilo($utente);
     }
 
-    public function prenotazione($id): void
-    {
-        USession::start();
-
-        if (!USession::exists('utente_id')) {
-            header('Location: /Casette_Dei_Desideri/User/login');
-            exit;
-        }
-
-        $prenotazione = FPersistentManager::find(EPrenotazione::class, $id);
-        $utenteId = USession::get('utente_id');
-
-        if (!$prenotazione || $prenotazione->getUtente()->getId() !== $utenteId) {
-            echo "Accesso negato.";
-            return;
-        }
-
-        $view = new VUser();
-        $view->mostraPrenotazione($prenotazione);
-    }
 
     public function home(): void
     {
@@ -255,6 +235,8 @@ class CUser
         // Immagine struttura in base64
         $struttura->base64img = $struttura->getImmaginePrincipaleBase64();
 
+        $ruolo = USession::get('ruolo');
+
 
         $view = new VUser();
         $view->mostraRiepilogoPrenotazione(
@@ -262,7 +244,8 @@ class CUser
             $struttura,
             $periodo,
             $ospiti,
-            $totale
+            $totale,
+            $ruolo
         );
     }
 }

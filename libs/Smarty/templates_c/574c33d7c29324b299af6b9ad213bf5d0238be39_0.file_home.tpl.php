@@ -1,27 +1,28 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-09 21:23:35
+/* Smarty version 5.5.1, created on 2025-07-10 11:31:34
   from 'file:utente/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686ec1b723b0b8_75403716',
+  'unifunc' => 'content_686f8876a9a136_46144604',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '574c33d7c29324b299af6b9ad213bf5d0238be39' => 
     array (
       0 => 'utente/home.tpl',
-      1 => 1751896807,
+      1 => 1752139402,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:partials/appbar_template.tpl' => 1,
+    'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686ec1b723b0b8_75403716 (\Smarty\Template $_smarty_tpl) {
+function content_686f8876a9a136_46144604 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -138,7 +139,8 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
   </div>
 
 
-
+  <?php $_smarty_tpl->renderSubTemplate("file:partials/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>  
 
 
   <!-- Scripts -->

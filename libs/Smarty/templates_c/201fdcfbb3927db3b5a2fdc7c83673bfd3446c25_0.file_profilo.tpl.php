@@ -1,27 +1,28 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-09 22:10:14
+/* Smarty version 5.5.1, created on 2025-07-10 11:53:18
   from 'file:admin/profilo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686ecca69a2457_69366863',
+  'unifunc' => 'content_686f8d8ef153d5_67841431',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '201fdcfbb3927db3b5a2fdc7c83673bfd3446c25' => 
     array (
       0 => 'admin/profilo.tpl',
-      1 => 1751896806,
+      1 => 1752141150,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:partials/appbar_templateAdmin.tpl' => 1,
+    'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686ecca69a2457_69366863 (\Smarty\Template $_smarty_tpl) {
+function content_686f8d8ef153d5_67841431 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="en">
@@ -161,7 +162,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
         Sei sicuro di voler effettuare il logout?
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-annulla" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
         <form action="/Casette_Dei_Desideri/User/logout" method="post" class="d-inline">
           <button type="submit" class="btn btn-danger">Conferma Logout</button>
         </form>
@@ -187,19 +188,24 @@ foreach ($_from ?? [] as $_smarty_tpl->getVariable('prenotazione')->value) {
 $foreach0DoElse = false;
 ?>
           <li class="profile-card-item with-image">
-            <div class="prenotazione-image small">
-              <img src="<?php echo $_smarty_tpl->getValue('prenotazione')->getStruttura()->getImmaginePrincipaleBase64();?>
+            <a href="/Casette_Dei_Desideri/Admin/riepilogo/<?php echo $_smarty_tpl->getValue('prenotazione')->getId();?>
+" class="profile-card-link">
+              <div class="prenotazione-card-flex">            
+                <div class="prenotazione-image small">
+                    <img src="<?php echo $_smarty_tpl->getValue('prenotazione')->getStruttura()->getImmaginePrincipaleBase64();?>
 " alt="Immagine struttura">
-            </div>
-            <div class="prenotazione-info">
-              <p><strong>Struttura:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getStruttura()->getTitolo();?>
+                </div>
+                <div class="prenotazione-info">
+                  <p><strong>Struttura:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getStruttura()->getTitolo();?>
 </p>
-              <p><strong>Periodo:</strong> dal <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('prenotazione')->getPeriodo()->getDataI(),"%d/%m/%Y");?>
+                  <p><strong>Periodo:</strong> dal <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('prenotazione')->getPeriodo()->getDataI(),"%d/%m/%Y");?>
  al <?php echo $_smarty_tpl->getSmarty()->getModifierCallback('date_format')($_smarty_tpl->getValue('prenotazione')->getPeriodo()->getDataF(),"%d/%m/%Y");?>
 </p>
-              <p><strong>Numero ospiti:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getOspiti();?>
+                  <p><strong>Numero ospiti:</strong> <?php echo $_smarty_tpl->getValue('prenotazione')->getOspiti();?>
 </p>
-            </div>
+                </div>
+              </div>
+            </a>
           </li>
         <?php
 }
@@ -210,6 +216,10 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     <?php }?>
   </div>
 </section>
+
+
+<?php $_smarty_tpl->renderSubTemplate("file:partials/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+?>  
 
 
   <!-- Scripts -->

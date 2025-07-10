@@ -47,17 +47,6 @@ class VUser
     }
 
     /**
-     * Mostra i dettagli di una specifica prenotazione dell'utente
-     *
-     * @param EPrenotazione $prenotazione La prenotazione selezionata
-     */
-    public function mostraPrenotazione(EPrenotazione $prenotazione): void
-    {
-        $this->smarty->assign('prenotazione', $prenotazione);
-        $this->smarty->display('utente/prenotazione.tpl');
-    }
-
-    /**
      * Mostra la home page dell'utente con eventi e attrazioni
      *
      * @param array $eventi     Lista di oggetti EEvento
@@ -81,9 +70,9 @@ class VUser
         $this->smarty->display('utente/home.tpl');
     }
 
-    public function mostraRiepilogoPrenotazione($prenotazione, $struttura, $periodo, $ospiti, $totale): void
+    public function mostraRiepilogoPrenotazione($prenotazione, $struttura, $periodo, $ospiti, $totale, $ruolo): void
     {
-        $this->smarty->assign('struttura', $struttura);
+        $this->smarty->assign('ruolo', $ruolo);
         $this->smarty->assign('dataInizio', $periodo->getDataI()->format('d/m/Y'));
         $this->smarty->assign('dataFine', $periodo->getDataF()->format('d/m/Y'));
 
