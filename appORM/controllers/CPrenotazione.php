@@ -326,7 +326,9 @@ class CPrenotazione
     }
 
         USession::delete('prenotazione_temp');
-        header('Location: /Casette_Dei_Desideri/Struttura/lista');
+        // Redireziona alla pagina di conferma ordine
+        $view = new VPrenotazione();
+        $view->ConfermaPrenotazione();
         exit;
     }
 }

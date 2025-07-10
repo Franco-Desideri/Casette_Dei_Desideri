@@ -66,4 +66,12 @@ class VPrenotazione
     {
         $this->smarty->display('utente/pagamento_prenotazione.tpl');
     }
+
+    /**
+     * Mostra un messaggio di conferma ordine inviato
+     */
+    public function confermaPrenotazione(): void
+    {
+        $this->smarty->display('libs/Smarty/templates/utente/conferma_prenotazione.tpl');
+    }
 }

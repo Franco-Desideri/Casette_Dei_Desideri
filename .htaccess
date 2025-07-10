@@ -1,9 +1,9 @@
 RewriteEngine On
 RewriteBase /Casette_Dei_Desideri/
 
-# Redirect HTTP → HTTPS
+# Forza HTTPS solo se NON siamo su localhost
+RewriteCond %{HTTP_HOST} !^localhost$
 RewriteCond %{HTTPS} off
-RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # Reindirizza tutte le richieste a index.php con i parametri URL
