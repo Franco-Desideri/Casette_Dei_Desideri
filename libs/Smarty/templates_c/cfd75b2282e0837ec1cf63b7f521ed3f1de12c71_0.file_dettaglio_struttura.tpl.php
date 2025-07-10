@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-10 11:32:04
+/* Smarty version 5.5.1, created on 2025-07-10 12:57:14
   from 'file:utente/dettaglio_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686f8894eab436_53301159',
+  'unifunc' => 'content_686f9c8ac7cbf4_53068581',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cfd75b2282e0837ec1cf63b7f521ed3f1de12c71' => 
     array (
       0 => 'utente/dettaglio_struttura.tpl',
-      1 => 1752139402,
+      1 => 1752144966,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686f8894eab436_53301159 (\Smarty\Template $_smarty_tpl) {
+function content_686f9c8ac7cbf4_53068581 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -318,121 +318,19 @@ $_smarty_tpl->setVariable('p', $foreach3Backup);
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     ];
-
-    // 2) Funzioni di disponibilità
-    function isInIntervallo(dateStr) {
-      const d = new Date(dateStr);
-      return intervalliDisponibili.some(i =>
-        d >= new Date(i.inizio) && d <= new Date(i.fine)
-      );
-    }
-
-    function isOccupata(dateStr) {
-      const d = new Date(dateStr);
-      return dateOccupate.some(p =>
-        d >= new Date(p.inizio) && d <= new Date(p.fine)
-      );
-    }
-
-    // 3) Disabilita date non valide
-    function disableDates(date) {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      const ds = year + "-" + month + "-" + day;
-      return !isInIntervallo(ds) || isOccupata(ds);
-    }
-
-    // 4) Inizializza Flatpickr
-    const dataFinePicker = flatpickr("#dataFine", {
-      dateFormat: "d-m-Y",
-      minDate: "today",
-      disable: [disableDates],
-      disableMobile: true,
-      defaultHour: 12,
-      onDayCreate: function(dObj, dStr, fp, dayElem) {
-        const dataInizioDate = flatpickr.parseDate(document.getElementById('dataInizio').value, "d-m-Y");
-        if (dataInizioDate && dayElem.dateObj.toDateString() === dataInizioDate.toDateString()) {
-          dayElem.classList.add('highlight-day');
-        }
-      }
-    });
-
-    flatpickr("#dataInizio", {
-      dateFormat: "d-m-Y",
-      minDate: "today",
-      disable: [disableDates],
-      disableMobile: true,
-      defaultHour: 12,
-      onChange: function(selectedDates, dateStr) {
-        if (dateStr) {
-          dataFinePicker.set('minDate', dateStr);
-        }
-      }
-    });
   <?php echo '</script'; ?>
 >
 
-  <?php echo '<script'; ?>
+  
+<?php echo '<script'; ?>
+ src="/Casette_Dei_Desideri/public/assets/js/prenotazione.js"><?php echo '</script'; ?>
 >
-    // 5) Verifica che l'intervallo selezionato sia continuo e valido
-    function isRangeContinuo(startStr, endStr) {
-      const start = new Date(startStr);
-      const end = new Date(endStr);
-
-      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-        const giornoStr = d.toISOString().slice(0, 10);
-        if (!isInIntervallo(giornoStr) || isOccupata(giornoStr)) {
-          return false;
-        }
-      }
-
-      return true;
-    }
-
-    // 6) Validazione lato client prima dell'invio
-    document.querySelector('.prenotazione-form').addEventListener('submit', function(e) {
-      const inputInizio = document.getElementById('dataInizio');
-      const inputFine = document.getElementById('dataFine');
-
-      const dataInizio = inputInizio._flatpickr.selectedDates[0];
-      const dataFine = inputFine._flatpickr.selectedDates[0];
-
-      if (!dataInizio || !dataFine) {
-        alert("Devi selezionare sia la data di inizio che quella di fine.");
-        e.preventDefault();
-        return;
-      }
-
-      const dataInizioStr = dataInizio.toISOString().slice(0, 10);
-      const dataFineStr = dataFine.toISOString().slice(0, 10);
-
-      if (!isInIntervallo(dataInizioStr) || isOccupata(dataInizioStr)) {
-        alert("La data di inizio non è disponibile.");
-        e.preventDefault();
-        return;
-      }
-
-      if (!isInIntervallo(dataFineStr) || isOccupata(dataFineStr)) {
-        alert("La data di fine non è disponibile.");
-        e.preventDefault();
-        return;
-      }
-
-      if (dataFine < dataInizio) {
-        alert("La data di fine deve essere uguale o successiva a quella di inizio.");
-        e.preventDefault();
-        return;
-      }
-
-      if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
-        alert("L'intervallo selezionato contiene giorni non prenotabili.");
-        e.preventDefault();
-        return;
-      }
-    });
-  <?php echo '</script'; ?>
+<?php echo '<script'; ?>
 >
+  inizializzaPrenotazione();
+<?php echo '</script'; ?>
+>
+
 
 
 

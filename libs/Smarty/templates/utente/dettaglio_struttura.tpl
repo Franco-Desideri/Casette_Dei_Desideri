@@ -209,120 +209,12 @@
         }{if !$p@last},{/if}
       {/foreach}
     ];
-
-    // 2) Funzioni di disponibilità
-    function isInIntervallo(dateStr) {
-      const d = new Date(dateStr);
-      return intervalliDisponibili.some(i =>
-        d >= new Date(i.inizio) && d <= new Date(i.fine)
-      );
-    }
-
-    function isOccupata(dateStr) {
-      const d = new Date(dateStr);
-      return dateOccupate.some(p =>
-        d >= new Date(p.inizio) && d <= new Date(p.fine)
-      );
-    }
-
-    // 3) Disabilita date non valide
-    function disableDates(date) {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0');
-      const day = String(date.getDate()).padStart(2, '0');
-      const ds = year + "-" + month + "-" + day;
-      return !isInIntervallo(ds) || isOccupata(ds);
-    }
-
-    // 4) Inizializza Flatpickr
-    const dataFinePicker = flatpickr("#dataFine", {
-      dateFormat: "d-m-Y",
-      minDate: "today",
-      disable: [disableDates],
-      disableMobile: true,
-      defaultHour: 12,
-      onDayCreate: function(dObj, dStr, fp, dayElem) {
-        const dataInizioDate = flatpickr.parseDate(document.getElementById('dataInizio').value, "d-m-Y");
-        if (dataInizioDate && dayElem.dateObj.toDateString() === dataInizioDate.toDateString()) {
-          dayElem.classList.add('highlight-day');
-        }
-      }
-    });
-
-    flatpickr("#dataInizio", {
-      dateFormat: "d-m-Y",
-      minDate: "today",
-      disable: [disableDates],
-      disableMobile: true,
-      defaultHour: 12,
-      onChange: function(selectedDates, dateStr) {
-        if (dateStr) {
-          dataFinePicker.set('minDate', dateStr);
-        }
-      }
-    });
   </script>
-
+  
+  <script src="/Casette_Dei_Desideri/public/assets/js/prenotazione.js"></script>
   <script>
-    // 5) Verifica che l'intervallo selezionato sia continuo e valido
-    function isRangeContinuo(startStr, endStr) {
-      const start = new Date(startStr);
-      const end = new Date(endStr);
-
-      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-        const giornoStr = d.toISOString().slice(0, 10);
-        if (!isInIntervallo(giornoStr) || isOccupata(giornoStr)) {
-          return false;
-        }
-      }
-
-      return true;
-    }
-
-    // 6) Validazione lato client prima dell'invio
-    document.querySelector('.prenotazione-form').addEventListener('submit', function(e) {
-      const inputInizio = document.getElementById('dataInizio');
-      const inputFine = document.getElementById('dataFine');
-
-      const dataInizio = inputInizio._flatpickr.selectedDates[0];
-      const dataFine = inputFine._flatpickr.selectedDates[0];
-
-      if (!dataInizio || !dataFine) {
-        alert("Devi selezionare sia la data di inizio che quella di fine.");
-        e.preventDefault();
-        return;
-      }
-
-      const dataInizioStr = dataInizio.toISOString().slice(0, 10);
-      const dataFineStr = dataFine.toISOString().slice(0, 10);
-
-      if (!isInIntervallo(dataInizioStr) || isOccupata(dataInizioStr)) {
-        alert("La data di inizio non è disponibile.");
-        e.preventDefault();
-        return;
-      }
-
-      if (!isInIntervallo(dataFineStr) || isOccupata(dataFineStr)) {
-        alert("La data di fine non è disponibile.");
-        e.preventDefault();
-        return;
-      }
-
-      if (dataFine < dataInizio) {
-        alert("La data di fine deve essere uguale o successiva a quella di inizio.");
-        e.preventDefault();
-        return;
-      }
-
-      if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
-        alert("L'intervallo selezionato contiene giorni non prenotabili.");
-        e.preventDefault();
-        return;
-      }
-    });
+    inizializzaPrenotazione();
   </script>
-
-
 
   </body>
 </html>

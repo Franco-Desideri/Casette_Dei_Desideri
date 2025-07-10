@@ -1,28 +1,28 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-10 12:12:18
+/* Smarty version 5.5.1, created on 2025-07-10 12:19:54
   from 'file:utente/prenotazione_riepilogo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686f92024ad696_01024013',
+  'unifunc' => 'content_686f93cab54076_93300049',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2dbbc88a71f94b85f88ef926a81c4309488bf237' => 
     array (
       0 => 'utente/prenotazione_riepilogo.tpl',
-      1 => 1752141964,
+      1 => 1752142790,
       2 => 'file',
     ),
   ),
   'includes' => 
   array (
     'file:partials/appbar_templateAdmin.tpl' => 1,
-    'file:partials/appbar_utente.tpl' => 1,
+    'file:partials/appbar_template.tpl' => 1,
   ),
 ))) {
-function content_686f92024ad696_01024013 (\Smarty\Template $_smarty_tpl) {
+function content_686f93cab54076_93300049 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -57,7 +57,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
       <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_templateAdmin.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
 ?>
     <?php } else { ?>
-      <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_utente.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
+      <?php $_smarty_tpl->renderSubTemplate("file:partials/appbar_template.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);
 ?>
     <?php }?>
 

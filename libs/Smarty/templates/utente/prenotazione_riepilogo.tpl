@@ -30,7 +30,7 @@
     {if $ruolo == 'admin'}
       {include file="partials/appbar_templateAdmin.tpl" paginaCorrente="strutture"}
     {else}
-      {include file="partials/appbar_utente.tpl" paginaCorrente="strutture"}
+      {include file="partials/appbar_template.tpl" paginaCorrente="strutture"}
     {/if}
 
 

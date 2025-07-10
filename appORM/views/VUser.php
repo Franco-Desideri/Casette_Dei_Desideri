@@ -73,6 +73,7 @@ class VUser
     public function mostraRiepilogoPrenotazione($prenotazione, $struttura, $periodo, $ospiti, $totale, $ruolo): void
     {
         $this->smarty->assign('ruolo', $ruolo);
+        $this->smarty->assign('struttura', $struttura);
         $this->smarty->assign('dataInizio', $periodo->getDataI()->format('d/m/Y'));
         $this->smarty->assign('dataFine', $periodo->getDataF()->format('d/m/Y'));
 
