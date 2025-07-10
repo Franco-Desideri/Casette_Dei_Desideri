@@ -13,40 +13,11 @@ class FPrenotazione
 {
     public static function creaPrenotazione(EPrenotazione $prenotazione): bool
     {
-        $struttura = $prenotazione->getStruttura();
-        $dataInizio = $prenotazione->getPeriodo()->getDataI();
-        $dataFine = $prenotazione->getPeriodo()->getDataF();
-
-        // Verifica copertura da intervalli
-        if (!self::copreIntervalli($struttura->getIntervalli(), $dataInizio, $dataFine)) {
-            return false;
-        }
-
-        // Verifica sovrapposizioni con altre prenotazioni
-        if (self::conflittoConPrenotazioni($struttura, $dataInizio, $dataFine)) {
-            return false;
-        }
-
-        // Verifica numero massimo ospiti
-        $numOspiti = count($prenotazione->getOspitiDettagli());
-        if ($numOspiti > $struttura->getNumOspiti()) {
-            return false;
-        }
-
-        // Calcolo del prezzo totale in base ai giorni/intervalli
-        $prezzoTotale = self::calcolaPrezzoTotale($struttura->getIntervalli(), $dataInizio, $dataFine);
-        $prenotazione->setPrezzo($prezzoTotale);
-
-        // Imposta anche il numero di ospiti nella proprietà obbligatoria
-        $prenotazione->setOspiti($numOspiti);
-
-        // Salva la prenotazione
         FPersistentManager::store($prenotazione);
         return true;
     }
 
-
-    private static function copreIntervalli(iterable $intervalli, \DateTime $dataInizio, \DateTime $dataFine): bool
+    public static function copreIntervalli(iterable $intervalli, \DateTime $dataInizio, \DateTime $dataFine): bool
     {
         $periodoRichiesto = new \DatePeriod(
             $dataInizio,
@@ -76,7 +47,7 @@ class FPrenotazione
         return true;
     }
 
-    private static function conflittoConPrenotazioni(EStruttura $struttura, \DateTime $dataI, \DateTime $dataF): bool
+    public static function conflittoConPrenotazioni(EStruttura $struttura, \DateTime $dataI, \DateTime $dataF): bool
     {
         foreach ($struttura->getPrenotazioni() as $p) {
             $pI = $p->getPeriodo()->getDataI();
@@ -101,23 +72,14 @@ class FPrenotazione
         );
 
         foreach ($giorniPrenotati as $giorno) {
-            $prezzoGiornaliero = 0;
-
             foreach ($intervalli as $intervallo) {
                 if ($giorno >= $intervallo->getDataI() && $giorno <= $intervallo->getDataF()) {
-                    $prezzoGiornaliero = $intervallo->getPrezzo();
+                    $prezzoTotale += $intervallo->getPrezzo();
                     break;
                 }
             }
-
-            $prezzoTotale += $prezzoGiornaliero;
         }
 
         return $prezzoTotale;
-    }
-
-    public static function getPrenotazioniPerUtente(int $idUtente): array
-    {
-        return FPersistentManager::findBy(EPrenotazione::class, ['utente' => $idUtente]);
     }
 }

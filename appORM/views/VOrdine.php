@@ -47,12 +47,17 @@ class VOrdine
      *
      * @param array $ordineData Dati dell'ordine temporaneo salvati in sessione
      */
-    public function mostraRiepilogo(array $ordineData): void
-    {
-        $this->smarty->assign('ordine', $ordineData);
-        $this->smarty->display('utente/riepilogo.tpl');
+    public function mostraRiepilogo(array $ordineData, ?string $errore = null): void
+{
+    $this->smarty->assign('ordine', $ordineData);
+
+    // Controlla se esiste un messaggio di errore
+     if ($errore !== null) {
+        $this->smarty->assign('errore_contanti', $errore);
     }
 
+    $this->smarty->display('utente/riepilogo.tpl');
+}
     /**
      * Mostra un messaggio di conferma ordine inviato
      */

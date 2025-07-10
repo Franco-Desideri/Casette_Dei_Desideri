@@ -2,6 +2,15 @@
 
 {block name="contenuto"}
 
+{if isset($errore_contanti)}
+  <div class="alert-custom">
+    <strong>Attenzione:</strong> {$errore_contanti}
+  </div>
+{/if}
+
+
+
+
 <div class="main-content container">
     <h2 class="page-title">Riepilogo Ordine</h2>
 
@@ -19,23 +28,25 @@
             <tbody>
                 {assign var="totale" value=0}
                 {foreach $ordine.prodotti as $prodotto}
-                    {* Non serve più ricalcolare queste variabili qui, le riceviamo dal controller *}
-                    {* {assign var="quantita" value=$prodotto.quantita} *}
-                    {* {assign var="prezzoUnitario" value=$prodotto.prezzo} *}
-                    {* {assign var="totaleProdotto" value=$quantita * $prezzoUnitario} *}
 
-                    {assign var="totale" value=$totale + $prodotto.prezzo_totale_riga} {* Usa il totale riga dal controller *}
+                    {assign var="totale" value=$totale + $prodotto.prezzo_totale_riga} 
                     <tr>
                         <td>{$prodotto.nome}</td>
-                        <td>{$prodotto.quantita}</td>
+                        <td>
+                        {if $prodotto.tipo == 'peso'}
+                            {$prodotto.quantita} g
+                        {else}
+                            {$prodotto.quantita} pz
+                        {/if}
+                        </td>
                         <td>
                             {if $prodotto.tipo eq 'quantita'}
-                                {$prodotto.prezzo_unitario|string_format:"%.2f"} &euro; {* Usa il nuovo prezzo unitario *}
+                                {$prodotto.prezzo_unitario|string_format:"%.2f"} &euro; 
                             {else if $prodotto.tipo eq 'peso'}
-                                {$prodotto.prezzo_unitario_kg|string_format:"%.2f"} &euro;/Kg {* Usa il nuovo prezzo unitario al kg *}
+                                {$prodotto.prezzo_unitario_kg|string_format:"%.2f"} &euro;/Kg 
                             {/if}
                         </td>
-                        <td>{$prodotto.prezzo_totale_riga|string_format:"%.2f"} &euro;</td> {* Usa il totale riga *}
+                        <td>{$prodotto.prezzo_totale_riga|string_format:"%.2f"} &euro;</td> 
                     </tr>
                 {/foreach}
             </tbody>

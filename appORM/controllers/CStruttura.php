@@ -2,6 +2,7 @@
 
 use App\services\TechnicalServiceLayer\utility\USession;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
+use App\services\TechnicalServiceLayer\foundation\FStruttura;
 use App\views\VStruttura;
 use App\models\EStruttura;
 
@@ -11,7 +12,7 @@ class CStruttura
     {
         USession::start();
 
-        $strutture = FPersistentManager::get()->getRepository(EStruttura::class)->findAll();
+        $strutture = FStruttura::getTutteStrutture();
 
         foreach ($strutture as $s) {
             $s->immaginePrincipale = $s->getImmaginePrincipaleBase64();
@@ -25,7 +26,7 @@ class CStruttura
     {
         USession::start();
 
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
+        $struttura = FStruttura::getStrutturaById($id);
 
         if (!$struttura) {
             echo "Struttura non trovata.";
@@ -55,7 +56,7 @@ class CStruttura
             exit;
         }
 
-        $struttura = FPersistentManager::get()->find(EStruttura::class, $id);
+        $struttura = FStruttura::getStrutturaById($id);
 
         if (!$struttura) {
             echo "Struttura non trovata.";

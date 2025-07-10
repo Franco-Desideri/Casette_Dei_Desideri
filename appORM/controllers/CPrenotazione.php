@@ -42,7 +42,32 @@ class CPrenotazione
             return;
         }
 
-        // === INIZIO BLOCCO LOCK PRENOTAZIONE ===
+        // === VERIFICHE PRIMA DI BLOCCARE LE DATE ===
+        if (!FPrenotazione::copreIntervalli($struttura->getIntervalli(), $dataInizio, $dataFine)) {
+            echo "<script>
+                alert('Le date selezionate non sono disponibili per questa struttura.');
+                window.location.href = '/Casette_Dei_Desideri/Struttura/dettaglio/" . $idStruttura . "';
+            </script>";
+            exit;
+        }
+
+        if (FPrenotazione::conflittoConPrenotazioni($struttura, $dataInizio, $dataFine)) {
+            echo "<script>
+                alert('Le date selezionate si sovrappongono a una prenotazione esistente.');
+                window.location.href = '/Casette_Dei_Desideri/Struttura/dettaglio/" . $idStruttura . "';
+            </script>";
+            exit;
+        }
+
+        if ($numOspiti > $struttura->getNumOspiti()) {
+            echo "<script>
+                alert('Numero di ospiti superiore alla capienza massima della struttura.');
+                window.location.href = '/Casette_Dei_Desideri/Struttura/dettaglio/" . $idStruttura . "';
+            </script>";
+            exit;
+        }
+
+        // === BLOCCO DELLE DATE (solo se tutto è valido) ===
         $lockRepo = new FLockPrenotazione();
         $lockRepo->rimuoviScaduti();
 
@@ -64,10 +89,9 @@ class CPrenotazione
                     window.location.href = '/Casette_Dei_Desideri/Struttura/dettaglio/" . $idStruttura . "';
                 </script>";
                 exit;
-
             }
 
-            $lock = new \App\models\ELockPrenotazione();
+            $lock = new ELockPrenotazione();
             $lock->setStrutturaId($idStruttura)
                 ->setData($data)
                 ->setUtenteId($utenteId)
@@ -75,7 +99,6 @@ class CPrenotazione
 
             $lockRepo->inserisciLock($lock);
         }
-        // === FINE BLOCCO LOCK PRENOTAZIONE ===
 
         $prezzo = FPrenotazione::calcolaPrezzoTotale($struttura->getIntervalli(), $dataInizio, $dataFine);
 
@@ -84,12 +107,13 @@ class CPrenotazione
             'data_inizio' => $dataInizio->format('Y-m-d'),
             'data_fine' => $dataFine->format('Y-m-d'),
             'num_ospiti' => $numOspiti,
-            'totale' => $prezzo,
+            'totale' => $prezzo
         ]);
 
-        header('Location: /Casette_Dei_Desideri/Prenotazione/riepilogoParziale');
+        header("Location: /Casette_Dei_Desideri/Prenotazione/riepilogoParziale");
         exit;
     }
+
 
 
 
@@ -253,6 +277,7 @@ class CPrenotazione
         $prenotazione->setStruttura($struttura);
         $prenotazione->setUtente($utente);
         $prenotazione->setCartaCredito($carta);
+        $prenotazione->setPrezzo($dati['totale']);
         $prenotazione->setPagata(true);
         $prenotazione->setPeriodo(new EDataPrenotazione(
             new DateTime($dati['data_inizio']),
@@ -285,46 +310,11 @@ class CPrenotazione
         $lockRepo = new FLockPrenotazione();
         $lockRepo->rimuoviPerUtente($utente->getId());
 
-        //Invio Email
-        $admin = FPersistentManager::get()->getRepository(EUtente::class)->findBy(['ruolo' => 'admin']);
+    $EmailAData = UEmail::email_prenotazione_admin($utente,$prenotazione);
+    $EmailUData = UEmail::email_prenotazione_utente($utente,$prenotazione);
 
-    if (!$admin || count($admin) === 0) {
-        error_log("Errore: nessun amministratore trovato per inviare la mail.");
-        return;
-    }
-
-    $adminEmail = $admin[0]->getEmail();
-    $utenteEmail = $utente ->getEmail();
-
-    // Costruzione contenuto email
-    $contenutoAD = "Hai ricevuto un nuova prenotazione!\n\n";
-    $contenutoAD .= "Cliente: " . $utente->getNome() . " " . $utente->getCognome() . "\n";
-    $contenutoAD .= "Email cliente: " . $utente->getEmail() . "\n";
-    $contenutoAD .= "Data di inizio prenotazione: " . $prenotazione->getPeriodo()->getDataI()->format('d/m/Y') . "\n";
-    $contenutoAD .= "Data di fine prenotazione: " . $prenotazione->getPeriodo()->getDataF()->format('d/m/Y') . "\n";
-    $contenutoAD .= "Numero Ospiti: " . $prenotazione->getOspiti() . "\n";
-    $contenutoAD .= "Importo totale: " . number_format($prenotazione->getPrezzo(), 2) . " €\n";
-
-    $contenutoAD .= "Struttura prenotata:" . $prenotazione->getStruttura()->getTitolo() . "\n";
-
-
-    $contenutoU = "La tua prenotazione è avvenuta con successo!\n\n";
-    $contenutoU .= "Cliente: " . $utente->getNome() . " " . $utente->getCognome() . "\n";
-    $contenutoU .= "Data di inizio prenotazione: " . $prenotazione->getPeriodo()->getDataI()->format('d/m/Y') . "\n";
-    $contenutoU .= "Data di fine prenotazione: " . $prenotazione->getPeriodo()->getDataF()->format('d/m/Y') . "\n";
-    $contenutoU .= "Numero Ospiti: " . $prenotazione->getOspiti() . "\n";
-    $contenutoU .= "Importo totale: " . number_format($prenotazione->getPrezzo(), 2) . " €\n";
-
-    $contenutoU .= "Struttura prenotata:" . $prenotazione->getStruttura()->getTitolo() . "\n";
-
-
-
-    $oggettoAD = "Nuova prenotazione da " . $utente->getNome() . " " . $utente->getCognome();
-    $oggettoU = "Prenotazione confermata " ;
-
-    // Invio
-    $esito = UEmail::invia($adminEmail, $oggettoAD, $contenutoAD);
-    $esitoU = UEmail::invia($utenteEmail, $oggettoU, $contenutoU);
+    $esito = UEmail::invia($EmailAData);
+    $esitoU = UEmail::invia($EmailUData);
 
     if (!$esito) {
         error_log("Errore invio email ordine all'amministratore.");

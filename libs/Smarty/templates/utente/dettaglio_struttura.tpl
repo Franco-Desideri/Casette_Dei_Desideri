@@ -189,11 +189,12 @@
 
 
 
+
   <script>
-    // 1) Prepara i tuoi dati PHP/Smarty in JS
+    // 1) Prepara i dati PHP/Smarty in JS
     const intervalliDisponibili = [
       {foreach from=$intervalli item=i}
-        { // Smarty copierà queste righe
+        {
           inizio: '{$i->getDataI()->format("Y-m-d")}',
           fine:   '{$i->getDataF()->format("Y-m-d")}'
         }{if !$i@last},{/if}
@@ -209,13 +210,14 @@
       {/foreach}
     ];
 
-    // 2) Le tue funzioni di disponibilità
+    // 2) Funzioni di disponibilità
     function isInIntervallo(dateStr) {
       const d = new Date(dateStr);
       return intervalliDisponibili.some(i =>
         d >= new Date(i.inizio) && d <= new Date(i.fine)
       );
     }
+
     function isOccupata(dateStr) {
       const d = new Date(dateStr);
       return dateOccupate.some(p =>
@@ -223,23 +225,26 @@
       );
     }
 
-    // 3) Funzione che Flatpickr userà per disabilitare le date
+    // 3) Disabilita date non valide
     function disableDates(date) {
-      const ds = date.toISOString().slice(0,10); // "YYYY-MM-DD"
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const ds = year + "-" + month + "-" + day;
       return !isInIntervallo(ds) || isOccupata(ds);
     }
 
-    // 4) Inizializzazione dei due datepickers
+    // 4) Inizializza Flatpickr
     const dataFinePicker = flatpickr("#dataFine", {
       dateFormat: "d-m-Y",
       minDate: "today",
-      disable: [ disableDates ], //rende alcune date non selezionabili
-      onDayCreate: function(dObj, dStr, fp, dayElem) {  //è chiamata per la creazione di ogni singolo giorno del calendario
+      disable: [disableDates],
+      disableMobile: true,
+      defaultHour: 12,
+      onDayCreate: function(dObj, dStr, fp, dayElem) {
         const dataInizioDate = flatpickr.parseDate(document.getElementById('dataInizio').value, "d-m-Y");
-        if (dataInizioDate) {
-          if (dayElem.dateObj.toDateString() === dataInizioDate.toDateString()) {
-            dayElem.classList.add('highlight-day'); //se la data attuale di creazione del Cal. == dataInizio allora colora
-          }
+        if (dataInizioDate && dayElem.dateObj.toDateString() === dataInizioDate.toDateString()) {
+          dayElem.classList.add('highlight-day');
         }
       }
     });
@@ -247,31 +252,34 @@
     flatpickr("#dataInizio", {
       dateFormat: "d-m-Y",
       minDate: "today",
-      disable: [ disableDates ],
+      disable: [disableDates],
+      disableMobile: true,
+      defaultHour: 12,
       onChange: function(selectedDates, dateStr) {
         if (dateStr) {
-          // non permettere a dataFine di essere precedente
           dataFinePicker.set('minDate', dateStr);
         }
       }
     });
   </script>
 
-
   <script>
+    // 5) Verifica che l'intervallo selezionato sia continuo e valido
     function isRangeContinuo(startStr, endStr) {
       const start = new Date(startStr);
       const end = new Date(endStr);
 
       for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-        const ds = d.toISOString().slice(0, 10);
-        if (!isInIntervallo(ds) || isOccupata(ds)) {
+        const giornoStr = d.toISOString().slice(0, 10);
+        if (!isInIntervallo(giornoStr) || isOccupata(giornoStr)) {
           return false;
         }
       }
+
       return true;
     }
 
+    // 6) Validazione lato client prima dell'invio
     document.querySelector('.prenotazione-form').addEventListener('submit', function(e) {
       const inputInizio = document.getElementById('dataInizio');
       const inputFine = document.getElementById('dataFine');
@@ -279,18 +287,15 @@
       const dataInizio = inputInizio._flatpickr.selectedDates[0];
       const dataFine = inputFine._flatpickr.selectedDates[0];
 
-      // Controllo che entrambi i campi siano compilati
       if (!dataInizio || !dataFine) {
         alert("Devi selezionare sia la data di inizio che quella di fine.");
         e.preventDefault();
         return;
       }
 
-      // Formatta le date nel formato YYYY-MM-DD
       const dataInizioStr = dataInizio.toISOString().slice(0, 10);
       const dataFineStr = dataFine.toISOString().slice(0, 10);
 
-      // Controllo intervallo disponibile per inizio e fine
       if (!isInIntervallo(dataInizioStr) || isOccupata(dataInizioStr)) {
         alert("La data di inizio non è disponibile.");
         e.preventDefault();
@@ -303,14 +308,12 @@
         return;
       }
 
-      // Controllo che data fine sia dopo o uguale a data inizio
       if (dataFine < dataInizio) {
         alert("La data di fine deve essere uguale o successiva a quella di inizio.");
         e.preventDefault();
         return;
       }
 
-      // NUOVO controllo: range continuo senza buchi
       if (!isRangeContinuo(dataInizioStr, dataFineStr)) {
         alert("L'intervallo selezionato contiene giorni non prenotabili.");
         e.preventDefault();
@@ -318,6 +321,8 @@
       }
     });
   </script>
+
+
 
   </body>
 </html>

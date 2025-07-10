@@ -55,6 +55,10 @@ class EStruttura
     /** @ORM\Column(type="boolean") */
     private bool $balcone;
 
+    
+    /** @ORM\Column(type="boolean") */
+    private bool $cancellata = false;
+
     /**
      * @ORM\OneToMany(targetEntity="EPrenotazione", mappedBy="struttura", cascade={"persist", "remove"})
      */
@@ -158,21 +162,26 @@ class EStruttura
         $this->foto->removeElement($foto);
     }
 
-    public function getImmaginePrincipaleBase64(): ?string
-    {
-    $foto = $this->getFoto()->first();
-    if ($foto && $foto->getImmagine()) {
-        $stream = $foto->getImmagine();
-        if (is_resource($stream)) {
-            rewind($stream);    //cursore a posizione 0
-            $data = stream_get_contents($stream);   //legge tutti i dati dall’inizio
-        } else {
-            $data = $stream;    //se è già stringa binaria
+    public function getImmaginePrincipaleBase64(): ?string{
+        $foto = $this->getFoto()->first();
+        if ($foto && $foto->getImmagine()) {
+            $stream = $foto->getImmagine();
+            if (is_resource($stream)) {
+                rewind($stream);    //cursore a posizione 0
+                $data = stream_get_contents($stream);   //legge tutti i dati dall’inizio
+            } else {
+                $data = $stream;    //se è già stringa binaria
+            }
+            return 'data:image/jpeg;base64,' . base64_encode($data);
         }
-        return 'data:image/jpeg;base64,' . base64_encode($data);
+        return null;
     }
-    return null;
-}
 
+    public function isCancellata(): bool {
+        return $this->cancellata;
+    }
 
+    public function setCancellata(bool $cancellata): void {
+        $this->cancellata = $cancellata;
+    }
 }
