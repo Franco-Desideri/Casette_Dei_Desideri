@@ -68,11 +68,11 @@
                         <div class="product-details">
                             <h4 class="product-name">{$prodotto->getNome()}</h4>
                             
-                            <p class="product-price-per-unit">Prezzo: {$prodotto->getPrezzoKg()|string_format:"%.2f"} &euro;/Kg</p>
+                            <p class="product-price-per-unit">Prezzo: {$prodotto->getPrezzoKg()|string_format:"%d"} &euro;/Kg</p>
                             
                             <div class="quantity-control" data-step="{$prodotto->getRangePeso()}">
                                 <button type="button" class="qty-btn" data-action="minus">-</button>
-                                <input type="number" name="quantitaP[{$prodotto->getId()}]" min="0" step="{$prodotto->getRangePeso()}" value="0" class="product-quantity-input"> g
+                                <input type="number" name="quantitaP[{$prodotto->getId()}]" min="0" step="{$prodotto->getRangePeso()}" value="0" class="product-quantity-input" data-tipo="peso"> g
                                 <button type="button" class="qty-btn" data-action="plus">+</button>
                             </div>
                         </div>
@@ -124,13 +124,15 @@ document.querySelectorAll('.quantity-control').forEach(control => {
     const minusBtn = control.querySelector('[data-action="minus"]');
     const plusBtn = control.querySelector('[data-action="plus"]');
     const input = control.querySelector('.product-quantity-input');
+
+    // Prende il tipo (peso o quantità)
+    const tipo = input.dataset.tipo;
     
-    const tipo = input.dataset.tipo; // "peso" o "quantita"
-    const step = tipo === 'peso' ? parseInt(control.dataset.step) || 50 : 1;
+    const step = tipo === 'peso' ? parseInt(control.dataset.step) || 100 : 1;
 
     plusBtn.addEventListener('click', () => {
         let current = parseInt(input.value) || 0;
-        input.value = current + step;
+        input.value = (current + step);
     });
 
     minusBtn.addEventListener('click', () => {
@@ -139,6 +141,7 @@ document.querySelectorAll('.quantity-control').forEach(control => {
     });
 });
 </script>
+
 
 
 {/block}
