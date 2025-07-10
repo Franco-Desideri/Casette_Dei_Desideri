@@ -161,6 +161,12 @@ class CUser
 
     public function home(): void
     {
+        USession::start();
+        // Controllo sul ruolo
+        if (USession::get('ruolo') === 'admin') {
+            header('Location: /Casette_Dei_Desideri/Admin/profilo');
+            exit;
+        }
         $eventi = FPersistentManager::findAll(EEvento::class);
         $attrazioni = FPersistentManager::findAll(EAttrazione::class);
 

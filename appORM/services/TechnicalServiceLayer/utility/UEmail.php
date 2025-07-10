@@ -66,56 +66,57 @@ class UEmail
 
     public static function email_ordine(EUtente $utente, EOrdine $ordine, array $ordineData): array
     {
-    $admin = FPersistentManager::get()->getRepository(EUtente::class)->findBy(['ruolo' => 'admin']);
-    
-    if (!$admin || count($admin) === 0) {
-        error_log("Errore: nessun amministratore trovato per inviare la mail.");
-        return [];
-    }
+            $admin = EUtente::getAdmin();
 
-    $adminEmail = $admin[0]->getEmail();
+            if (!$admin) {
+                error_log("Errore: nessun amministratore trovato per inviare la mail.");
+                return [];
+            }
 
-    // Costruzione contenuto email
-    $contenuto = "Hai ricevuto un nuovo ordine!\n\n";
-    $contenuto .= "Cliente: " . $utente->getNome() . " " . $utente->getCognome() . "\n";
-    $contenuto .= "Email cliente: " . $utente->getEmail() . "\n";
-    $contenuto .= "Fascia oraria di consegna: " . $ordine->getFasciaOraria() . "\n";
-    $contenuto .= "Importo totale: " . number_format($ordine->getPrezzo(), 2) . " €\n";
-    $contenuto .= "Taglio di banconota fornito: " . number_format($ordine->getContanti(), 2) . " €\n\n";
-    $contenuto .= "Prodotti ordinati:\n";
+            $adminEmail = $admin->getEmail();
 
-    foreach ($ordineData['prodotti'] as $itemData) {
-        if ($itemData['tipo'] === 'quantita') {
-            $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, $itemData['prodotto_id']);
-        } else {
-            $prodotto = FPersistentManager::get()->find(EProdottoPeso::class, $itemData['prodotto_id']);
+        // Costruzione contenuto email
+        $contenuto = "Hai ricevuto un nuovo ordine!\n\n";
+        $contenuto .= "Cliente: " . $utente->getNome() . " " . $utente->getCognome() . "\n";
+        $contenuto .= "Email cliente: " . $utente->getEmail() . "\n";
+        $contenuto .= "Fascia oraria di consegna: " . $ordine->getFasciaOraria() . "\n";
+        $contenuto .= "Importo totale: " . number_format($ordine->getPrezzo(), 2) . " €\n";
+        $contenuto .= "Taglio di banconota fornito: " . number_format($ordine->getContanti(), 2) . " €\n\n";
+        $contenuto .= "Prodotti ordinati:\n";
+
+        foreach ($ordineData['prodotti'] as $itemData) {
+            if ($itemData['tipo'] === 'quantita') {
+                $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, $itemData['prodotto_id']);
+            } else {
+                $prodotto = FPersistentManager::get()->find(EProdottoPeso::class, $itemData['prodotto_id']);
+            }
+
+            $nome = $prodotto->getNome();
+            $qta = $itemData['quantita'];
+            $contenuto .= "- {$nome} x{$qta}\n";
         }
 
-        $nome = $prodotto->getNome();
-        $qta = $itemData['quantita'];
-        $contenuto .= "- {$nome} x{$qta}\n";
-    }
+        $oggetto = "Nuovo ordine da " . $utente->getNome() . " " . $utente->getCognome();
 
-    $oggetto = "Nuovo ordine da " . $utente->getNome() . " " . $utente->getCognome();
-
-    // Ritorna i dati come array
-    return [
-        'Email' => $adminEmail,
-        'oggetto' => $oggetto,
-        'contenuto' => $contenuto,
-    ];
+        // Ritorna i dati come array
+        return [
+            'Email' => $adminEmail,
+            'oggetto' => $oggetto,
+            'contenuto' => $contenuto,
+        ];
     }
 
     public static function email_prenotazione_admin(EUtente $utente, EPrenotazione $prenotazione):array
     {
-        $admin = FPersistentManager::get()->getRepository(EUtente::class)->findBy(['ruolo' => 'admin']);
+        $admin = EUtente::getAdmin();
 
-        if (!$admin || count($admin) === 0) {
+        if (!$admin) {
             error_log("Errore: nessun amministratore trovato per inviare la mail.");
             return [];
         }
 
-        $adminEmail = $admin[0]->getEmail();
+        $adminEmail = $admin->getEmail();
+
 
         // Costruzione contenuto email
         $contenutoAD = "Hai ricevuto un nuova prenotazione!\n\n";

@@ -178,10 +178,12 @@ class COrdine
     FPersistentManager::get()->flush();
 
     //Scrittura struttura email
-    $mailData=UEmail::email_ordine($utente, $ordine, $ordineData);
+    $mailData = UEmail::email_ordine($utente, $ordine, $ordineData);
 
-    if (!empty($mailData)) {
-    $adminEmail = $mailData['adminEmail'];
+if (
+    isset($mailData['Email'], $mailData['oggetto'], $mailData['contenuto'])
+) {
+    $adminEmail = $mailData['Email'];
     $oggetto = $mailData['oggetto'];
     $contenuto = $mailData['contenuto'];
 
@@ -191,6 +193,8 @@ class COrdine
     if (!$esito) {
         error_log("Errore invio email ordine all'amministratore.");
     }
+} else {
+    error_log("Dati email mancanti. Nessuna email inviata.");
 }
 
     // Redireziona alla pagina di conferma ordine
