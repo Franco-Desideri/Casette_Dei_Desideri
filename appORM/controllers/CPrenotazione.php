@@ -210,6 +210,7 @@ class CPrenotazione
         // Verifica campi obbligatori
         if (
             empty($_POST['nomeCarta']) ||
+            empty($_POST['cognomeCarta']) ||
             empty($_POST['numeroCarta']) ||
             empty($_POST['scadenza']) ||
             empty($_POST['cvv'])
@@ -221,14 +222,11 @@ class CPrenotazione
         // Recupera sessione prenotazione temporanea
         $temp = USession::get('prenotazione_temp') ?? [];
 
-        // Estrae nome e cognome dal campo nomeCarta (es: "Mario Rossi")
-        $parts = preg_split('/\s+/', trim($_POST['nomeCarta']), 2);
-        $temp['carta_nome'] = $parts[0] ?? '';
-        $temp['carta_cognome'] = $parts[1] ?? ''; // vuoto se non specificato
-
-        // Altri campi della carta
+        // Salva i dati della carta in sessione
+        $temp['carta_nome'] = trim($_POST['nomeCarta']);
+        $temp['carta_cognome'] = trim($_POST['cognomeCarta']);
         $temp['carta_numero'] = trim($_POST['numeroCarta']);
-        $temp['carta_scadenza'] = $_POST['scadenza'] . "-01"; // Y-m → Y-m-d (usiamo il 1° giorno del mese)
+        $temp['carta_scadenza'] = $_POST['scadenza'] . "-01"; // Y-m → Y-m-d
         $temp['carta_ccv'] = trim($_POST['cvv']);
 
         // Salva in sessione
@@ -238,6 +236,7 @@ class CPrenotazione
         header('Location: /Casette_Dei_Desideri/Prenotazione/conferma');
         exit;
     }
+
 
 
 

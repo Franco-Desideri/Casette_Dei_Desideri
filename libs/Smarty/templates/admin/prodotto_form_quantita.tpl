@@ -3,6 +3,8 @@
 
   <head>
 
+<title>Casette Dei Desideri</title>
+
 <!-- Bootstrap core CSS -->
 <link href="/Casette_Dei_Desideri/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

@@ -53,10 +53,10 @@ class COrdine
             }
         }
 
-        /*if (!$soggiornoAttivo) {
+        if (!$soggiornoAttivo) {
             echo "<script>alert('Non puoi ordinare la spesa se non stai pernottando in struttura.'); window.location.href='/Casette_Dei_Desideri/Ordine/listaProdotti';</script>";
             return;
-        }*/
+        }
 
         $ordineData = $_POST;
         $fascia = $ordineData['fascia_oraria'] ?? null;

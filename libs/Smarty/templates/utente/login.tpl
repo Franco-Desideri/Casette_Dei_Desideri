@@ -3,7 +3,7 @@
 <head>
 
   <meta charset="UTF-8">
-  <title>Login e Registrazione</title>
+  <title>Casette Dei Desideri</title>
   <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/auth.css">
   
 </head>
