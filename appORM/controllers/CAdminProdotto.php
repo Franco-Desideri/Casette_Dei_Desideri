@@ -8,6 +8,11 @@ use App\models\EProdottoPeso;
 
 class CAdminProdotto
 {
+    /**
+     * Mostra la lista di tutti i prodotti visibili e non visibili.
+     * - Recupera separatamente prodotti a quantità e a peso, distinguendo quelli attivi/nascosti.
+     * - Passa tutto alla vista per il rendering dell'elenco completo.
+     */
     public function lista(): void
     {
         USession::start();
@@ -15,19 +20,23 @@ class CAdminProdotto
             echo "Accesso riservato.";
             return;
         }
-        //Prodotti visibili
-        $prodottiQ_visibili = FPersistentManager::get()->getRepository(EProdottoQuantita::class)->findBy(['visibile' => true]);
-        $prodottiP_visibili = FPersistentManager::get()->getRepository(EProdottoPeso::class)->findBy(['visibile' => true]);
 
-        //Prodotti nascosti
-        $prodottiQ_nascosti = FPersistentManager::get()->getRepository(EProdottoQuantita::class)->findBy(['visibile' => false]);
-        $prodottiP_nascosti = FPersistentManager::get()->getRepository(EProdottoPeso::class)->findBy(['visibile' => false]);
+        // Prodotti visibili
+        $prodottiQ_visibili = FPersistentManager::findBy(EProdottoQuantita::class, ['visibile' => true]);
+        $prodottiP_visibili = FPersistentManager::findBy(EProdottoPeso::class, ['visibile' => true]);
+
+        // Prodotti nascosti
+        $prodottiQ_nascosti = FPersistentManager::findBy(EProdottoQuantita::class, ['visibile' => false]);
+        $prodottiP_nascosti = FPersistentManager::findBy(EProdottoPeso::class, ['visibile' => false]);
 
 
         $view = new VAdminProdotto();
         $view->mostraLista($prodottiQ_visibili, $prodottiP_visibili, $prodottiQ_nascosti, $prodottiP_nascosti);
     }
 
+    /**
+     * Mostra il form per inserire un nuovo prodotto a quantità.
+     */
     public function aggiungiQuantita(): void
     {
         USession::start();
@@ -40,6 +49,9 @@ class CAdminProdotto
         $view->mostraFormQuantita();
     }
 
+    /**
+     * Mostra il form per inserire un nuovo prodotto a peso.
+     */
     public function aggiungiPeso(): void
     {
         USession::start();
@@ -52,52 +64,53 @@ class CAdminProdotto
         $view->mostraFormPeso();
     }
 
-
+    /**
+     * Salva un nuovo prodotto (a quantità o a peso) nel database.
+     * - Determina il tipo di prodotto da salvare tramite `$_POST['tipo']`.
+     * - Imposta i relativi campi e gestisce l'immagine caricata.
+     */
     public function salva(): void
-{
-    USession::start();
-    if (USession::get('ruolo') !== 'admin') {
-        echo "Accesso riservato.";
-        return;
+    {
+        USession::start();
+        if (USession::get('ruolo') !== 'admin') {
+            echo "Accesso riservato.";
+            return;
+        }
+
+        $tipo = $_POST['tipo'];
+        $prodotto = null;
+
+        if ($tipo === 'quantita') {
+            $prodotto = new EProdottoQuantita();
+            $prodotto->setNome($_POST['nome']);
+            $prodotto->setPrezzo((float)$_POST['prezzo']);
+            $prodotto->setPeso((int)$_POST['peso']);
+            $prodotto->setUnitaMisura($_POST['unita_misura']);
+        } elseif ($tipo === 'peso') {
+            $prodotto = new EProdottoPeso();
+            $prodotto->setNome($_POST['nome']);
+            $prodotto->setPrezzoKg((float)$_POST['prezzoKg']);
+            $prodotto->setRangePeso($_POST['rangePeso']);
+        }
+
+        // Gestione immagine come BLOB
+        if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
+            $fileTmp = $_FILES['foto']['tmp_name'];
+            $fileData = file_get_contents($fileTmp);
+            $prodotto->setFoto($fileData); // Richiede una colonna BLOB nella tabella
+        }
+
+        if ($prodotto) {
+            FPersistentManager::store($prodotto);
+        }
+
+        header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
     }
 
-    $tipo = $_POST['tipo'];
-    $prodotto = null;
-
-    if ($tipo === 'quantita') {
-        $prodotto = new EProdottoQuantita();
-        $prodotto->setNome($_POST['nome']);
-        $prodotto->setPrezzo((float)$_POST['prezzo']);
-        $prodotto->setPeso((int)$_POST['peso']);
-        $prodotto->setUnitaMisura($_POST['unita_misura']);
-    } elseif ($tipo === 'peso') {
-        $prodotto = new EProdottoPeso();
-        $prodotto->setNome($_POST['nome']);
-        $prodotto->setPrezzoKg((float)$_POST['prezzoKg']);
-        $prodotto->setRangePeso($_POST['rangePeso']);
-        
-    }
-
-   // 📁 Salvataggio immagine come BLOB nel database
-if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
-    $fileTmp = $_FILES['foto']['tmp_name'];
-
-    // Legge i dati binari del file
-    $fileData = file_get_contents($fileTmp);
-
-    // Imposta l'immagine come BLOB nell'entità
-    $prodotto->setFoto($fileData); // Assicurati che EProdotto::foto sia una colonna BLOB
-}
-
-
-    if ($prodotto) {
-        FPersistentManager::store($prodotto);
-    }
-
-    header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
-}
-
-
+    /**
+     * Carica il form di modifica per un prodotto esistente.
+     * Riconosce automaticamente se è un prodotto a quantità o a peso.
+     */
     public function modifica($id): void
     {
         USession::start();
@@ -106,8 +119,8 @@ if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
             return;
         }
 
-        $prodotto = FPersistentManager::get()->find(EProdottoQuantita::class, $id)
-                  ?? FPersistentManager::get()->find(EProdottoPeso::class, $id);
+        $prodotto = FPersistentManager::find(EProdottoQuantita::class, $id)
+                  ?? FPersistentManager::find(EProdottoPeso::class, $id);
 
         if (!$prodotto) {
             echo "Prodotto non trovato.";
@@ -115,92 +128,94 @@ if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
         }
 
         $view = new VAdminProdotto();
-        $view->mostraForm($prodotto); // Form con dati precompilati
+        $view->mostraForm($prodotto); // Form precompilato con i dati del prodotto
     }
 
+    /**
+     * Salva le modifiche effettuate a un prodotto esistente.
+     * - Aggiorna i campi in base al tipo (quantità o peso).
+     * - Sostituisce l'immagine se presente.
+     */
     public function salvaModifica(): void
-{
-    USession::start();
-    if (USession::get('ruolo') !== 'admin') {
-        echo "Accesso riservato.";
-        return;
+    {
+        USession::start();
+        if (USession::get('ruolo') !== 'admin') {
+            echo "Accesso riservato.";
+            return;
+        }
+
+        $id = $_POST['id'];
+        $tipo = $_POST['tipo'];
+        $prodotto = null;
+
+        if ($tipo === 'quantita') {
+            $prodotto = FPersistentManager::find(EProdottoQuantita::class, $id);
+            $prodotto->setNome($_POST['nome']);
+            $prodotto->setPrezzo((float)$_POST['prezzo']);
+            $prodotto->setPeso((int)$_POST['peso']);
+        } elseif ($tipo === 'peso') {
+            $prodotto = FPersistentManager::find(EProdottoPeso::class, $id);
+            $prodotto->setNome($_POST['nome']);
+            $prodotto->setPrezzoKg((float)$_POST['prezzoKg']);
+            $prodotto->setRangePeso($_POST['rangePeso']);
+        }
+
+        // Aggiornamento immagine se presente
+        if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
+            $fileTmp = $_FILES['foto']['tmp_name'];
+            $fileData = file_get_contents($fileTmp);
+            $prodotto->setFoto($fileData);
+        }
+
+        FPersistentManager::store($prodotto);
+        header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
     }
 
-    $id = $_POST['id'];
-    $tipo = $_POST['tipo'];
-
-    if ($tipo === 'quantita') {
-        $p = FPersistentManager::get()->find(EProdottoQuantita::class, $id);
-        $p->setNome($_POST['nome']);
-        $p->setPrezzo((float)$_POST['prezzo']);
-        $p->setPeso((int)$_POST['peso']);
-    } elseif ($tipo === 'peso') {
-        $p = FPersistentManager::get()->find(EProdottoPeso::class, $id);
-        $p->setNome($_POST['nome']);
-        $p->setPrezzoKg((float)$_POST['prezzoKg']);
-        $p->setRangePeso($_POST['rangePeso']);
-    }
-
-    // 📁 Salvataggio immagine come BLOB nel database
-if (isset($_FILES['foto']) && is_uploaded_file($_FILES['foto']['tmp_name'])) {
-    $fileTmp = $_FILES['foto']['tmp_name'];
-
-    // Legge i dati binari del file
-    $fileData = file_get_contents($fileTmp);
-
-    // Imposta l'immagine come BLOB nell'entità
-    $prodotto->setFoto($fileData); // Assicurati che EProdotto::foto sia una colonna BLOB
-}
-
-
-    FPersistentManager::store($p);
-    header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
-}
-
-
+    /**
+     * Disattiva (nasconde) un prodotto impostandolo come non visibile.
+     * Riconosce il tipo (quantità o peso) e aggiorna la visibilità nel DB.
+     */
     public function disattiva(): void
-{
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idProdotto'])) {
-        $id = (int)$_POST['idProdotto'];
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idProdotto'])) {
+            $id = (int)$_POST['idProdotto'];
 
-        $pm = FPersistentManager::get();
+            $prodottoQ = FPersistentManager::find(EProdottoQuantita::class, $id);
+            $prodottoP = FPersistentManager::find(EProdottoPeso::class, $id);
+            $prodotto = $prodottoQ ?? $prodottoP;
 
-        // Trova il prodotto (a quantità o a peso)
-        $prodottoQ = $pm->getRepository(EProdottoQuantita::class)->find($id);
-        $prodottoP = $pm->getRepository(EProdottoPeso::class)->find($id);
+            if ($prodotto !== null) {
+                $prodotto->setVisibile(false);
+                FPersistentManager::get()->flush();
+
+                header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
+                exit;
+            }
+
+        }
+
+        // Fallback redirect
+        header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
+        exit;
+    }
+
+    /**
+     * Riattiva (rende visibile) un prodotto precedentemente disattivato.
+     */
+    public function attiva($id): void
+    {
+        $prodottoQ = FPersistentManager::find(EProdottoQuantita::class, $id);
+        $prodottoP = FPersistentManager::find(EProdottoPeso::class, $id);
         $prodotto = $prodottoQ ?? $prodottoP;
 
-        if ($prodotto !== null) {
-            $prodotto->setVisibile(false);
-            $pm->flush(); // salva i cambiamenti nel DB
-
-            header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
-            exit;
+        if ($prodotto) {
+            $prodotto->setVisibile(true);
+            FPersistentManager::get()->persist($prodotto);
+            FPersistentManager::get()->flush();
         }
+
+
+        header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
+        exit;
     }
-
-    // Fallback redirect
-    header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
-    exit;
-}
-
-public function attiva($id): void
-{
-    $pm = FPersistentManager::get();
-
-    $prodottoQ = $pm->find(EProdottoQuantita::class, $id); // o EProdottoPeso se è a peso
-    $prodottoP = $pm->find(EProdottoPeso::class, $id);
-    $prodotto = $prodottoQ ?? $prodottoP;
-    if ($prodotto) {
-        $prodotto->setVisibile(true); // oppure 1
-        $pm->persist($prodotto);
-        $pm->flush();
-    }
-
-    header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
-    exit;
-}
-
-
-
 }

@@ -4,15 +4,21 @@ namespace App\services\TechnicalServiceLayer\foundation;
 
 use App\models\EStruttura;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
-use Doctrine\ORM\EntityManagerInterface;
 
 /**
- * Foundation per gestione Strutture
+ * Foundation per la gestione delle strutture (EStruttura).
+ *
+ * Questa classe fornisce un'interfaccia centralizzata per operazioni CRUD
+ * legate alle entità EStruttura, gestendo automaticamente anche la logica
+ * di "soft delete" tramite il flag `cancellata`.
  */
 class FStruttura
 {
     /**
-     * Trova una struttura per ID, solo se non cancellata
+     * Recupera una struttura dal DB tramite il suo ID, **escludendo quelle cancellate**.
+     * 
+     * @param int $id ID della struttura da cercare
+     * @return EStruttura|null La struttura se trovata e non cancellata, altrimenti null
      */
     public static function getStrutturaById(int $id): ?EStruttura
     {
@@ -21,7 +27,9 @@ class FStruttura
     }
 
     /**
-     * Restituisce tutte le strutture non cancellate
+     * Restituisce tutte le strutture attive (non cancellate) dal database.
+     *
+     * @return EStruttura[] Array di strutture visibili
      */
     public static function getTutteStrutture(): array
     {
@@ -31,7 +39,8 @@ class FStruttura
     }
 
     /**
-     * Salva o aggiorna una struttura
+     * Salva o aggiorna una struttura nel database.
+     * Utilizza il metodo store() del PersistentManager (persist + flush).
      */
     public static function salvaStruttura(EStruttura $struttura): void
     {
@@ -39,7 +48,8 @@ class FStruttura
     }
 
     /**
-     * Soft-delete: marca la struttura come cancellata
+     * Effettua una "soft delete" della struttura impostando il flag `cancellata` a true.
+     * La struttura non viene rimossa dal database, ma esclusa dalle query visibili.
      */
     public static function rimuoviStruttura(EStruttura $struttura): void
     {
@@ -47,4 +57,3 @@ class FStruttura
         FPersistentManager::store($struttura);
     }
 }
-

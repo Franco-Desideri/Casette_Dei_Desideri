@@ -13,6 +13,13 @@ use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 
 class CUser
 {
+    /**
+     * Login utente.
+     * - Se l'utente è già autenticato, reindirizza alla home.
+     * - Se riceve una POST, verifica le credenziali.
+     * - In caso di successo, salva utente e ruolo in sessione e reindirizza.
+     * - Altrimenti mostra il form di login con eventuali messaggi di errore.
+     */
     public function login(): void
     {
         USession::start();
@@ -51,6 +58,12 @@ class CUser
         }
     }
 
+    /**
+     * Registrazione utente.
+     * - Esegue controlli di validazione su tutti i campi.
+     * - Verifica che email e codice fiscale non siano già registrati.
+     * - In caso di successo, salva l'utente e lo autentica.
+     */
     public function registrazione(): void
     {
         USession::start();
@@ -102,7 +115,7 @@ class CUser
                 return;
             }
 
-            // Creazione utente
+            // Creazione e salvataggio utente
             $utente = new EUtente();
             $utente->setNome($d['nome']);
             $utente->setCognome($d['cognome']);
@@ -128,20 +141,20 @@ class CUser
         }
     }
 
-
-
-
-
+    /**
+     * Logout utente: chiude la sessione e reindirizza alla home.
+     */
     public function logout(): void
     {
         USession::start();
         USession::destroy();
-        header('Location: /Casette_Dei_Desideri/User/login');
+        header('Location: /Casette_Dei_Desideri/User/home');
         exit;
     }
 
-
-
+    /**
+     * Mostra il profilo dell’utente loggato.
+     */
     public function profilo(): void
     {
         USession::start();
@@ -158,15 +171,20 @@ class CUser
         $view->mostraProfilo($utente);
     }
 
-
+    /**
+     * Home per l’utente loggato.
+     * - Se admin, viene reindirizzato alla sua dashboard.
+     * - Altrimenti mostra eventi e attrazioni.
+     */
     public function home(): void
     {
         USession::start();
-        // Controllo sul ruolo
+
         if (USession::get('ruolo') === 'admin') {
             header('Location: /Casette_Dei_Desideri/Admin/profilo');
             exit;
         }
+
         $eventi = FPersistentManager::findAll(EEvento::class);
         $attrazioni = FPersistentManager::findAll(EAttrazione::class);
 
@@ -174,8 +192,9 @@ class CUser
         $view->mostraHome($eventi, $attrazioni);
     }
 
-
-
+    /**
+     * Permette di aggiornare l’email dell’utente loggato.
+     */
     public function modificaEmail(): void
     {
         USession::start();
@@ -195,6 +214,9 @@ class CUser
         }
     }
 
+    /**
+     * Permette di aggiornare il numero di telefono dell’utente loggato.
+     */
     public function modificaTelefono(): void
     {
         USession::start();
@@ -215,6 +237,11 @@ class CUser
         }
     }
 
+    /**
+     * Mostra il riepilogo di una prenotazione dell’utente autenticato.
+     * - Controlla che l’utente sia il proprietario della prenotazione.
+     * - Prepara i dati per la vista, convertendo gli oggetti ospite in array.
+     */
     public function riepilogo(int $id): void
     {
         USession::start();
@@ -239,7 +266,7 @@ class CUser
 
         $struttura->base64img = $struttura->getImmaginePrincipaleBase64();
 
-        // Converti EOspite in array associativi per Smarty
+        // Conversione ospiti in array compatibile con Smarty
         $ospitiArray = [];
 
         foreach ($ospiti as $ospite) {
@@ -273,11 +300,9 @@ class CUser
             $prenotazione,
             $struttura,
             $periodo,
-            $ospitiArray,  // array associativo compatibile con Smarty
+            $ospitiArray,
             $totale,
             $ruolo
         );
     }
-
-
 }

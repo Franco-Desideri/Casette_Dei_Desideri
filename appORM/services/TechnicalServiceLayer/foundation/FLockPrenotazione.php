@@ -5,17 +5,27 @@ namespace App\services\TechnicalServiceLayer\foundation;
 use App\models\ELockPrenotazione;
 use Doctrine\ORM\EntityManagerInterface;
 
+/**
+ * Foundation class per la gestione dei lock di prenotazione.
+ * I lock servono a evitare che più utenti prenotino la stessa struttura
+ * nello stesso periodo mentre stanno compilando i dati.
+ */
 class FLockPrenotazione
 {
     private EntityManagerInterface $em;
 
     public function __construct()
     {
-        $this->em = FPersistentManager::get(); // <-- è già l'EntityManager
+        // Inizializza l'EntityManager tramite il gestore centralizzato
+        $this->em = FPersistentManager::get();
     }
 
     /**
-     * Ritorna true se esiste già un lock attivo per struttura e giorno
+     * Verifica se esiste un lock attivo per una struttura e una data specifica.
+     * 
+     * @param int $strutturaId ID della struttura.
+     * @param \DateTimeInterface $data Data per cui verificare il lock.
+     * @return bool True se esiste un lock ancora valido, false altrimenti.
      */
     public function esisteLockAttivo(int $strutturaId, \DateTimeInterface $data): bool
     {
@@ -30,7 +40,10 @@ class FLockPrenotazione
     }
 
     /**
-     * Inserisce un nuovo lock per una struttura e giorno
+     * Inserisce un nuovo lock per una struttura in una determinata data.
+     * 
+     * @param ELockPrenotazione $lock Il lock da salvare.
+     * @return void
      */
     public function inserisciLock(ELockPrenotazione $lock): void
     {
@@ -39,7 +52,9 @@ class FLockPrenotazione
     }
 
     /**
-     * Rimuove tutti i lock scaduti
+     * Rimuove tutti i lock che sono scaduti rispetto alla data e ora attuale.
+     * 
+     * @return void
      */
     public function rimuoviScaduti(): void
     {
@@ -49,7 +64,11 @@ class FLockPrenotazione
     }
 
     /**
-     * Rimuove tutti i lock associati a un utente (es. dopo conferma prenotazione)
+     * Rimuove tutti i lock attivi associati a un utente specifico.
+     * Tipicamente chiamata dopo la conferma della prenotazione.
+     * 
+     * @param int $utenteId ID dell'utente.
+     * @return void
      */
     public function rimuoviPerUtente(int $utenteId): void
     {
