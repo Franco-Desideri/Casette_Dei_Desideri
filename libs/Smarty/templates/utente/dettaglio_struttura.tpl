@@ -59,20 +59,6 @@
           {/if}
 
 
-          <!--Visualizzazione foto
-          {if $foto|@count > 0}
-              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                  {foreach from=$foto item=f}
-                      {if isset($f->base64img)}
-                          <img src="{$f->base64img}" alt="foto">
-                      {/if}
-                  {/foreach}
-              </div>
-          {else}
-              <p>Nessuna immagine disponibile.</p>
-          {/if}-->
-
-
           <div class="main-content">
             <span class="category">{$struttura->getTitolo()}</span>
             <h4>{$struttura->getLuogo()}</h4>
@@ -215,6 +201,10 @@
   <script>
     inizializzaPrenotazione();
   </script>
+
+
+
+
 
   </body>
 </html>
