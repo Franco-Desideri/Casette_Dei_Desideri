@@ -807,7 +807,16 @@ Banner Style
 .owl-carousel .owl-nav button.owl-prev:hover,
 .owl-carousel .owl-nav button.owl-next:hover {
   background-color: #009e00!important;
- 
+}
+
+.owl-carousel .item img {
+  max-width: 100%;      /* mai più larghe del contenitore */
+  max-height: 80vh;     /* mai più alte del contenitore */
+  width: auto;          /* mantiene proporzioni */
+  height: auto;         /* mantiene proporzioni */
+  object-fit: contain;  /* ridimensiona senza tagliare */
+  display: block;
+  margin: 0 auto;       /* centra orizzontalmente */
 }
 
 
@@ -979,56 +988,6 @@ Featured Style
   font-size: 15px;
   color: #aaa;
   font-weight: 400;
-}
-
-/* 
----------------------------------------------
-Video Style
---------------------------------------------- 
-*/
-
-.video {
-  background-image: url(../images/video-bg.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  padding: 100px 0px 250px 0px;
-  position: relative;
-}
-
-.video-content {
-  margin-top: -240px;
-}
-
-.video .section-heading h2 {
-  color: #fff;
-}
-
-.video-content .video-frame {
-  position: relative;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
-}
-
-.video-content .video-frame img {
-  border-radius: 10px;
-}
-
-.video-content .video-frame a {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-26px, -26px);
-  width: 52px;
-  height: 52px;
-  background-color: #fff;
-  border-radius: 50%;
-  display: inline-block;
-  text-align: center;
-  line-height: 52px;
-  color: #009e00;
-  outline: 15px solid rgba(254, 85, 37, 0.5);
-  font-size: 18px;
 }
 
 /* 
