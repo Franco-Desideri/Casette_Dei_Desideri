@@ -102,6 +102,25 @@ body {
   justify-content: left; 
 }
 
+
+.title-marquee {
+  width: 250px;           /* o la larghezza della tua card */
+  overflow: hidden;       /* nasconde il testo che esce dai bordi */
+  white-space: nowrap;    /* evita i ritorni a capo */
+}
+
+.title-marquee span {
+  display: inline-block;
+  animation: marquee 8s linear infinite;
+}
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+
+
 .card-info {
   background-color: #ffffff;
   border-radius: 10px;

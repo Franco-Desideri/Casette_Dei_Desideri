@@ -75,21 +75,28 @@
   <h2 class="section-title">Eventi da non perdere</h2>
 
 
-  <div class="card-list-info">
-    {if $eventi|@count > 0}
-        {foreach from=$eventi item=evento}
-            <div class="card-info">
-                  <h3 class="card-title">{$evento->getTitolo()}</h3>
-                  <p class="card-dates">Dal {$evento->getDataInizioString('Y-m-d')} al {$evento->getDataFineString('Y-m-d')}</p>
-                <div class="card-info-image">
-                    <img src="{$evento->base64img}" alt="Immagine evento">
-                </div>
-            </div>
-        {/foreach}
-    {else}
-        <p>Non ci sono attrazioni disponibili</p>
-    {/if}
-  </div>
+<div class="card-list-info">
+  {if $eventi|@count > 0}
+    {foreach from=$eventi item=evento}
+      <div class="card-info">
+        <div class="title-marquee">
+          <h3 class="card-title">
+            <span class="scroll-text">{$evento->getTitolo()}</span>
+          </h3>
+        </div>
+        <p class="card-dates">
+          Dal {$evento->getDataInizioString('Y-m-d')} al {$evento->getDataFineString('Y-m-d')}
+        </p>
+        <div class="card-info-image">
+          <img src="{$evento->base64img}" alt="Immagine evento">
+        </div>
+      </div>
+    {/foreach}
+  {else}
+    <p>Non ci sono attrazioni disponibili</p>
+  {/if}
+</div>
+
 
 
   {include file="partials/footer.tpl" paginaCorrente="strutture"}  
