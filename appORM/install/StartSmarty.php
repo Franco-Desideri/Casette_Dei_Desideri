@@ -10,7 +10,6 @@ class StartSmarty
         $smarty = new Smarty();
         $smarty->setTemplateDir(__DIR__ . '/../../libs/Smarty/templates/');
         $smarty->setCompileDir(__DIR__ . '/../../libs/Smarty/templates_c/');
-        $smarty->setCacheDir(__DIR__ . '/../../libs/Smarty/cache/');
         $smarty->setConfigDir(__DIR__ . '/../../config/');
         $smarty->compile_check = true;
         $smarty->debugging = false;

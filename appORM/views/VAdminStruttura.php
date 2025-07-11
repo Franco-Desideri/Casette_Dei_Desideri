@@ -8,22 +8,33 @@ use App\models\EStruttura;
 
 /**
  * Classe View per la gestione delle strutture da parte dell’amministratore.
- * Visualizza: lista strutture, form per creazione/modifica struttura.
+ * Responsabile della visualizzazione:
+ * - dell’elenco delle strutture gestite,
+ * - del form di creazione o modifica struttura.
  */
 class VAdminStruttura
 {
+    /**
+     * Istanza del motore di template Smarty.
+     *
+     * @var Smarty
+     */
     private Smarty $smarty;
 
+    /**
+     * Costruttore: inizializza il motore Smarty tramite configurazione centralizzata.
+     */
     public function __construct()
     {
-        // Avvia il motore Smarty
+        // Avvio Smarty tramite configurazione predefinita
         $this->smarty = StartSmarty::start();
     }
 
     /**
-     * Mostra l'elenco completo delle strutture gestite dall’amministratore
+     * Mostra la lista completa delle strutture gestite dall'amministratore.
+     * Per ciascuna struttura, viene generata l'immagine principale in base64.
      *
-     * @param array $strutture Elenco di oggetti EStruttura
+     * @param array $strutture Elenco di istanze di EStruttura
      */
     public function mostraLista(array $strutture): void
     {
@@ -36,13 +47,15 @@ class VAdminStruttura
     }
 
     /**
-     * Mostra il form per aggiungere o modificare una struttura.
-     * Se $struttura è null → è un nuovo inserimento.
+     * Mostra il form per l'inserimento o modifica di una struttura.
+     * Se viene fornito un oggetto struttura, si assume la modifica.
+     * Altrimenti, si tratta di una nuova creazione.
      *
-     * @param EStruttura|null $struttura La struttura da modificare (o null per nuova)
+     * @param EStruttura|null $struttura Oggetto struttura da modificare, oppure null per nuova
      */
     public function mostraForm(?EStruttura $struttura = null): void
     {
+        // Se si tratta di modifica, carichiamo le immagini già esistenti in base64
         if ($struttura) {
             foreach ($struttura->getFoto() as $f) {
                 if ($f->getImmagine()) {
@@ -50,6 +63,7 @@ class VAdminStruttura
                 }
             }
         }
+
         $this->smarty->assign('struttura', $struttura);
         $this->smarty->display('admin/aggiungi_struttura.tpl');
     }
