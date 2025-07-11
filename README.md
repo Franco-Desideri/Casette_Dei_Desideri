@@ -29,75 +29,33 @@ L'applicazione web è pensata per rispondere alle esigenze di un soggetto locale
 
 ## Requirements
 
-Installation on local server requirements:
+Requisiti per l’installazione su server locale:
 
-1. Install xampp ([XAMPP Download](https://www.apachefriends.org/it/download.html)) on your machine (inlcluding php)
-1. Install composer([Composer Download](https://getcomposer.org/download/)) on your machine
+1. Installa xampp ([XAMPP Download](https://www.apachefriends.org/it/download.html)) sul tuo computer (incluso PHP)
+1. Installa composer([Composer Download](https://getcomposer.org/download/)) sul tuo computer 
 
 ## Installation Guide
 
-1. Download the git repository;
-1. Move the repositoy under `htdocs/` folder in Xampp and rename the folder `Agora`
+1. Scarica il repository Git;
+2. Sposta il repository nella cartella `htdocs/` di XAMPP e rinomina la cartella in '`Casette_Dei_Desideri`'
 
-1. Now you need to install [Doctrine ORM](https://www.doctrine-project.org/), to do that you need to open terminal in the folder of your application (that will be in `xampp/htdocs/Agora`) and run `composer install` in the prompt
+3. Ora è necessario installare [Doctrine ORM](https://www.doctrine-project.org/), Per farlo, apri il terminale nella cartella dell’applicazione (that will be in `xampp/htdocs/    Casette_Dei_Desideri`) e digita il comando `composer install` nel prompt dei comandi
 
-1. Once you installed DoctrineORM, you need to modify some code in `vendor/` folder; in `vendor/doctrine/orm/src/Configuration.php' at line 170 approximately there is a function called `newDefaultAnnotationDriver`. You have to modify it like this:
+4. Non è necessario modificare alcun file nella cartella 'vendor/'. Doctrine ORM è gia configurato correttamente per supportare le annotazioni. Assicurarsi solamente di aver già installato la libreria 'annotations'
 
-```Configuration.php
-public function newDefaultAnnotationDriver($paths = [], $useSimpleAnnotationReader = false, bool $reportFieldsWhereDeclared = false)
-    {
-        Deprecation::trigger(
-            'doctrine/orm',
-            'https://github.com/doctrine/orm/pull/9443',
-            '%s is deprecated, call %s::createDefaultAnnotationDriver() instead.',
-            __METHOD__,
-            ORMSetup::class
-        );
+5. Nell'applicazione puoi trovare la cartella `config`, in questa cartella si trova il file chiamato `config.php` e cambia i parametri in base alle tue impostazioni Xampp.
 
-        if (! class_exists(AnnotationReader::class)) {
-            throw new LogicException(
-                'The annotation metadata driver cannot be enabled because the "doctrine/annotations" library'
-                . ' is not installed. Please run "composer require doctrine/annotations" or choose a different'
-                . ' metadata driver.'
-            );
-        }
-
-            $reader = new AnnotationReader();
-
-        if (class_exists(ArrayCache::class) && class_exists(CachedReader::class)) {
-            $reader = new CachedReader($reader, new ArrayCache());
-        }
-
-        return new AnnotationDriver(
-            $reader,
-            (array) $paths,
-            $reportFieldsWhereDeclared
-        );
-    }
-```
-
-1. In the application you can find a folder called `config`, in this folder locate a file called `config.php` and change the parameters according to your xampp and mysql settings
-
-1. Now it's all setup open your browser and digit in the URL `localhost/Agora` and enjoy the application
-
-1. _Doctrine Usage And App Info_ For Doctrine usage there is a `README.md` file in the `config` folder
-
-1. _For Linux Users Only_ To make the application work on your terminal you must enable write, read and execute permissions on all the files present in the application. I recommend using `chmod -R a+rwe path-to-Agora-directory` command to eneable all the permission.Check that all files inside the folders have all permissions enabled. If they don't have them you can use the previous command directly on the affected folders. Check especially if the folder (and files) found in `libs/Smarty/templates_c` have the right permission. Once you set all the permissions everything should work.
+6. Ora è tutto pronto apri il tuo browser e digita nella URL `localhost/Casette_Dei_Desideri`.
 
 ## Usage
 
-### Doctrine and SQL
-
-This application contains two instances of the "Agora" app: one that uses ORM technologies and one that uses standard SQL. In the `config` folder you can find the guide on how to switch between apps.
-
 ### Moderator View
 
-This app also has the "Moderator View". In the root folder you will find a file called `admin.php`: this file allows you to add a moderator in the application (of course you can change the parameters as you like, and you have to run the script). Once you have added a moderator, to access the moderator view, you have to access the page `localhost/Agora/Moderator/login` and enter the credentials you have set.
-
-### WebSocket
-
-Among the technologies used there are also those related to WebSockets. These add extra features to the application, such as seeing how many users are online or the real-time location of an online user and much more. To enable these features you need to run the `websocket_server.php` script and leave it in the background. Since the application is installed locally, to take advantage of these features, one way is to run Agora on two different browsers with two different users and test the various features.
+Poiché nel nostro caso è previsto un unico amministratore, la sua gestione è stata implementata inserendolo all’interno della tabella degli utenti, assegnandogli un ruolo specifico impostato su admin.
+L’approccio adottato prevede la registrazione dell’amministratore attraverso il normale processo di registrazione utente, seguita da una modifica manuale del campo ruolo direttamente nel database, al fine di abilitare l’accesso all’area riservata di amministrazione.
 
 ## Our Development team
 
-- [flebo45](https://github.com/flebo45)
+- [Franco-Desideri](https://github.com/Franco-Desideri)
+- [JacLor03](https://github.com/JacLor03)
+- [Marco-Mariani](https://github.com/Marco-Mariani)

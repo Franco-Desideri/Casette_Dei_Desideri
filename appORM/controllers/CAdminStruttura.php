@@ -11,13 +11,14 @@ use App\models\EFoto;
 
 class CAdminStruttura
 {
-
-    /*Mostra la Lista delle strutture*/
+    /**
+     * Mostra la lista di tutte le strutture registrate.
+     * Per ciascuna struttura carica anche l'immagine principale in formato base64.
+     */
     public function lista(): void
     {
         $strutture = FStruttura::getTutteStrutture();
 
-        // → Inserisci qui il codice per popolare immaginePrincipale
         foreach ($strutture as $s) {
             $s->immaginePrincipale = $s->getImmaginePrincipaleBase64();
         }
@@ -26,9 +27,10 @@ class CAdminStruttura
         $view->mostraLista($strutture);
     }
 
-
-
-    /*Metodo per Aggiungere una Struttura*/
+    /**
+     * Mostra il form per aggiungere una nuova struttura.
+     * Accesso riservato agli admin.
+     */
     public function aggiungi(): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
@@ -40,12 +42,16 @@ class CAdminStruttura
         $view->mostraForm();
     }
 
-    /*Metodo per salvare una nuova struttura con controllo di errori*/
+    /**
+     * Salva una nuova struttura nel sistema, validando:
+     * - Dati base della struttura
+     * - Intervalli di disponibilità/prezzo
+     * - Caricamento immagini
+     */
     public function salvaNuova(): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
-            echo "<script>alert('Accesso riservato.'); window.location.href = '/Casette_Dei_Desideri/AdminStruttura/lista';</script>";
-            exit;
+            $this->alertAndRedirect('Accesso riservato.', '/Casette_Dei_Desideri/AdminStruttura/lista');
         }
 
         $dati = $_POST;
@@ -54,7 +60,7 @@ class CAdminStruttura
 
         $intervalliTemporanei = [];
 
-        // Creazione e validazione intervalli (senza associarli ancora alla struttura)
+        // Validazione di intervalli (inizio, fine, prezzo)
         if (isset($dati['intervallo_inizio'], $dati['intervallo_fine'], $dati['intervallo_prezzo'])) {
             foreach ($dati['intervallo_inizio'] as $i => $inizioStr) {
                 $fineStr = $dati['intervallo_fine'][$i];
@@ -66,26 +72,23 @@ class CAdminStruttura
                     $intervallo->setDataF(new DateTime($fineStr));
                     $intervallo->setPrezzo((float)$prezzoStr);
 
-                    // Validazione base (senza struttura)
                     $esito = FIntervallo::validaSingoloIntervallo($intervallo);
                     if ($esito !== true) {
-                        echo "<script>alert('Errore intervallo ($inizioStr - $fineStr): $esito'); window.location.href = '/Casette_Dei_Desideri/AdminStruttura/aggiungi';</script>";
-                        exit;
+                        $this->alertAndRedirect("Errore intervallo ($inizioStr - $fineStr): $esito", '/Casette_Dei_Desideri/AdminStruttura/aggiungi');
                     }
 
                     $intervalliTemporanei[] = $intervallo;
                 }
             }
 
-            // Verifica sovrapposizioni tra intervalli temporanei
+            // Verifica che gli intervalli non si sovrappongano tra loro
             $esito = FIntervallo::verificaSovrapposizioni($intervalliTemporanei);
             if ($esito !== true) {
-                echo "<script>alert('Errore: $esito'); window.location.href = '/Casette_Dei_Desideri/AdminStruttura/aggiungi';</script>";
-                exit;
+                $this->alertAndRedirect("Errore: $esito", '/Casette_Dei_Desideri/AdminStruttura/aggiungi');
             }
         }
 
-        // Tutto valido: procedi con il salvataggio
+        // Se tutto è valido, salva struttura e intervalli
         $this->gestisciUploadFoto($struttura);
         FStruttura::salvaStruttura($struttura);
 
@@ -98,10 +101,9 @@ class CAdminStruttura
         header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
     }
 
-
-
-
-    /*Metodo per modificare una struttura esistente*/
+    /**
+     * Mostra il form per modificare una struttura esistente.
+     */
     public function modifica($id): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
@@ -119,36 +121,36 @@ class CAdminStruttura
         $view->mostraForm($struttura);
     }
 
-
-
-
-    /*Metodo per modificare una struttura esistente con verifica di eventuali errori*/
+    /**
+     * Salva le modifiche a una struttura, con gestione completa di:
+     * - Aggiornamento intervalli esistenti
+     * - Rimozione intervalli eliminati dal form
+     * - Validazione logica dei dati e intervalli
+     * - Upload o rimozione foto
+     */
     public function salvaModificata(): void {
         USession::start();
 
         if (USession::get('ruolo') !== 'admin') {
             $this->alertAndRedirect("Accesso riservato.", "/Casette_Dei_Desideri/AdminStruttura/lista");
-            return;
         }
 
         $dati = $_POST;
         $struttura = FStruttura::getStrutturaById($dati['id']);
-
         if (!$struttura) {
             $this->alertAndRedirect("Struttura non trovata.", "/Casette_Dei_Desideri/AdminStruttura/lista");
-            return;
         }
 
         $this->popolaStrutturaDaDati($struttura, $dati);
         $idsForm = $dati['intervallo_id'] ?? [];
 
-        // Mappa intervalli esistenti per ID
+        // Mappatura intervalli già presenti
         $mappaEsistenti = [];
         foreach ($struttura->getIntervalli() as $esistente) {
             $mappaEsistenti[$esistente->getId()] = $esistente;
         }
 
-        // Rimuove intervalli non presenti nel form
+        // Rimuove gli intervalli cancellati nel form
         foreach ($mappaEsistenti as $id => $int) {
             if (!in_array($id, $idsForm)) {
                 $struttura->removeIntervallo($int);
@@ -157,7 +159,7 @@ class CAdminStruttura
             }
         }
 
-        // Gestione intervalli aggiornati o nuovi
+        // Aggiorna intervalli esistenti o crea nuovi
         foreach ($dati['intervallo_inizio'] as $i => $inizioStr) {
             $fineStr = $dati['intervallo_fine'][$i];
             $prezzoStr = $dati['intervallo_prezzo'][$i];
@@ -183,7 +185,6 @@ class CAdminStruttura
                 if ($esito !== true) {
                     $id = $struttura->getId();
                     $this->alertAndRedirect("Errore intervallo: $esito", "/Casette_Dei_Desideri/AdminStruttura/modifica/$id");
-                    return;
                 }
 
                 if (!isset($idIntervallo) || !$struttura->getIntervalli()->contains($intervallo)) {
@@ -192,10 +193,10 @@ class CAdminStruttura
             }
         }
 
-        // Gestione upload immagini
+        // Gestione nuove immagini
         $this->gestisciUploadFoto($struttura);
 
-        // Rimozione foto
+        // Rimozione immagini selezionate
         if (!empty($_POST['delete_foto_id'])) {
             $pm = FPersistentManager::get();
             foreach ($_POST['delete_foto_id'] as $fotoId) {
@@ -211,13 +212,9 @@ class CAdminStruttura
         header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
     }
 
-
-
-
-
-
-
-    /*Metodo per eliminare una strutura (in realtà viene impostato il valore cancellata come true)*/
+    /**
+     * "Elimina" una struttura marcandola come cancellata (soft delete).
+     */
     public function elimina($id): void {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
@@ -227,16 +224,15 @@ class CAdminStruttura
 
         $struttura = FStruttura::getStrutturaById($id);
         if ($struttura) {
-            FStruttura::rimuoviStruttura($struttura);
+            FStruttura::rimuoviStruttura($struttura); // → imposta cancellata = true
         }
 
         header('Location: /Casette_Dei_Desideri/AdminStruttura/lista');
     }
 
-
-
-
-    /*Metodo privato per popolare una struttura*/
+    /**
+     * Popola i dati della struttura a partire da $_POST.
+     */
     private function popolaStrutturaDaDati(EStruttura $struttura, array $dati): void {
         $struttura->setTitolo($dati['titolo']);
         $struttura->setDescrizione($dati['descrizione']);
@@ -245,16 +241,16 @@ class CAdminStruttura
         $struttura->setLuogo($dati['luogo']);
         $struttura->setNBagni((int)$dati['nBagni']);
         $struttura->setNLetti((int)$dati['nLetti']);
-    $struttura->setColazione($dati['colazione'] == "1");
-    $struttura->setAnimali($dati['animali'] == "1");
-    $struttura->setParcheggio($dati['parcheggio'] == "1");
-    $struttura->setWifi($dati['wifi'] == "1");
-    $struttura->setBalcone($dati['balcone'] == "1");
-
+        $struttura->setColazione($dati['colazione'] == "1");
+        $struttura->setAnimali($dati['animali'] == "1");
+        $struttura->setParcheggio($dati['parcheggio'] == "1");
+        $struttura->setWifi($dati['wifi'] == "1");
+        $struttura->setBalcone($dati['balcone'] == "1");
     }
 
-
-    /*Metodo privato per gestire l'upload delle foto*/
+    /**
+     * Gestisce il caricamento di una o più foto della struttura da $_FILES.
+     */
     private function gestisciUploadFoto(EStruttura $struttura): void {
         if (isset($_FILES['foto']['tmp_name']) && is_array($_FILES['foto']['tmp_name'])) {
             foreach ($_FILES['foto']['tmp_name'] as $tmpPath) {
@@ -268,8 +264,11 @@ class CAdminStruttura
         }
     }
 
+    /**
+     * Mostra un messaggio `alert` in JavaScript e reindirizza a una URL.
+     */
     private function alertAndRedirect(string $msg, string $url): void {
-        $safeMsg = addslashes($msg); // Escapa apostrofi, virgolette ecc.
+        $safeMsg = addslashes($msg); // Escape per virgolette/apostrofi
         echo <<<HTML
     <script>
         alert('$safeMsg');

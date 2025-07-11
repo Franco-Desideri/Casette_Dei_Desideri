@@ -6,12 +6,15 @@ use App\models\EOrdine;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 
 /**
- * Foundation per la gestione degli ordini
+ * Foundation per la gestione degli ordini.
  */
 class FOrdine
 {
     /**
-     * Salva un ordine (inclusi i suoi item)
+     * Salva un nuovo ordine nel database.
+     * 
+     * @param EOrdine $ordine L'oggetto ordine da salvare, già completo di utente, prodotti e dettagli.
+     * @return void
      */
     public static function creaOrdine(EOrdine $ordine): void
     {
@@ -19,7 +22,10 @@ class FOrdine
     }
 
     /**
-     * Recupera tutti gli ordini effettuati da un utente
+     * Restituisce tutti gli ordini associati a un determinato utente.
+     * 
+     * @param int $utenteId L'ID dell'utente di cui si vogliono recuperare gli ordini.
+     * @return EOrdine[] Array di ordini effettuati dall'utente.
      */
     public static function getOrdiniPerUtente(int $utenteId): array
     {
@@ -27,7 +33,11 @@ class FOrdine
     }
 
     /**
-     * Genera il testo riepilogativo dell’ordine da inviare via email
+     * Genera una stringa riepilogativa dell'ordine per l'invio via email o per la stampa.
+     * Include data, utente, prodotti richiesti e importo.
+     * 
+     * @param EOrdine $ordine L'ordine da riassumere.
+     * @return string Testo formattato con tutti i dettagli essenziali dell'ordine.
      */
     public static function generaTestoOrdine(EOrdine $ordine): string
     {
@@ -36,7 +46,7 @@ class FOrdine
         $righe[] = "Data ordine: " . $ordine->getData()->format('d/m/Y H:i');
         $righe[] = "Utente: " . $ordine->getUtente()->getNome() . " " . $ordine->getUtente()->getCognome();
 
-        // Aggiunta fascia oraria
+        // Fascia oraria (se presente)
         if ($ordine->getFasciaOraria()) {
             $righe[] = "Fascia oraria richiesta: " . $ordine->getFasciaOraria();
         }
@@ -44,6 +54,7 @@ class FOrdine
         $righe[] = "";
         $righe[] = "Prodotti richiesti:";
 
+        // Ciclo sugli item per descriverli
         foreach ($ordine->getItems() as $item) {
             if ($item->getProdottoQuantita()) {
                 $prodotto = $item->getProdottoQuantita();
@@ -57,7 +68,7 @@ class FOrdine
         $righe[] = "";
         $righe[] = "Totale ordine: €" . number_format($ordine->getPrezzo(), 2, ',', '.');
 
-        // Aggiunta contanti previsti alla consegna (se disponibili)
+        // Eventuale indicazione dei contanti forniti
         if ($ordine->getContanti() !== null) {
             $righe[] = "Importo contanti fornito: €" . number_format($ordine->getContanti(), 2, ',', '.');
         }

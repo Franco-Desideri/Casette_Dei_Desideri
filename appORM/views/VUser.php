@@ -11,20 +11,35 @@ use App\models\EAttrazione;
 
 /**
  * Classe View per la gestione della visualizzazione dell'utente
- * Responsabile di: login, profilo utente e visualizzazione prenotazioni personali
+ * Si occupa della presentazione lato frontend per:
+ * - Login e registrazione
+ * - Profilo utente
+ * - Home con eventi e attrazioni
+ * - Riepilogo prenotazione
  */
 class VUser
 {
+    /**
+     * Istanza di Smarty per il rendering delle viste.
+     *
+     * @var Smarty
+     */
     private Smarty $smarty;
 
+    /**
+     * Costruttore: inizializza il motore Smarty tramite configurazione centralizzata.
+     */
     public function __construct()
     {
-        // Inizializzazione del motore Smarty tramite la configurazione centralizzata
         $this->smarty = StartSmarty::start();
     }
 
     /**
-     * Mostra il form di login e registrazione
+     * Mostra la pagina di login e registrazione.
+     *
+     * @param string|null $erroreLogin Messaggio di errore per il login, se presente.
+     * @param string|null $erroreReg   Messaggio di errore per la registrazione, se presente.
+     * @return void
      */
     public function mostraAutenticazione(string $erroreLogin = null, string $erroreReg = null): void
     {
@@ -33,11 +48,11 @@ class VUser
         $this->smarty->display("utente/login.tpl");
     }
 
-
     /**
-     * Mostra la pagina del profilo dell'utente con lo storico delle prenotazioni
+     * Mostra la pagina del profilo utente, inclusa la lista prenotazioni.
      *
-     * @param EUtente $utente L'oggetto utente attualmente loggato
+     * @param EUtente $utente Oggetto utente attualmente loggato.
+     * @return void
      */
     public function mostraProfilo(EUtente $utente): void
     {
@@ -47,10 +62,12 @@ class VUser
     }
 
     /**
-     * Mostra la home page dell'utente con eventi e attrazioni
+     * Mostra la home page utente con eventi e attrazioni.
+     * Converte eventuali immagini binarie in base64 per visualizzazione immediata.
      *
-     * @param array $eventi     Lista di oggetti EEvento
-     * @param array $attrazioni Lista di oggetti EAttrazione
+     * @param EEvento[]     $eventi     Lista di eventi.
+     * @param EAttrazione[] $attrazioni Lista di attrazioni.
+     * @return void
      */
     public function mostraHome(array $eventi, array $attrazioni): void
     {
@@ -59,17 +76,29 @@ class VUser
                 $e->base64img = 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($e->getImmagine()));
             }
         }
-        
+
         foreach ($attrazioni as $a) {
             if ($a->getImmagine()) {
                 $a->base64img = 'data:image/jpeg;base64,' . base64_encode(stream_get_contents($a->getImmagine()));
             }
         }
+
         $this->smarty->assign('attrazioni', $attrazioni);
         $this->smarty->assign('eventi', $eventi);
         $this->smarty->display('utente/home.tpl');
     }
 
+    /**
+     * Mostra il riepilogo di una prenotazione (dettagli struttura, ospiti, periodo, totale).
+     *
+     * @param EPrenotazione $prenotazione Oggetto prenotazione.
+     * @param mixed         $struttura    Struttura associata alla prenotazione.
+     * @param mixed         $periodo      Periodo della prenotazione (con metodi getDataI e getDataF).
+     * @param array         $ospiti       Lista associativa con dati ospiti.
+     * @param float         $totale       Totale prenotazione.
+     * @param string        $ruolo        Ruolo utente (es. admin o utente).
+     * @return void
+     */
     public function mostraRiepilogoPrenotazione($prenotazione, $struttura, $periodo, $ospiti, $totale, $ruolo): void
     {
         $this->smarty->assign('ruolo', $ruolo);
