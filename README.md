@@ -21,8 +21,6 @@ Questa applicazione è pensata come un progetto per apprendere come progettare a
 
 L'applicazione web è pensata per rispondere alle esigenze di un soggetto locale che gestisce in prima persona più strutture ricettive di tipo Bed and Breakfast, nonché un punto vendita alimentare nel territorio. La centralizzazione dei servizi offerti in un’unica piattaforma permette al gestore di ottimizzare la visibilità delle proprie attività e semplificare la comunicazione con i clienti, offrendo un’esperienza integrata che va dalla prenotazione dell’alloggio fino alla gestione di esigenze quotidiane durante il soggiorno, come la spesa a domicilio.
 
-![Agora Profilepage](libs/Smarty/immagini/AgoraProfile.png)
-
 ## Requisiti
 
 Requisiti per l’installazione su server locale:
