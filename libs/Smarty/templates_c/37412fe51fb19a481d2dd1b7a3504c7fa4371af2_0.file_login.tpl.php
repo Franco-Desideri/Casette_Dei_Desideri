@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-09 22:10:03
+/* Smarty version 5.5.1, created on 2025-07-12 02:36:55
   from 'file:utente/login.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686ecc9bed2199_63291186',
+  'unifunc' => 'content_6871ae27adc6e1_52862554',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '37412fe51fb19a481d2dd1b7a3504c7fa4371af2' => 
     array (
       0 => 'utente/login.tpl',
-      1 => 1751896807,
+      1 => 1752240020,
       2 => 'file',
     ),
   ),
@@ -20,14 +20,14 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   array (
   ),
 ))) {
-function content_686ecc9bed2199_63291186 (\Smarty\Template $_smarty_tpl) {
+function content_6871ae27adc6e1_52862554 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
 <head>
 
   <meta charset="UTF-8">
-  <title>Login e Registrazione</title>
+  <title>Casette Dei Desideri</title>
   <link rel="stylesheet" href="/Casette_Dei_Desideri/public/assets/css/auth.css">
   
 </head>

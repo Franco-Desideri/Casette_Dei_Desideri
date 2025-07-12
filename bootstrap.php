@@ -29,11 +29,3 @@ $entityManager = EntityManager::create($config, $doctrineConfig);
 
 // Collega a FPersistentManager
 FPersistentManager::setEntityManager($entityManager);
-
-// Test connessione
-try {
-    $entityManager->getConnection()->connect();
-
-} catch (\Exception $e) {
-    echo "Errore connessione: " . $e->getMessage();
-}

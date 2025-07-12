@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-10 11:31:34
+/* Smarty version 5.5.1, created on 2025-07-12 02:22:23
   from 'file:utente/home.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686f8876a9a136_46144604',
+  'unifunc' => 'content_6871aabf1f7e24_13155702',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '574c33d7c29324b299af6b9ad213bf5d0238be39' => 
     array (
       0 => 'utente/home.tpl',
-      1 => 1752139402,
+      1 => 1752251936,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686f8876a9a136_46144604 (\Smarty\Template $_smarty_tpl) {
+function content_6871aabf1f7e24_13155702 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -31,7 +31,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <title>Villa Agency - Real Estate HTML5 Template</title>
+  <title>Casette Dei Desideri</title>
 
   <!-- Bootstrap core CSS -->
   <link href="/Casette_Dei_Desideri/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -111,32 +111,39 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
   <h2 class="section-title">Eventi da non perdere</h2>
 
 
-  <div class="card-list-info">
-    <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('eventi')) > 0) {?>
-        <?php
+<div class="card-list-info">
+  <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('eventi')) > 0) {?>
+    <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('eventi'), 'evento');
 $foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('evento')->value) {
 $foreach1DoElse = false;
 ?>
-            <div class="card-info">
-                  <h3 class="card-title"><?php echo $_smarty_tpl->getValue('evento')->getTitolo();?>
-</h3>
-                  <p class="card-dates">Dal <?php echo $_smarty_tpl->getValue('evento')->getDataInizioString('Y-m-d');?>
+      <div class="card-info">
+        <div class="title-marquee">
+          <h3 class="card-title">
+            <span class="scroll-text"><?php echo $_smarty_tpl->getValue('evento')->getTitolo();?>
+</span>
+          </h3>
+        </div>
+        <p class="card-dates">
+          Dal <?php echo $_smarty_tpl->getValue('evento')->getDataInizioString('Y-m-d');?>
  al <?php echo $_smarty_tpl->getValue('evento')->getDataFineString('Y-m-d');?>
-</p>
-                <div class="card-info-image">
-                    <img src="<?php echo $_smarty_tpl->getValue('evento')->base64img;?>
+
+        </p>
+        <div class="card-info-image">
+          <img src="<?php echo $_smarty_tpl->getValue('evento')->base64img;?>
 " alt="Immagine evento">
-                </div>
-            </div>
-        <?php
+        </div>
+      </div>
+    <?php
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-    <?php } else { ?>
-        <p>Non ci sono attrazioni disponibili</p>
-    <?php }?>
-  </div>
+  <?php } else { ?>
+    <p>Non ci sono attrazioni disponibili</p>
+  <?php }?>
+</div>
+
 
 
   <?php $_smarty_tpl->renderSubTemplate("file:partials/footer.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('paginaCorrente'=>"strutture"), (int) 0, $_smarty_current_dir);

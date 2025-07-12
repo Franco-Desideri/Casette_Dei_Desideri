@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-10 11:31:56
+/* Smarty version 5.5.1, created on 2025-07-12 02:38:15
   from 'file:utente/profilo.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686f888c2c3f16_99824722',
+  'unifunc' => 'content_6871ae7710c266_84702296',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '20926279abb68d6ab641a8fc2e6f3b6e52f3966a' => 
     array (
       0 => 'utente/profilo.tpl',
-      1 => 1752139402,
+      1 => 1752240038,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686f888c2c3f16_99824722 (\Smarty\Template $_smarty_tpl) {
+function content_6871ae7710c266_84702296 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -31,7 +31,7 @@ $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\t
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <title>Villa Agency - Real Estate HTML5 Template</title>
+  <title>Casette Dei Desideri</title>
 
   <!-- Bootstrap core CSS -->
   <link href="/Casette_Dei_Desideri/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

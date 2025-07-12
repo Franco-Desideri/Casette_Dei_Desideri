@@ -1,66 +1,58 @@
 <?php
 
 require_once(__DIR__ . '/../../vendor/autoload.php');
+require_once(__DIR__ . '/../../bootstrap.php');
 
 use Doctrine\ORM\Tools\SchemaTool;
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\ORM\EntityManager;
+use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 
 class Installation
 {
     public static function install()
     {
-        // Carica configurazione
-        $config = require(__DIR__ . '/../../config/config.php');
+        $flagPath = __DIR__ . '/../../.installed';
+
+        // Se già installato, non fare nulla
+        if (file_exists($flagPath)) {
+            return;
+        }
 
         try {
-            // Crea database se non esiste
-            $pdo = new PDO("mysql:host=" . $config['host'], $config['user'], $config['password']);
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            // Connessione PDO per creare il database
+            $db = new PDO("mysql:host=" . DB_HOST, DB_USER, DB_PASS);
+            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $stmt = $pdo->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '" . $config['dbname'] . "'");
-            $dbExists = $stmt->fetchColumn();
+            // Verifica se il database esiste
+            $stmt = $db->query("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '" . DB_NAME . "'");
+            $existingDatabase = $stmt->fetchColumn();
 
-            if (!$dbExists) {
-                $pdo->exec("CREATE DATABASE " . $config['dbname']);
+            // Se non esiste, lo crea
+            if (!$existingDatabase) {
+                $db->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME);
+                echo "Database creato con successo.\n";
             }
 
-            // Connessione al DB creato
-            $pdo->exec("USE " . $config['dbname']);
+            // Ottieni EntityManager da FPersistentManager
+            $entityManager = FPersistentManager::getEntityManager();
 
-            // Crea EntityManager
-            $paths = [__DIR__ . '/../../appORM/models'];
-            $isDevMode = true;
-
-            $doctrineConfig = Setup::createAnnotationMetadataConfiguration(
-                $paths,
-                $isDevMode,
-                null,
-                null,
-                false
-            );
-
-            $entityManager = EntityManager::create($config, $doctrineConfig);
-
-            // Crea schema Doctrine
+            // Aggiorna schema Doctrine
             $schemaTool = new SchemaTool($entityManager);
             $metadata = $entityManager->getMetadataFactory()->getAllMetadata();
-            $schemaTool->createSchema($metadata);
 
-            // Esegui il file SQL per popolare i dati
-            $sqlPath = __DIR__ . '/../../database/casette_db.sql';
-            if (file_exists($sqlPath)) {
-                $sql = file_get_contents($sqlPath);
-                $pdo->exec($sql);
-                echo "Database popolato con successo.\n";
+            if (!empty($metadata)) {
+                $schemaTool->updateSchema($metadata);
+                echo "Schema aggiornato con successo.\n";
             } else {
-                echo "File populate.sql non trovato.\n";
+                echo "Nessuna entità trovata per generare lo schema.\n";
             }
+
+            // Segna l'installazione come completata
+            file_put_contents($flagPath, 'ok');
 
         } catch (PDOException $e) {
             echo "Errore PDO: " . $e->getMessage();
         } catch (Exception $e) {
-            echo "Errore Doctrine: " . $e->getMessage();
+            echo "Errore generale: " . $e->getMessage();
         }
     }
 }
