@@ -107,11 +107,7 @@ class CAdminProdotto
         header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
     }
 
-    /**
-     * Carica il form di modifica per un prodotto esistente.
-     * Riconosce automaticamente se è un prodotto a quantità o a peso.
-     */
-    public function modifica($id): void
+    public function modificaQuantita($id): void
     {
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
@@ -119,8 +115,7 @@ class CAdminProdotto
             return;
         }
 
-        $prodotto = FPersistentManager::find(EProdottoQuantita::class, $id)
-                  ?? FPersistentManager::find(EProdottoPeso::class, $id);
+        $prodotto = FPersistentManager::find(EProdottoQuantita::class, $id);
 
         if (!$prodotto) {
             echo "Prodotto non trovato.";
@@ -128,8 +123,29 @@ class CAdminProdotto
         }
 
         $view = new VAdminProdotto();
-        $view->mostraForm($prodotto); // Form precompilato con i dati del prodotto
+        $view->mostraForm($prodotto); // Form precompilato
     }
+
+    public function modificaPeso($id): void
+    {
+        USession::start();
+        if (USession::get('ruolo') !== 'admin') {
+            echo "Accesso riservato.";
+            return;
+        }
+
+        $prodotto = FPersistentManager::find(EProdottoPeso::class, $id);
+
+        if (!$prodotto) {
+            echo "Prodotto non trovato.";
+            return;
+        }
+
+        $view = new VAdminProdotto();
+        $view->mostraForm($prodotto); // Form precompilato
+    }
+
+
 
     /**
      * Salva le modifiche effettuate a un prodotto esistente.
@@ -175,38 +191,59 @@ class CAdminProdotto
      * Disattiva (nasconde) un prodotto impostandolo come non visibile.
      * Riconosce il tipo (quantità o peso) e aggiorna la visibilità nel DB.
      */
-    public function disattiva(): void
+    public function disattivaQuantita($id): void
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['idProdotto'])) {
-            $id = (int)$_POST['idProdotto'];
-
-            $prodottoQ = FPersistentManager::find(EProdottoQuantita::class, $id);
-            $prodottoP = FPersistentManager::find(EProdottoPeso::class, $id);
-            $prodotto = $prodottoQ ?? $prodottoP;
-
-            if ($prodotto !== null) {
-                $prodotto->setVisibile(false);
-                FPersistentManager::get()->flush();
-
-                header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
-                exit;
-            }
-
+        USession::start();
+        if (USession::get('ruolo') !== 'admin') {
+            echo "Accesso riservato.";
+            return;
         }
 
-        // Fallback redirect
+        $prodotto = FPersistentManager::find(EProdottoQuantita::class, $id);
+
+        if ($prodotto) {
+            $prodotto->setVisibile(false);
+            FPersistentManager::get()->flush();
+        }
+
         header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
         exit;
     }
 
+
+    public function disattivaPeso($id): void
+    {
+        USession::start();
+        if (USession::get('ruolo') !== 'admin') {
+            echo "Accesso riservato.";
+            return;
+        }
+
+        $prodotto = FPersistentManager::find(EProdottoPeso::class, $id);
+
+        if ($prodotto) {
+            $prodotto->setVisibile(false);
+            FPersistentManager::get()->flush();
+        }
+
+        header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
+        exit;
+    }
+
+
+
     /**
      * Riattiva (rende visibile) un prodotto precedentemente disattivato.
      */
-    public function attiva($id): void
+    public function attivaQuantita($id): void
     {
-        $prodottoQ = FPersistentManager::find(EProdottoQuantita::class, $id);
-        $prodottoP = FPersistentManager::find(EProdottoPeso::class, $id);
-        $prodotto = $prodottoQ ?? $prodottoP;
+        USession::start();
+        if (USession::get('ruolo') !== 'admin') {
+            echo "Accesso riservato.";
+            return;
+        }
+
+        $prodotto = FPersistentManager::find(EProdottoQuantita::class, $id);
 
         if ($prodotto) {
             $prodotto->setVisibile(true);
@@ -214,8 +251,29 @@ class CAdminProdotto
             FPersistentManager::get()->flush();
         }
 
+        header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
+        exit;
+    }
+
+    public function attivaPeso($id): void
+    {
+        USession::start();
+        if (USession::get('ruolo') !== 'admin') {
+            echo "Accesso riservato.";
+            return;
+        }
+
+        $prodotto = FPersistentManager::find(EProdottoPeso::class, $id);
+
+        if ($prodotto) {
+            $prodotto->setVisibile(true);
+            FPersistentManager::get()->persist($prodotto);
+            FPersistentManager::get()->flush();
+        }
 
         header('Location: /Casette_Dei_Desideri/AdminProdotto/lista');
         exit;
     }
+
+
 }

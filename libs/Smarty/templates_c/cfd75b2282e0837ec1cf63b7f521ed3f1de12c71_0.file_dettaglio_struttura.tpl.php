@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-10 17:02:17
+/* Smarty version 5.5.1, created on 2025-07-12 04:46:06
   from 'file:utente/dettaglio_struttura.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686fd5f98b6ee3_27940434',
+  'unifunc' => 'content_6871cc6e7f1a33_06692645',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'cfd75b2282e0837ec1cf63b7f521ed3f1de12c71' => 
     array (
       0 => 'utente/dettaglio_struttura.tpl',
-      1 => 1752145144,
+      1 => 1752251936,
       2 => 'file',
     ),
   ),
@@ -22,7 +22,7 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686fd5f98b6ee3_27940434 (\Smarty\Template $_smarty_tpl) {
+function content_6871cc6e7f1a33_06692645 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\utente';
 ?><!DOCTYPE html>
 <html lang="it">
@@ -93,28 +93,6 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
           <?php } else { ?>
             <p>Nessuna immagine disponibile.</p>
           <?php }?>
-
-
-          <!--Visualizzazione foto
-          <?php if ($_smarty_tpl->getSmarty()->getModifierCallback('count')($_smarty_tpl->getValue('foto')) > 0) {?>
-              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                  <?php
-$_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('foto'), 'f');
-$foreach1DoElse = true;
-foreach ($_from ?? [] as $_smarty_tpl->getVariable('f')->value) {
-$foreach1DoElse = false;
-?>
-                      <?php if ((true && (true && null !== ($_smarty_tpl->getValue('f')->base64img ?? null)))) {?>
-                          <img src="<?php echo $_smarty_tpl->getValue('f')->base64img;?>
-" alt="foto">
-                      <?php }?>
-                  <?php
-}
-$_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
-              </div>
-          <?php } else { ?>
-              <p>Nessuna immagine disponibile.</p>
-          <?php }?>-->
 
 
           <div class="main-content">
@@ -277,12 +255,12 @@ for ($__section_i_0_iteration = 1, $_smarty_tpl->tpl_vars['__smarty_section_i']-
       <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('intervalli'), 'i', true);
 $_smarty_tpl->getVariable('i')->iteration = 0;
-$foreach2DoElse = true;
+$foreach1DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('i')->value) {
-$foreach2DoElse = false;
+$foreach1DoElse = false;
 $_smarty_tpl->getVariable('i')->iteration++;
 $_smarty_tpl->getVariable('i')->last = $_smarty_tpl->getVariable('i')->iteration === $_smarty_tpl->getVariable('i')->total;
-$foreach2Backup = clone $_smarty_tpl->getVariable('i');
+$foreach1Backup = clone $_smarty_tpl->getVariable('i');
 ?>
         {
           inizio: '<?php echo $_smarty_tpl->getValue('i')->getDataI()->format("Y-m-d");?>
@@ -291,7 +269,7 @@ $foreach2Backup = clone $_smarty_tpl->getVariable('i');
 '
         }<?php if (!$_smarty_tpl->getVariable('i')->last) {?>,<?php }?>
       <?php
-$_smarty_tpl->setVariable('i', $foreach2Backup);
+$_smarty_tpl->setVariable('i', $foreach1Backup);
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     ];
@@ -300,12 +278,12 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
       <?php
 $_from = $_smarty_tpl->getSmarty()->getRuntime('Foreach')->init($_smarty_tpl, $_smarty_tpl->getValue('prenotazioni'), 'p', true);
 $_smarty_tpl->getVariable('p')->iteration = 0;
-$foreach3DoElse = true;
+$foreach2DoElse = true;
 foreach ($_from ?? [] as $_smarty_tpl->getVariable('p')->value) {
-$foreach3DoElse = false;
+$foreach2DoElse = false;
 $_smarty_tpl->getVariable('p')->iteration++;
 $_smarty_tpl->getVariable('p')->last = $_smarty_tpl->getVariable('p')->iteration === $_smarty_tpl->getVariable('p')->total;
-$foreach3Backup = clone $_smarty_tpl->getVariable('p');
+$foreach2Backup = clone $_smarty_tpl->getVariable('p');
 ?>
         {
           inizio: '<?php echo $_smarty_tpl->getValue('p')->getPeriodo()->getDataI()->format("Y-m-d");?>
@@ -314,7 +292,7 @@ $foreach3Backup = clone $_smarty_tpl->getVariable('p');
 '
         }<?php if (!$_smarty_tpl->getVariable('p')->last) {?>,<?php }?>
       <?php
-$_smarty_tpl->setVariable('p', $foreach3Backup);
+$_smarty_tpl->setVariable('p', $foreach2Backup);
 }
 $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     ];
@@ -329,6 +307,10 @@ $_smarty_tpl->getSmarty()->getRuntime('Foreach')->restore($_smarty_tpl, 1);?>
     inizializzaPrenotazione();
   <?php echo '</script'; ?>
 >
+
+
+
+
 
   </body>
 </html><?php }

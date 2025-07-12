@@ -48,10 +48,10 @@
 
                         </div>
                         <div class="admin-item-actions">
-                        <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}"
+                        <a href="/Casette_Dei_Desideri/AdminProdotto/modificaQuantita/{$prodotto->getId()}"
                             class="btn-edit">✏️ Modifica</a>
                         <form method="POST"
-                                action="/Casette_Dei_Desideri/AdminProdotto/disattiva"
+                                action="/Casette_Dei_Desideri/AdminProdotto/disattivaQuantita/{$prodotto->getId()}"
                                 class="d-inline"
                                 onsubmit="return confirm('Nascondere il prodotto?');">
                             <input type="hidden" name="idProdotto" value="{$prodotto->getId()}">
@@ -75,9 +75,9 @@
                             <strong>{$prodotto->getNome()}</strong> - €{$prodotto->getPrezzoKg()}/kg
                         </div>
                         <div class="admin-item-actions">
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}"
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/modificaPeso/{$prodotto->getId()}"
                                 class="btn-edit">✏️ Modifica</a>
-                            <form method="POST" action="/Casette_Dei_Desideri/AdminProdotto/disattiva" 
+                            <form method="POST" action="/Casette_Dei_Desideri/AdminProdotto/disattivaPeso/{$prodotto->getId()}" 
                                 class = "btn-delate"
                                 onsubmit="return confirm('Nascondere il prodotto?');">
                                <input type="hidden" name="idProdotto" value="{$prodotto->getId()}">
@@ -100,8 +100,8 @@
                             <strong>{$prodotto->getNome()}</strong> - {$prodotto->getPeso()} {$prodotto->getUnitaMisura()} - €{$prodotto->getPrezzo()}
                         </div>
                         <div class="admin-item-actions">
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}" class="btn-edit">✏️ Modifica</a>
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/attiva/{$prodotto->getId()}" onclick="return confirm('Rendere visibile il prodotto?')" class="btn-edit">✅ Attiva</a>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/modificaQuantita/{$prodotto->getId()}" class="btn-edit">✏️ Modifica</a>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/attivaQuantita/{$prodotto->getId()}" onclick="return confirm('Rendere visibile il prodotto?')" class="btn-edit">✅ Attiva</a>
                         </div>
                     </li>
                 {/foreach}
@@ -119,8 +119,8 @@
                             <strong>{$prodotto->getNome()}</strong> - {$prodotto->getRangePeso()}g - €{$prodotto->getPrezzoKg()} (o €{$prodotto->getPrezzoKg()}/kg)
                         </div>
                         <div class="admin-item-actions">
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/{$prodotto->getId()}"class="btn-edit">✏️ Modifica</a>
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/attiva/{$prodotto->getId()}" onclick="return confirm('Rendere visibile il prodotto?')"class="btn-edit">✅ Attiva</a>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/modificaPeso/{$prodotto->getId()}"class="btn-edit">✏️ Modifica</a>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/attivaPeso/{$prodotto->getId()}" onclick="return confirm('Rendere visibile il prodotto?')"class="btn-edit">✅ Attiva</a>
                         </div>
                     </li>
                 {/foreach}

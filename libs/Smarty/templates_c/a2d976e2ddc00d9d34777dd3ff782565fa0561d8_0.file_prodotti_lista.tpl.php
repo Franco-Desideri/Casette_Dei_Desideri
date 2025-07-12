@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 5.5.1, created on 2025-07-10 19:11:43
+/* Smarty version 5.5.1, created on 2025-07-12 04:35:46
   from 'file:admin/prodotti_lista.tpl' */
 
 /* @var \Smarty\Template $_smarty_tpl */
 if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
   'version' => '5.5.1',
-  'unifunc' => 'content_686ff44fa1d8e2_25841354',
+  'unifunc' => 'content_6871ca028b26a2_20710592',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a2d976e2ddc00d9d34777dd3ff782565fa0561d8' => 
     array (
       0 => 'admin/prodotti_lista.tpl',
-      1 => 1752139402,
+      1 => 1752287737,
       2 => 'file',
     ),
   ),
@@ -22,12 +22,14 @@ if ($_smarty_tpl->getCompiled()->isFresh($_smarty_tpl, array (
     'file:partials/footer.tpl' => 1,
   ),
 ))) {
-function content_686ff44fa1d8e2_25841354 (\Smarty\Template $_smarty_tpl) {
+function content_6871ca028b26a2_20710592 (\Smarty\Template $_smarty_tpl) {
 $_smarty_current_dir = 'C:\\xampp\\htdocs\\Casette_Dei_Desideri\\libs\\Smarty\\templates\\admin';
 ?><!DOCTYPE html>
 <html lang="it">
 
   <head>
+
+<title>Casette Dei Desideri</title>
 
 <!-- Bootstrap core CSS -->
 <link href="/Casette_Dei_Desideri/public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -84,11 +86,12 @@ $foreach0DoElse = false;
 
                         </div>
                         <div class="admin-item-actions">
-                        <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
+                        <a href="/Casette_Dei_Desideri/AdminProdotto/modificaQuantita/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
 "
                             class="btn-edit">✏️ Modifica</a>
                         <form method="POST"
-                                action="/Casette_Dei_Desideri/AdminProdotto/disattiva"
+                                action="/Casette_Dei_Desideri/AdminProdotto/disattivaQuantita/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
+"
                                 class="d-inline"
                                 onsubmit="return confirm('Nascondere il prodotto?');">
                             <input type="hidden" name="idProdotto" value="<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
@@ -124,10 +127,11 @@ $foreach1DoElse = false;
 /kg
                         </div>
                         <div class="admin-item-actions">
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/modificaPeso/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
 "
                                 class="btn-edit">✏️ Modifica</a>
-                            <form method="POST" action="/Casette_Dei_Desideri/AdminProdotto/disattiva" 
+                            <form method="POST" action="/Casette_Dei_Desideri/AdminProdotto/disattivaPeso/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
+" 
                                 class = "btn-delate"
                                 onsubmit="return confirm('Nascondere il prodotto?');">
                                <input type="hidden" name="idProdotto" value="<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
@@ -164,9 +168,9 @@ $foreach2DoElse = false;
 
                         </div>
                         <div class="admin-item-actions">
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/modificaQuantita/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
 " class="btn-edit">✏️ Modifica</a>
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/attiva/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/attivaQuantita/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
 " onclick="return confirm('Rendere visibile il prodotto?')" class="btn-edit">✅ Attiva</a>
                         </div>
                     </li>
@@ -198,9 +202,9 @@ g - €<?php echo $_smarty_tpl->getValue('prodotto')->getPrezzoKg();?>
 /kg)
                         </div>
                         <div class="admin-item-actions">
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/modifica/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/modificaPeso/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
 "class="btn-edit">✏️ Modifica</a>
-                            <a href="/Casette_Dei_Desideri/AdminProdotto/attiva/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
+                            <a href="/Casette_Dei_Desideri/AdminProdotto/attivaPeso/<?php echo $_smarty_tpl->getValue('prodotto')->getId();?>
 " onclick="return confirm('Rendere visibile il prodotto?')"class="btn-edit">✅ Attiva</a>
                         </div>
                     </li>
