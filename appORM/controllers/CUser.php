@@ -201,7 +201,7 @@ class CUser
         $id = USession::get('utente_id');
         $utente = FUtente::getById($id);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['email'])) {
+        if (UHTTPMethods::isPost() && isset($_POST['email'])) {
             $newEmail = $_POST['email'];
 
             if (!filter_var($newEmail, FILTER_VALIDATE_EMAIL)) {
@@ -223,7 +223,7 @@ class CUser
         $utenteId = USession::get('utente_id');
         $utente = FUtente::getById($utenteId);
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['telefono'])) {
+        if (UHTTPMethods::isPost() && isset($_POST['telefono'])) {
             $telefono = trim($_POST['telefono']);
 
             if (!UValidazione::telefonoValido($telefono)) {

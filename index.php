@@ -6,7 +6,6 @@ use App\controllers\CFrontController;
 require_once __DIR__ . '/appORM/install/Installation.php';
 require_once __DIR__ . '/bootstrap.php';
 
-USession::start();
 Installation::install();
 
 $frontController = new CFrontController();

@@ -1,6 +1,7 @@
 <?php
 
 use App\services\TechnicalServiceLayer\utility\USession;
+use App\services\TechnicalServiceLayer\utility\UHTTPMethods;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\views\VAdminProdotto;
 use App\models\EProdottoQuantita;
@@ -75,6 +76,11 @@ class CAdminProdotto
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
             return;
+        }
+
+        if (!UHTTPMethods::isPost()) {
+            header('HTTP/1.1 405 Method Not Allowed');
+            exit;
         }
 
         $tipo = $_POST['tipo'];
@@ -158,6 +164,11 @@ class CAdminProdotto
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
             return;
+        }
+
+        if (!UHTTPMethods::isPost()) {
+            header('HTTP/1.1 405 Method Not Allowed');
+            exit;
         }
 
         $id = $_POST['id'];

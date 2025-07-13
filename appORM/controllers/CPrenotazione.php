@@ -1,6 +1,7 @@
 <?php
 
 use App\services\TechnicalServiceLayer\utility\USession;
+use App\services\TechnicalServiceLayer\utility\UHTTPMethods;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\services\TechnicalServiceLayer\foundation\FPrenotazione;
 use App\services\TechnicalServiceLayer\foundation\FLockPrenotazione;
@@ -155,7 +156,7 @@ class CPrenotazione
 
         $data = USession::get('prenotazione_temp');
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ospiti'])) {
+        if (UHTTPMethods::isPost() && isset($_POST['ospiti'])) {
             $ospiti = $_POST['ospiti'];
 
             foreach ($ospiti as $i => $ospite) {
@@ -216,7 +217,7 @@ class CPrenotazione
     {
         USession::start();
 
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        if (!UHTTPMethods::isPost()) {
             header('Location: /Casette_Dei_Desideri/Struttura/lista');
             exit;
         }

@@ -1,6 +1,7 @@
 <?php
 
 use App\services\TechnicalServiceLayer\utility\USession;
+use App\services\TechnicalServiceLayer\utility\UHTTPMethods;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\services\TechnicalServiceLayer\foundation\FIntervallo;
 use App\services\TechnicalServiceLayer\foundation\FStruttura;
@@ -52,6 +53,11 @@ class CAdminStruttura
         USession::start();
         if (USession::get('ruolo') !== 'admin') {
             $this->alertAndRedirect('Accesso riservato.', '/Casette_Dei_Desideri/AdminStruttura/lista');
+        }
+    
+        if (!UHTTPMethods::isPost()) {
+            header('HTTP/1.1 405 Method Not Allowed');
+            exit;
         }
 
         $dati = $_POST;
@@ -133,6 +139,11 @@ class CAdminStruttura
 
         if (USession::get('ruolo') !== 'admin') {
             $this->alertAndRedirect("Accesso riservato.", "/Casette_Dei_Desideri/AdminStruttura/lista");
+        }
+     
+        if (!UHTTPMethods::isPost()) {
+            header('HTTP/1.1 405 Method Not Allowed');
+            exit;
         }
 
         $dati = $_POST;

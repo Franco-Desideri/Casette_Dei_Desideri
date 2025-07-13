@@ -1,8 +1,8 @@
 <?php
 
 define('DB_NAME', 'casette_db');
-define('DB_USER', 'tuo_username');
-define('DB_PASS', 'tua_password');
+define('DB_USER', 'root');
+define('DB_PASS', 'Cazzarola03');
 define('DB_HOST', '127.0.0.1');
 
 return [

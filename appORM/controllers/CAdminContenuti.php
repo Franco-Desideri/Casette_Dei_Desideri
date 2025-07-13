@@ -1,6 +1,7 @@
 <?php
 
 use App\services\TechnicalServiceLayer\utility\USession;
+use App\services\TechnicalServiceLayer\utility\UHTTPMethods;
 use App\services\TechnicalServiceLayer\foundation\FPersistentManager;
 use App\views\VAdminContenuti;
 use App\models\EAttrazione;
@@ -56,6 +57,11 @@ class CAdminContenuti
             return;
         }
 
+        if (!UHTTPMethods::isPost()) {
+            header('HTTP/1.1 405 Method Not Allowed');
+            exit;
+        }
+
         $a = new EAttrazione();
 
         // Se è stata caricata un'immagine, la legge come contenuto binario
@@ -81,6 +87,11 @@ class CAdminContenuti
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
             return;
+        }
+
+        if (!UHTTPMethods::isPost()) {
+            header('HTTP/1.1 405 Method Not Allowed');
+            exit;
         }
 
         $a = FPersistentManager::find(EAttrazione::class, $_POST['id']);
@@ -157,6 +168,11 @@ class CAdminContenuti
             return;
         }
 
+        if (!UHTTPMethods::isPost()) {
+            header('HTTP/1.1 405 Method Not Allowed');
+            exit;
+        }
+
         $e = new EEvento();
 
         if (isset($_FILES['immagine']) && is_uploaded_file($_FILES['immagine']['tmp_name'])) {
@@ -182,6 +198,11 @@ class CAdminContenuti
         if (USession::get('ruolo') !== 'admin') {
             echo "Accesso riservato.";
             return;
+        }
+
+        if (!UHTTPMethods::isPost()) {
+            header('HTTP/1.1 405 Method Not Allowed');
+            exit;
         }
 
         $e = FPersistentManager::find(EEvento::class, $_POST['id']);
